@@ -1,3 +1,5 @@
+ 
+ 
 _G.__LOLCAT_FORCE_MODE = "Hybrid"
 local INSTANCE = {}
 _G.__lolcatBSS = INSTANCE
@@ -11,6696 +13,1941 @@ end)
 
 local HttpService
 pcall(function() HttpService = game:GetService("HttpService") end)
-
 local UIS
 pcall(function() UIS = game:GetService("UserInputService") end)
 
-local LOGO_B64 = "iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAnaSURBVHhe7d3dsZvIFgZQBeAEJoFJYBKYCByBM3AGTsFv165b98ExOInJwsFwbu0jGMtbSGjzJ/p4raqumvKBptHQn6Bp0OkEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcWdd1319m6rruY67vrcj7WvRXrg8OSQCMy/taJABogwAYl/e1SADQBgEwLu9rkQCgDQJgXN7XIgFAGwTAuLyvRQKANgiAcXlfiwQAbRAA4/K+FgkA2iAAxuV9LRIAtEEAjMv7WiQAaIMAGJf3tUgA0AYBMC7va5EAoA0CYFze1yIBQBsEwLi8r0UCgDYIgHF5X4sEAG0QAOPyvhYJANpwpADouu7Prus+dF33OdrVdd2PvM3Qdd0//d8/dV33vuu6P3JdS+VtFgkA2vDsAIjOEh0+113Vh8KHl5eXd3kbc+T6iwQAbXhWAPQdf/a27+kDZVEQ5DqLBABtWNIJ5wRAdMwl26yIM4K8/UfluooEAG1Y0hmrARAdI9exta7rvs05G8j1FAkA2rBXAMRgXV5/LzE+UA2BXEeRAKANewTAy8vL33ndvVVDIK9fJABow9YBELfo8nrPEoODuX235HWLBABt2CEAZte/kb9zG8fklYoEAG1Y0kGnAuCZ1/239JOLJi8F8npFAoA2bBwAozP5nu2R24N5nSIBQBu2CoA1bvn1t/D+7Uz9HIKY+rsoWGL9X1t7La9TJABow1YBsHR6771v6T4IYlR/tnjuINd7KS9fJABow4YBMPtbOtqU68uW3l241/aQly8SALRhiwBY2jkfHalfcpYxFTJ5+SIBQBu2CICl1/+5vluWTjDK9V3KyxYJANqwRQD0j+XOEtf2ub5btgyavGyRAKANGwXAx7zso6ZOzbO8fkWu61JetkgA0AYBMC4vWyQAaIMAGJeXLRIAtKHlAIh7+Xn9ilzfpbxskQCgDRsFwOxnAB6ZpTcwCAgLbREASzvmIw/rhC3PNPLyRQKANmwUAO/yshVxBpHrHLNkOvDUuwHy8kUCgDZsEQBh4VTgycuApWcZUyGTly8SALRhwwD4lJevuPcN3T8MNDtgwtSPieTliwQAbdgqAJZ+Q4e+bf8+FzA8DpyXq5q6/g95nSIBQBu2CoCw9Ft6K1On/yGvUyQAaMPGAbD423ptj4wvhLxekQCgDVsGQFgyUr+RhzpnXqnooW3A0+0QAItm663p3sBiltctEgC0YesACEe4FPDDIDBijwAIzwyBaucPuY4iAUAb9gqA8IwQ6Pev1PlDrqdIANCGPQMgxJjAXgODc9o3yHUVCQDasHcADNZ4v/8tMdg3NdNvSq6zSADQhmcFwKAPgvgBkEUiTGL68dKOP8j1FwkAqIqOE6ESgXAvmOISIv7ed/gIkFU6PQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAArOx/p+6PL6eXv7+cuo9fT933c3l5uV2GZbrPsU6/7p+5XuCg/nt6+evrqfv09dT9uO7gS0r3PUIhbw94sq+nl3f/OXUf1u/01yVvG3iic8e/7qhblbx94Ani2vzLqfsnd9CtS27H72a4xIrPPv47/x02dx7Uu+6ce5Tclrcugra/vPqWPwsBwO5ihD4fiHuW3J63JsZTvpy69+fP+f6YigBgN/2Bufspfy65XW/B5Wl93t97RQCwm7FT0GeU3K7WLbmcEgDs4tmn/Zclt611AoBDi9l4+cB7Zsnta50A4LDiuj8fdM8uuY2tEwAc1pFO/YeS29g6AcAhnUemrw+6ZSVua8Vo9/hDPvHwUGz31n3vKHmd1gkADmn6yb1K6X5Ep8/beMR5DOLnmUj+e1V0mrjP/tgTiue/D08mxiVRrm8pAcDhxDdxPtjmlrWe4Du3qfuW/31KHyDle+y3StQTAZK3M2WbM6p7pfue2wAPOT/Omw+oepnTUdbQT6zZePyidlYjAGjG1BTUR0pcx+d695Lbsm3pPuftjxEANCEG564Ppmp57sF33Z6ty3QICACasGRQaihxvZ7r3VNuzx5l6oxHANCE+6Pij5T6QN3artu0T7kXfAKAJlwfSLXyrIG/S7lN+5XblwICgCZcH0i1cu9bcC+5TXuW3JaBAODw1jhIc53PkNv0a+m+xThH7GsOq/NrzF9fxjH7LsitW4NrfLa1IgAoWn6QHuOgG2lXdPrSpcn8eQTdp1xXWP7ZVssx/l/QkOUH6TEOuov2fM7f8hXzBkRrn8GSuy6mArOqtxMA3bclHX8wt3Pmeu6Zu40oAoBVvZUAqIr9vvgJs/hVo3gIaPY4QK7/HgHAYSwPgNrBv7fYv/5R43jj7ozT+8dKpWMKAA5jjQDY4pHZJc5Tm+cO6M0rlY4pADiMNQLg1m2wvfUdf7Nv+Xul0jEFAIexzjsAb8+G28v5Xn5u136l0jEFAIeSD7I5ZY0R+Ln2/rHSsVLpmAKAQ1nntPk5DwQd5RXmlY4pADiUJQfkZanOvFtq+eXL662/eHXY6zTh/tePZ30WlY45dxvV7cBD1nkhyLnsGQJzT/3vtXFu56x0zLnbqG4HHrZkEkwuUy/KeNT5DsXtiUZz2jzVgeZ2zql6L83dRnU78LC1Xgr6s3Tf5xysw09lX77RNy8T5rzFOOrM9WS3fptgqlT2VQBwOHM61GPl/g+DnK+9z1Nyb73GO68TzmcH18veL7fPJgbX6zxWKh1zSQDEurk+WMXes+ceLbmdYc71/9QZwJw6h7JXAPSXPYeaeckbsd1ZwLKS2xnmdqJbHXXpQOitesfMbftQIsgq24OHLT04tyi5jWFJO/tZg6/fov0bgWbXNZRKh9xu7sL0JQ5MunUt/qyS2xe260TzSi0Alp1t3C4CgBVsd4DOK7l94WhtrARAyOuvUwQAKzlSB8ttG+TlnlnqAbDFgKsAYEVHCYHcrsFGnWhWndUA2GbAVQCwsv4Z+/KMuzVLbtNg3lyAe+X8XMD1v0+XagCELSZf5W3AYueHbubNkFuj5PZcWqtd/cBnzELcMQBet7figKsAYEPnkff9zwZyOy6t0YmGzh/17RkAYd0zLAHADvJc/W1L9yNvP1sSApedP+wdAKE/w1rjnQwCgP30317xSu2VvsGG0n3vnw24enbglr4Tla6px+bVPyMABkt/ouwIr2bjN3WeUffve/a/TX2jnb95X1/I8fq7fXHwr9GJoh39a8CjDb90pn6brz8ZduT59D9fTHLvtwpe/za80OT9M1/JBgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAL+1/wOSMpPY3Xd2egAAAABJRU5ErkJggg=="
-local LOGO = nil
-pcall(function() LOGO = base64decode(LOGO_B64) end)
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+do
+local env = getfenv()
 
-local Lib = (function()local HttpService = game:GetService("HttpService")
-local Camera = workspace.CurrentCamera
+if env.__kittyDestroy then pcall(env.__kittyDestroy) end
+
+assert(Drawing and Drawing.new, "lolcat requires the Matcha Drawing API")
+
+local V = Vector2.new
+local RGB = Color3.fromRGB
+ 
+ 
+local CNEW = (type(Color3) == "table" and type(Color3.new) == "function") and Color3.new
+    or function(r, g, b) return RGB((r or 0) * 255, (g or 0) * 255, (b or 0) * 255) end
+local floor, ceil = math.floor, math.ceil
+local min, max, clamp = math.min, math.max, math.clamp
+local cos, sin, pi = math.cos, math.sin, math.pi
+
 local Players = game:GetService("Players")
-local LocalPlayer = Players.LocalPlayer
-local Mouse = LocalPlayer:GetMouse()
+local RS = game:GetService("RunService")
+local lp = Players.LocalPlayer
+local mouse = lp:GetMouse()
 
-local Fonts = Drawing.Fonts
-local SystemFont = Fonts.System
-local BoldFont = Fonts.SystemBold
-local MonoFont = Fonts.Monospace
-local UiFont = Fonts.UI
-local MinecraftFont = Fonts.Minecraft
-local PixelFont = Fonts.Pixel
-local FortniteFont = Fonts.Fortnite
+local Fonts = Drawing.Fonts or {}
+local F_SYS  = Fonts.System or 1
+local F_BOLD = Fonts.SystemBold or 2
 
-local FontWidth = {
-  [SystemFont] = 0.48,
-  [BoldFont] = 0.52,
-  [UiFont] = 0.50,
-  [MonoFont] = 0.60,
-  [MinecraftFont] = 0.55,
-  [PixelFont] = 0.50,
-  [FortniteFont] = 0.55,
+ 
+ 
+ 
+local C = {
+    bg     = RGB(19, 20, 23),
+    panel  = RGB(25, 27, 31),
+    side   = RGB(22, 24, 27),
+    card   = RGB(34, 37, 42),
+    cardHi = RGB(43, 47, 53),
+    track  = RGB(53, 58, 65),
+    hair   = RGB(44, 48, 55),
+    text   = RGB(233, 235, 240),
+    dim    = RGB(150, 156, 166),
+    head   = RGB(138, 145, 157),
+    faint  = RGB(100, 105, 114),
+    white  = RGB(255, 255, 255),
+    black  = RGB(0, 0, 0),
+    red    = RGB(255, 106, 118),
+}
+local ACCENT = RGB(126, 138, 255)
+local accent = ACCENT
+
+ 
+local THEMES = {
+    Purple = { accent = RGB(126, 138, 255), bg = RGB(19, 20, 23) },
+    Blue   = { accent = RGB(96, 168, 255),  bg = RGB(17, 21, 27) },
+    Mint   = { accent = RGB(90, 220, 168),  bg = RGB(16, 23, 21) },
+    Amber  = { accent = RGB(255, 186, 96),  bg = RGB(24, 21, 16) },
+    Rose   = { accent = RGB(255, 118, 156), bg = RGB(25, 17, 22) },
+    Mono   = { accent = RGB(226, 231, 240), bg = RGB(17, 18, 20) },
 }
 
-local LibName = "INSui"
-
-local White = Color3.fromRGB(255, 255, 255)
-local Black = Color3.fromRGB(0, 0, 0)
-local AccentA = Color3.fromRGB(122, 134, 255)
-local AccentB = Color3.fromRGB(189, 130, 255)
-local Newline = string.char(10)
-
-local ChipHint = "click rebind (any key / mouse)  " .. string.char(194, 183) .. "  right-click mode"
-local SearchHint = "Search  " .. string.char(194, 183) .. "  Ctrl+Space"
-local SpotHint = "Ctrl+Space"
-local Instance = {}
-
-_G[LibName .. "Instance"] = Instance
-
-local function Blend(first, second, amount)
-  return Color3.new(first.R + (second.R - first.R) * amount, first.G + (second.G - first.G) * amount, first.B + (second.B - first.B) * amount)
+local function mix(a, b, t)
+    t = clamp(t or 0, 0, 1)
+     
+     
+     
+     
+    return CNEW(a.R + (b.R - a.R) * t, a.G + (b.G - a.G) * t, a.B + (b.B - a.B) * t)
 end
 
-local Theme = {
-  IconIdle = Color3.fromRGB(188, 191, 199),
-  Background = Color3.fromRGB(15, 15, 15),
-  Text = White,
-  Idle = Color3.fromRGB(150, 153, 161),
-  Category = Color3.fromRGB(120, 122, 132),
-  AccentA = AccentA,
-  AccentB = AccentB,
-  Accent = Blend(AccentA, AccentB, 0.5),
-  Track = Color3.fromRGB(61, 61, 61),
-  Risk = Color3.fromRGB(255, 190, 70),
-  SliderTrack = Color3.fromRGB(87, 86, 86),
-  Swatch = Color3.fromRGB(40, 40, 40),
-}
-
-local Layout = {
-  WindowSize = Vector2.new(560, 460),
-  Corner = 8,
-  MinWidth = 420,
-  MinHeight = 300,
-
-  TopbarHeight = 42,
-  RailNarrow = 54,
-  TitleHeight = 31,
-  TopPill = 26,
-  GemSize = 16,
-  RailShare = 0.23,
-  RailWide = 126,
-
-  PillHeight = 30,
-  PillRadius = 7,
-  PillIndent = 12,
-  PillIcon = 34,
-  SubHeight = 24,
-  SubRadius = 6,
-  SubIcon = 14,
-  SubIndent = 14,
-  SubStagger = 0.10,
-  SubSpan = 0.7,
-  PillMix = 0.35,
-  NavRest = 0.004,
-  IconSize = 16,
-
-  RowHeight = 26,
-  RowGap = 6,
-  CardRadius = 5,
-  CardLeft = 20,
-  CardInset = 38,
-  CardTopPad = 11,
-  CardBottomPad = 8,
-  ColumnGap = 10,
-  ContentPad = 12,
-  ContentTop = 10,
-  ContentBottom = 10,
-  ScrollGutter = 6,
-  SectionTitle = 17,
-  SectionDesc = 13,
-
-  ToggleRow = 30,
-  ButtonRow = 26,
-  SliderRow = 38,
-  DropdownRow = 44,
-  DropdownInlineRow = 26,
-  TextboxRow = 44,
-  ColorRow = 26,
-  KeybindRow = 30,
-  DividerRow = 18,
-
-  SwitchWidth = 38,
-  SwitchHeight = 20,
-  SwitchKnob = 14,
-  ButtonHeight = 22,
-  ValueHeight = 18,
-  BarHeight = 8,
-  KnobRadius = 6,
-  KnobHover = 9,
-
-  MonoSize = 26,
-  MonoRadius = 7,
-  HeaderTitle = 16,
-  SearchWidth = 190,
-  SearchMin = 100,
-  SearchShare = 0.28,
-  SearchHeight = 18,
-  ButtonBox = 20,
-  UserCard = 46,
-  AvatarRadius = 14,
-
-  SwatchSize = 16,
-  CheckboxSize = 18,
-  CheckMax = 15.2,
-  CheckHaloMax = 15.4,
-  CheckRingMax = 17,
-  CheckSnap = 0.0005,
-  CheckRest = 0.002,
-  RowSwatchSize = 14,
-  RowSwatchRadius = 5,
-  RowChipMin = 28,
-  RowChipPad = 14,
-  RowChipRadius = 5,
-  ChipHeight = 20,
-  FieldGap = 20,
-  FieldHeight = 24,
-  FieldRadius = 4,
-  FieldPad = 10,
-  FieldInset = 18,
-  LabelHeight = 16,
-  SwatchRadius = 6,
-  ColorLabel = 24,
-  PickerOffsetX = 12,
-  PickerOffsetY = 80,
-  ChipRadius = 4,
-  ChipNudge = 0.37,
-  ChipMin = 40,
-  ChipPad = 16,
-  LabelLine = 16,
-  InfoLine = 15,
-  DividerHeight = 16,
-  DividerPad = 8,
-  ButtonGap = 8,
-  ShimmerMix = 0.5,
-  RainbowScale = 0.3,
-  RainbowSpread = 0.12,
-  RangeBoxWidth = 54,
-  RangeLabelRoom = 90,
-  RangeFillMin = 0.5,
-  EditWidth = 0.50,
-  CaretWidth = 1,
-  CaretBlink = 0.55,
-  SelectLift = 1,
-  SelectGrow = 4,
-  SelectRadius = 3,
-  DragSlop = 3,
-  DragSpeed = 28,
-  PlaceholderInset = 20,
-  RepeatDelay = 0.4,
-  RepeatRate = 0.035,
-
-  MenuWidth = 96,
-  MenuRow = 24,
-  MenuPad = 8,
-  MenuMargin = 8,
-  MenuRise = 6,
-  MenuRadius = 8,
-  MenuInset = 4,
-  MenuTrim = 2,
-  MenuItemRadius = 6,
-  MenuTextPad = 12,
-  MenuTextRoom = 20,
-  MenuEdge = 4,
-  MenuSpeed = 22,
-  NoteMax = 10,
-  NoteWidth = 292,
-  NoteMargin = 16,
-  NoteGap = 8,
-  NoteLines = 4,
-  NoteLine = 15,
-  NoteTopPad = 24,
-  NoteBottomPad = 14,
-  NoteRadius = 12,
-  NoteSlide = 12,
-  NoteFadeIn = 0.25,
-  NoteFadeOut = 0.35,
-  NoteShadowX = 2,
-  NoteShadowY = 3,
-  NoteDotX = 17,
-  NoteDotY = 16,
-  NoteDot = 3.5,
-  NoteTextX = 29,
-  NoteTitleY = 9,
-  NoteTitleRoom = 42,
-  NoteBodyY = 26,
-  NoteBodyRoom = 40,
-  NoteTrackRoom = 45,
-  NoteTrackLift = 9,
-  NoteBarHeight = 2,
-  NoteBarRadius = 1,
-  GradientSteps = 24,
-  FullFrame = 1 / 144,
-  LiteFrame = 1 / 60,
-  IdleFrame = 1 / 30,
-  IdleGrace = 0.5,
-  TipDelay = 0.35,
-  TipWrap = 240,
-  TipStretch = 1.04,
-  TipPad = 14,
-  TipTopPad = 7,
-  TipLine = 15,
-  TipOffsetX = 12,
-  TipOffsetY = 18,
-  TipMargin = 8,
-  TipBottom = 4,
-  TipInset = 8,
-  TipTextTop = 4,
-  TipRadius = 6,
-  DialogSpeed = 18,
-  DialogHide = 0.01,
-  DialogLive = 0.5,
-  DialogWidth = 344,
-  DialogInset = 22,
-  DialogBase = 92,
-  DialogLine = 18,
-  DialogLift = 12,
-  DialogShadowX = 3,
-  DialogShadowY = 6,
-  DialogRadius = 12,
-  DialogHaloOut = 1,
-  DialogHaloRadius = 13,
-  DialogTitle = 16,
-  DialogTitleTop = 18,
-  DialogTextTop = 48,
-  DialogButton = 30,
-  DialogGap = 10,
-  DialogButtonPad = 16,
-  DialogButtonRadius = 6,
-  ListRow = 26,
-  ListVisible = 8,
-  ListHeader = 30,
-  ListPad = 8,
-  ListInset = 4,
-  ListMargin = 8,
-  ListDrop = 26,
-  InlineMin = 110,
-  InlineShare = 0.5,
-  DropdownTextRoom = 34,
-  ArrowInset = 14,
-  ArrowRadius = 4,
-  ArrowRise = 0.55,
-  ArrowThick = 1.6,
-  ArrowSpeed = 16,
-  ListLift = 6,
-  ListReach = 4,
-  ListShadow = 3,
-  ListShadowRadius = 11,
-  ListRadius = 8,
-  ListOpenSpeed = 9,
-  ListGoneAt = 0.02,
-  ListScrollSpeed = 16,
-  ListBarRoom = 18,
-  ListRowRoom = 8,
-  ListRowGap = 2,
-  ListRowRadius = 6,
-  ListEdgeSlack = 2,
-  ListTextInset = 12,
-  ListTextRoom = 42,
-  ListSearchInset = 6,
-  ListSearchTop = 5,
-  ListSearchBox = 22,
-  ListSearchRadius = 6,
-  ListSearchText = 14,
-  ListSearchRoom = 28,
-  ListSearchField = 30,
-  PanelMix = 0.03,
-  CascadeStep = 0.06,
-  RevealTime = 1.3,
-  JumpMargin = 37,
-  CascadeSpan = 0.4,
-  CascadeDrop = 12,
-  PressTime = 0.3,
-  TickInset = 14,
-  TickNudge = 1,
-  TickShort = 3,
-  TickLongX = 8,
-  TickLongY = 4,
-  TickThickness = 1.5,
-  TrackNudge = 1,
-  TrackTrim = 4,
-  TrackInset = 6,
-  TrackWidth = 3,
-  TrackRadius = 2,
-  TrackReach = 6,
-  TrackGrab = 12,
-  ThumbMin = 22,
-  ThumbSpeed = 18,
-  ThumbSnap = 0.1,
-  ThumbGlowSpeed = 14,
-  ThumbGlowSnap = 0.004,
-  ThumbHaloX = 1.5,
-  ThumbHaloY = 2,
-  ThumbHaloWidth = 7,
-  ThumbHaloGrow = 4,
-  ThumbHaloRadius = 3.5,
-  ThumbWidth = 4,
-  ThumbRadius = 2,
-  ThumbMix = 0.75,
-  ContextWidth = 110,
-  ContextHeight = 52,
-  ContextRadius = 6,
-  ContextPad = 4,
-  ContextStep = 24,
-  ContextInset = 3,
-  ContextRow = 22,
-  ContextRowRadius = 5,
-  ContextText = 10,
-  ContextTextRoom = 16,
-  ContextReach = 4,
-  ContextReachHeight = 60,
-  PickerWidth = 250,
-  PickerHeight = 240,
-  PickerMargin = 8,
-  PickerPad = 12,
-  PickerBox = 128,
-  PickerSlider = 10,
-  PickerInfo = 22,
-  PickerGap = 14,
-  PickerLift = -6,
-  PickerSpeed = 22,
-  PickerGlow = 3,
-  PickerGlowRadius = 12,
-  PickerRadius = 9,
-  PickerBoxRadius = 4,
-  PickerSegMin = 40,
-  PickerSegMax = 170,
-  PickerShadeMax = 150,
-  PickerHandleOuter = 7.5,
-  PickerHandleRing = 7,
-  PickerHandleCore = 4.5,
-  PickerHandleSides = 26,
-  PickerKnobOuter = 7,
-  PickerKnobRing = 6.5,
-  PickerKnobSides = 24,
-  PickerThick = 2,
-  PickerThin = 1,
-  PickerRingThick = 2.4,
-  PickerCoreBase = 0.4,
-  PickerCoreGain = 0.6,
-  PickerSwatch = 22,
-  PickerChipRadius = 7,
-  PickerFormatGap = 28,
-  PickerFormatWidth = 40,
-  PickerFormatPad = 7,
-  PickerFieldRadius = 5,
-  PickerChevronX = 11,
-  PickerChevronDrop = 1,
-  PickerChevronStep = 3,
-  PickerChevronThick = 1.2,
-  PickerFieldGap = 8,
-  PickerOpacityWidth = 42,
-  PickerOpacityGap = 4,
-  PickerOpacityRoom = 6,
-  PickerTextPad = 8,
-  PickerTextRoom = 14,
-  PickerEditRoom = 16,
-  PickerEdgePad = 4,
-  PickerHexMax = 8,
-  PickerAlphaStart = 7,
-  PickerOpaque = 0.999,
-  PickerPercent = 100,
-  ByteScale = 255,
-  IconPunch = 1.8,
-  IconBucket = 8,
-  IconRebuild = 0.13,
-  ColorEpsilon = 0.001,
-  BoxTitle = 26,
-  BoxLine = 18,
-  BoxMinWidth = 140,
-  BoxTitlePad = 30,
-  BoxTitleX = 24,
-  BoxTitleRoom = 34,
-  BoxStatRoom = 70,
-  BoxBarWidth = 170,
-  BoxTextRoom = 24,
-  BoxPad = 8,
-  BoxEmptyPad = 4,
-  BoxRadius = 8,
-  BoxDotX = 15,
-  BoxDot = 2.5,
-  BoxDotSides = 10,
-  BoxRuleInset = 10,
-  BoxRuleLift = 1,
-  BoxRuleHeight = 1.5,
-  BoxLineTop = 5,
-  BoxStatDotX = 16,
-  BoxStatDotY = 7,
-  BoxStatDot = 3,
-  BoxStatDotSides = 12,
-  BoxPulseSpeed = 5,
-  BoxLabelX = 28,
-  BoxLabelRoom = 110,
-  BoxValuePad = 12,
-  BoxInset = 14,
-  BoxBarTop = 5,
-  BoxBarHeight = 6,
-  BoxBarRadius = 3,
-  BoxBarMin = 6,
-  BoxFull = 100,
-  BoxDragSpeed = 28,
-  HotkeyWidth = 180,
-  HotkeyRow = 20,
-  HotkeyBase = 30,
-  HotkeyPad = 6,
-  HotkeyX = 18,
-  HotkeyY = 90,
-  HotkeyRadius = 8,
-  HotkeySpeed = 16,
-  HotkeyFadeSpeed = 14,
-  HotkeyDragSpeed = 28,
-  HotkeyGone = 0.02,
-  HotkeyGrab = 28,
-  HotkeyTitleX = 12,
-  HotkeyTitleY = 9,
-  HotkeyTitleRoom = 24,
-  HotkeyRuleX = 10,
-  HotkeyRuleY = 26,
-  HotkeyRuleRoom = 20,
-  HotkeyRuleHeight = 2,
-  HotkeySlide = 12,
-  HotkeyDot = 2.5,
-  HotkeyDotX = 14,
-  HotkeyDotSides = 10,
-  HotkeyLabelX = 22,
-  HotkeyLabelRoom = 92,
-  HotkeyChipMin = 18,
-  HotkeyChipPad = 12,
-  HotkeyChipRight = 10,
-  HotkeyChipInset = 2,
-  HotkeyChipTrim = 4,
-  HotkeyChipRadius = 4,
-  BubbleSize = 42,
-  BubbleX = 24,
-  BubbleY = 24,
-  BubbleSpeed = 11,
-  BubbleGone = 0.02,
-  BubbleDragSpeed = 28,
-  BubbleSlop = 4,
-  BubbleRadius = 10,
-  BubbleGlowSpeed = 12,
-  BubbleSettled = 0.9,
-  BubbleShown = 0.06,
-  BubbleShadowSteps = 3,
-  BubbleShadowStep = 3,
-  BubbleShadowLift = 2,
-  BubbleGlowOut = 3,
-  BubbleGlowRadius = 2,
-  BubbleCrown = 0.5,
-  BubbleCrownMix = 0.14,
-  BubbleIconAt = 0.4,
-  BubbleIconSpan = 0.6,
-  BarsWidth = 0.62,
-  BarsThick = 0.1375,
-  BarsGap = 0.275,
-  SpotSpeed = 16,
-  SpotGoneAt = 0.02,
-  SpotWidth = 470,
-  SpotRow = 34,
-  SpotRows = 7,
-  SpotHead = 50,
-  SpotPad = 8,
-  SpotEmpty = 30,
-  SpotTop = 0.16,
-  SpotRadius = 12,
-  SpotGlassX = 24,
-  SpotGlassY = 21,
-  SpotGlass = 6,
-  SpotGlassThick = 1.5,
-  SpotGlassSides = 16,
-  SpotHandleX = 28,
-  SpotHandleY = 25,
-  SpotHandleTipX = 33,
-  SpotHandleTipY = 30,
-  SpotRuleX = 14,
-  SpotRuleY = 46,
-  SpotRuleHeight = 2,
-  SpotField = 46,
-  SpotText = 15,
-  SpotQueryX = 44,
-  SpotTextRoom = 60,
-  SpotHitX = 36,
-  SpotHitRoom = 50,
-  SpotEmptyX = 18,
-  SpotEmptyY = 62,
-  SpotEmptyRoom = 36,
-  SpotScrollSpeed = 16,
-  SpotSlack = 2,
-  SpotRowX = 8,
-  SpotRowRoom = 24,
-  SpotRowWide = 16,
-  SpotRowLift = 1,
-  SpotRowTrim = 2,
-  SpotRowRadius = 8,
-  SpotMark = 3,
-  SpotMarkRadius = 1.5,
-  SpotNameX = 18,
-  SpotNameY = 6,
-  SpotName = 14,
-  SpotNameRoom = 150,
-  SpotPathY = 19,
-  SpotKindPad = 4,
-  SpotBarInset = 7,
-  FuzzyGap = 4,
-  FuzzyHead = 1,
-  Percent = 100,
-  BorderAmount = 6,
-  BorderStep = 1,
-  BorderMin = 0,
-  BorderMax = 30,
-  BorderRatio = 1.6,
-  FrostAmount = 3,
-  FrostStep = 1,
-  FrostMin = 0,
-  FrostMax = 12,
-  NoteQuick = 2,
-  NoteBrief = 3,
-  NoteLong = 4,
-  TitleSize = 15,
-  TextSize = 13,
-  SmallSize = 12,
-  TinySize = 11,
-}
-
-local Alpha = {
-  Hairline = 0.10,
-  CardStroke = 0.06,
-  Card = 0.03,
-  Text = 0.80,
-  Label = 0.50,
-  Dim = 0.40,
-  Hover = 0.70,
-  Field = 0.05,
-  SwatchEdge = 0.40,
-  FieldFocus = 0.45,
-  FieldHover = 0.20,
-  Placeholder = 0.30,
-  Select = 0.45,
-  Body = 0.70,
-  Divider = 0.45,
-  DividerPlain = 0.40,
-  Menu = 0.97,
-  MenuSelect = 0.06,
-  MenuHover = 0.04,
-  NoteShadow = 0.16,
-  NoteFill = 0.97,
-  NoteTrack = 0.12,
-  NoteBar = 0.95,
-  TipFill = 0.96,
-  DialogVeil = 0.5,
-  DialogShadow = 0.3,
-  DialogFill = 0.99,
-  DialogHalo = 0.10,
-  DialogEdge = 0.22,
-  DialogHover = 0.4,
-  DialogFillIdle = 0.2,
-  DialogFillHover = 0.32,
-  DialogEdgeIdle = 0.6,
-  DialogEdgeHover = 0.95,
-  DropdownFill = 0.02,
-  DropdownHover = 0.03,
-  ArrowLift = 0.35,
-  ListShadow = 0.28,
-  Panel = 0.98,
-  ListSearchFocus = 0.40,
-  Press = 0.45,
-  RowSelect = 0.05,
-  RowHover = 0.16,
-  Track = 0.05,
-  TabFill = 0.04,
-  ThumbHalo = 0.18,
-  Thumb = 0.25,
-  ThumbGlow = 0.45,
-  ContextHover = 0.05,
-  PickerShadow = 0.30,
-  PickerPanel = 0.98,
-  PickerShade = 0.92,
-  PickerEdge = 0.25,
-  PickerHandle = 0.45,
-  PickerKnob = 0.30,
-  PickerFormat = 0.09,
-  PickerEditing = 0.10,
-  PickerHover = 0.06,
-  BoxFill = 0.92,
-  BoxRule = 0.7,
-  BoxPulse = 0.5,
-  BoxPulseGain = 0.42,
-  BoxIdleDot = 0.7,
-  BoxLiveDot = 0.85,
-  BoxBarFill = 0.95,
-  HotkeyFill = 0.92,
-  HotkeyRule = 0.90,
-  BubbleShadow = 0.10,
-  BubbleShadowFall = 0.025,
-  BubbleGlow = 0.25,
-  BubbleFill = 0.96,
-  BubbleFillFade = 0.04,
-  BubbleCrown = 0.22,
-  BubbleEdge = 0.16,
-  BubbleEdgeGrow = 0.14,
-  BubbleEdgeHover = 0.35,
-  SpotVeil = 0.4,
-  SpotFill = 0.97,
-  SpotRule = 0.7,
-  SpotSelect = 0.1,
-  SpotMark = 0.9,
-  WindowShadow = { 0.10, 0.07, 0.05, 0.03, 0.015 },
-}
-
-local Pool = { Square = {}, Text = {}, Line = {}, Circle = {}, Triangle = {} }
-local Cache = { Square = {}, Text = {}, Line = {}, Circle = {}, Triangle = {} }
-local Used = { Square = 0, Text = 0, Line = 0, Circle = 0, Triangle = 0 }
-local Made = { Square = 0, Text = 0, Line = 0, Circle = 0, Triangle = 0 }
-
-local DrawOrder = 0
-local FrameFade = 1
-local RoundScale = 1
-local Interact = true
-
-local function Layer(z)
-  DrawOrder = DrawOrder + 1
-  return z * 10000 + DrawOrder
+local function approach(value, goal, speed, dt)
+    return value + (goal - value) * (1 - math.exp(-(dt or 0.016) * speed))
 end
 
-local function Take(kind)
-  local Index = Used[kind] + 1
-  Used[kind] = Index
-
-  local Object, Last = Pool[kind][Index], Cache[kind][Index]
-
-  if not Object then
-    Object, Last = Drawing.new(kind), {}
-    Pool[kind][Index], Cache[kind][Index] = Object, Last
-  end
-
-  if Index > Made[kind] then Made[kind] = Index end
-  if not Last.Shown then Last.Shown = true; Object.Visible = true end
-
-  return Object, Last
+ 
+local BTN = RGB(0, 0, 0)
+local BTN_HI = RGB(0, 0, 0)
+local function refreshButtonColors()
+     
+    BTN = mix(C.bg, accent, 0.86)
+    BTN_HI = mix(BTN, C.white, 0.16)
 end
 
-local function ResetFrame()
-  Used.Square, Used.Text, Used.Line, Used.Circle, Used.Triangle = 0, 0, 0, 0, 0
-  DrawOrder = 0
+local dragging = false
+
+ 
+ 
+local busyUntil = 0
+local function touchBusy(seconds)
+    local until_ = os.clock() + (seconds or 0.45)
+    if until_ > busyUntil then busyUntil = until_ end
 end
 
-local function HideUnused()
-  for Kind, List in pairs(Pool) do
-    local Last = Cache[Kind]
+ 
+ 
+ 
+local pool, used = {}, {}
 
-    for Index = Used[Kind] + 1, Made[Kind] do
-      if Last[Index].Shown then Last[Index].Shown = false; List[Index].Visible = false end
+ 
+ 
+ 
+local function wrap(instance)
+    local cache, supported = {}, {}
+    return setmetatable({}, {
+        __index = function(_, key) return instance[key] end,
+        __newindex = function(_, key, value)
+            if supported[key] == false then return end
+            if cache[key] == value then return end
+
+            if supported[key] == nil then
+                 
+                 
+                local ok = pcall(function() instance[key] = value end)
+                supported[key] = ok
+                if ok then cache[key] = value end
+            else
+                instance[key] = value
+                cache[key] = value
+            end
+        end,
+    })
+end
+
+local function take(kind)
+    used[kind] = (used[kind] or 0) + 1
+    local list = pool[kind]
+    if not list then list = {}; pool[kind] = list end
+    local o = list[used[kind]]
+    if not o then
+        local ok, created = pcall(Drawing.new, kind)
+        if not ok or not created then return nil end
+        o = wrap(created)
+        list[used[kind]] = o
+        pcall(function()
+            if kind == "Square" then
+                o.Filled = true
+            elseif kind == "Text" then
+                o.Outline = false
+                o.Center = false
+            end
+        end)
     end
-
-    if Used[Kind] > Made[Kind] then Made[Kind] = Used[Kind] end
-  end
+    o.Visible = true
+    return o
 end
 
-local function DrawRect(x, y, w, h, color, z, corner, transparency)
-  if w <= 0 or h <= 0 then DrawOrder = DrawOrder + 1 return end
-
-  local Object, Last = Take("Square")
-  local Depth = Layer(z)
-
-  if Last.X ~= x or Last.Y ~= y then Last.X, Last.Y = x, y; Object.Position = Vector2.new(x, y) end
-  if Last.W ~= w or Last.H ~= h then Last.W, Last.H = w, h; Object.Size = Vector2.new(w, h) end
-  if Last.Color ~= color then Last.Color = color; Object.Color = color end
-  if not Last.Filled then Last.Filled = true; Object.Filled = true end
-  local Round = corner * RoundScale
-
-  if Last.Corner ~= Round then Last.Corner = Round; Object.Corner = Round end
-  if Last.Depth ~= Depth then Last.Depth = Depth; Object.ZIndex = Depth end
-  local Shade = transparency * FrameFade
-
-  if Last.Alpha ~= Shade then Last.Alpha = Shade; Object.Transparency = Shade end
+local function beginFrame()
+    for k in pairs(used) do used[k] = 0 end
 end
 
-local function DrawStroke(x, y, w, h, color, z, corner, transparency)
-  if w <= 0 or h <= 0 then DrawOrder = DrawOrder + 1 return end
-
-  local Object, Last = Take("Square")
-  local Depth = Layer(z)
-
-  if Last.X ~= x or Last.Y ~= y then Last.X, Last.Y = x, y; Object.Position = Vector2.new(x, y) end
-  if Last.W ~= w or Last.H ~= h then Last.W, Last.H = w, h; Object.Size = Vector2.new(w, h) end
-  if Last.Color ~= color then Last.Color = color; Object.Color = color end
-  if Last.Filled ~= false then Last.Filled = false; Object.Filled = false end
-  local Round = corner * RoundScale
-
-  if Last.Corner ~= Round then Last.Corner = Round; Object.Corner = Round end
-  if Last.Depth ~= Depth then Last.Depth = Depth; Object.ZIndex = Depth end
-  local Shade = transparency * FrameFade
-
-  if Last.Alpha ~= Shade then Last.Alpha = Shade; Object.Transparency = Shade end
-end
-
-local function DrawLine(x1, y1, x2, y2, color, z, thickness, transparency)
-  local Object, Last = Take("Line")
-  local Depth = Layer(z)
-
-  if Last.X1 ~= x1 or Last.Y1 ~= y1 then Last.X1, Last.Y1 = x1, y1; Object.From = Vector2.new(x1, y1) end
-  if Last.X2 ~= x2 or Last.Y2 ~= y2 then Last.X2, Last.Y2 = x2, y2; Object.To = Vector2.new(x2, y2) end
-  if Last.Color ~= color then Last.Color = color; Object.Color = color end
-  if Last.Thickness ~= thickness then Last.Thickness = thickness; Object.Thickness = thickness end
-  if Last.Depth ~= Depth then Last.Depth = Depth; Object.ZIndex = Depth end
-
-  local Shade = transparency * FrameFade
-
-  if Last.Alpha ~= Shade then Last.Alpha = Shade; Object.Transparency = Shade end
-end
-
-local function DrawTri(ax, ay, bx, by, cx, cy, color, z, transparency)
-  local Object, Last = Take("Triangle")
-  local Depth = Layer(z)
-
-  if Last.AX ~= ax or Last.AY ~= ay then Last.AX, Last.AY = ax, ay; Object.PointA = Vector2.new(ax, ay) end
-  if Last.BX ~= bx or Last.BY ~= by then Last.BX, Last.BY = bx, by; Object.PointB = Vector2.new(bx, by) end
-  if Last.CX ~= cx or Last.CY ~= cy then Last.CX, Last.CY = cx, cy; Object.PointC = Vector2.new(cx, cy) end
-  if Last.Color ~= color then Last.Color = color; Object.Color = color end
-  if not Last.Filled then Last.Filled = true; Object.Filled = true end
-  if Last.Thickness ~= 1 then Last.Thickness = 1; Object.Thickness = 1 end
-  if Last.Depth ~= Depth then Last.Depth = Depth; Object.ZIndex = Depth end
-
-  local Shade = transparency * FrameFade
-
-  if Last.Alpha ~= Shade then Last.Alpha = Shade; Object.Transparency = Shade end
-end
-
-local function DrawBar(x1, y1, x2, y2, thickness, color, z, transparency)
-  local Dx, Dy = x2 - x1, y2 - y1
-  local Length = math.sqrt(Dx * Dx + Dy * Dy)
-
-  if Length < 0.001 then return end
-
-  local Px, Py = -Dy / Length * thickness / 2, Dx / Length * thickness / 2
-
-  DrawTri(x1 + Px, y1 + Py, x1 - Px, y1 - Py, x2 - Px, y2 - Py, color, z, transparency)
-  DrawTri(x1 + Px, y1 + Py, x2 - Px, y2 - Py, x2 + Px, y2 + Py, color, z, transparency)
-end
-
-local function DrawCircle(x, y, radius, color, z, filled, thickness, sides, transparency)
-  local Object, Last = Take("Circle")
-  local Depth = Layer(z)
-
-  if Last.X ~= x or Last.Y ~= y then Last.X, Last.Y = x, y; Object.Position = Vector2.new(x, y) end
-  if Last.Radius ~= radius then Last.Radius = radius; Object.Radius = radius end
-  if Last.Color ~= color then Last.Color = color; Object.Color = color end
-  if Last.Filled ~= filled then Last.Filled = filled; Object.Filled = filled end
-  if Last.Thickness ~= thickness then Last.Thickness = thickness; Object.Thickness = thickness end
-  if Last.Sides ~= sides then Last.Sides = sides; Object.NumSides = sides end
-  if Last.Depth ~= Depth then Last.Depth = Depth; Object.ZIndex = Depth end
-
-  local Shade = transparency * FrameFade
-
-  if Last.Alpha ~= Shade then Last.Alpha = Shade; Object.Transparency = Shade end
-end
-
-local function TextWidth(text, size, font)
-  return #text * size * FontWidth[font]
-end
-
-local function TrimText(text, room, size, font)
-  local Fit = math.floor(room / (size * FontWidth[font]))
-
-  if #text <= Fit then return text end
-  if Fit <= 2 then return "" end
-
-  return string.sub(text, 1, Fit - 2) .. ".."
-end
-
-local function TextTop(y, height, size)
-  return math.floor(y + (height - size) / 2 + 0.5)
-end
-
-local function PutText(text, x, y, color, size, font, z, centered, transparency)
-  local Object, Last = Take("Text")
-  local Depth = Layer(z + 10)
-
-  if Last.Text ~= text then Last.Text = text; Object.Text = text end
-  if Last.Color ~= color then Last.Color = color; Object.Color = color end
-  if Last.Font ~= font then Last.Font = font; Object.Font = font end
-  if Last.Size ~= size then Last.Size = size; Object.Size = size end
-  if Last.Outline ~= false then Last.Outline = false; Object.Outline = false end
-  if Last.Center ~= centered then Last.Center = centered; Object.Center = centered end
-  if Last.X ~= x or Last.Y ~= y then Last.X, Last.Y = x, y; Object.Position = Vector2.new(x, y) end
-  if Last.Depth ~= Depth then Last.Depth = Depth; Object.ZIndex = Depth end
-
-  local Shade = transparency * FrameFade
-
-  if Last.Alpha ~= Shade then Last.Alpha = Shade; Object.Transparency = Shade end
-end
-
-local function DrawText(text, x, y, color, size, font, z, transparency, room)
-  if room then text = TrimText(text, room, size, font) end
-  if text == "" then DrawOrder = DrawOrder + 1 return end
-
-  PutText(text, x, y, color, size, font, z, false, transparency)
-end
-
-local function DrawTextMid(text, cx, y, color, size, font, z, transparency)
-  if text == "" then DrawOrder = DrawOrder + 1 return end
-
-  PutText(text, cx, y, color, size, font, z, true, transparency)
-end
-
-local function DrawTextCenter(text, cx, y, color, size, font, z, transparency, room)
-  if room then text = TrimText(text, room, size, font) end
-  if text == "" then DrawOrder = DrawOrder + 1 return end
-
-  PutText(text, cx - TextWidth(text, size, font) / 2, y, color, size, font, z, false, transparency)
-end
-
-local IconMasks = {}
-local IconAlias = {
-  ["home"] = "house",
-  ["settings"] = "gear",
-  ["cog"] = "gear",
-  ["user"] = "person",
-  ["users"] = "two-people",
-  ["people"] = "two-people",
-  ["sliders"] = "three-sliders-horizontal",
-  ["shield"] = "shield-check",
-  ["zap"] = "lightning-bolt",
-  ["lightning"] = "lightning-bolt",
-  ["box"] = "gift-box",
-  ["globe"] = "globe-simplified",
-  ["world"] = "globe-simplified",
-  ["layers"] = "two-stacked-squares",
-  ["gauge"] = "speedometer",
-  ["speed"] = "speedometer",
-  ["map"] = "location-pin-map",
-  ["fire"] = "flame",
-  ["lock"] = "lock-closed",
-  ["notification"] = "bell",
-  ["gamepad"] = "controller",
-  ["search"] = "magnifying-glass",
-  ["target"] = "crosshairs",
-  ["crosshair"] = "crosshairs",
-  ["swords"] = "sword",
-  ["edit"] = "pencil",
-  ["trash"] = "trash-can",
-  ["delete"] = "trash-can",
-  ["book"] = "book-closed",
-  ["menu"] = "three-bars-horizontal",
-  ["cart"] = "shopping-cart",
-  ["mail"] = "envelope",
-  ["email"] = "envelope",
-  ["mic"] = "microphone",
-  ["volume"] = "speaker",
-  ["sound"] = "speaker",
-  ["close"] = "x",
-  ["info"] = "circle-i",
-  ["question"] = "circle-question",
-  ["warning"] = "triangle-exclamation",
-  ["alert"] = "triangle-exclamation",
-  ["time"] = "clock",
-  ["camera"] = "photo-camera",
-  ["hash"] = "hashtag",
-  ["monitor"] = "code",
-  ["plus"] = "plus-small",
-  ["minus"] = "minus-small",
-  ["play"] = "play-small",
-  ["pause"] = "pause-small",
-  ["stop"] = "stop-small",
-}
-local IconImages = { Grey = {} }
-local IconKey = 0
-local IconShown = setmetatable({}, { __mode = "k" })
-local IconTint
-
-local IconBytes
-
-do
-  local function Xor(first, second)
-    local Result, Bit = 0, 1
-
-    for _ = 1, 32 do
-      local Left, Right = first % 2, second % 2
-
-      if Left ~= Right then Result = Result + Bit end
-
-      first, second, Bit = (first - Left) / 2, (second - Right) / 2, Bit * 2
-    end
-
-    return Result
-  end
-
-  local CrcTable = {}
-
-  for Value = 0, 255 do
-    local Code = Value
-
-    for _ = 1, 8 do
-      local Low = Code % 2
-
-      Code = (Code - Low) / 2
-      if Low == 1 then Code = Xor(3988292384, Code) end
-    end
-
-    CrcTable[Value] = Code
-  end
-
-  local function Crc32(text)
-    local Code = 4294967295
-
-    for Index = 1, #text do
-      local Low = Xor(Code, string.byte(text, Index)) % 256
-
-      Code = Xor((Code - Code % 256) / 256, CrcTable[Low])
-    end
-
-    return Xor(Code, 4294967295)
-  end
-
-  local function Big32(value)
-    return string.char(math.floor(value / 16777216) % 256, math.floor(value / 65536) % 256, math.floor(value / 256) % 256, value % 256)
-  end
-
-  local function Little16(value)
-    return string.char(value % 256, math.floor(value / 256) % 256)
-  end
-
-  local function Chunk(kind, data)
-    local Body = kind .. data
-
-    return Big32(#data) .. Body .. Big32(Crc32(Body))
-  end
-
-  local function PngFromMask(mask, width, height, r, g, b)
-    local Rgb = string.char(r, g, b)
-    local Rows = {}
-    local Index = 0
-
-    for _ = 1, height do
-      local Row = {}
-
-      Rows[#Rows + 1] = string.char(0)
-
-      for _ = 1, width do
-        Index = Index + 1
-        Row[#Row + 1] = Rgb .. string.char(string.byte(mask, Index) or 0)
-      end
-
-      Rows[#Rows + 1] = table.concat(Row)
-    end
-
-    local Raw = table.concat(Rows)
-    local SumA, SumB = 1, 0
-
-    for Index2 = 1, #Raw do
-      SumA = (SumA + string.byte(Raw, Index2)) % 65521
-      SumB = (SumB + SumA) % 65521
-    end
-
-    local Blocks = { string.char(120, 1) }
-    local At, Left = 1, #Raw
-
-    while At <= Left do
-      local Size = math.min(Left - At + 1, 65535)
-      local Final = (At + Size - 1 >= Left) and 1 or 0
-
-      Blocks[#Blocks + 1] = string.char(Final) .. Little16(Size) .. Little16(65535 - Size) .. string.sub(Raw, At, At + Size - 1)
-      At = At + Size
-    end
-
-    Blocks[#Blocks + 1] = Big32(SumB * 65536 + SumA)
-
-    local Header = Big32(width) .. Big32(height) .. string.char(8, 6, 0, 0, 0)
-
-    return string.char(137, 80, 78, 71, 13, 10, 26, 10) .. Chunk("IHDR", Header) .. Chunk("IDAT", table.concat(Blocks)) .. Chunk("IEND", "")
-  end
-
-  function IconBytes(name, tint)
-    local Mask = IconMasks[name] or IconMasks[IconAlias[name]]
-    if not Mask then return nil end
-
-    local Store = IconImages.Grey
-
-    if tint then
-      Store = IconImages[IconKey]
-
-      if not Store then Store = {} IconImages[IconKey] = Store end
-    end
-
-    local Ready = Store[name]
-    if Ready then return Ready end
-
-    if not Mask.Raw then Mask.Raw = base64decode(Mask.Data) end
-
-    local Color = tint and IconTint or Theme.IconIdle
-    local Red, Green, Blue = Color.R * Layout.ByteScale, Color.G * Layout.ByteScale, Color.B * Layout.ByteScale
-
-    if tint then
-      local Light = 0.3 * Red + 0.59 * Green + 0.11 * Blue
-
-      Red = math.min(math.max(Light + (Red - Light) * Layout.IconPunch, 0), Layout.ByteScale)
-      Green = math.min(math.max(Light + (Green - Light) * Layout.IconPunch, 0), Layout.ByteScale)
-      Blue = math.min(math.max(Light + (Blue - Light) * Layout.IconPunch, 0), Layout.ByteScale)
-    end
-
-    local Bytes = PngFromMask(Mask.Raw, Mask.Width, Mask.Height, math.floor(Red + 0.5), math.floor(Green + 0.5), math.floor(Blue + 0.5))
-
-    Store[name] = Bytes
-
-    return Bytes
-  end
-end
-
-local KindName = {
-  Toggle = "checkbox",
-  Slider = "slider",
-  Range = "rangeslider",
-  Dropdown = "dropdown",
-  Color = "colorpicker",
-  Keybind = "keybind",
-  Textbox = "textbox",
-  Button = "button",
-  Info = "info",
-  Label = "label",
-  Divider = "divider",
-}
-
-local function DrawIcon(owner, key, name, x, y, size, z, transparency, tint)
-  local Bytes = IconBytes(name, tint)
-  if not Bytes then return end
-
-  local Image = owner[key]
-
-  if not Image then
-    Image = Drawing.new("Image")
-    owner[key] = Image
-  end
-
-  if IconShown[Image] ~= Bytes then
-    IconShown[Image] = Bytes
-    Image.Data = Bytes
-  end
-
-  local Shade = transparency * FrameFade
-
-  Image.Position = Vector2.new(x, y)
-  Image.Size = Vector2.new(size, size)
-  Image.ZIndex = z
-  Image.Transparency = Shade
-  Image.Visible = Shade > 0.01
-end
-
-local EffectNames = { "Off", "Snow", "Matrix", "Rain" }
-
-local LoadPicture, DrawPicture, HidePicture, FetchAvatar
-
-do
-  local function IsPicture(bytes)
-    if type(bytes) ~= "string" or #bytes < 24 then return false end
-
-    local First, Second = string.byte(bytes, 1, 2)
-
-    return (First == 137 and Second == 80) or (First == 255 and Second == 216) or (First == 71 and Second == 73)
-  end
-
-  local function MakeImage(bytes)
-    local Image = Drawing.new("Image")
-
-    Image.Data = bytes
-    Image.Visible = false
-
-    return Image
-  end
-
-  local function PictureBytes(target, kind)
-    local Hash = 5381
-
-    for Index = 1, #target do Hash = (Hash * 33 + string.byte(target, Index)) % 2147483648 end
-
-    local Cache = LibName .. "_" .. kind .. "_" .. string.format("%08x", Hash) .. ".dat"
-
-    local Remote = string.find(target, "://", 1, true) ~= nil
-
-    if not Remote and isfile(target) then
-      local Bytes = readfile(target)
-
-      if IsPicture(Bytes) then return Bytes end
-    end
-
-    if isfile(Cache) then
-      local Bytes = readfile(Cache)
-
-      if IsPicture(Bytes) then return Bytes end
-    end
-
-    if not Remote then return nil end
-
-    local Bytes = httpget(target)
-    if not IsPicture(Bytes) then return nil end
-
-    writefile(Cache, Bytes)
-
-    return Bytes
-  end
-
-  local AvatarSizes = {
-    "https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=%d&size=150x150&format=Png&isCircular=false",
-    "https://thumbnails.roproxy.com/v1/users/avatar-headshot?userIds=%d&size=150x150&format=Png&isCircular=false",
-    "https://thumbnails.roblox.com/v1/users/avatar-bust?userIds=%d&size=150x150&format=Png&isCircular=false",
-  }
-
-  local function ResolveUserId()
-    for _ = 1, 30 do
-      local Id = LocalPlayer.UserId
-
-      if type(Id) == "number" and Id ~= 0 then return Id end
-
-      task.wait(0.12)
-    end
-
-    local Name = LocalPlayer.Name
-    if type(Name) ~= "string" then return nil end
-
-    local Reply = httppost("https://users.roblox.com/v1/usernames/users", '{"usernames":["' .. Name .. '"],"excludeBannedUsers":false}')
-
-    return tonumber(string.match(Reply, '"id":%s*(%d+)'))
-  end
-
-  function FetchAvatar()
-    local Id = ResolveUserId()
-    if not Id then return end
-
-    local Cache = LibName .. "_av_" .. Id .. ".dat"
-
-    if isfile(Cache) then
-      local Bytes = readfile(Cache)
-
-      if IsPicture(Bytes) then return { Image = MakeImage(Bytes) } end
-    end
-
-    for _ = 1, 5 do
-      for _, Pattern in ipairs(AvatarSizes) do
-        local Url = string.match(httpget(string.format(Pattern, Id)), '"imageUrl":"([^"]+)"')
-
-        if Url then
-          local Bytes = httpget((string.gsub(Url, "\/", "/")))
-
-          if IsPicture(Bytes) then
-            writefile(Cache, Bytes)
-
-            return { Image = MakeImage(Bytes) }
-          end
+local function endFrame()
+    for kind, list in pairs(pool) do
+        local n = used[kind] or 0
+        for i = n + 1, #list do
+            local o = list[i]
+            if o and o.Visible ~= false then pcall(function() o.Visible = false end) end
         end
-      end
-
-      task.wait(0.7)
     end
-  end
-
-  function LoadPicture(source, kind)
-    if source == nil or source == "" then return nil end
-
-    local Target = tostring(source)
-    local Holder = {}
-
-    if IsPicture(Target) then
-      Holder.Image = MakeImage(Target)
-
-      return Holder
-    end
-
-    task.spawn(function()
-      local Bytes = PictureBytes(Target, kind)
-
-      if Bytes then Holder.Image = MakeImage(Bytes) end
-    end)
-return Holder
-  end
-
-  function DrawPicture(holder, x, y, width, height, z, transparency, corner)
-    local Image = holder and holder.Image
-    if not Image then return false end
-
-    Image.Position = Vector2.new(x, y)
-    Image.Size = Vector2.new(width, height)
-    Image.Rounding = corner or 0
-    Image.ZIndex = z
-    Image.Transparency = transparency
-    Image.Visible = transparency > 0.01
-
-    return true
-  end
-
-  function HidePicture(holder)
-    if holder and holder.Image then holder.Image.Visible = false end
-  end
 end
 
-local Input = {
-  X = 0,
-  Y = 0,
-  Down = false,
-  RightDown = false,
-  Click = false,
-  Right = false,
-  Up = false,
+local function hideAll()
+    for _, list in pairs(pool) do
+        for i = 1, #list do pcall(function() list[i].Visible = false end) end
+    end
+end
+
+ 
+ 
+ 
+ 
+ 
+local function rect(x, y, w, h, color, a, round, z)
+    if w <= 0 or h <= 0 or (a or 1) <= 0.004 then return end
+    local o = take("Square")
+    if not o then return end
+    o.Position = V(x, y)
+    o.Size = V(max(1, w), max(1, h))
+    o.Color = color
+    o.Transparency = clamp(a or 1, 0, 1)
+    o.Filled = true
+    o.ZIndex = z or 20
+    o.Corner = round or 0
+end
+
+local function stroke(x, y, w, h, color, a, round, z, thickness)
+    if w <= 0 or h <= 0 or (a or 1) <= 0.004 then return end
+    local o = take("Square")
+    if not o then return end
+    o.Position = V(x, y)
+    o.Size = V(max(1, w), max(1, h))
+    o.Color = color
+    o.Transparency = clamp(a or 1, 0, 1)
+    o.Filled = false
+    o.Thickness = thickness or 1
+    o.ZIndex = z or 21
+    o.Corner = round or 0
+end
+
+local function line(x1, y1, x2, y2, color, a, z, thickness)
+    if (a or 1) <= 0.004 then return end
+    local o = take("Line")
+    if not o then return end
+    o.From = V(x1, y1)
+    o.To = V(x2, y2)
+    o.Color = color
+    o.Transparency = clamp(a or 1, 0, 1)
+    o.Thickness = thickness or 1
+    o.ZIndex = z or 24
+end
+
+local function circle(x, y, r, color, a, filled, z)
+    if r <= 0 or (a or 1) <= 0.004 then return end
+    local o = take("Circle")
+    if not o then return end
+    o.Position = V(x, y)
+    o.Radius = r
+    o.Filled = filled == true
+    o.NumSides = 24
+    o.Thickness = 1
+    o.Color = color
+    o.Transparency = clamp(a or 1, 0, 1)
+    o.ZIndex = z or 25
+end
+
+local function text(x, y, str, size, color, a, bold, z, center)
+    str = tostring(str or "")
+    if str == "" or (a or 1) <= 0.004 then return end
+    local o = take("Text")
+    if not o then return end
+    o.Text = str
+    o.Position = V(x, y)
+    o.Size = floor(size + 0.5)
+    o.Font = bold and F_BOLD or F_SYS
+    o.Color = color
+    o.Transparency = clamp(a or 1, 0, 1)
+    o.ZIndex = z or 30
+    o.Center = center == true
+end
+
+ 
+local function textWidth(str, size, bold)
+    return #tostring(str or "") * size * (bold and 0.545 or 0.505)
+end
+
+local function fit(str, width, size, bold)
+    str = tostring(str or "")
+    if textWidth(str, size, bold) <= width then return str end
+    local limit = max(1, floor(width / (size * (bold and 0.545 or 0.505))) - 2)
+    if limit <= 1 then return string.sub(str, 1, 1) end
+    return string.sub(str, 1, limit) .. ".."
+end
+
+ 
+ 
+ 
+local PATHS = {
+    home   = {{1,9,10,1},{10,1,19,9},{3,8,3,18},{3,18,8,18},{8,18,8,12},{8,12,12,12},{12,12,12,18},{12,18,17,18},{17,18,17,8}},
+    script = {{6,4,2,10},{2,10,6,16},{14,4,18,10},{18,10,14,16},{12,3,8,17}},
+    layers = {{2,6,10,2},{10,2,18,6},{18,6,10,10},{10,10,2,6},{2,10,10,14},{10,14,18,10},{2,14,10,18},{10,18,18,14}},
+    bolt   = {{11,1,3,11},{3,11,9,11},{9,11,8,19},{8,19,17,8},{17,8,11,8},{11,8,11,1}},
+    shield = {{3,3,10,1},{10,1,17,3},{17,3,16,12},{16,12,10,19},{10,19,4,12},{4,12,3,3},{7,9,9,12},{9,12,14,6}},
+    palette= {{3,4,17,4},{17,4,17,16},{17,16,3,16},{3,16,3,4},{7,4,7,16},{12,4,12,16}},
+    power  = {{10,1,10,10},{5,4,2,8},{2,8,2,14},{2,14,6,18},{6,18,14,18},{14,18,18,14},{18,14,18,8},{18,8,15,4}},
+    sliders= {{2,5,6,5},{10,5,18,5},{6,2,6,8},{10,2,10,8},{6,2,10,2},{6,8,10,8},{2,15,11,15},{15,15,18,15},{11,12,15,12},{11,18,15,18},{11,12,11,18},{15,12,15,18}},
+    close  = {{5,5,15,15},{15,5,5,15}},
+    minus  = {{3,10,17,10}},
+    check  = {{4,10,8,14},{8,14,16,5}},
+    key    = {{3,6,17,6},{17,6,17,15},{17,15,3,15},{3,15,3,6},{6,10,7,10},{10,10,11,10},{13,10,14,10},{7,13,13,13}},
+    info   = {{10,5,10,6},{10,9,10,15},{8,15,12,15}},
+    dot    = {{9.3,9.3,10.7,10.7}},
+    down   = {{5,7,10,12},{10,12,15,7}},
+    up     = {{5,12,10,7},{10,7,15,12}},
+    plant  = {{5,12,15,12},{6,12,7.5,18},{7.5,18,12.5,18},{12.5,18,14,12},{10,12,10,7},{10,7,6.5,5},{10,7,14,4.5}},
+    swords = {{3.5,16.5,15,5},{5.5,18.5,17,7},{4,13,7,16},{13,4,16,7}},
+    cube   = {{3,6,10,2},{10,2,17,6},{17,6,10,10},{10,10,3,6},{3,6,3,14},{3,14,10,18},{10,18,17,14},{17,14,17,6},{10,10,10,18}},
+    gauge  = {{3,15,4.5,9.5},{4.5,9.5,7.5,6.5},{7.5,6.5,12,5.5},{12,5.5,15.5,7},{15.5,7,17.5,10.5},{17.5,10.5,17,15},{10,14,14,9.5},{3,15,17,15}},
+    clock  = {{3,10,10,3},{10,3,17,10},{17,10,10,17},{10,17,3,10},{10,6,10,10},{10,10,13.5,11.5}},
 }
-
-local BuildSettingsTab
-local SettingsTab
-local ApplyInputState
-local ShowSpotlight
-local WantTooltip
-local DrawMenuBars
-local BarTint = Color3.fromRGB(36, 38, 50)
-
-local function ReadInput()
-  local WasDown, WasRight = Input.Down, Input.RightDown
-
-  Input.X, Input.Y = Mouse.X, Mouse.Y
-  Input.Down = ismouse1pressed()
-  Input.RightDown = ismouse2pressed()
-  Input.Click = Input.Down and not WasDown
-  Input.Right = Input.RightDown and not WasRight
-  Input.Up = WasDown and not Input.Down
-end
-
-local function IsMouseIn(x, y, w, h)
-  return Input.X >= x and Input.X <= x + w and Input.Y >= y and Input.Y <= y + h
-end
-
-local State = {
-  Open = false,
-  BubbleFade = 0,
-  Visible = 0,
-  Delta = 1 / 60,
-  LastFrame = os.clock(),
-
-  X = math.floor(Camera.ViewportSize.X / 2 - Layout.WindowSize.X / 2),
-  Y = math.floor(Camera.ViewportSize.Y / 2 - Layout.WindowSize.Y / 2),
-  W = Layout.WindowSize.X,
-  H = Layout.WindowSize.Y,
-
-  Title = "INSUI",
-  Tabs = {},
-  ActiveIndex = 1,
-  ActiveSub = nil,
-
-  Drag = nil,
-  Sliding = nil,
-  RailOpen = 0,
-  SearchGlow = 0,
-  Buttons = {},
-  Rolled = false,
-  Panning = nil,
-  Resize = nil,
-  Picker = nil,
-  Capture = nil,
-  Focus = nil,
-  Notes = {},
-  Menu = nil,
-  Dropdown = nil,
-  Boxes = {},
-  Spotlight = { Value = "", Caret = 0, Sel = 1, Offset = 0 },
-  SpotlightOpen = false,
-  SpotlightEnabled = true,
-  HotkeyShown = true,
-  Tip = nil,
-  Dialog = nil,
-  ContentFade = 1,
-  SeenView = nil,
-  SpotJump = nil,
-  IconAt = 0,
-  ConfigName = "default",
-  MenuKey = "P",
-  Alive = true,
-  Frame = 0,
-  Folder = LibName .. "_configs",
-  CheckboxStyle = false,
-  Rainbow = false,
-  RainbowSpeed = 0.3,
-  Glow = 1,
-  HoverEffects = true,
-  RailPinned = false,
-  DropdownInline = false,
-  SearchStyle = "bar",
-  NoAnim = false,
-  NoteDuration = 5,
-  FontName = nil,
-  BaseAccentA = nil,
-  BaseAccentB = nil,
-  Shipped = nil,
-  Loading = false,
-  Lite = false,
-  RowLines = false,
-  Opacity = 0.98,
-  AutoSave = false,
-  GameInput = true,
-  InputSent = true,
-  SmartFps = false,
-  LastAct = 0,
-  LastX = 0,
-  LastY = 0,
-  TabLayout = "side",
-  Effect = nil,
-  EffectColor = nil,
-  Subtitle = "",
-  Logo = nil,
-  LogoSize = 30,
-  Icon = nil,
-  Avatar = nil,
-  Backdrop = nil,
-  BackdropAlpha = 0.5,
-  BackdropWide = nil,
-  BackdropTall = nil,
-  TextDrag = nil,
-  RepeatKey = nil,
-  RepeatAt = 0,
-}
-
-local Keys = {}
-local KeyOrder = {}
-
 do
-  local function AddKey(name, code, char, shifted)
-    Keys[name] = { Code = code, Held = false, Click = false, Char = char, Shifted = shifted }
-    KeyOrder[#KeyOrder + 1] = name
-  end
-
-  AddKey("m1", 0x01)
-AddKey("m2", 0x02)
-AddKey("mb3", 0x04)
-AddKey("mb4", 0x05)
-AddKey("mb5", 0x06)
-AddKey("Backspace", 0x08)
-  AddKey("Tab", 0x09)
-  AddKey("Enter", 0x0D)
-  AddKey("Shift", 0x10)
-AddKey("LeftShift", 0xA0)
-AddKey("RightShift", 0xA1)
-  AddKey("Ctrl", 0x11)
-  AddKey("Alt", 0x12)
-  AddKey("Escape", 0x1B)
-  AddKey("Space", 0x20, " ", " ")
-  AddKey("Left", 0x25)
-  AddKey("Up", 0x26)
-  AddKey("Right", 0x27)
-  AddKey("Down", 0x28)
-  AddKey("Home", 0x24)
-  AddKey("End", 0x23)
-  AddKey("Delete", 0x2E)
-  AddKey("LeftCtrl", 0xA2)
-  AddKey("RightCtrl", 0xA3)
-  AddKey("PageUp", 0x21)
-  AddKey("PageDown", 0x22)
-
-  do
-    local Shifted = { ")", "!", "@", "#", "$", "%", "^", "&", "*", "(" }
-
-    for Index = 0, 9 do AddKey(tostring(Index), 0x30 + Index, tostring(Index), Shifted[Index + 1]) end
-    for Index = 0, 25 do
-      local Letter = string.char(97 + Index)
-      AddKey(Letter, 0x41 + Index, Letter, string.upper(Letter))
+    local sun = {}
+    for i = 0, 11 do
+        local t, u = i * pi / 6, (i + 1) * pi / 6
+        sun[#sun + 1] = {10 + cos(t) * 4.2, 10 + sin(t) * 4.2, 10 + cos(u) * 4.2, 10 + sin(u) * 4.2}
     end
-    for Index = 1, 12 do AddKey("f" .. Index, 0x6F + Index) end
-  end
-
-  AddKey("Minus", 0xBD, "-", "_")
-  AddKey("Plus", 0xBB, "=", "+")
-  AddKey("Comma", 0xBC, ",", "<")
-  AddKey("Period", 0xBE, ".", ">")
-  AddKey("Slash", 0xBF, "/", "?")
-end
-
-local function ReleaseDrags()
-  State.Drag = nil
-  State.Resize = nil
-  State.Sliding = nil
-  State.BarDrag = nil
-  State.Panning = nil
-  State.TextDrag = nil
-  State.HotkeyDrag = nil
-
-  if State.Picker then State.Picker.Drag, State.Picker.HexDrag = nil, nil end
-  if State.Dropdown then State.Dropdown.BarDrag = nil end
-
-  State.Spotlight.BarDrag = nil
-end
-
-local function ReadKeys()
-  for Index = 1, #KeyOrder do
-    local Key = Keys[KeyOrder[Index]]
-    local Held = iskeypressed(Key.Code)
-
-    Key.Click = Held and not Key.Held
-    Key.Held = Held
-  end
-end
-
-local function KeyRepeat(key)
-  if key.Click then
-    State.RepeatKey = key
-    State.RepeatAt = os.clock() + Layout.RepeatDelay
-    return true
-  end
-
-  if not key.Held or State.RepeatKey ~= key or os.clock() < State.RepeatAt then return false end
-
-  State.RepeatAt = os.clock() + Layout.RepeatRate
-
-  return true
-end
-
-local function TypedChar()
-  local Shift = Keys.Shift.Held
-
-  for Index = 1, #KeyOrder do
-    local Key = Keys[KeyOrder[Index]]
-
-    if Key.Char and KeyRepeat(Key) then return (Shift and Key.Shifted) or Key.Char end
-  end
-
-  return nil
-end
-
-local EditText
-
-do
-  local function ShiftHeld()
-    return Keys.Shift.Held or Keys.LeftShift.Held or Keys.RightShift.Held
-  end
-
-  local function CtrlHeld()
-    return Keys.Ctrl.Held or Keys.LeftCtrl.Held or Keys.RightCtrl.Held
-  end
-
-  function EditText(row, field, allowed)
-    local Key = field or "Value"
-    local Value = row[Key] or ""
-    local Caret = math.min(math.max(row.Caret or #Value, 0), #Value)
-    local Anchor = row.Anchor and math.min(math.max(row.Anchor, 0), #Value) or nil
-    local Selected = Anchor ~= nil and Anchor ~= Caret
-    local Low = Selected and math.min(Anchor, Caret) or Caret
-    local High = Selected and math.max(Anchor, Caret) or Caret
-    local Fire = Key == "Value" and row.Callback or nil
-
-    local function Apply(text, caret)
-      row[Key], row.Caret, row.Anchor = text, caret, nil
-
-      if Fire then Fire(text) end
+    for i = 0, 7 do
+        local t = i * pi / 4
+        sun[#sun + 1] = {10 + cos(t) * 7, 10 + sin(t) * 7, 10 + cos(t) * 9.4, 10 + sin(t) * 9.4}
     end
-
-    local function Cut()
-      Apply(string.sub(Value, 1, Low) .. string.sub(Value, High + 1), Low)
-    end
-
-    if CtrlHeld() then
-      if Keys.a.Click then row.Anchor, row.Caret = 0, #Value Keys.a.Click = false end
-      if Keys.c.Click and Selected then setclipboard(string.sub(Value, Low + 1, High)) Keys.c.Click = false end
-      if Keys.x.Click and Selected then setclipboard(string.sub(Value, Low + 1, High)) Cut() Keys.x.Click = false end
-
-      return
-    end
-
-    local Step = Keys.Left.Click and -1 or Keys.Right.Click and 1 or nil
-    local Jump = Keys.Home.Click and 0 or Keys.End.Click and #Value or nil
-
-    if Step or Jump then
-      local Moved = Jump
-
-      if Step then Moved = (Selected and not ShiftHeld()) and (Step < 0 and Low or High) or math.min(math.max(Caret + Step, 0), #Value) end
-
-      row.Anchor = ShiftHeld() and (Anchor or Caret) or nil
-      row.Caret = Moved
-
-      Keys.Left.Click, Keys.Right.Click, Keys.Home.Click, Keys.End.Click = false, false, false, false
-
-      return
-    end
-
-    if Keys.Escape.Click or Keys.Enter.Click then
-      State.Focus = nil
-
-      if Fire then Fire(Value) end
-
-      return
-    end
-
-    if KeyRepeat(Keys.Backspace) then
-      if Selected then Cut() return end
-      if Caret == 0 then return end
-
-      Apply(string.sub(Value, 1, Caret - 1) .. string.sub(Value, Caret + 1), Caret - 1)
-
-      return
-    end
-
-    if KeyRepeat(Keys.Delete) then
-      if Selected then Cut() return end
-      if Caret == #Value then return end
-
-      Apply(string.sub(Value, 1, Caret) .. string.sub(Value, Caret + 2), Caret)
-
-      return
-    end
-
-    local Char = TypedChar()
-    if not Char then return end
-    if allowed and not string.match(Char, allowed) then return end
-
-    Apply(string.sub(Value, 1, Low) .. Char .. string.sub(Value, High + 1), Low + 1)
-  end
-end
-
-local function CaptureKey(row)
-  for Index = 1, #KeyOrder do
-    local Name = KeyOrder[Index]
-    local Key = Keys[Name]
-
-    if Key.Click and Name ~= "Shift" and Name ~= "Ctrl" and Name ~= "Alt" then
-      local Escaped = Name == "Escape"
-
-      row.Listening = false
-      State.Capture = nil
-
-      if row.Kind ~= "Keybind" then
-        row.Value = Escaped and "none" or string.lower(Name)
-
-        return
-      end
-
-      if Escaped then return end
-
-      row.Value = string.lower(Name)
-
-      row.Callback(row.Value)
-
-      return
-    end
-  end
-end
-
-local function Approach(current, target, speed)
-  if State.NoAnim or State.Lite then return target end
-
-  return current + (target - current) * (1 - math.exp(-speed * State.Delta))
-end
-
-local function CopyList(source)
-  local Copy = {}
-
-  for Index = 1, #source do Copy[Index] = source[Index] end
-
-  return Copy
-end
-
-local function SnapValue(value, row)
-  local Snapped = math.floor(value / row.Step + 0.5) * row.Step
-
-  return math.min(math.max(Snapped, row.Min), row.Max)
-end
-
-local function Settle(current, target, speed, epsilon)
-  local Value = Approach(current, target, speed)
-
-  if math.abs(Value - target) < epsilon then return target end
-
-  return Value
-end
-
-local function GradientRect(x, y, width, height, first, second, z, transparency)
-  if width <= 0 then return end
-
-  local Steps = State.Lite and 6 or Layout.GradientSteps
-  local Prev = math.floor(x + 0.5)
-
-  for Index = 1, Steps do
-    local Next = math.floor(x + width * Index / Steps + 0.5)
-    local Slice = math.max(1, Next - Prev)
-    local Tint = Blend(first, second, (Index - 0.5) / Steps)
-
-    DrawRect(Prev, y, Slice, height, Tint, z, 0, transparency)
-
-    Prev = Next
-  end
-end
-
-local function FadeLine(x, y, width, color, z, transparency, reverse)
-  if width <= 6 or transparency <= 0.003 then return end
-
-  local Steps = State.Lite and 8 or math.min(26, math.max(10, math.floor(width / 6)))
-  local Prev = math.floor(x + 0.5)
-
-  for Index = 1, Steps do
-    local Next = math.floor(x + width * Index / Steps + 0.5)
-    local Slice = Next - Prev
-    local Along = (Index - 0.5) / Steps
-
-    if not reverse then Along = 1 - Along end
-    if Slice >= 1 then DrawRect(Prev, y, Slice, 1, color, z, 0, transparency * Along * Along) end
-
-    Prev = Next
-  end
-end
-
-local function ActiveView()
-  local Tab = State.Tabs[State.ActiveIndex]
-  if not Tab then return nil end
-  if #Tab.Subs == 0 then return Tab end
-  if State.ActiveSub and State.ActiveSub.Parent == Tab then return State.ActiveSub end
-
-  return Tab.Subs[1]
-end
-
-local function TopHeight()
-  return State.TabLayout == "top" and Layout.TitleHeight or Layout.TopbarHeight
-end
-
-local function TitleMid()
-  return State.Y + TopHeight() / 2
-end
-
-local function RailWidth()
-  if State.TabLayout == "top" then return 0 end
-
-  local Wide = math.max(Layout.RailWide, math.floor(State.W * Layout.RailShare))
-  local Shown = Layout.RailNarrow + (Wide - Layout.RailNarrow) * State.RailOpen
-  local Target = (State.Lite or State.RailPinned or IsMouseIn(State.X, State.Y, Shown, State.H)) and 1 or 0
-
-  State.RailOpen = Approach(State.RailOpen, Target, 10)
-  if math.abs(State.RailOpen - Target) < 0.003 then State.RailOpen = Target end
-
-  return Layout.RailNarrow + (Wide - Layout.RailNarrow) * State.RailOpen
-end
-
-local function ClampWindow()
-  local View = Camera.ViewportSize
-
-  State.X = math.min(math.max(State.X, 0), math.max(0, View.X - math.min(80, State.W)))
-  State.Y = math.min(math.max(State.Y, 0), math.max(0, View.Y - math.min(40, State.H)))
-end
-
-local ApplyDrag, GrabWindow, DrawFrame, ControlButton, DrawSearchBar, DrawBrand, DrawUserCard, DrawGem, DrawTopStrip
-
-do
-  function ApplyDrag()
-    local Drag = State.Drag
-
-    if Input.Down and Drag then Drag.WantX, Drag.WantY = Input.X - Drag.GrabX, Input.Y - Drag.GrabY end
-    if not Drag or not Drag.WantX then return end
-
-    local FromX, FromY = State.X, State.Y
-
-    State.X = Approach(FromX, Drag.WantX, Layout.DragSpeed)
-    State.Y = Approach(FromY, Drag.WantY, Layout.DragSpeed)
-
-    ClampWindow()
-
-    local MovedX, MovedY = State.X - FromX, State.Y - FromY
-    if MovedX == 0 and MovedY == 0 then return end
-
-    for _, Popup in ipairs({ State.Dropdown, State.Picker, State.Menu }) do
-      Popup.X, Popup.Y = Popup.X + MovedX, Popup.Y + MovedY
-    end
-  end
-
-  function GrabWindow(rail)
-    if State.Drag then return end
-    if not Input.Click or State.Resize or State.Dropdown or State.Picker or State.Menu or State.SpotlightOpen then return end
-
-    local Wide = State.TabLayout == "top"
-    local OnBar = Wide and IsMouseIn(State.X, State.Y, State.W, Layout.TitleHeight)
-      or IsMouseIn(State.X + rail, State.Y, State.W - rail, Layout.TopbarHeight)
-      or IsMouseIn(State.X, State.Y, rail, Layout.TopbarHeight)
-
-    if not OnBar then return end
-
-    State.Drag = { GrabX = Input.X - State.X, GrabY = Input.Y - State.Y }
-    Input.Click = false
-  end
-
-  function DrawFrame(rail)
-    local Shadow = Alpha.WindowShadow
-
-    if not State.Lite then
-      for Index = 1, #Shadow do
-        local Spread = Index * 4
-
-        DrawRect(State.X - Spread, State.Y - Spread + 6, State.W + Spread * 2, State.H + Spread * 2, Black, 9, 16, Shadow[Index])
-      end
-    end
-
-    DrawRect(State.X, State.Y, State.W, State.H, Theme.Background, 10, Layout.Corner, State.Opacity)
-
-    local Backdrop = State.Backdrop
-
-    if Backdrop then
-      local PaneHeight = State.H - Layout.TopbarHeight
-      local Wide = State.BackdropWide and State.BackdropWide * State.W or PaneHeight * 0.6
-      local Tall = State.BackdropWide and (State.BackdropTall or 1) * PaneHeight or PaneHeight
-
-      DrawPicture(Backdrop, State.X + (State.W - Wide) / 2, State.Y + Layout.TopbarHeight + (PaneHeight - Tall) / 2, Wide, Tall, 119999, State.BackdropAlpha * State.Visible)
-    end
-
-    DrawStroke(State.X, State.Y, State.W, State.H, Theme.Text, 12, Layout.Corner, Alpha.Hairline)
-
-    if State.TabLayout == "top" then
-      DrawRect(State.X + 1, State.Y + Layout.TitleHeight, State.W - 2, 4, Theme.Accent, 11, 0, 0.035)
-      GradientRect(State.X + 1, State.Y + Layout.TitleHeight - 1.4, State.W - 2, 1.4, Theme.AccentA, Theme.AccentB, 12, 0.55)
-    else
-      local Tab = ActiveView()
-
-      DrawRect(State.X + rail, State.Y + Layout.TopbarHeight, State.W - rail, State.H - Layout.TopbarHeight, Theme.Text, 11, 7, 0.045)
-
-      if Tab then DrawText(Tab.Name, State.X + rail + 16, TextTop(State.Y, Layout.TopbarHeight, Layout.TitleSize), Theme.Text, Layout.TitleSize, BoldFont, 13, Alpha.Text, State.W - rail - 272) end
-    end
-
-    local Sweep = State.X - 46 + (State.W + 92) * State.Visible
-    local Shade = 4 * State.Visible * (1 - State.Visible)
-    local GlowLeft = math.max(State.X + 2, Sweep)
-    local GlowRight = math.min(State.X + State.W - 2, Sweep + 30)
-    local TrailLeft = math.max(State.X + 2, Sweep - 18)
-    local TrailRight = math.min(State.X + State.W - 2, Sweep)
-
-    DrawRect(GlowLeft, State.Y + 2, GlowRight - GlowLeft, Layout.TopbarHeight - 3, Theme.Text, 12, 6, 0.09 * Shade)
-    DrawRect(TrailLeft, State.Y + 2, TrailRight - TrailLeft, Layout.TopbarHeight - 3, Theme.Accent, 12, 6, 0.06 * Shade)
-  end
-
-  function ControlButton(cx, kind)
-    local Gx, Gy = math.floor(cx + 0.5), math.floor(TitleMid() + 0.5)
-    local Size = Layout.ButtonBox
-    local Bx, By = Gx - Size / 2, Gy - Size / 2
-    local Hovered = IsMouseIn(Bx, By, Size, Size)
-    local Glow = State.Buttons[kind] or 0
-
-    Glow = Approach(Glow, Hovered and 1 or 0, 14)
-    State.Buttons[kind] = Glow
-
-    local Tint = Blend(Theme.Text, Theme.Accent, Glow)
-    local Shade = 0.5 + 0.45 * Glow
-
-    DrawRect(Bx, By, Size, Size, Theme.Accent, 13, 6, 0.14 * Glow)
-    DrawStroke(Bx, By, Size, Size, Theme.Accent, 14, 6, 0.55 * Glow)
-
-    if kind == "Close" then
-      DrawBar(Gx - 4, Gy - 4, Gx + 4, Gy + 4, 1.8, Tint, 16, Shade)
-      DrawBar(Gx + 4, Gy - 4, Gx - 4, Gy + 4, 1.8, Tint, 16, Shade)
-    elseif kind == "Search" then
-      DrawCircle(Gx - 1, Gy - 1, 3.2, Tint, 16, false, 1.5, 18, Shade)
-      DrawBar(Gx + 1.3, Gy + 1.3, Gx + 4.2, Gy + 4.2, 1.7, Tint, 16, Shade)
-    else
-      DrawBar(Gx - 4, Gy, Gx + 4, Gy, 1.8, Tint, 15, Shade)
-    end
-
-    return Hovered
-  end
-
-  function DrawSearchBar(rail)
-    local Style = State.SearchStyle
-
-    if Style == "off" then return end
-
-    if Style == "icon" then
-      if not ControlButton(State.X + State.W - 71, "Search") then return end
-
-      WantTooltip(SearchHint, Input.X, Input.Y)
-
-      if Input.Click then ShowSpotlight(true) Input.Click = false end
-
-      return
-    end
-
-    local Width = math.floor(math.min(Layout.SearchWidth, math.max(Layout.SearchMin, (State.TabLayout == "top" and State.W or (State.W - rail)) * Layout.SearchShare)))
-    local Bx = State.X + State.W - 66 - Width
-    local By = TitleMid() - 9
-    local Hovered = IsMouseIn(Bx, By, Width, Layout.SearchHeight)
-    local Glow = Settle(State.SearchGlow, Hovered and 1 or 0, 12, Layout.NavRest)
-    local Bright = (0.7 + 0.3 * Glow)
-
-    State.SearchGlow = Glow
-
-    DrawRect(Bx, By, Width, Layout.SearchHeight, Theme.Text, 13, 9, Alpha.Field + 0.04 * Glow)
-    DrawStroke(Bx, By, Width, Layout.SearchHeight, Theme.Accent, 14, 9, 0.12 + 0.4 * Glow)
-    DrawCircle(Bx + 10, By + 8, 3, Theme.Accent, 15, false, 1.3, 18, Bright)
-    DrawBar(Bx + 11.8, By + 10.2, Bx + 14.4, By + 12.8, 1.4, Theme.Accent, 15, Bright)
-    DrawText("Search", Bx + 20, TextTop(By, Layout.SearchHeight, Layout.SmallSize), Theme.Text, Layout.SmallSize, SystemFont, 15, Alpha.Dim + 0.12 * Glow, Width - 26)
-
-    if not Hovered then return end
-
-    WantTooltip(SpotHint, Input.X, Input.Y)
-
-    if Input.Click then ShowSpotlight(true) Input.Click = false end
-  end
-
-  function DrawBrand(rail)
-    local Edge = State.X + rail - 14
-    local HeadX = State.X + 16
-    local Logo = State.Logo
-    local Size = Layout.MonoSize
-    local Middle = State.Y + 22 + ((State.Subtitle ~= "" and 30 or 18) - 22) * State.RailOpen
-
-    if Logo and DrawPicture(Logo, HeadX - 4 * (1 - State.RailOpen), Middle - State.LogoSize / 2, State.LogoSize, State.LogoSize, 629999, 1, State.LogoSize * 0.22) then
-      HidePicture(State.Icon)
-
-      HeadX = HeadX + State.LogoSize + 9
-    elseif State.Icon then
-      HeadX = State.X + 44
-    else
-      local Letter = string.upper(string.sub(State.Title, 1, 1))
-      local Cx = State.X + 16 + Size / 2 - 4 * (1 - State.RailOpen)
-
-      DrawRect(Cx - Size / 2, Middle - Size / 2, Size, Size, Theme.Accent, 61, Layout.MonoRadius, 0.16)
-      DrawStroke(Cx - Size / 2, Middle - Size / 2, Size, Size, Theme.Text, 61, Layout.MonoRadius, Alpha.CardStroke)
-      DrawTextMid(Letter, Cx, Middle, Theme.Accent, Layout.TitleSize, BoldFont, 62, Alpha.Text)
-
-      HeadX = State.X + 16 + Size + 9
-    end
-
-    local Room = math.max(2, Edge - HeadX)
-    local TitleSize = Layout.HeaderTitle
-    local Full = TextWidth(State.Title, TitleSize, BoldFont)
-
-    if Full > Room then TitleSize = math.max(11, math.floor(TitleSize * Room / Full)) end
-
-    local Top = State.Y + 20 - math.floor(TitleSize / 2)
-    local Shade = Alpha.Text * State.RailOpen
-    local InfoBottom = State.Y + 34
-
-    DrawText(State.Title, HeadX, Top + 1, Black, TitleSize, BoldFont, 60, 0.28 * Shade, Room)
-    DrawText(State.Title, HeadX, Top, Theme.Accent, TitleSize, BoldFont, 61, Shade, Room)
-
-    if State.Subtitle ~= "" then
-      DrawText(State.Subtitle, HeadX, State.Y + 34, Theme.Text, Layout.TinySize, SystemFont, 61, Alpha.Dim * State.RailOpen, Room)
-
-      InfoBottom = State.Y + 50
-    end
-
-    GradientRect(State.X + 12, InfoBottom, rail - 24, 1, Theme.AccentA, Theme.AccentB, 61, 0.3 * State.RailOpen)
-
-    return InfoBottom
-  end
-
-  local function DrawGear(cx, cy, box, icon, zFill, zImage, scale, stroke)
-    local Active = State.Tabs[State.ActiveIndex] == SettingsTab
-    local Hovered = scale > 0.5 and IsMouseIn(cx - box / 2, cy - box / 2, box, box)
-    local Shade = (Active and Alpha.Hover or (Hovered and Alpha.Label or Alpha.Dim)) * scale
-
-    State.GearGlow = Approach(State.GearGlow or 0, (Active or Hovered) and 1 or 0, 13)
-
-    local Glow = State.GearGlow * scale
-
-    DrawRect(cx - box / 2, cy - box / 2, box, box, Theme.Text, zFill, 8, Alpha.TabFill * (Active and 1 or 0.6) * Glow)
-
-    if stroke then DrawStroke(cx - box / 2, cy - box / 2, box, box, Theme.Text, zFill, 8, Alpha.CardStroke * Glow) end
-
-    DrawIcon(State, "GearImage", State.SettingsIcon, cx - icon / 2, cy - icon / 2, icon, zImage, Shade)
-
-    if not (Hovered and Input.Click) then return end
-
-    State.ActiveIndex = Active and (State.LastIndex or 1) or State.SettingsIndex
-    State.LastIndex = Active and State.LastIndex or State.ActiveIndex
-    State.ActiveSub = nil
-    State.ContentFade = 0
-    Input.Click = false
-  end
-
-  local function ReadPlayer()
-    if State.PlayerInitial then return end
-
-    local Name = LocalPlayer.Name
-    local Display = LocalPlayer.DisplayName
-
-    Name = (type(Name) == "string" and Name ~= "") and Name or "player"
-    Display = (type(Display) == "string" and Display ~= "") and Display or Name
-
-    State.PlayerName = Display
-    State.PlayerHandle = "@" .. Name
-    State.PlayerInitial = string.upper(string.sub(Display, 1, 1))
-  end
-
-  function DrawUserCard(rail)
-    ReadPlayer()
-
-    local CardY = State.Y + State.H - Layout.UserCard
-    local Half = (rail - 28) / 2
-    local Rule = Alpha.Hairline * 1.8 * State.RailOpen
-    local Cx, Cy = State.X + 29, CardY + 16
-    local Room = math.max(2, rail - 100)
-
-    FadeLine(State.X + 14, CardY - 10, Half, Theme.Text, 61, Rule, true)
-    FadeLine(State.X + 14 + Half, CardY - 10, Half, Theme.Text, 61, Rule)
-    if DrawPicture(State.Avatar, Cx - Layout.AvatarRadius, Cy - Layout.AvatarRadius, Layout.AvatarRadius * 2, Layout.AvatarRadius * 2, 629999, 1, Layout.AvatarRadius) then
-      DrawCircle(Cx, Cy, Layout.AvatarRadius, Theme.Text, 63, false, 1, 28, Alpha.Hairline)
-    else
-      DrawCircle(Cx, Cy, Layout.AvatarRadius, Theme.Accent, 61, true, 1, 28, 0.18)
-      DrawCircle(Cx, Cy, Layout.AvatarRadius, Theme.Text, 62, false, 1, 28, Alpha.Hairline)
-      DrawTextCenter(State.PlayerInitial, Cx, Cy - 7, Theme.Text, Layout.TextSize, BoldFont, 62, Alpha.Text)
-    end
-    DrawText(State.PlayerName, State.X + 50, CardY + 6, Theme.Text, Layout.SmallSize, BoldFont, 62, Alpha.Text * State.RailOpen, Room)
-    DrawText(State.PlayerHandle, State.X + 50, CardY + 22, Theme.Text, Layout.TinySize, SystemFont, 62, Alpha.Dim * State.RailOpen, Room)
-
-    if SettingsTab then DrawGear(State.X + rail - 26, Cy, 30, 20, 61, 629999, State.RailOpen, true) end
-  end
-
-  function DrawGem()
-    local Size = Layout.GemSize
-    local Cx, Cy = State.X + 20, TitleMid()
-    local Wide = Size + 6
-
-    if DrawPicture(State.Icon, Cx - Wide / 2, Cy - Wide / 2, Wide, Wide, 169999, 1, 5) then return end
-    if DrawPicture(State.Logo, Cx - Wide / 2, Cy - Wide / 2, Wide, Wide, 169999, 1, 5) then return end
-
-    DrawRect(Cx - Size / 2, Cy - Size / 2, Size, Size, Theme.Accent, 14, 2.5, 0.95)
-    DrawMenuBars(Cx, Cy, Size, BarTint, 15, 1)
-  end
-
-  function DrawTopStrip()
-    local StripY = State.Y + Layout.TitleHeight
-    local Middle = StripY + Layout.TopbarHeight / 2
-    local RightEdge = State.X + State.W - 14
-
-    if SettingsTab then
-      local GearX = State.X + State.W - 26
-
-      DrawGear(GearX, Middle, 28, 18, 13, 169999, 1, false)
-
-      RightEdge = GearX - 22
-    end
-
-    local Cx = RightEdge - 13
-
-    ReadPlayer()
-
-    if DrawPicture(State.Avatar, Cx - 11, Middle - 11, 22, 22, 169999, 1, 11) then
-      DrawCircle(Cx, Middle, 11, Theme.Text, 17, false, 1, 24, Alpha.Hairline)
-    else
-      DrawCircle(Cx, Middle, 11, Theme.Accent, 13, true, 1, 24, 0.18)
-      DrawCircle(Cx, Middle, 11, Theme.Text, 14, false, 1, 24, Alpha.Hairline)
-      DrawTextCenter(State.PlayerInitial, Cx, Middle - 6, Theme.Text, Layout.SmallSize, BoldFont, 15, Alpha.Text)
-    end
-
-    local PillX = State.X + 14
-
-    for Index, Tab in ipairs(State.Tabs) do
-      if not Tab.Hidden then
-        local Active = State.ActiveIndex == Index
-        local PillWidth = (Tab.Icon and 22 or 0) + TextWidth(Tab.Name, 14, BoldFont) + 24
-        local PillY = Middle - Layout.TopPill / 2
-        local Hovered = IsMouseIn(PillX, PillY, PillWidth, Layout.TopPill)
-        local Lit = Hovered and State.HoverEffects ~= false
-        local LabelX = PillX + 12
-
-        Tab.Glow = Approach(Tab.Glow or 0, Active and 1 or 0, 13)
-
-        local Glow = Tab.Glow
-        local Shade = Active and Alpha.Hover or (Lit and Alpha.Label or Alpha.Dim)
-
-        DrawRect(PillX, PillY, PillWidth, Layout.TopPill, Theme.Text, 13, 7, Alpha.TabFill * Glow)
-        DrawStroke(PillX, PillY, PillWidth, Layout.TopPill, Theme.Text, 14, 7, Alpha.CardStroke * Glow)
-        DrawRect(PillX + PillWidth / 2 - 8 * Glow, StripY + Layout.TopbarHeight - 3, math.max(1, 16 * Glow), 2, Theme.Accent, 15, 1, 0.95 * Glow)
-        DrawRect(PillX, PillY, PillWidth, Layout.TopPill, Theme.Text, 13, 7, (Lit and not Active) and 0.07 or 0)
-
-        if Tab.Icon then
-          LabelX = PillX + 30
-
-          DrawIcon(Tab, "Image", Tab.Icon, PillX + 10, Middle - 8, Layout.IconSize, 169998, Shade)
-          DrawIcon(Tab, "ImageOn", Tab.Icon, PillX + 10, Middle - 8, Layout.IconSize, 169999, Shade * Glow, Theme.Accent)
+    PATHS.sun = sun
+
+    local gear = {}
+    for i = 0, 11 do
+        local t, u = i * pi / 6, (i + 1) * pi / 6
+        gear[#gear + 1] = {10 + cos(t) * 7, 10 + sin(t) * 7, 10 + cos(u) * 7, 10 + sin(u) * 7}
+        if i % 2 == 0 then
+            gear[#gear + 1] = {10 + cos(t) * 7, 10 + sin(t) * 7, 10 + cos(t) * 10, 10 + sin(t) * 10}
         end
-
-        DrawText(Tab.Name, LabelX, TextTop(PillY, Layout.TopPill, 14), Active and Theme.Accent or Theme.Text, 14, BoldFont, 15, Shade, PillWidth)
-
-        if Hovered and Input.Click and State.ActiveIndex ~= Index then
-          State.ActiveIndex = Index
-          State.ActiveSub = nil
-          State.ContentFade = 0
-          Input.Click = false
-        end
-
-        PillX = PillX + PillWidth + 6
-      end
     end
-
-    DrawLine(State.X, StripY + Layout.TopbarHeight, State.X + State.W, StripY + Layout.TopbarHeight, Theme.Text, 12, 1, Alpha.Hairline)
-  end
+    for i = 0, 7 do
+        local t, u = i * pi / 4, (i + 1) * pi / 4
+        gear[#gear + 1] = {10 + cos(t) * 2.6, 10 + sin(t) * 2.6, 10 + cos(u) * 2.6, 10 + sin(u) * 2.6}
+    end
+    PATHS.gear = gear
 end
 
-local function Minimize()
-  State.Rolled = not State.Rolled
-
-  if not State.Rolled then return end
-
-  State.BubblePos = { X = State.X + 6, Y = State.Y + 4 }
-  State.Dropdown = nil
-  State.Picker = nil
-  State.Menu = nil
-  State.Focus = nil
+local function icon(name, x, y, size, color, a, z)
+    local strokes = PATHS[name] or PATHS.dot
+    local k = size / 20
+    local th = max(1, size / 12)
+    for i = 1, #strokes do
+        local p = strokes[i]
+        line(x + p[1] * k, y + p[2] * k, x + p[3] * k, y + p[4] * k, color, a, z, th)
+    end
 end
 
-local function DrawHeader(rail)
-  DrawSearchBar(rail)
+ 
+ 
+ 
+local Pointer = { X = 0, Y = 0, Down = false, Click = false, Used = false, Blocked = false, DT = 0, Active = true }
 
-  if ControlButton(State.X + State.W - 21, "Close") and Input.Click then State.Open = false Input.Click = false end
-  if ControlButton(State.X + State.W - 46, "Min") and Input.Click then Minimize() Input.Click = false end
+local function inside(x, y, w, h)
+    return Pointer.X >= x and Pointer.X <= x + w and Pointer.Y >= y and Pointer.Y <= y + h
 end
 
-local function DrawSubs(tab, top, pillX, pillWidth, reveal)
-  local Count = #tab.Subs
-  local Stagger = math.min(Layout.SubStagger, Layout.SubSpan / math.max(1, Count - 1))
-  local Denominator = math.max(0.001, 1 - (Count - 1) * Stagger)
-  local SubX = pillX + Layout.SubIndent
-  local SubWidth = pillWidth - Layout.SubIndent
-  local Pill = Blend(Theme.Text, Theme.Accent, Layout.PillMix)
-
-  for Index, Sub in ipairs(tab.Subs) do
-    local Raw = math.min(math.max((reveal - (Index - 1) * Stagger) / Denominator, 0), 1)
-    local Rise = Raw * Raw * (3 - 2 * Raw) * State.RailOpen
-    local SubY = top + (Index - 1) * (Layout.SubHeight + 4) - 3 * (1 - Rise)
-    local Live = Rise > 0.5 and reveal > 0.5
-    local Active = State.ActiveSub == Sub
-    local Hovered = Live and IsMouseIn(SubX, SubY, SubWidth, Layout.SubHeight)
-
-    Sub.Glow = Settle(Sub.Glow or 0, Active and 1 or 0, 12, Layout.NavRest)
-    Sub.Hover = Settle(Sub.Hover or 0, Hovered and 1 or 0, 18, Layout.NavRest)
-
-    local Bright = Sub.Glow + (1 - Sub.Glow) * 0.35 * Sub.Hover
-    local LabelX = SubX + 20
-
-    DrawRect(SubX, SubY, SubWidth, Layout.SubHeight, Pill, 62, Layout.SubRadius, (0.05 * Sub.Glow + 0.04 * Sub.Hover * (1 - Sub.Glow)) * Rise)
-
-    if Sub.Icon then
-      LabelX = SubX + 28
-
-      DrawIcon(Sub, "Image", Sub.Icon, SubX + 9, SubY + (Layout.SubHeight - Layout.SubIcon) / 2, Layout.SubIcon, 629998, Rise * (0.7 + 0.3 * Bright))
-      DrawIcon(Sub, "ImageOn", Sub.Icon, SubX + 9, SubY + (Layout.SubHeight - Layout.SubIcon) / 2, Layout.SubIcon, 629999, Rise * (0.7 + 0.3 * Bright) * Bright, Theme.Accent)
-    else
-      DrawCircle(SubX + 11, SubY + Layout.SubHeight / 2, 2, Blend(Theme.IconIdle, Theme.Accent, Bright), 63, true, 1, 12, Rise * (0.5 + 0.5 * Sub.Glow))
-    end
-
-    DrawText(Sub.Name, LabelX, TextTop(SubY, Layout.SubHeight, Layout.SmallSize), Blend(Theme.Idle, Theme.Text, Bright), Layout.SmallSize, SystemFont, 63, (0.86 + 0.14 * Sub.Glow) * Rise * State.RailOpen, SubWidth - (LabelX - SubX) - 6)
-
-    if Live and IsMouseIn(SubX, SubY, SubWidth, Layout.SubHeight) and Input.Click then
-      State.ActiveSub = Sub
-      State.ContentFade = 0
-      tab.LastSub = Sub
-      Input.Click = false
-    end
-  end
+local function keyDown(vk)
+    local ok, result = pcall(iskeypressed, vk)
+    return ok and result == true
 end
 
-local function DrawRail(rail, infoBottom)
-  local PillX = State.X + Layout.PillIndent
-  local PillWidth = rail - Layout.PillIndent * 2
-  local RowY = math.floor(State.Y + 50 + (infoBottom + 12 - (State.Y + 50)) * State.RailOpen)
-  local Pill = Blend(Theme.Text, Theme.Accent, Layout.PillMix)
-  local Edge = State.X + rail - 18
-  local Category = nil
+local keyState = {}
 
-  for Index, Tab in ipairs(State.Tabs) do
-    if not Tab.Hidden then
-      if Tab.Category and Tab.Category ~= Category then
-        RowY = RowY + (Category == nil and 6 or 12) * State.RailOpen
-
-        DrawText(string.upper(Tab.Category), PillX + 2, RowY, Theme.Category, Layout.TinySize, BoldFont, 61, 0.42 * State.RailOpen, PillWidth - 4)
-
-        RowY = RowY + 4 + 16 * State.RailOpen
-        Category = Tab.Category
-      end
-
-      local Count = #Tab.Subs
-      local Branch = State.ActiveIndex == Index
-      local Leaf = Branch and Count == 0
-      local Hovered = IsMouseIn(PillX, RowY, PillWidth, Layout.PillHeight)
-
-      Tab.Glow = Settle(Tab.Glow or 0, Leaf and 1 or 0, 12, Layout.NavRest)
-      Tab.Hover = Settle(Tab.Hover or 0, Hovered and 1 or 0, 18, Layout.NavRest)
-      Tab.Open = Settle(Tab.Open or 0, Branch and 1 or 0, Branch and 14 or 17, Layout.NavRest)
-      Tab.Flash = Settle(Tab.Flash or 0, 0, 5, Layout.NavRest)
-
-      local Bright = Tab.Glow + (1 - Tab.Glow) * 0.5 * Tab.Hover
-      local IconBright = Count > 0 and math.max(0.5 * Tab.Hover, Tab.Flash) or Bright
-      local Slide = 1.5 * Tab.Hover * (1 - Tab.Glow)
-      local Top = TextTop(RowY, Layout.PillHeight, Layout.TextSize)
-      local LabelX = PillX + 13
-
-      DrawRect(PillX, RowY, PillWidth, Layout.PillHeight, Pill, 61, Layout.PillRadius, 0.055 * Tab.Glow + 0.05 * Tab.Hover * (1 - Tab.Glow))
-
-      if Tab.Icon then
-        local IconX = PillX + 10 - 3 * (1 - State.RailOpen) + Slide
-        local IconY = RowY + (Layout.PillHeight - Layout.IconSize) / 2
-
-        LabelX = PillX + Layout.PillIcon
-
-        DrawIcon(Tab, "Image", Tab.Icon, IconX, IconY, Layout.IconSize, 629998, 0.7 + 0.3 * IconBright)
-        DrawIcon(Tab, "ImageOn", Tab.Icon, IconX, IconY, Layout.IconSize, 629999, (0.7 + 0.3 * IconBright) * IconBright, Theme.Accent)
-      end
-
-      local Room = math.max(2, Edge - LabelX)
-
-      DrawText(Tab.Name, LabelX + 1, Top + 1, Black, Layout.TextSize, BoldFont, 62, 0.22 * Tab.Glow, Room)
-      DrawText(Tab.Name, LabelX + Slide, Top, Blend(Theme.Idle, Theme.Text, Bright), Layout.TextSize, BoldFont, 63, (0.90 + 0.10 * Tab.Glow) * State.RailOpen, Room)
-
-      if Hovered and Input.Click then
-        State.ActiveIndex = Index
-        State.ActiveSub = Count > 0 and (Tab.LastSub or Tab.Subs[1]) or nil
-        State.ContentFade = 0
-        Tab.LastSub = State.ActiveSub
-        Tab.Flash = 1
-        Input.Click = false
-      end
-
-      local Advance = Layout.PillHeight
-
-      if Count > 0 then
-        DrawSubs(Tab, RowY + Layout.PillHeight + 4, PillX, PillWidth, Tab.Open)
-
-        Advance = Advance + Tab.Open * State.RailOpen * (4 + Count * (Layout.SubHeight + 4))
-      end
-
-      RowY = RowY + Advance + 2 + 4 * State.RailOpen
-    end
-  end
+local function pollKeys(vk)
+    local last = keyState[vk]
+    local now = keyDown(vk)
+    keyState[vk] = now
+    return now and not last
 end
 
-local KeyName = {}
+local pollFrame = 0
+local function pollInput(dt)
+    local x, y
 
-do
-  local MouseNames = { m1 = "MB1", m2 = "MB2", mb3 = "MB3", mb4 = "MB4", mb5 = "MB5" }
+     
+     
+    pcall(function() x, y = mouse.X, mouse.Y end)
+    if type(x) ~= "number" or type(y) ~= "number" then
+        pcall(function()
+            local p = mouse.Position
+            if p then x, y = p.X, p.Y end
+        end)
+    end
+    if (type(x) ~= "number" or type(y) ~= "number") and type(getmousepos) == "function" then
+        pcall(function()
+            local p = getmousepos()
+            if p then x, y = p.X, p.Y end
+        end)
+    end
 
-  local function Shown(name)
-    return MouseNames[string.lower(name)] or string.upper(name)
-  end
+     
+    local inject = _G.__kittyInject
+    if type(inject) == "table" then
+        if type(inject.x) == "number" then x = inject.x end
+        if type(inject.y) == "number" then y = inject.y end
+    end
 
-  function KeyName.Label(value)
-    if value == nil or value == "" then return "none" end
+    x, y = tonumber(x) or Pointer.X, tonumber(y) or Pointer.Y
+    Pointer.X, Pointer.Y = x, y
 
-    local Mod, Key = string.match(value, "^(%w+)%+(.+)$")
+    local active = true
+    pcall(function() if type(isrbxactive) == "function" then active = isrbxactive() end end)
+    Pointer.Active = active
 
-    if Mod then return Shown(Mod) .. "+" .. Shown(Key) end
+    local down = false
+    pcall(function() down = ismouse1pressed() == true end)
+    if type(inject) == "table" then
+        if inject.down ~= nil then down = inject.down == true end
+        active = true
+    end
 
-    return Shown(value)
-  end
-
-  local KeyAlias = {
-    mouse1 = "m1", mousebutton1 = "m1", leftclick = "m1", lmb = "m1",
-    mouse2 = "m2", mousebutton2 = "m2", rightclick = "m2", rmb = "m2",
-    mouse3 = "mb3", mousebutton3 = "mb3", middlemouse = "mb3", mmb = "mb3", m3 = "mb3", wheel = "mb3", scrollclick = "mb3",
-    mouse4 = "mb4", mousebutton4 = "mb4", xbutton1 = "mb4", m4 = "mb4",
-    mouse5 = "mb5", mousebutton5 = "mb5", xbutton2 = "mb5", m5 = "mb5",
-    escape = "esc", ["return"] = "enter", control = "ctrl", pgup = "pageup", pgdn = "pagedown",
-  }
-
-  function KeyName.Plain(value)
-    local Name = string.lower(tostring(value or "none"))
-
-    return KeyAlias[Name] or Name
-  end
+    down = down and (active or type(inject) == "table")
+    Pointer.Click = down and not Pointer.Down
+    Pointer.Down = down
+    if type(inject) == "table" and inject.click then
+        Pointer.Click = true
+        inject.click = false
+    end
+    if type(inject) == "table" and inject.release then
+        Pointer.Click = false
+        inject.release = false
+    end
+    Pointer.Used = false
+    Pointer.Blocked = false
+    Pointer.DT = dt or 0.016
 end
 
-local ChipWidth, DrawToggle, DrawSlider, WrapText, DrawLabel, DrawInfo, DrawDivider, DrawButtonRow, DrawKeybind, DrawRangeSlider, DrawTextbox, DrawDropdown, DrawDropdownList, DrawPicker, DrawColourRow, StartPicker
-
-do
-  local function DrawChevron(cx, cy, radius, turn, color, z, transparency)
-  local Angle = turn * math.pi
-  local Cos, Sin = math.cos(Angle), math.sin(Angle)
-  local Rise = radius * Layout.ArrowRise
-
-  local function Spin(ox, oy)
-    return cx + ox * Cos - oy * Sin, cy + ox * Sin + oy * Cos
-  end
-
-  local LeftX, LeftY = Spin(-radius, -Rise)
-  local TipX, TipY = Spin(0, Rise)
-  local RightX, RightY = Spin(radius, -Rise)
-
-  DrawBar(LeftX, LeftY, TipX, TipY, Layout.ArrowThick, color, z, transparency)
-  DrawBar(TipX, TipY, RightX, RightY, Layout.ArrowThick, color, z, transparency)
+ 
+local function clickFree()
+    return Pointer.Click and not Pointer.Used
 end
 
-  local function DrawSwatch(x, y, size, radius, color, alpha, hovered, fade)
-    DrawRect(x, y, size, size, Theme.Swatch, 30, radius, fade)
-    DrawRect(x, y, size, size, color, 31, radius, fade * (alpha or 1))
-    DrawStroke(x, y, size, size, Theme.Text, 32, radius, (hovered and Alpha.SwatchEdge or Alpha.Hairline) * fade)
-  end
-
-  function ChipWidth(bind, minimum, pad)
-    return math.max(minimum, TextWidth(bind.Listening and "..." or KeyName.Label(bind.Value), Layout.TextSize, MonoFont) + pad)
-  end
-
-  local function DrawChip(bind, x, y, width, radius, fade, hovered, plain)
-    local Label = bind.Listening and "..." or KeyName.Label(bind.Value)
-    local Mode = bind.Mode or "Hold"
-    local ModeColor = (Mode == "Always" and Theme.AccentB) or (Mode == "Toggle" and Theme.AccentA) or Theme.Text
-    local Shade = bind.Listening and Alpha.Text or (hovered and Alpha.Hover or Alpha.Dim)
-    local EdgeColor = plain and Theme.Text or ModeColor
-    local EdgeAlpha = (plain or Mode == "Hold") and Alpha.Hairline or 0.55
-
-    if bind.Listening then
-      DrawRect(x - 1, y - 1, width + 2, Layout.ChipHeight + 2, Theme.AccentB, 30, radius + 1, 0.18 * fade)
-      DrawRect(x, y, width, Layout.ChipHeight, Theme.Accent, 31, radius, 0.6 * fade)
-      DrawStroke(x, y, width, Layout.ChipHeight, Theme.AccentB, 32, radius, 0.85 * fade)
-    else
-      DrawRect(x, y, width, Layout.ChipHeight, Theme.Text, 31, radius, (Alpha.Field + 0.05 * bind.Glow) * fade)
-      DrawStroke(x, y, width, Layout.ChipHeight, Theme.AccentA, 32, radius, 0.45 * bind.Glow * fade)
-      DrawStroke(x, y, width, Layout.ChipHeight, EdgeColor, 32, radius, EdgeAlpha * fade)
-    end
-
-    DrawTextMid(Label, x + width / 2 + Layout.ChipNudge, y + 10, Theme.Text, Layout.TextSize, MonoFont, 33, Shade * fade)
-  end
-
-  local function OpenPicker(row)
-    local Picker = { Row = row, X = Input.X + Layout.PickerOffsetX, Y = Input.Y - Layout.PickerOffsetY }
-
-    StartPicker(Picker)
-    State.Picker = Picker
-    State.Dropdown = nil
-    Input.Click = false
-  end
-
-  local function DrawSwitch(row, x, y, width, fade, on, onColor)
-    local TrackX, TrackY = x + width - Layout.SwitchWidth, y + 3
-    local Travel = Layout.SwitchWidth - Layout.SwitchKnob - 6
-
-    row.Fill = Approach(row.Fill or on, on, 16)
-
-    DrawRect(TrackX, TrackY, Layout.SwitchWidth, Layout.SwitchHeight, Blend(Theme.Track, onColor, row.Fill), 30, 6, fade)
-    DrawRect(TrackX + 3 + Travel * row.Fill, TrackY + 3, Layout.SwitchKnob, Layout.SwitchKnob, Theme.Text, 32, 4, fade)
-
-    return TrackX
-  end
-
-  local function DrawCheck(row, x, y, width, fade, on, onColor)
-    local Size = Layout.CheckboxSize
-    local BoxX, BoxY = x + width - Size, y + 4
-    local MidX, MidY = BoxX + Size / 2, BoxY + Size / 2
-    local Hovered = Interact and IsMouseIn(BoxX, BoxY, Size, Size)
-    local WantGlow = Hovered and 1 or 0
-    local WantPress = (Hovered and Input.Down) and 1 or 0
-
-    if row.Last == nil then row.Last = row.Value end
-    if row.Value ~= row.Last then row.Flash, row.Last = 1, row.Value end
-
-    row.Fill = Settle(row.Fill or on, on, row.Value and 13 or 15, Layout.CheckSnap)
-    row.Snap = Settle(row.Snap or on, on, 34, Layout.CheckSnap)
-    row.Glow = Settle(row.Glow or 0, WantGlow, 12, Layout.CheckRest)
-    row.Press = Settle(row.Press or 0, WantPress, 22, Layout.CheckRest)
-    row.Flash = Settle(row.Flash or 0, 0, 22, Layout.CheckRest)
-
-    local Ease, Snap, Flash = row.Fill, row.Snap, row.Flash
-    local Shape = Ease * Ease * (3 - 2 * Ease) + 1.70658 * Ease * Ease * Ease * (1 - Ease) * Snap * on
-    local Scale = math.min(1, Shape)
-    local Over = math.min(math.max((Shape - 1) / 0.1, 0), 1)
-    local Swell = 4 * Ease * (1 - Ease)
-    local Stretch = 0.24 * Swell * Swell * (2 * Snap - 1)
-    local Grow = (2 + 10 * Shape) * (1 - 0.06 * row.Press)
-    local CoreW = math.min(Grow * (1 + Stretch), Layout.CheckMax)
-    local CoreH = math.min(Grow * (1 - 0.85 * Stretch), Layout.CheckMax)
-    local Radius = math.min(math.min(CoreW, CoreH) / 2, 3 + 2 * (1 - Scale))
-    local Lift = math.max(Swell, Over)
-    local HaloW = math.min(CoreW * (1 + 0.1 * Lift), Layout.CheckHaloMax)
-    local HaloH = math.min(CoreH * (1 + 0.1 * Lift), Layout.CheckHaloMax)
-    local Deep = Blend(onColor, Theme.Background, 0.5)
-    local Hot = Blend(onColor, Theme.Text, 0.55)
-    local Solid = math.min(1, Shape * 3)
-    local FlashW, FlashH = CoreW * (0.36 + 0.6 * Flash), CoreH * (0.36 + 0.6 * Flash)
-    local Span = math.max(CoreW, CoreH)
-    local Ring = math.min(Layout.CheckRingMax, Span + 3.6 * (1 - Over))
-    local CoreColor = Blend(Blend(Deep, onColor, math.min(1, Shape * 1.25)), Hot, math.min(1, 0.55 * Flash + 0.35 * Swell))
-
-    DrawRect(BoxX, BoxY, Size, Size, Blend(Theme.Track, Deep, 0.55 * Scale), 30, 5, (0.5 + 0.12 * row.Glow) * fade)
-    DrawRect(MidX - HaloW / 2, MidY - HaloH / 2, HaloW, HaloH, Blend(onColor, Theme.Text, 0.35), 31, math.min(math.min(HaloW, HaloH) / 2, Radius + 1.2), 0.3 * Lift * Solid * fade)
-    DrawRect(MidX - CoreW / 2, MidY - CoreH / 2, CoreW, CoreH, CoreColor, 32, Radius, Solid * fade)
-    DrawRect(MidX - FlashW / 2, MidY - FlashH / 2, FlashW, FlashH, Theme.Text, 33, math.min(FlashW, FlashH) / 2 * (1 - 0.45 * Flash), 0.78 * Flash * Flash * fade)
-    DrawStroke(BoxX + (Size - Ring) / 2, BoxY + (Size - Ring) / 2, Ring, Ring, Hot, 34, math.min(Ring / 2, Radius + (Ring - Span) / 2), 0.5 * Over * fade)
-    DrawStroke(BoxX, BoxY, Size, Size, Blend(Theme.Text, onColor, math.min(1, 0.9 * Scale + 0.35 * Flash)), 35, 5, (Alpha.Hairline + 0.5 * math.max(Scale, row.Glow)) * fade)
-
-    return BoxX
-  end
-
-  function DrawToggle(row, x, y, width, fade)
-    local On = row.Value and 1 or 0
-    local OnColor = row.Risk and Theme.Risk or Theme.Accent
-    local Drawer = State.CheckboxStyle and DrawCheck or DrawSwitch
-    local RightX = Drawer(row, x, y, width, fade, On, OnColor) - 8
-    local Swatch, Bind = row.Swatch, row.Bind
-    local OnSwatch, OnChip = false, false
-
-    if Swatch then
-      RightX = RightX - Layout.RowSwatchSize
-      OnSwatch = Interact and IsMouseIn(RightX, y + 6, Layout.RowSwatchSize, Layout.RowSwatchSize)
-
-      DrawSwatch(RightX, y + 6, Layout.RowSwatchSize, Layout.RowSwatchRadius, Swatch.Value, Swatch.Alpha, OnSwatch, fade)
-
-      RightX = RightX - 8
-
-      if OnSwatch and Input.Click then OpenPicker(Swatch) end
-    end
-
-    if Bind then
-      local ChipSize = ChipWidth(Bind, Layout.RowChipMin, Layout.RowChipPad)
-
-      RightX = RightX - ChipSize
-      OnChip = Interact and IsMouseIn(RightX, y + 3, ChipSize, Layout.ChipHeight)
-      Bind.Glow = Approach(Bind.Glow or 0, (OnChip or Bind.Listening) and 1 or 0, 14)
-
-      DrawChip(Bind, RightX, y + 3, ChipSize, Layout.RowChipRadius, fade, OnChip, false)
-
-      RightX = RightX - 8
-
-      if OnChip and not Bind.Listening then WantTooltip(ChipHint, Input.X, Input.Y) end
-
-      if OnChip and Input.Right and not Bind.Listening then
-        State.Menu = { Row = Bind, X = Input.X, Y = Input.Y, Anim = 0 }
-        State.Dropdown = nil
-        State.Picker = nil
-        Input.Right = false
-      end
-
-      if OnChip and Input.Click then
-        Bind.Listening = true
-        State.Capture = Bind
-        Input.Click = false
-      end
-    end
-
-    DrawText(row.Name, x, TextTop(y, Layout.RowHeight, Layout.TextSize), Theme.Text, Layout.TextSize, SystemFont, 31, Alpha.Label * fade, RightX - x - 4)
-
-    if not (Interact and IsMouseIn(x, y, width, Layout.RowHeight) and Input.Click) then return end
-    if OnSwatch or OnChip then return end
-
-    row.Value = not row.Value
-    Input.Click = false
-
-    row.Callback(row.Value)
-  end
-
-  function DrawSlider(row, x, y, width, fade)
-    local BarY = y + Layout.RowHeight
-    local Span = row.Max - row.Min
-    local Fraction = (row.Value - row.Min) / Span
-    local Focused = State.Focus == row
-    local Typed = row.Typing or ""
-    local Text = Focused and Typed or (tostring(row.Value) .. (row.Suffix ~= "" and (" " .. row.Suffix) or ""))
-    local CharWidth = Layout.SmallSize * Layout.EditWidth
-    local BoxWidth = math.max(40, (Focused and #Typed * CharWidth or TextWidth(Text, Layout.SmallSize, SystemFont)) + 16)
-    local BoxX = x + width - BoxWidth
-    local TextX = BoxX + 7
-    local TextY = TextTop(y, Layout.ValueHeight, Layout.SmallSize)
-    local OnBox = Interact and IsMouseIn(BoxX, y, BoxWidth, Layout.ValueHeight)
-
-    row.Fill = Approach(row.Fill or Fraction, Fraction, 20)
-    row.Knob = Approach(row.Knob or Layout.KnobRadius, ((Interact and IsMouseIn(x + width * row.Fill - 9, BarY - 5, 18, 18)) or State.Sliding == row) and Layout.KnobHover or Layout.KnobRadius, 16)
-
-    DrawText(row.Name, x, TextTop(y, 16, Layout.TextSize), Theme.Text, Layout.TextSize, SystemFont, 31, Alpha.Label * fade, width - BoxWidth - 8)
-    DrawRect(BoxX, y, BoxWidth, Layout.ValueHeight, Theme.Text, 30, 3, Alpha.Field * fade)
-    DrawStroke(BoxX, y, BoxWidth, Layout.ValueHeight, Theme.Text, 31, 3, (Focused and 0.4 or Alpha.Hairline) * fade)
-
-    if Focused then
-      local Caret = math.min(math.max(row.Caret or #Typed, 0), #Typed)
-      local Blink = os.clock() % 1 < Layout.CaretBlink
-
-      row.CharWidth, row.EditX, row.Scroll = CharWidth, TextX, 0
-
-      for Index = 1, #Typed do
-        DrawText(string.sub(Typed, Index, Index), TextX + (Index - 1) * CharWidth, TextY, Theme.Text, Layout.SmallSize, UiFont, 32, Alpha.Text * fade)
-      end
-
-      if Blink then DrawRect(TextX + Caret * CharWidth, TextY, Layout.CaretWidth, Layout.SmallSize, Theme.Text, 32, 0, Alpha.Text * fade) end
-    else
-      DrawTextCenter(Text, BoxX + BoxWidth / 2, TextY, Theme.Text, Layout.SmallSize, SystemFont, 32, Alpha.Dim * fade, BoxWidth - 8)
-    end
-
-    DrawRect(x, BarY, width, Layout.BarHeight, Theme.SliderTrack, 30, 4, fade)
-
-    if row.Fill > 0.001 then DrawRect(x, BarY, math.max(Layout.BarHeight, width * row.Fill), Layout.BarHeight, Blend(Theme.AccentA, Theme.AccentB, row.Fill), 31, 4, fade) end
-
-    DrawCircle(x + width * row.Fill, BarY + 4, row.Knob, Theme.Text, 32, true, 1, 24, fade)
-
-    if Input.Click and OnBox then
-      if not Focused then row.Typing = tostring(row.Value) end
-
-      State.Focus = row
-      row.Caret = #row.Typing
-      row.Anchor = row.Caret
-      Input.Click = false
-    end
-
-    if Input.Click and Interact and IsMouseIn(x - 4, BarY - 8, width + 8, 16) and not OnBox then
-      State.Sliding = row
-      Input.Click = false
-    end
-
-    if State.Sliding ~= row then return end
-
-    local Along = math.min(math.max((Input.X - x) / width, 0), 1)
-    local Snapped = math.floor((row.Min + Span * Along) / row.Step + 0.5) * row.Step
-
-    if Snapped == row.Value then return end
-
-    row.Value = Snapped
-    row.Callback(Snapped)
-  end
-
-  local function DrawButton(row, x, y, width, fade)
-    local Hovered = Interact and IsMouseIn(x, y, width, Layout.ButtonHeight)
-
-    row.Glow = Approach(row.Glow or 0, Hovered and 1 or 0, 16)
-
-    DrawRect(x, y, width, Layout.ButtonHeight, Theme.Text, 30, Layout.CardRadius, (Alpha.Field + 0.06 * row.Glow) * fade)
-    DrawStroke(x, y, width, Layout.ButtonHeight, Theme.Text, 31, Layout.CardRadius, (Alpha.Hairline + 0.22 * row.Glow) * fade)
-    DrawTextMid(row.Name, x + width / 2, TextTop(y, Layout.ButtonHeight, Layout.TextSize), Theme.Text, Layout.TextSize, SystemFont, 32, (Alpha.Label + (Alpha.Hover - Alpha.Label) * row.Glow) * fade)
-
-    if Hovered and Input.Click then row.Callback() end
-  end
-
-  function WrapText(text, room, size, font)
-    local Fit = math.max(1, math.floor(room / (size * FontWidth[font])))
-    local Lines = {}
-    local Current = ""
-
-    for Word in string.gmatch(text, "%S+") do
-      local Candidate = Current == "" and Word or Current .. " " .. Word
-
-      if #Candidate <= Fit then
-        Current = Candidate
-      else
-        if Current ~= "" then Lines[#Lines + 1] = Current end
-        while #Word > Fit do Lines[#Lines + 1] = string.sub(Word, 1, Fit); Word = string.sub(Word, Fit + 1) end
-        Current = Word
-      end
-    end
-
-    if Current ~= "" then Lines[#Lines + 1] = Current end
-    if #Lines == 0 then Lines[1] = "" end
-
-    return Lines
-  end
-
-  local function WrapRow(row, room, size)
-    if row.WrapWidth == room and row.WrapSource == row.Name then return end
-
-    local Lines = {}
-
-    for Segment in (row.Name .. "\n"):gmatch("(.-)\n") do
-      for _, Line in ipairs(WrapText(Segment, room, size, SystemFont)) do Lines[#Lines + 1] = Line end
-    end
-
-    row.WrapWidth, row.WrapSource, row.Lines, row.LineCount = room, row.Name, Lines, #Lines
-  end
-
-  function DrawLabel(row, x, y, width, fade)
-    if row.Source then row.Name = tostring(row.Source()) end
-
-    WrapRow(row, width, Layout.TextSize)
-
-    local Color = row.Color or Theme.Text
-    local Shade = Alpha.Body * fade
-    local Lines = row.Lines
-
-    for Index = 1, #Lines do DrawText(Lines[Index], x, y + (Index - 1) * Layout.LabelLine, Color, Layout.TextSize, SystemFont, 31, Shade) end
-  end
-
-  function DrawInfo(row, x, y, width, fade)
-    WrapRow(row, width, Layout.SmallSize)
-
-    local Color = row.Color or Theme.Text
-    local Shade = Alpha.Dim * fade
-    local Lines = row.Lines
-
-    for Index = 1, #Lines do DrawText(Lines[Index], x, y + (Index - 1) * Layout.InfoLine, Color, Layout.SmallSize, SystemFont, 31, Shade) end
-  end
-
-  function DrawDivider(row, x, y, width, fade)
-    local Tint = Blend(Theme.AccentA, Theme.AccentB, Layout.ShimmerMix)
-    local LineY = y + Layout.DividerHeight / 2
-
-    if not row.Name then
-      local Half = width / 2
-      local Plain = Alpha.DividerPlain * fade
-
-      FadeLine(x, LineY, Half, Tint, 30, Plain, true)
-      FadeLine(x + Half, LineY, Half, Tint, 30, Plain)
-
-      return
-    end
-
-    local Center = x + width / 2
-    local Half = TextWidth(row.Name, Layout.SmallSize, SystemFont) / 2 + Layout.DividerPad
-    local Tail = Center + Half
-    local HeadWidth = Center - Half - x
-    local TailWidth = x + width - Tail
-    local Shade = Alpha.Divider * fade
-    local TextAlpha = Alpha.Dim * fade
-
-    FadeLine(x, LineY, HeadWidth, Tint, 30, Shade, true)
-    DrawTextMid(row.Name, Center, LineY, Theme.Text, Layout.SmallSize, SystemFont, 31, TextAlpha)
-    FadeLine(Tail, LineY, TailWidth, Tint, 30, Shade)
-  end
-
-  function DrawButtonRow(row, x, y, width, fade)
-    local Buttons = row.Buttons or { row }
-    local Count = #Buttons
-    local ButtonWidth = (width - Layout.ButtonGap * (Count - 1)) / Count
-    local TextY = y + Layout.ButtonHeight / 2
-    local Color = row.Color or Theme.Text
-    local Clicked = Input.Click
-
-    for Index, Button in ipairs(Buttons) do
-      local ButtonX = x + (Index - 1) * (ButtonWidth + Layout.ButtonGap)
-      local Hovered = Interact and IsMouseIn(ButtonX, y, ButtonWidth, Layout.ButtonHeight)
-
-      Button.Glow = Approach(Button.Glow or 0, Hovered and 1 or 0, 16)
-
-      local Glow = Button.Glow
-      local MidX = ButtonX + ButtonWidth / 2
-      local FillAlpha = (Alpha.Field + 0.06 * Glow) * fade
-      local EdgeAlpha = (Alpha.Hairline + 0.22 * Glow) * fade
-      local TextAlpha = (Alpha.Label + (Alpha.Hover - Alpha.Label) * Glow) * fade
-
-      DrawRect(ButtonX, y, ButtonWidth, Layout.ButtonHeight, Theme.Text, 30, Layout.CardRadius, FillAlpha)
-      DrawStroke(ButtonX, y, ButtonWidth, Layout.ButtonHeight, Theme.Text, 31, Layout.CardRadius, EdgeAlpha)
-      DrawTextMid(Button.Name, MidX, TextY, Color, Layout.TextSize, SystemFont, 32, TextAlpha)
-
-      if Clicked and Hovered then
-        Clicked, Input.Click = false, false
-
-        Button.Callback()
-      end
-    end
-  end
-
-  function DrawKeybind(row, x, y, width, fade)
-    local ChipSize = ChipWidth(row, Layout.ChipMin, Layout.ChipPad)
-    local ChipX = x + width - ChipSize
-    local Hovered = Interact and IsMouseIn(ChipX, y + 3, ChipSize, Layout.ChipHeight)
-
-    row.Glow = Approach(row.Glow or 0, (Hovered or row.Listening) and 1 or 0, 14)
-
-    DrawText(row.Name, x, TextTop(y, Layout.RowHeight, Layout.TextSize), Theme.Text, Layout.TextSize, SystemFont, 31, Alpha.Label * fade, ChipX - x - 6)
-    DrawChip(row, ChipX, y + 3, ChipSize, Layout.ChipRadius, fade, Hovered, true)
-
-    if Hovered and Input.Right and not row.Listening then
-      State.Menu = { Row = row, X = Input.X, Y = Input.Y, Anim = 0 }
-      Input.Right = false
-      return
-    end
-
-    if not (Hovered and Input.Click) then return end
-
-    row.Listening = true
-    State.Capture = row
-    Input.Click = false
-  end
-
-  function DrawRangeSlider(row, x, y, width, fade)
-    local BarY = y + Layout.RowHeight
-    local Span = row.Max - row.Min
-    local Text = tostring(row.Low) .. " - " .. tostring(row.High) .. (row.Suffix ~= "" and (" " .. row.Suffix) or "")
-    local BoxWidth = math.max(Layout.RangeBoxWidth, TextWidth(Text, Layout.SmallSize, SystemFont) + 16)
-    local BoxX = x + width - BoxWidth
-    local FractionLow = math.min(math.max((row.Low - row.Min) / Span, 0), 1)
-    local FractionHigh = math.min(math.max((row.High - row.Min) / Span, 0), 1)
-
-    row.FillLow = Approach(row.FillLow or 0, FractionLow, 20)
-    row.FillHigh = Approach(row.FillHigh or 1, FractionHigh, 20)
-
-    local LowX = x + width * row.FillLow
-    local HighX = x + width * row.FillHigh
-    local FillWidth = HighX - LowX
-    local FillColor = Blend(Theme.AccentA, Theme.AccentB, (row.FillLow + row.FillHigh) / 2)
-    local Dragging = State.Sliding == row
-    local ActiveLow = Interact and IsMouseIn(LowX - 9, BarY - 5, 18, 18) or (Dragging and row.Handle == "Low")
-    local ActiveHigh = Interact and IsMouseIn(HighX - 9, BarY - 5, 18, 18) or (Dragging and row.Handle == "High")
-
-    row.KnobLow = Approach(row.KnobLow or Layout.KnobRadius, ActiveLow and Layout.KnobHover or Layout.KnobRadius, 16)
-    row.KnobHigh = Approach(row.KnobHigh or Layout.KnobRadius, ActiveHigh and Layout.KnobHover or Layout.KnobRadius, 16)
-
-    DrawText(row.Name, x, TextTop(y, 16, Layout.TextSize), Theme.Text, Layout.TextSize, SystemFont, 31, Alpha.Label * fade, width - Layout.RangeLabelRoom)
-    DrawRect(BoxX, y, BoxWidth, Layout.ValueHeight, Theme.Text, 30, 3, Alpha.Field * fade)
-    DrawStroke(BoxX, y, BoxWidth, Layout.ValueHeight, Theme.Text, 31, 3, Alpha.Hairline * fade)
-    DrawTextCenter(Text, BoxX + BoxWidth / 2, TextTop(y, Layout.ValueHeight, Layout.SmallSize), Theme.Text, Layout.SmallSize, SystemFont, 32, Alpha.Dim * fade, BoxWidth - 8)
-    DrawRect(x, BarY, width, Layout.BarHeight, Theme.SliderTrack, 30, 4, fade)
-    if FillWidth > Layout.RangeFillMin then DrawRect(LowX, BarY, math.max(Layout.BarHeight, FillWidth), Layout.BarHeight, FillColor, 31, 4, fade) end
-    DrawCircle(LowX, BarY + 4, row.KnobLow, Theme.Text, 32, true, 1, 24, fade)
-    DrawCircle(HighX, BarY + 4, row.KnobHigh, Theme.Text, 32, true, 1, 24, fade)
-
-    if Input.Click and Interact and IsMouseIn(x - 4, BarY - 8, width + 8, 16) then
-      row.Handle = Input.X < (LowX + HighX) / 2 and "Low" or "High"
-      State.Sliding = row
-      Input.Click = false
-    end
-
-    if State.Sliding ~= row then return end
-
-    local Along = math.min(math.max((Input.X - x) / width, 0), 1)
-    local Snapped = math.floor((row.Min + Span * Along) / row.Step + 0.5) * row.Step
-    local Low = row.Handle == "Low" and math.min(Snapped, row.High) or row.Low
-    local High = row.Handle == "High" and math.max(Snapped, row.Low) or row.High
-
-    if Low == row.Low and High == row.High then return end
-
-    row.Low, row.High = Low, High
-    row.Callback(Low, High)
-  end
-
-  function DrawTextbox(row, x, y, width, fade)
-    local BoxY = y + Layout.FieldGap
-    local TextX = x + Layout.FieldPad
-    local TextY = TextTop(BoxY, Layout.FieldHeight, Layout.TextSize)
-    local Value = row.Value or ""
-    local Length = #Value
-    local Focused = State.Focus == row
-    local Hovered = Interact and IsMouseIn(x, BoxY, width, Layout.FieldHeight)
-    local Empty = Value == "" and not Focused
-    local Edge = Focused and Alpha.FieldFocus or (Hovered and Alpha.FieldHover or Alpha.Hairline)
-    local CharWidth = Layout.TextSize * Layout.EditWidth
-    local Caret = math.min(math.max(row.Caret or Length, 0), Length)
-    local Fit = math.max(1, math.floor((width - Layout.FieldInset) / CharWidth))
-    local Scroll = Focused and Caret > Fit and Caret - Fit or 0
-    local Shown = string.sub(Value, Scroll + 1, math.min(Length, Scroll + Fit))
-    local Anchor = row.Anchor or Caret
-    local Selecting = Focused and row.Anchor ~= nil and row.Anchor ~= Caret
-    local Blink = os.clock() % 1 < Layout.CaretBlink
-    local Low = math.min(math.max(math.min(Anchor, Caret) - Scroll, 0), #Shown)
-    local High = math.min(math.max(math.max(Anchor, Caret) - Scroll, 0), #Shown)
-    local CaretX = TextX + math.min(math.max(Caret - Scroll, 0), #Shown) * CharWidth
-    local SelectX = TextX + Low * CharWidth
-    local SelectWidth = math.max(1, (High - Low) * CharWidth)
-    local SelectShade = High > Low and Alpha.Select * Alpha.Text * fade or 0
-
-    if Focused then row.CharWidth, row.EditX, row.Scroll = CharWidth, TextX, Scroll end
-
-    local Hit = math.min(math.max((row.Scroll or 0) + math.floor((Input.X - (row.EditX or 0)) / (row.CharWidth or CharWidth) + 0.5), 0), Length)
-
-    DrawText(row.Name, x, TextTop(y, Layout.LabelHeight, Layout.TextSize), Theme.Text, Layout.TextSize, SystemFont, 31, Alpha.Label * fade, width)
-    DrawRect(x, BoxY, width, Layout.FieldHeight, Theme.Text, 30, Layout.FieldRadius, Alpha.Field * fade)
-    DrawStroke(x, BoxY, width, Layout.FieldHeight, Theme.Text, 31, Layout.FieldRadius, Edge * fade)
-
-    if Empty then DrawText(row.Name, TextX, TextY, Theme.Text, Layout.TextSize, SystemFont, 32, Alpha.Placeholder * fade, width - Layout.PlaceholderInset) end
-    if not Empty and not Focused then DrawText(Value, TextX, TextY, Theme.Text, Layout.TextSize, SystemFont, 32, Alpha.Text * fade, width - Layout.FieldInset) end
-
-    if Focused then
-      for Index = 1, #Shown do
-        DrawText(string.sub(Shown, Index, Index), TextX + (Index - 1) * CharWidth, TextY, Theme.Text, Layout.TextSize, UiFont, 32, Alpha.Text * fade)
-      end
-
-      if not Selecting and Blink then DrawRect(CaretX, TextY, Layout.CaretWidth, Layout.TextSize, Theme.Text, 32, 0, Alpha.Text * fade) end
-      if Selecting then DrawRect(SelectX, TextY - Layout.SelectLift, SelectWidth, Layout.TextSize + Layout.SelectGrow, Theme.Accent, 32, Layout.SelectRadius, SelectShade) end
-    end
-
-    if Input.Click and Hovered then
-      State.Focus = row
-      State.TextDrag = row
-      row.Caret = Hit
-      row.Anchor = Hit
-      row.DragX = Input.X
-      Input.Click = false
-    end
-
-    if State.TextDrag ~= row then return end
-    if math.abs(Input.X - (row.DragX or Input.X)) <= Layout.DragSlop then return end
-
-    row.Caret = Hit
-  end
-
-  local SelectActions = { "Select All", "Clear All" }
-
-  local function SetDropdownValue(row, value)
-    local Current = row.Value
-    local Changed = #value ~= #Current
-
-    for Index = 1, math.max(#Current, #value) do if Current[Index] ~= value[Index] then Changed = true break end end
-    for Index = #Current, 1, -1 do Current[Index] = nil end
-    for Index = 1, #value do Current[Index] = value[Index] end
-
-    if not Changed then return end
-
-    row.Callback(Current)
-  end
-
-  local function ResetDropdownScroll()
-    State.Dropdown.Offset = 0
-  end
-
-  local function OpenDropdown(row, x, y, width)
-    local Searchable = row.Searchable == true
-    local HeaderHeight = Searchable and Layout.ListHeader or 0
-    local Visible = math.min(#row.Choices, Layout.ListVisible)
-    local Height = math.max(Layout.ListRow, Visible * Layout.ListRow) + Layout.ListPad + HeaderHeight
-    local Viewport = Camera.ViewportSize
-    local Left = math.min(math.max(x, Layout.ListMargin), math.max(Layout.ListMargin, Viewport.X - width - Layout.ListMargin))
-    local Top = math.min(math.max(y, Layout.ListMargin), math.max(Layout.ListMargin, Viewport.Y - Height - Layout.ListMargin))
-    local Search = { Value = "", Caret = 0, Callback = ResetDropdownScroll }
-
-    State.Dropdown = { Row = row, Choices = CopyList(row.Choices), Value = row.Value, X = Left, Y = Top, W = width, H = Height, Multi = row.Multi, Offset = 0, Anim = 0, Searchable = Searchable, Search = Search }
-    State.Picker = nil
-
-    if not Searchable then return end
-
-    State.Focus = Search
-  end
-
-  function DrawDropdown(row, x, y, width, fade)
-    local Inline = State.DropdownInline
-    local BoxWidth = Inline and math.max(Layout.InlineMin, math.floor(width * Layout.InlineShare)) or width
-    local BoxX = Inline and (x + width - BoxWidth) or x
-    local BoxY = Inline and y or (y + Layout.FieldGap)
-    local LabelRoom = Inline and (BoxX - x - 8) or width
-    local LabelY = TextTop(y, Inline and Layout.FieldHeight or Layout.LabelHeight, Layout.TextSize)
-    local Hovered = Interact and IsMouseIn(BoxX, BoxY, BoxWidth, Layout.FieldHeight)
-    local Display = row.Multi and (#row.Value > 0 and table.concat(row.Value, ", ") or "none") or (row.Value[1] or "none")
-    local BoxAlpha = Alpha.Field + Alpha.DropdownFill + (Hovered and Alpha.DropdownHover or 0)
-    local Open = State.Dropdown and State.Dropdown.Row == row and not State.Dropdown.Closing
-
-    row.Glow = Approach(row.Glow or 0, (Open or Hovered) and 1 or 0, Layout.ArrowSpeed)
-    row.Arrow = Approach(row.Arrow or 0, Open and 1 or 0, Layout.ArrowSpeed)
-
-    local Turn = row.Arrow * row.Arrow * (3 - 2 * row.Arrow)
-    local ArrowColor = Blend(Theme.Text, Theme.Accent, row.Glow)
-
-    DrawText(row.Name, x, LabelY, Theme.Text, Layout.TextSize, SystemFont, 31, Alpha.Label * fade, LabelRoom)
-    DrawRect(BoxX, BoxY, BoxWidth, Layout.FieldHeight, Theme.Text, 30, Layout.CardRadius, BoxAlpha * fade)
-    DrawText(Display, BoxX + Layout.FieldPad, TextTop(BoxY, Layout.FieldHeight, Layout.TextSize), Theme.Text, Layout.TextSize, SystemFont, 32, Alpha.Dim * fade, BoxWidth - Layout.DropdownTextRoom)
-    DrawChevron(BoxX + BoxWidth - Layout.ArrowInset, BoxY + Layout.FieldHeight / 2, Layout.ArrowRadius, Turn, ArrowColor, 32, (Alpha.Dim + Alpha.ArrowLift * row.Glow) * fade)
-
-    if not (Hovered and Input.Click) then return end
-
-    Input.Click = false
-
-    if Open then
-      State.Dropdown.Closing = true
-      return
-    end
-
-    OpenDropdown(row, BoxX, BoxY + Layout.ListDrop, BoxWidth)
-  end
-
-  local function DropdownChoices()
-    local Drop = State.Dropdown
-    local Query = Drop.Search.Value
-
-    if not Drop.Searchable or Query == "" then return Drop.Choices end
-    if Drop.FilterQuery == Query then return Drop.Filtered end
-
-    local Needle = string.lower(Query)
-    local Found = {}
-
-    for Index = 1, #Drop.Choices do
-      local Choice = Drop.Choices[Index]
-      if string.find(string.lower(Choice), Needle, 1, true) then Found[#Found + 1] = Choice end
-    end
-
-    Drop.FilterQuery, Drop.Filtered = Query, Found
-
-    return Found
-  end
-
-  local function DrawDropdownSearch(x, y, width, anim)
-    local Search = State.Dropdown.Search
-    local BoxX = x + Layout.ListSearchInset
-    local BoxY = y + Layout.ListSearchTop
-    local BoxWidth = width - Layout.ListSearchInset * 2
-    local Focused = State.Focus == Search
-    local Hovered = Interact and IsMouseIn(BoxX, BoxY, BoxWidth, Layout.ListSearchBox)
-    local Value = Search.Value
-    local Length = #Value
-    local Empty = Value == "" and not Focused
-    local Edge = Focused and Alpha.ListSearchFocus or Alpha.Hairline
-    local TextX = x + Layout.ListSearchText
-    local TextY = TextTop(BoxY, Layout.ListSearchBox, Layout.TextSize)
-    local CharWidth = Layout.TextSize * Layout.EditWidth
-    local Caret = math.min(math.max(Search.Caret or Length, 0), Length)
-    local Fit = math.max(1, math.floor((width - Layout.ListSearchField) / CharWidth))
-    local Scroll = Focused and Caret > Fit and Caret - Fit or 0
-    local Shown = string.sub(Value, Scroll + 1, math.min(Length, Scroll + Fit))
-    local Anchor = Search.Anchor or Caret
-    local Selecting = Focused and Search.Anchor ~= nil and Search.Anchor ~= Caret
-    local Blink = os.clock() % 1 < Layout.CaretBlink
-    local Low = math.min(math.max(math.min(Anchor, Caret) - Scroll, 0), #Shown)
-    local High = math.min(math.max(math.max(Anchor, Caret) - Scroll, 0), #Shown)
-    local CaretX = TextX + math.min(math.max(Caret - Scroll, 0), #Shown) * CharWidth
-    local SelectX = TextX + Low * CharWidth
-    local SelectWidth = math.max(1, (High - Low) * CharWidth)
-    local SelectShade = High > Low and Alpha.Select * Alpha.Dim * anim or 0
-    local Hit = math.min(math.max(Scroll + math.floor((Input.X - TextX) / CharWidth + 0.5), 0), Length)
-
-    DrawRect(BoxX, BoxY, BoxWidth, Layout.ListSearchBox, Theme.Text, 202, Layout.ListSearchRadius, Alpha.Field * anim)
-    DrawStroke(BoxX, BoxY, BoxWidth, Layout.ListSearchBox, Theme.Text, 203, Layout.ListSearchRadius, Edge * anim)
-
-    if Empty then DrawText("search...", TextX, TextY, Theme.Text, Layout.TextSize, SystemFont, 204, Alpha.Placeholder * anim, width - Layout.ListSearchRoom) end
-
-    if not Empty then
-      for Index = 1, #Shown do
-        DrawText(string.sub(Shown, Index, Index), TextX + (Index - 1) * CharWidth, TextY, Theme.Text, Layout.TextSize, UiFont, 204, Alpha.Dim * anim)
-      end
-
-      if Focused and not Selecting and Blink then DrawRect(CaretX, TextY, Layout.CaretWidth, Layout.TextSize, Theme.Text, 204, 0, Alpha.Dim * anim) end
-      if Selecting then DrawRect(SelectX, TextY - Layout.SelectLift, SelectWidth, Layout.TextSize + Layout.SelectGrow, Theme.Accent, 204, Layout.SelectRadius, SelectShade) end
-    end
-
-    if Input.Click and Hovered then
-      State.Focus = Search
-      State.TextDrag = Search
-      Search.Caret = Hit
-      Search.Anchor = Hit
-      Input.Click = false
-    end
-
-    if not State.TextDrag then return end
-    if State.TextDrag ~= Search then return end
-
-    Search.Caret = Hit
-  end
-
-  local function DrawDropdownRow(choice, index, step, x, width, rowsTop, rowWidth, areaHeight, smooth, anim)
-    local Drop = State.Dropdown
-    local RawY = rowsTop + (index - smooth) * Layout.ListRow
-
-    if RawY + Layout.ListRow <= rowsTop or RawY >= rowsTop + areaHeight then return end
-
-    local Height = Layout.ListRow - Layout.ListRowGap
-    local EdgeFade = math.min(math.max((RawY + Layout.ListRow - rowsTop) / Layout.ListRow, 0), 1) * math.min(math.max((rowsTop + areaHeight - RawY) / Layout.ListRow, 0), 1)
-    local Cascade = math.min(math.max((anim - step * Layout.CascadeStep) / Layout.CascadeSpan, 0), 1)
-    local Shade = Cascade * EdgeFade
-    local RowY = RawY + (1 - Cascade) * Layout.CascadeDrop
-    local RowX = x + Layout.ListInset
-    local Now = os.clock()
-    local Selected = false
-
-    for Order = 1, #Drop.Value do
-      if Drop.Value[Order] == choice then Selected = true break end
-    end
-
-    local Inside = RawY >= rowsTop - Layout.ListEdgeSlack and RawY + Layout.ListRow <= rowsTop + areaHeight + Layout.ListEdgeSlack
-    local Hovered = Inside and Interact and IsMouseIn(RowX, RowY, rowWidth, Height)
-    local Pressing = Drop.PressRow == index and Drop.PressAt and Drop.PressAt > Now
-    local PressShade = Pressing and Alpha.Press * ((Drop.PressAt - Now) / Layout.PressTime) or 0
-    local TextShade = (Hovered or Selected) and Alpha.Text or Alpha.Label
-    local TickX = RowX + rowWidth - Layout.TickInset
-    local TickY = RowY + Height / 2 + Layout.TickNudge
-
-    DrawRect(RowX, RowY, rowWidth, Height, Theme.Accent, 202, Layout.ListRowRadius, PressShade * Shade)
-    DrawRect(RowX, RowY, rowWidth, Height, Theme.Text, 202, Layout.ListRowRadius, (Selected and Alpha.RowSelect or 0) * Shade)
-    DrawRect(RowX, RowY, rowWidth, Height, Theme.Accent, 202, Layout.ListRowRadius, (Hovered and Alpha.RowHover or 0) * Shade)
-    DrawText(choice, x + Layout.ListTextInset, TextTop(RowY, Height, Layout.TextSize), Theme.Text, Layout.TextSize, SystemFont, 203, TextShade * Shade, width - Layout.ListTextRoom)
-
-    if Selected then
-      DrawLine(TickX, TickY, TickX + Layout.TickShort, TickY + Layout.TickShort, Theme.Text, 204, Layout.TickThickness, Alpha.Text * Shade)
-      DrawLine(TickX + Layout.TickShort, TickY + Layout.TickShort, TickX + Layout.TickLongX, TickY - Layout.TickLongY, Theme.Text, 204, Layout.TickThickness, Alpha.Text * Shade)
-    end
-
-    if not Input.Click or not Hovered or Drop.Closing then return end
-
-    Drop.PressRow, Drop.PressAt = index, Now + Layout.PressTime
-    Input.Click = false
-
-    if not Drop.Multi then
-      SetDropdownValue(Drop.Row, { choice })
-      Drop.Closing = true
-      State.Focus = nil
-      return
-    end
-
-    local Next = CopyList(Drop.Value)
-    local Found = nil
-
-    for Order = #Next, 1, -1 do
-      if Next[Order] == choice then Found = Order end
-    end
-
-    if Found then
-      table.remove(Next, Found)
-    elseif not Drop.Row.MaxSelections or #Next < Drop.Row.MaxSelections then
-      Next[#Next + 1] = choice
-    end
-
-    SetDropdownValue(Drop.Row, Next)
-
-    Drop.Value = Drop.Row.Value
-  end
-
-  local function DrawDropdownBar(list, x, width, rowsTop, maxRows, anim)
-    local Drop = State.Dropdown
-    local MaxOffset = math.max(0, #list - maxRows)
-
-    if MaxOffset <= 0 then return end
-
-    local TrackY = rowsTop + Layout.TrackNudge
-    local TrackHeight = maxRows * Layout.ListRow - Layout.TrackTrim
-    local BarX = x + width - Layout.TrackInset
-    local ThumbHeight = math.max(Layout.ThumbMin, TrackHeight * maxRows / #list)
-    local Fraction = Drop.Offset / MaxOffset
-    local TargetY = TrackY + (TrackHeight - ThumbHeight) * Fraction
-
-    Drop.BarY = Approach(Drop.BarY or TargetY, TargetY, Layout.ThumbSpeed)
-
-    if math.abs(Drop.BarY - TargetY) < Layout.ThumbSnap then Drop.BarY = TargetY end
-
-    local Hot = Interact and IsMouseIn(BarX - Layout.TrackReach, TrackY, Layout.TrackGrab, TrackHeight) or Drop.BarDrag
-    local Target = Hot and 1 or 0
-
-    Drop.BarGlow = Approach(Drop.BarGlow or 0, Target, Layout.ThumbGlowSpeed)
-
-    if math.abs(Drop.BarGlow - Target) < Layout.ThumbGlowSnap then Drop.BarGlow = Target end
-
-    local Glow = Drop.BarGlow
-    local BarColor = Blend(Theme.AccentA, Theme.AccentB, Fraction)
-    local ThumbColor = Blend(Theme.Text, BarColor, Layout.ThumbMix)
-
-    DrawRect(BarX, TrackY, Layout.TrackWidth, TrackHeight, Theme.Text, 204, Layout.TrackRadius, Alpha.Track * anim)
-    DrawRect(BarX - Layout.ThumbHaloX, Drop.BarY - Layout.ThumbHaloY, Layout.ThumbHaloWidth, ThumbHeight + Layout.ThumbHaloGrow, BarColor, 205, Layout.ThumbHaloRadius, Alpha.ThumbHalo * Glow * anim)
-    DrawRect(BarX, Drop.BarY, Layout.ThumbWidth, ThumbHeight, ThumbColor, 205, Layout.ThumbRadius, (Alpha.Thumb + Alpha.ThumbGlow * Glow) * anim)
-
-    if Input.Click and Interact and IsMouseIn(BarX - Layout.TrackReach, TrackY, Layout.TrackGrab, TrackHeight) then
-      Drop.BarDrag = true
-      Input.Click = false
-    end
-
-    if not Drop.BarDrag or not Input.Down then return end
-
-    local Along = math.min(math.max((Input.Y - TrackY - ThumbHeight / 2) / math.max(1, TrackHeight - ThumbHeight), 0), 1)
-
-    Drop.Offset = math.floor(Along * MaxOffset + 0.5)
-  end
-
-  local function ApplySelectAction(index)
-    local Drop = State.Dropdown
-    local Next = {}
-
-    if index == 1 then
-      for Order = 1, #Drop.Choices do
-        if not Drop.Row.MaxSelections or #Next < Drop.Row.MaxSelections then Next[#Next + 1] = Drop.Choices[Order] end
-      end
-    end
-
-    SetDropdownValue(Drop.Row, Next)
-
-    Drop.Value = Drop.Row.Value
-    Drop.Context = nil
-    Input.Click = false
-  end
-
-  local function DrawDropdownContext(anim)
-    local Drop = State.Dropdown
-    local Context = Drop.Context
-
-    if not Context then return end
-
-    local X, Y = Context.X, Context.Y
-    local Width = Layout.ContextWidth
-    local RowX = X + Layout.ContextInset
-    local RowWidth = Width - Layout.ContextInset * 2
-
-    DrawRect(X, Y, Width, Layout.ContextHeight, Theme.Background, 206, Layout.ContextRadius, Alpha.Panel * anim)
-    DrawStroke(X, Y, Width, Layout.ContextHeight, Theme.Text, 207, Layout.ContextRadius, Alpha.CardStroke * anim)
-
-    for Index = 1, #SelectActions do
-      local RowY = Y + Layout.ContextPad + (Index - 1) * Layout.ContextStep
-      local Hovered = Interact and IsMouseIn(RowX, RowY, RowWidth, Layout.ContextRow)
-
-      DrawRect(RowX, RowY, RowWidth, Layout.ContextRow, Theme.Text, 207, Layout.ContextRowRadius, (Hovered and Alpha.ContextHover or 0) * anim)
-      DrawText(SelectActions[Index], X + Layout.ContextText, TextTop(RowY, Layout.ContextRow, Layout.SmallSize), Theme.Text, Layout.SmallSize, SystemFont, 208, Alpha.Label * anim, Width - Layout.ContextTextRoom)
-
-      if Input.Click and Hovered then ApplySelectAction(Index) end
-    end
-
-    if not Input.Click then return end
-    if Interact and IsMouseIn(X - Layout.ContextReach, Y - Layout.ContextReach, Width + Layout.ContextReach * 2, Layout.ContextReachHeight) then return end
-
-    Drop.Context = nil
-    Input.Click = false
-  end
-
-  function DrawDropdownList()
-    local Drop = State.Dropdown
-
-    if not Drop then return end
-
-    Drop.Anim = Approach(Drop.Anim, Drop.Closing and 0 or 1, Layout.ListOpenSpeed)
-
-    if Drop.Closing and Drop.Anim < Layout.ListGoneAt then
-      if State.Focus == Drop.Search then State.Focus = nil end
-
-      State.Dropdown = nil
-
-      return
-    end
-
-    local Anim = Drop.Anim
-    local X = Drop.X
-    local Y = Drop.Y - (1 - Anim) * Layout.ListLift
-    local Width, Height = Drop.W, Drop.H
-    local HeaderHeight = Drop.Searchable and Layout.ListHeader or 0
-    local List = DropdownChoices()
-    local MaxRows = math.max(1, math.floor((Height - Layout.ListPad - HeaderHeight) / Layout.ListRow))
-    local Hovered = Interact and IsMouseIn(X - Layout.ListReach, Y - Layout.ListReach, Width + Layout.ListReach * 2, Height + Layout.ListReach * 2)
-    local RowsTop = Y + Layout.ListInset + HeaderHeight
-    local RowWidth = #List > MaxRows and (Width - Layout.ListBarRoom) or (Width - Layout.ListRowRoom)
-    local AreaHeight = MaxRows * Layout.ListRow
-    local Panel = Blend(Theme.Background, Theme.Text, Layout.PanelMix)
-
-    Drop.Offset = math.min(math.max(Drop.Offset, 0), math.max(0, #List - MaxRows))
-    Drop.Smooth = Approach(Drop.Smooth or Drop.Offset, Drop.Offset, Layout.ListScrollSpeed)
-
-    local Smooth = Drop.Smooth
-
-    DrawRect(X - Layout.ListShadow, Y - Layout.ListShadow, Width + Layout.ListShadow * 2, Height + Layout.ListShadow * 2, Black, 199, Layout.ListShadowRadius, Alpha.ListShadow * Anim)
-    DrawRect(X, Y, Width, Height, Panel, 200, Layout.ListRadius, Alpha.Panel * Anim)
-
-    if Drop.Searchable then DrawDropdownSearch(X, Y, Width, Anim) end
-
-    for Step = 0, MaxRows do
-      local Index = math.floor(Smooth) + Step
-      local Choice = Index >= 0 and List[Index + 1] or nil
-
-      if Choice then DrawDropdownRow(Choice, Index, Step, X, Width, RowsTop, RowWidth, AreaHeight, Smooth, Anim) end
-    end
-
-    DrawDropdownBar(List, X, Width, RowsTop, MaxRows, Anim)
-
-    if Drop.Multi and Input.Right and Hovered then
-      Drop.Context = { X = Input.X, Y = Input.Y }
-      Input.Right = false
-    end
-
-    DrawDropdownContext(Anim)
-
-    if not Input.Click or Hovered or Drop.Context or Drop.Closing then return end
-
-    Drop.Closing = true
-    State.Focus = nil
-    Input.Click = false
-  end
-
-  local TrackGrey = Color3.fromRGB(70, 70, 70)
-  local WellGrey = Color3.fromRGB(50, 50, 50)
-
-  local PickerCache = {}
-
-  local function ToHsv(color)
-    local Red, Green, Blue = color.R, color.G, color.B
-    local High, Low = math.max(Red, Green, Blue), math.min(Red, Green, Blue)
-    local Span = High - Low
-    local Saturation = High > 0 and Span / High or 0
-
-    if Span <= 0 then return 0, Saturation, High end
-    if High == Red then return (((Green - Blue) / Span) % 6) / 6, Saturation, High end
-    if High == Green then return (((Blue - Red) / Span) + 2) / 6, Saturation, High end
-
-    return (((Red - Green) / Span) + 4) / 6, Saturation, High
-  end
-
-  local function HexByte(value)
-    return string.format("%02X", math.floor(math.min(math.max(value, 0), 1) * Layout.ByteScale + 0.5))
-  end
-
-  local function ToHex(color)
-    return "#" .. HexByte(color.R) .. HexByte(color.G) .. HexByte(color.B)
-  end
-
-  local function ParseHex(text)
-    local Clean = string.gsub(tostring(text), "[^0-9a-fA-F]", "")
-
-    if #Clean == 3 then Clean = string.gsub(Clean, "(.)", "%1%1") end
-    if #Clean < 6 then return nil end
-
-    local Red = tonumber(string.sub(Clean, 1, 2), 16)
-    local Green = tonumber(string.sub(Clean, 3, 4), 16)
-    local Blue = tonumber(string.sub(Clean, 5, 6), 16)
-
-    if not (Red and Green and Blue) then return nil end
-
-    return Color3.fromRGB(Red, Green, Blue)
-  end
-
-  local function ColorChanged(first, second)
-    return math.abs(first.R - second.R) > Layout.ColorEpsilon or math.abs(first.G - second.G) > Layout.ColorEpsilon or math.abs(first.B - second.B) > Layout.ColorEpsilon
-  end
-
-  local function ShadeStrip(hue, count)
-    if PickerCache.Shade and PickerCache.ShadeHue == hue and PickerCache.ShadeCount == count then return PickerCache.Shade end
-
-    local Pure = Color3.fromHSV(hue, 1, 1)
-    local Strip = {}
-
-    for Index = 0, count - 1 do Strip[Index] = Blend(White, Pure, Index / (count - 1)) end
-
-    PickerCache.Shade, PickerCache.ShadeHue, PickerCache.ShadeCount = Strip, hue, count
-
-    return Strip
-  end
-
-  local function HueStrip(count)
-    if PickerCache.Hue and PickerCache.HueCount == count then return PickerCache.Hue end
-
-    local Strip = {}
-
-    for Index = 0, count - 1 do Strip[Index] = Color3.fromHSV(Index / (count - 1), 1, 1) end
-
-    PickerCache.Hue, PickerCache.HueCount = Strip, count
-
-    return Strip
-  end
-
-  function StartPicker(picker)
-    local Hue, Saturation, Value = ToHsv(picker.Row.Value)
-    local Viewport = Camera.ViewportSize
-    local Margin = Layout.PickerMargin
-    local RightEdge = math.max(Margin, Viewport.X - Layout.PickerWidth - Margin)
-    local BottomEdge = math.max(Margin, Viewport.Y - Layout.PickerHeight - Margin)
-
-    picker.Hue, picker.Sat, picker.Val = Hue, Saturation, Value
-    picker.Alpha = picker.Row.Alpha
-    picker.Format = "HEX"
-    picker.Anim = 0
-    picker.X = math.min(math.max(picker.X, Margin), RightEdge)
-    picker.Y = math.min(math.max(picker.Y, Margin), BottomEdge)
-  end
-
-  local function PickerPush(picker)
-    local Current = Color3.fromHSV(picker.Hue, picker.Sat, picker.Val)
-
-    picker.Row.Value = Current
-    picker.Row.Alpha = picker.Alpha
-    picker.Row.Callback(Current, picker.Alpha)
-  end
-
-  local function PickerDrag(picker, boxX, boxY, boxWidth, boxHeight, hueY, alphaY)
-    local Pad = Layout.PickerEdgePad
-    local Slider = Layout.PickerSlider
-    local OnSquare = picker.Drag == "Sat" or Interact and IsMouseIn(boxX, boxY, boxWidth, boxHeight)
-    local OnHue = picker.Drag == "Hue" or Interact and IsMouseIn(boxX - Pad, hueY - Pad, boxWidth + Pad * 2, Slider + Pad * 2)
-    local OnAlpha = picker.Drag == "Alpha" or Interact and IsMouseIn(boxX - Pad, alphaY - Pad, boxWidth + Pad * 2, Slider + Pad * 2)
-    local Along = math.min(math.max((Input.X - boxX) / boxWidth, 0), 1)
-    local Down = math.min(math.max(1 - (Input.Y - boxY) / boxHeight, 0), 1)
-    local Was, WasAlpha = picker.Row.Value, picker.Row.Alpha
-
-    if OnSquare then
-      picker.Drag = "Sat"
-      picker.Sat, picker.Val = Along, Down
-    elseif OnHue then
-      picker.Drag = "Hue"
-      picker.Hue = Along
-    elseif OnAlpha then
-      picker.Drag = "Alpha"
-      picker.Alpha = Along
-    else
-      return
-    end
-
-    local Next = Color3.fromHSV(picker.Hue, picker.Sat, picker.Val)
-
-    if not ColorChanged(Was, Next) and math.abs(WasAlpha - picker.Alpha) <= Layout.ColorEpsilon then return end
-
-    PickerPush(picker)
-  end
-
-  local function ApplyPickerEdit(picker)
-    local Text = picker.Hex
-    local Scale = Layout.ByteScale
-
-    picker.Hex = nil
-
-    if picker.Format == "RGB" then
-      local Red, Green, Blue = string.match(Text, "(%d+)%D+(%d+)%D+(%d+)")
-      if not Red then return end
-
-      local Color = Color3.fromRGB(math.min(tonumber(Red), Scale), math.min(tonumber(Green), Scale), math.min(tonumber(Blue), Scale))
-
-      picker.Hue, picker.Sat, picker.Val = ToHsv(Color)
-      PickerPush(picker)
-
-      return
-    end
-
-    local Clean = string.gsub(Text, "[^0-9a-fA-F]", "")
-    local Color = ParseHex(Text)
-    if not Color then return end
-
-    picker.Hue, picker.Sat, picker.Val = ToHsv(Color)
-
-    if #Clean >= Layout.PickerHexMax then picker.Alpha = tonumber(string.sub(Clean, Layout.PickerAlphaStart, Layout.PickerHexMax), 16) / Scale end
-
-    PickerPush(picker)
-  end
-
-  function DrawPicker()
-    local Picker = State.Picker
-    if not Picker then return end
-    if not Picker.Format then StartPicker(Picker) end
-
-    Picker.Anim = Approach(Picker.Anim, 1, Layout.PickerSpeed)
-
-    local Anim = Picker.Anim
-    local Pad = Layout.PickerPad
-    local Panel = Layout.PickerWidth
-    local BoxWidth = Panel - Pad * 2
-    local BoxHeight = Layout.PickerBox
-    local Slider = Layout.PickerSlider
-    local Info = Layout.PickerInfo
-    local Gap = Layout.PickerGap
-    local Height = Pad + BoxHeight + Gap + Slider + Gap + Slider + Gap + Info + Pad
-    local Margin = Layout.PickerMargin
-    local Floor = math.max(Margin, Camera.ViewportSize.Y - Height - Margin)
-
-    Picker.Y = math.min(math.max(Picker.Y, Margin), Floor)
-
-    local X = Picker.X
-    local Y = Picker.Y + (1 - Anim) * Layout.PickerLift
-    local Glow = Layout.PickerGlow
-    local BoxX, BoxY = X + Pad, Y + Pad
-    local HueY = BoxY + BoxHeight + Gap
-    local AlphaY = HueY + Slider + Gap
-    local InfoY = AlphaY + Slider + Gap
-    local Segments = math.min(math.max(math.floor(BoxWidth), Layout.PickerSegMin), Layout.PickerSegMax)
-    local Rows = math.min(math.max(math.floor(BoxHeight), Layout.PickerSegMin), Layout.PickerShadeMax)
-    local Inset = Slider / 2
-    local Editing = Picker.Hex ~= nil
-
-    if Input.Down and not Editing then PickerDrag(Picker, BoxX, BoxY, BoxWidth, BoxHeight, HueY, AlphaY) end
-
-    local Current = Color3.fromHSV(Picker.Hue, Picker.Sat, Picker.Val)
-    local Pure = Color3.fromHSV(Picker.Hue, 1, 1)
-    local Shades = ShadeStrip(Picker.Hue, Segments)
-    local Hues = HueStrip(Segments)
-    local HandleX = BoxX + Picker.Sat * BoxWidth
-    local HandleY = BoxY + (1 - Picker.Val) * BoxHeight
-    local HueKnobX = BoxX + Picker.Hue * BoxWidth
-    local HueMid = HueY + Inset
-    local AlphaKnobX = BoxX + Picker.Alpha * BoxWidth
-    local AlphaMid = AlphaY + Inset
-
-    DrawRect(X - Glow, Y - Glow, Panel + Glow * 2, Height + Glow * 2, Black, 209, Layout.PickerGlowRadius, Alpha.PickerShadow * Anim)
-    DrawRect(X, Y, Panel, Height, Theme.Background, 210, Layout.PickerRadius, Alpha.PickerPanel * Anim)
-    DrawStroke(X, Y, Panel, Height, Theme.Text, 211, Layout.PickerRadius, Alpha.CardStroke * Anim)
-
-    for Index = 0, Segments - 1 do
-      local Start = math.floor(BoxX + BoxWidth * Index / Segments + 0.5)
-      local Stop = math.floor(BoxX + BoxWidth * (Index + 1) / Segments + 0.5)
-
-      if Stop > Start then DrawRect(Start, BoxY, Stop - Start, BoxHeight, Shades[Index], 212, 0, Anim) end
-    end
-
-    for Index = 1, Rows - 1 do
-      local Start = math.floor(BoxY + BoxHeight * Index / Rows + 0.5)
-      local Stop = math.floor(BoxY + BoxHeight * (Index + 1) / Rows + 0.5)
-
-      if Stop > Start then DrawRect(BoxX, Start, BoxWidth, Stop - Start, Black, 213, 0, (Index / (Rows - 1)) * Alpha.PickerShade * Anim) end
-    end
-
-    DrawStroke(BoxX, BoxY, BoxWidth, BoxHeight, Black, 214, Layout.PickerBoxRadius, Alpha.PickerEdge * Anim)
-    DrawCircle(HandleX, HandleY, Layout.PickerHandleOuter, Black, 214, false, Layout.PickerThick, Layout.PickerHandleSides, Alpha.PickerHandle * Anim)
-    DrawCircle(HandleX, HandleY, Layout.PickerHandleRing, Theme.Text, 215, false, Layout.PickerRingThick, Layout.PickerHandleSides, Anim)
-    DrawCircle(HandleX, HandleY, Layout.PickerHandleCore, Current, 216, true, Layout.PickerThin, Layout.PickerHandleSides, Anim)
-    DrawRect(BoxX, HueY, BoxWidth, Slider, Hues[0], 213, Inset, Anim)
-
-    for Index = 0, Segments - 1 do
-      local Start = math.floor(BoxX + Inset + (BoxWidth - Inset * 2) * Index / Segments + 0.5)
-      local Stop = math.floor(BoxX + Inset + (BoxWidth - Inset * 2) * (Index + 1) / Segments + 0.5)
-
-      if Stop > Start then DrawRect(Start, HueY, Stop - Start, Slider, Hues[Index], 214, 0, Anim) end
-    end
-
-    DrawCircle(HueKnobX, HueMid, Layout.PickerKnobOuter, Black, 214, false, Layout.PickerThick, Layout.PickerKnobSides, Alpha.PickerKnob * Anim)
-    DrawCircle(HueKnobX, HueMid, Layout.PickerKnobRing, Theme.Text, 215, true, Layout.PickerThin, Layout.PickerKnobSides, Anim)
-    DrawCircle(HueKnobX, HueMid, Layout.PickerHandleCore, Pure, 216, true, Layout.PickerThin, Layout.PickerKnobSides, Anim)
-    DrawRect(BoxX, AlphaY, BoxWidth, Slider, TrackGrey, 213, Inset, Anim)
-
-    for Index = 0, Segments - 1 do
-      local Start = math.floor(BoxX + BoxWidth * Index / Segments + 0.5)
-      local Stop = math.floor(BoxX + BoxWidth * (Index + 1) / Segments + 0.5)
-      local Corner = (Index == 0 or Index == Segments - 1) and Inset or 0
-
-      if Stop > Start then DrawRect(Start, AlphaY, Stop - Start, Slider, Current, 214, Corner, (Index / (Segments - 1)) * Anim) end
-    end
-
-    DrawCircle(AlphaKnobX, AlphaMid, Layout.PickerKnobOuter, Black, 214, false, Layout.PickerThick, Layout.PickerKnobSides, Alpha.PickerKnob * Anim)
-    DrawCircle(AlphaKnobX, AlphaMid, Layout.PickerKnobRing, Theme.Text, 215, true, Layout.PickerThin, Layout.PickerKnobSides, Anim)
-    DrawCircle(AlphaKnobX, AlphaMid, Layout.PickerHandleCore, Current, 216, true, Layout.PickerThin, Layout.PickerKnobSides, Anim * (Layout.PickerCoreBase + Layout.PickerCoreGain * Picker.Alpha))
-
-    local FormatX = BoxX + Layout.PickerFormatGap
-    local FormatWide = Layout.PickerFormatWidth
-    local FormatHovered = Interact and IsMouseIn(FormatX, InfoY, FormatWide, Info)
-    local ChevronX = FormatX + FormatWide - Layout.PickerChevronX
-    local ChevronY = InfoY + Info / 2 - Layout.PickerChevronDrop
-    local Step = Layout.PickerChevronStep
-    local FormatAlpha = FormatHovered and Alpha.PickerFormat or Alpha.Field
-
-    DrawRect(BoxX, InfoY, Layout.PickerSwatch, Info, WellGrey, 213, Layout.PickerChipRadius, Anim)
-    DrawRect(BoxX, InfoY, Layout.PickerSwatch, Info, Current, 214, Layout.PickerChipRadius, Anim * Picker.Alpha)
-    DrawStroke(BoxX, InfoY, Layout.PickerSwatch, Info, Theme.Text, 214, Layout.PickerChipRadius, Alpha.Hairline * Anim)
-    DrawRect(FormatX, InfoY, FormatWide, Info, Theme.Text, 213, Layout.PickerFieldRadius, FormatAlpha * Anim)
-    DrawText(Picker.Format, FormatX + Layout.PickerFormatPad, TextTop(InfoY, Info, Layout.TinySize), Theme.Text, Layout.TinySize, BoldFont, 214, Alpha.Text * Anim)
-    DrawLine(ChevronX, ChevronY, ChevronX + Step, ChevronY + Step, Theme.Text, 214, Layout.PickerChevronThick, Alpha.Dim * Anim)
-    DrawLine(ChevronX + Step, ChevronY + Step, ChevronX + Step * 2, ChevronY, Theme.Text, 214, Layout.PickerChevronThick, Alpha.Dim * Anim)
-
-    if Input.Click and FormatHovered then
-      Picker.Format = Picker.Format == "HEX" and "RGB" or "HEX"
-      Picker.Hex = nil
-      Input.Click = false
-    end
-
-    local Typing = Picker.Hex ~= nil
-    local OpacityWide = Layout.PickerOpacityWidth
-    local HexX = FormatX + FormatWide + Layout.PickerFieldGap
-    local HexWide = (BoxX + BoxWidth) - OpacityWide - Layout.PickerOpacityGap - HexX
-    local HexHovered = Interact and IsMouseIn(HexX, InfoY, HexWide, Info)
-    local TextX = HexX + Layout.PickerTextPad
-    local TextY = TextTop(InfoY, Info, Layout.SmallSize)
-    local Scale = Layout.ByteScale
-    local Tail = Picker.Alpha < Layout.PickerOpaque and HexByte(Picker.Alpha) or ""
-    local CurrentHex = ToHex(Current) .. Tail
-    local RgbText = string.format("%d, %d, %d", math.floor(Current.R * Scale + 0.5), math.floor(Current.G * Scale + 0.5), math.floor(Current.B * Scale + 0.5))
-    local Shown = Picker.Format == "RGB" and RgbText or CurrentHex
-    local Percent = math.floor(Picker.Alpha * Layout.PickerPercent + 0.5) .. "%"
-    local FieldAlpha = Typing and Alpha.PickerEditing or (HexHovered and Alpha.PickerHover or Alpha.Field)
-
-    DrawRect(HexX, InfoY, HexWide, Info, Theme.Text, 213, Layout.PickerFieldRadius, FieldAlpha * Anim)
-
-    if not Typing then DrawText(Shown, TextX, TextY, Theme.Text, Layout.SmallSize, MonoFont, 214, Alpha.Text * Anim, HexWide - Layout.PickerTextRoom) end
-
-    if Typing then
-      local CharWidth = Layout.SmallSize * Layout.EditWidth
-      local Value = Picker.Hex
-      local Length = #Value
-      local Caret = math.min(math.max(Picker.Caret, 0), Length)
-      local Fit = math.max(1, math.floor((HexWide - Layout.PickerEditRoom) / CharWidth))
-      local Scroll = Caret > Fit and Caret - Fit or 0
-      local Visible = string.sub(Value, Scroll + 1, math.min(Length, Scroll + Fit))
-      local Anchor = Picker.Anchor or Caret
-      local Selecting = Picker.Anchor ~= nil and Picker.Anchor ~= Caret
-      local Blink = os.clock() % 1 < Layout.CaretBlink
-      local Low = math.min(math.max(math.min(Anchor, Caret) - Scroll, 0), #Visible)
-      local High = math.min(math.max(math.max(Anchor, Caret) - Scroll, 0), #Visible)
-      local CaretX = TextX + math.min(math.max(Caret - Scroll, 0), #Visible) * CharWidth
-      local SelectX = TextX + Low * CharWidth
-      local SelectWide = math.max(1, (High - Low) * CharWidth)
-      local SelectShade = High > Low and Alpha.Select * Alpha.Text * Anim or 0
-
-      Picker.CharWidth, Picker.EditX, Picker.Scroll = CharWidth, TextX, Scroll
-
-      for Index = 1, #Visible do
-        DrawText(string.sub(Visible, Index, Index), TextX + (Index - 1) * CharWidth, TextY, Theme.Text, Layout.SmallSize, UiFont, 214, Alpha.Text * Anim)
-      end
-
-      if not Selecting and Blink then DrawRect(CaretX, TextY, Layout.CaretWidth, Layout.SmallSize, Theme.Text, 214, 0, Alpha.Text * Anim) end
-      if Selecting then DrawRect(SelectX, TextY - Layout.SelectLift, SelectWide, Layout.SmallSize + Layout.SelectGrow, Theme.Accent, 214, Layout.SelectRadius, SelectShade) end
-    end
-
-    DrawText(Percent, BoxX + BoxWidth - OpacityWide + Layout.PickerOpacityGap, TextY, Theme.Text, Layout.SmallSize, SystemFont, 214, Alpha.Label * Anim, OpacityWide - Layout.PickerOpacityRoom)
-
-    local Edge = Layout.PickerEdgePad
-    local Outside = not IsMouseIn(X - Edge, Y - Edge, Panel + Edge * 2, Height + Edge * 2)
-
-    if Input.Click and HexHovered and not Typing then
-      Picker.Hex = Picker.Format == "RGB" and RgbText or string.sub(string.gsub(CurrentHex, "#", ""), 1, Layout.PickerHexMax)
-      Picker.Caret = #Picker.Hex
-      Picker.Anchor = 0
-      Picker.CharWidth, Picker.EditX, Picker.Scroll = Layout.SmallSize * Layout.EditWidth, TextX, 0
-      Picker.HexDrag = true
-      State.Focus = nil
-      Input.Click = false
-    elseif Typing and Keys.Enter.Click then
-      ApplyPickerEdit(Picker)
-      Keys.Enter.Click = false
-    elseif Typing and Keys.Escape.Click then
-      Picker.Hex = nil
-      Keys.Escape.Click = false
-    elseif Typing and Input.Click and Outside then
-      ApplyPickerEdit(Picker)
-    elseif Typing then
-      EditText(Picker, "Hex", Picker.Format ~= "RGB" and "[0-9a-fA-F]" or nil)
-    end
-
-    if Picker.Hex and Input.Down and Picker.HexDrag then Picker.Caret = math.min(math.max(Picker.Scroll + math.floor((Input.X - Picker.EditX) / Picker.CharWidth + 0.5), 0), #Picker.Hex) end
-    if not (Input.Click and Outside) then return end
-
-    State.Picker = nil
-    Input.Click = false
-  end
-
-  function DrawColourRow(row, x, y, width, fade)
-    local SwatchX, SwatchY = x + width - Layout.SwatchSize, y + 5
-    local Hovered = Interact and IsMouseIn(SwatchX, SwatchY, Layout.SwatchSize, Layout.SwatchSize)
-
-    DrawText(row.Name, x, TextTop(y, Layout.ColorLabel, Layout.TextSize), Theme.Text, Layout.TextSize, SystemFont, 31, Alpha.Label * fade, width - Layout.SwatchSize - 8)
-    DrawSwatch(SwatchX, SwatchY, Layout.SwatchSize, Layout.SwatchRadius, row.Value, row.Alpha, Hovered, fade)
-
-    if not (Hovered and Input.Click) then return end
-
-    OpenPicker(row)
-  end
+local function claimClick()
+    Pointer.Click = false
+    Pointer.Used = true
 end
 
-local RowHeight = {
-  Toggle = Layout.ToggleRow,
-  Button = Layout.ButtonRow,
-  Slider = Layout.SliderRow,
-  Range = Layout.SliderRow,
-  Dropdown = Layout.DropdownRow,
-  Color = Layout.ColorRow,
-  Keybind = Layout.KeybindRow,
-  Divider = Layout.DividerRow,
-  Textbox = Layout.TextboxRow,
+local TEXT_KEYS = {
+    [32] = " ", [8] = "", [65] = "a", [66] = "b", [67] = "c", [68] = "d", [69] = "e",
+    [70] = "f", [71] = "g", [72] = "h", [73] = "i", [74] = "j", [75] = "k", [76] = "l",
+    [77] = "m", [78] = "n", [79] = "o", [80] = "p", [81] = "q", [82] = "r", [83] = "s",
+    [84] = "t", [85] = "u", [86] = "v", [87] = "w", [88] = "x", [89] = "y", [90] = "z",
 }
 
-local function RowSpan(row)
-  if row.Kind == "Dropdown" and State.DropdownInline then return Layout.DropdownInlineRow end
-  if row.Kind == "Label" then return math.max(18, (row.LineCount or 1) * Layout.LabelLine + 2) end
-  if row.Kind == "Info" then return math.max(16, (row.LineCount or 1) * Layout.InfoLine + 2) end
+ 
+ 
+ 
+local Row = {}
+Row.__index = Row
 
-  return RowHeight[row.Kind]
-end
+function Row:Set(value)
+    local kind = self.Type
 
-local RowDrawer = {
-  Toggle = DrawToggle,
-  Button = DrawButtonRow,
-  Slider = DrawSlider,
-  Range = DrawRangeSlider,
-  Dropdown = DrawDropdown,
-  Color = DrawColourRow,
-  Keybind = DrawKeybind,
-  Divider = DrawDivider,
-  Textbox = DrawTextbox,
-  Label = DrawLabel,
-  Info = DrawInfo,
-}
-
-local RowLocked, DrawSectionTitle, DrawSectionCard, DrawSectionRows, ContentHeight, ScrollInput, DrawScrollBar, DragBody
-
-do
-  local function SectionTitleHeight(section)
-    if section.Name == "" then return 0 end
-
-    return Layout.SectionTitle + (section.Desc and Layout.SectionDesc or 0)
-  end
-
-  local function SectionHeight(section)
-    local Target = section.Collapsed and 1 or 0
-    local Title = SectionTitleHeight(section)
-    local Full = Title + Layout.CardTopPad + Layout.CardBottomPad
-    local Count = #section.Rows
-
-    section.Fold = Approach(section.Fold or Target, Target, 10)
-
-    for Index, Row in ipairs(section.Rows) do
-      Full = Full + RowSpan(Row)
-      if Index < Count then Full = Full + Layout.RowGap end
+    if kind == "Toggle" then
+        self.State = value and true or false
+    elseif kind == "Slider" then
+        self.Value = clamp(tonumber(value) or self.Value or self.Min, self.Min, self.Max)
+    elseif kind == "Dropdown" then
+        local pick = type(value) == "table" and value[1] or value
+        if pick ~= nil then self.Selected = tostring(pick) end
+    elseif kind == "InputLabel" then
+        self.Text = tostring(value or "")
     end
 
-    return Full + ((Title + Layout.RowGap) - Full) * section.Fold
-  end
-
-  function WantTooltip(text, x, y)
-    local Tip = State.Tip
-
-    if not Tip then
-      Tip = { Text = "", At = os.clock() }
-      State.Tip = Tip
+    local payload
+    if kind == "Toggle" then payload = self.State
+    elseif kind == "Slider" then payload = self.Value
+    elseif kind == "Dropdown" then payload = self.Selected
+    elseif kind == "InputLabel" then payload = self.Text
     end
 
-    if Tip.Text ~= text then Tip.At = os.clock() end
-
-    Tip.Text, Tip.X, Tip.Y, Tip.Frame = text, x, y, State.Frame
-  end
-
-  function RowLocked(row)
-    local Parent = row.Parent
-
-    while Parent do
-      if not Parent.Value then return true end
-
-      Parent = Parent.Parent
-    end
-
-    return row.Locked == true
-  end
-
-  function DrawSectionTitle(section, x, y, width, clipTop, clipBottom, fade, blocked)
-    local Title = SectionTitleHeight(section)
-    if Title == 0 then return end
-
-    local Shade = fade * math.min(math.max((y + Title - clipTop) / Title, 0), 1) * math.min(math.max((clipBottom - y) / Title, 0), 1)
-    if Shade <= 0.01 then return end
-
-    local Upper = string.upper(section.Name)
-    local RuleX = x + 4 + math.min(TextWidth(Upper, Layout.TinySize, BoldFont), width - 40) + 10
-
-    DrawText(Upper, x + 4, y + 2, Theme.Accent, Layout.TinySize, BoldFont, 31, (section.Collapsed and 0.55 or 0.85) * Shade, width - 22)
-
-    if section.Desc then DrawText(section.Desc, x + 4, y + 15, Theme.Text, 10, SystemFont, 31, Alpha.Dim * 0.72 * Shade, width - 22) end
-
-    FadeLine(RuleX, y + 8, (x + width - 6) - RuleX, Theme.Accent, 31, (section.Collapsed and 0.18 or 0.30) * Shade)
-
-    if blocked or not Input.Click then return end
-    if not IsMouseIn(x, y, width, Title) then return end
-
-    section.Collapsed = not section.Collapsed
-    Input.Click = false
-  end
-
-  function DrawSectionCard(section, x, y, width, height, clipTop, clipBottom, fade, blocked)
-    if section.Fold > 0.98 then return end
-
-    local Title = SectionTitleHeight(section)
-    local CardTop = y + Title
-    local CardY = math.max(CardTop, clipTop)
-    local CardBottom = math.min(y + height, clipBottom)
-    local CardHeight = CardBottom - CardY
-    local Hovered = not blocked and IsMouseIn(x, CardY, width, CardHeight) and State.HoverEffects ~= false
-
-    section.Glow = Approach(section.Glow or 0, Hovered and 1 or 0, 6)
-
-    local Halo = section.Glow * fade * State.Glow
-
-    DrawRect(x, CardY, width, CardHeight, Blend(Theme.Text, Theme.Idle, 0.40), 28, Layout.CardRadius, Alpha.Card * 2.1 * fade)
-
-    if not State.Lite then
-      DrawStroke(x - 2, CardY - 2, width + 4, CardHeight + 4, Theme.Accent, 32, 7, 0.05 * Halo)
-      DrawStroke(x - 1, CardY - 1, width + 2, CardHeight + 2, Theme.Accent, 32, 6, 0.11 * Halo)
-    end
-
-    DrawStroke(x, CardY, width, CardHeight, Theme.Accent, 33, Layout.CardRadius, 0.34 * Halo)
-  end
-
-  function DrawSectionRows(section, x, y, width, height, clipTop, clipBottom, fade, blocked)
-    local CardBottom = math.min(clipBottom, y + height)
-    local RowX = x + Layout.CardLeft
-    local RowY = y + SectionTitleHeight(section) + Layout.CardTopPad
-    local RowWidth = width - Layout.CardInset
-    local Gap = State.RowLines and 4 or Layout.RowGap
-    local Count = #section.Rows
-
-    for Index, Row in ipairs(section.Rows) do
-      local Height = RowSpan(Row)
-
-      if Row == State.SpotJump then
-        local Tab = ActiveView()
-
-        local Settled = RowY - (1 - State.ContentFade) * Layout.CascadeDrop
-
-        Tab.WantScroll = math.min(math.max(Tab.WantScroll + Settled - clipTop - Layout.JumpMargin, 0), Tab.MaxScroll)
-        State.SpotJump = nil
-      end
-
-      if RowY + Height >= clipTop - 2 and RowY <= CardBottom + 2 then
-        local Clip = 1
-
-        if RowY < clipTop then Clip = math.min(math.max(1 - (clipTop - RowY) / (Height * 0.5), 0), 1) end
-        if RowY + Height > CardBottom then Clip = math.min(Clip, math.min(math.max(1 - (RowY + Height - CardBottom) / (Height * 0.5), 0), 1)) end
-
-        local Shade = (RowLocked(Row) and 0.4 or 1) * fade * Clip
-
-        Interact = Shade > 0.5 and not blocked
-
-        if Row.Tip and Interact and IsMouseIn(RowX, RowY, RowWidth, Height) then WantTooltip(Row.Tip, Input.X, Input.Y) end
-
-        RowDrawer[Row.Kind](Row, RowX, RowY, RowWidth, Shade)
-
-        if (Row.Reveal or 0) > os.clock() then
-          local Pulse = 0.35 + 0.5 * math.min(math.max(0.5 + 0.5 * math.sin(os.clock() * 9), 0), 1)
-
-          DrawStroke(RowX - 4, RowY - 4, RowWidth + 8, Height + 8, Theme.Accent, 33, 7, Pulse * Shade)
-        end
-
-        if State.RowLines and Index < Count then
-          local LineY = RowY + Height + Gap / 2
-
-          if LineY > clipTop and LineY < CardBottom then DrawLine(x + 14, LineY, x + width - 14, LineY, Theme.Text, 31, 1, 0.12 * fade * Clip) end
-        end
-      end
-
-      RowY = RowY + Height + (Index < Count and Gap or 0)
-    end
-
-    Interact = true
-  end
-
-  function ContentHeight(tab, height)
-    local LeftEnd, RightEnd = 0, 0
-
-    for _, Section in ipairs(tab.Sections) do
-      Section.Height = SectionHeight(Section)
-
-      if Section.Side == "Full" then
-        LeftEnd = math.max(LeftEnd, RightEnd) + Section.Height + Layout.ColumnGap
-        RightEnd = LeftEnd
-      elseif Section.Side == "Right" then
-        RightEnd = RightEnd + Section.Height + Layout.ColumnGap
-      else
-        LeftEnd = LeftEnd + Section.Height + Layout.ColumnGap
-      end
-    end
-
-    local Total = math.max(LeftEnd, RightEnd)
-
-    tab.MaxScroll = math.max(0, Total - height)
-
-    return Total
-  end
-
-  function ScrollInput(tab, x, y, width, height, blocked)
-    local Reach = tab.MaxScroll
-
-    if Reach > 0 and not blocked and not State.Focus and not State.SpotlightOpen and IsMouseIn(x, y, width, height) then
-      local Page = height * 0.8
-
-      if Keys.Up.Click then tab.WantScroll = tab.WantScroll - 60 end
-      if Keys.Down.Click then tab.WantScroll = tab.WantScroll + 60 end
-      if Keys.PageUp.Click then tab.WantScroll = tab.WantScroll - Page end
-      if Keys.PageDown.Click then tab.WantScroll = tab.WantScroll + Page end
-    end
-
-    tab.WantScroll = math.min(math.max(tab.WantScroll, 0), Reach)
-    tab.Scroll = Approach(tab.Scroll, tab.WantScroll, 15)
-
-    if math.abs(tab.Scroll - tab.WantScroll) < 0.1 then tab.Scroll = tab.WantScroll end
-  end
-
-  function DrawScrollBar(tab, x, y, width, height, total, fade)
-    local TrackX = x + width + 4
-    local BarHeight = math.max(34, (height / total) * height)
-    local Fraction = tab.Scroll / tab.MaxScroll
-    local BarY = y + Fraction * (height - BarHeight)
-    local Dragging = State.BarDrag and State.BarDrag.Tab == tab
-    local Hovered = IsMouseIn(TrackX - 7, BarY, 18, BarHeight) or Dragging
-    local Want = Hovered and 1 or math.min(math.max(math.abs(tab.WantScroll - tab.Scroll) / 30, 0), 1)
-    local Glow = Settle(tab.BarGlow or 0, Want, 12, Layout.NavRest)
-    local BarColor = Blend(Theme.AccentA, Theme.AccentB, Fraction)
-    local BarWidth = 4.5 + Glow
-    local BarX = TrackX + 2 - BarWidth / 2
-
-    tab.BarGlow = Glow
-
-    DrawRect(TrackX + 0.5, y, 3, height, Theme.Text, 34, 1.5, (0.05 + 0.05 * Glow) * fade)
-    DrawRect(BarX - 2, BarY - 3, BarWidth + 4, BarHeight + 6, BarColor, 35, (BarWidth + 4) / 2, 0.16 * Glow * fade)
-    DrawRect(BarX, BarY, BarWidth, BarHeight, BarColor, 36, BarWidth / 2, (0.55 + 0.45 * Glow) * fade)
-
-    if Input.Click and IsMouseIn(TrackX - 7, y, 18, height) then
-      State.BarDrag = { Tab = tab, Grab = IsMouseIn(TrackX - 7, BarY, 18, BarHeight) and (Input.Y - BarY) or (BarHeight / 2) }
-      Input.Click = false
-    end
-
-    if not (Input.Down and Dragging) then return end
-
-    tab.WantScroll = math.min(math.max((Input.Y - y - State.BarDrag.Grab) / math.max(1, height - BarHeight), 0), 1) * tab.MaxScroll
-  end
-
-  function DragBody(tab, x, y, width, height, blocked)
-    if tab.MaxScroll > 0 and Input.Click and not blocked and not State.BarDrag and IsMouseIn(x, y, width, height) then
-      State.Panning = { Tab = tab, Y = Input.Y, From = tab.WantScroll }
-      tab.Fling = 0
-      Input.Click = false
-    end
-
-    local Drag = State.Panning
-
-    if Input.Down and Drag and Drag.Tab == tab then
-      local Want = math.min(math.max(Drag.From - (Input.Y - Drag.Y), 0), tab.MaxScroll)
-
-      tab.Fling = (tab.Fling or 0) * 0.72 + ((Want - tab.WantScroll) / State.Delta) * 0.28
-      tab.WantScroll = Want
-
-      return
-    end
-
-    if (tab.Fling or 0) == 0 or State.BarDrag then return end
-
-    tab.WantScroll = math.min(math.max(tab.WantScroll + tab.Fling * State.Delta, 0), tab.MaxScroll)
-    tab.Fling = tab.Fling * math.exp(-5 * State.Delta)
-
-    if math.abs(tab.Fling) < 4 or tab.WantScroll <= 0 or tab.WantScroll >= tab.MaxScroll then tab.Fling = 0 end
-  end
+    if self.Callback then pcall(self.Callback, payload) end
+    return self
 end
 
-local function DrawSections(rail)
-  local Tab = ActiveView()
-  if not Tab then return end
-
-  local Blocked = State.Dropdown ~= nil or State.Picker ~= nil or State.Menu ~= nil or State.Dialog ~= nil
-  local Wide = State.TabLayout == "top"
-  local Left = Wide and (State.X + 14) or (State.X + rail + Layout.ContentPad)
-  local Width = Wide and (State.W - 34) or (State.W - rail - Layout.ContentPad * 2 - Layout.ScrollGutter)
-  local ColumnWidth = math.floor((Width - Layout.ColumnGap) / 2)
-  local Top = Wide and (State.Y + Layout.TitleHeight + Layout.TopbarHeight + 8) or (State.Y + Layout.TopbarHeight + Layout.ContentTop)
-  local Height = State.Y + State.H - Top - Layout.ContentBottom
-  local Total = ContentHeight(Tab, Height)
-
-  ScrollInput(Tab, Left, Top, Width, Height, Blocked)
-
-  local StartY = Top - Tab.Scroll + (1 - State.ContentFade) * 12
-  local Bottom = Top + Height
-  local ColumnY = { StartY, StartY }
-
-  for Index, Section in ipairs(Tab.Sections) do
-    local Stagger = math.min(Index - 1, 6) * Layout.CascadeStep
-    local Fade = math.min(math.max((State.ContentFade - Stagger) / (1 - Stagger), 0), 1)
-    local Column = Section.Side == "Right" and 2 or 1
-    local CardX = Left + (Column - 1) * (ColumnWidth + Layout.ColumnGap)
-    local CardY = ColumnY[Column]
-
-    if Section.Side == "Full" then
-      CardX, CardY = Left, math.max(ColumnY[1], ColumnY[2])
-      ColumnY[1] = CardY + Section.Height + Layout.ColumnGap
-      ColumnY[2] = ColumnY[1]
-    else
-      ColumnY[Column] = CardY + Section.Height + Layout.ColumnGap
-    end
-
-    local CardWidth = Section.Side == "Full" and Width or ColumnWidth
-
-    DrawSectionTitle(Section, CardX, CardY, CardWidth, Top, Bottom, Fade, Blocked)
-    DrawSectionCard(Section, CardX, CardY, CardWidth, Section.Height, Top, Bottom, Fade, Blocked)
-
-    if Section.Fold <= 0.98 then DrawSectionRows(Section, CardX, CardY, CardWidth, Section.Height, Top, Bottom, Fade, Blocked) end
-  end
-
-  if Tab.MaxScroll > 0 then
-    DrawScrollBar(Tab, Left, Top, Width, Height, Total, State.ContentFade)
-  elseif State.BarDrag and State.BarDrag.Tab == Tab then
-    State.BarDrag = nil
-  end
-
-  DragBody(Tab, Left, Top, Width, Height, Blocked)
+function Row:Get()
+    if self.Type == "Toggle" then return self.State end
+    if self.Type == "Slider" then return self.Value end
+    if self.Type == "Dropdown" then return { self.Selected } end
+    if self.Type == "InputLabel" then return self.Text end
+    return self.Value
 end
 
-local function DrawGrip()
-  local Right = State.X + State.W - 5
-  local Bottom = State.Y + State.H - 5
-
-  DrawLine(State.X + State.W - 14, Bottom, Right, State.Y + State.H - 14, Theme.Text, 13, 1, Alpha.Dim)
-  DrawLine(State.X + State.W - 11, Bottom, Right, State.Y + State.H - 11, Theme.Text, 13, 1, Alpha.Dim)
-  DrawLine(State.X + State.W - 8, Bottom, Right, State.Y + State.H - 8, Theme.Text, 13, 1, Alpha.Dim)
-
-  if Input.Click and IsMouseIn(State.X + State.W - 22, State.Y + State.H - 22, 24, 24) then
-    State.Resize = { W = State.W, H = State.H, X = Input.X, Y = Input.Y }
-  end
-
-  if not State.Resize then return end
-
-  State.W = math.max(Layout.MinWidth, State.Resize.W + (Input.X - State.Resize.X))
-  State.H = math.max(Layout.MinHeight, State.Resize.H + (Input.Y - State.Resize.Y))
+function Row:SetRisk()
+    self.Risk = true
+    return self
 end
 
-local DrawKeyMenu
+function Row:SetName(name) self.Title = tostring(name); return self end
+function Row:GetName() return self.Title end
+function Row:Change(info) info = info or {}; if info.Name then self.Title = info.Name end; return self end
 
-do
-  local KeyMenu = { "Hold", "Toggle", "Always" }
-
-  function DrawKeyMenu()
-    local Menu = State.Menu
-    if not Menu then return end
-
-    Menu.Anim = Approach(Menu.Anim or 0, 1, Layout.MenuSpeed)
-
-    local Fade = Menu.Anim
-    local Width = Layout.MenuWidth
-    local Height = #KeyMenu * Layout.MenuRow + Layout.MenuPad
-    local Viewport = Camera.ViewportSize
-    local MaxX = math.max(Layout.MenuMargin, Viewport.X - Width - Layout.MenuMargin)
-    local MaxY = math.max(Layout.MenuMargin, Viewport.Y - Height - Layout.MenuMargin)
-    local X = math.min(math.max(Menu.X, Layout.MenuMargin), MaxX)
-    local Y = math.min(math.max(Menu.Y, Layout.MenuMargin), MaxY) - (1 - Fade) * Layout.MenuRise
-    local ItemX = X + Layout.MenuInset
-    local ItemWidth = Width - Layout.MenuInset * 2
-    local ItemHeight = Layout.MenuRow - Layout.MenuTrim
-    local Room = Width - Layout.MenuTextRoom
-
-    DrawRect(X, Y, Width, Height, Theme.Background, 250, Layout.MenuRadius, Alpha.Menu * Fade)
-    DrawStroke(X, Y, Width, Height, Theme.Text, 251, Layout.MenuRadius, Alpha.CardStroke * Fade)
-
-    for Index, Mode in ipairs(KeyMenu) do
-      local RowY = Y + Layout.MenuInset + (Index - 1) * Layout.MenuRow
-      local Selected = Menu.Row.Mode == Mode
-      local Hovered = IsMouseIn(ItemX, RowY, ItemWidth, ItemHeight)
-      local FillAlpha = (Selected and Alpha.MenuSelect or (Hovered and Alpha.MenuHover or 0)) * Fade
-      local TextAlpha = (Selected and Alpha.Text or Alpha.Label) * Fade
-
-      DrawRect(ItemX, RowY, ItemWidth, ItemHeight, Theme.Text, 252, Layout.MenuItemRadius, FillAlpha)
-      DrawText(Mode, X + Layout.MenuTextPad, TextTop(RowY, ItemHeight, Layout.TextSize), Theme.Text, Layout.TextSize, SystemFont, 253, TextAlpha, Room)
-
-      if Input.Click and Hovered then
-        Menu.Row.Mode = Mode
-        State.Menu = nil
-        Input.Click = false
-      end
-    end
-
-    if not Input.Click then return end
-    if IsMouseIn(X - Layout.MenuEdge, Y - Layout.MenuEdge, Width + Layout.MenuEdge * 2, Height + Layout.MenuEdge * 2) then return end
-
-    State.Menu = nil
-    Input.Click = false
-  end
+local function newRow(kind, fields)
+    fields.Type = kind
+    return setmetatable(fields, Row)
 end
 
-local DrawNotifications
+ 
+ 
+ 
+local Groupbox = {}
+Groupbox.__index = Groupbox
 
-do
-  local NoteTint = {
-    success = Color3.fromRGB(95, 210, 135),
-    warning = Color3.fromRGB(255, 190, 70),
-    error = Color3.fromRGB(250, 93, 86),
-  }
-
-  local function DrawNote(note, stackY)
-    local Viewport = Camera.ViewportSize
-    local Room = Layout.NoteWidth - Layout.NoteBodyRoom
-    local Lines = WrapText(note.Body, Room, Layout.SmallSize, SystemFont)
-    local Count = math.min(#Lines, Layout.NoteLines)
-    local Height = Layout.NoteTopPad + Count * Layout.NoteLine + Layout.NoteBottomPad
-    local TargetX = Viewport.X - Layout.NoteWidth - Layout.NoteMargin
-    local TargetY = stackY - Height
-
-    note.X = Approach(note.X or Viewport.X, TargetX, Layout.NoteSlide)
-    note.Y = Approach(note.Y or TargetY, TargetY, Layout.NoteSlide)
-
-    local NoteX, NoteY = note.X, note.Y
-    local Remaining = note.Duration - note.Elapsed
-    local FadeIn = note.Elapsed / Layout.NoteFadeIn
-    local FadeOut = Remaining / Layout.NoteFadeOut
-    local Fade = FadeIn < 1 and FadeIn or math.min(1, FadeOut)
-    local Kind = note.Kind or (note.Title == "error" and "error")
-    local Tint = NoteTint[Kind] or Blend(Theme.AccentA, Theme.AccentB, Layout.ShimmerMix)
-    local TitleColor = Kind and Tint or Theme.Text
-    local TitleAlpha = (Kind and 1 or Alpha.Text) * Fade
-    local TitleRoom = Layout.NoteWidth - Layout.NoteTitleRoom
-    local BodyAlpha = Alpha.Label * Fade
-    local TrackX = NoteX + Layout.NoteTextX
-    local TrackY = NoteY + Height - Layout.NoteTrackLift
-    local TrackWidth = Layout.NoteWidth - Layout.NoteTrackRoom
-    local Fraction = math.min(math.max(1 - note.Elapsed / note.Duration, 0), 1)
-    local BarWidth = TrackWidth * Fraction
-    local BarShown = math.max(1, BarWidth)
-    local BarAlpha = Alpha.NoteBar * Fade * math.min(math.max(BarWidth, 0), 1)
-
-    DrawRect(NoteX + Layout.NoteShadowX, NoteY + Layout.NoteShadowY, Layout.NoteWidth, Height, Black, 299, Layout.NoteRadius, Alpha.NoteShadow * Fade)
-    DrawRect(NoteX, NoteY, Layout.NoteWidth, Height, Theme.Background, 300, Layout.NoteRadius, Alpha.NoteFill * Fade)
-    DrawStroke(NoteX, NoteY, Layout.NoteWidth, Height, Theme.Text, 301, Layout.NoteRadius, Alpha.Hairline * Fade)
-    DrawCircle(NoteX + Layout.NoteDotX, NoteY + Layout.NoteDotY, Layout.NoteDot, Tint, 302, true, 1, 16, Fade)
-    DrawText(note.Title, NoteX + Layout.NoteTextX, NoteY + Layout.NoteTitleY, TitleColor, Layout.TextSize, BoldFont, 302, TitleAlpha, TitleRoom)
-
-    for Index = 1, Count do DrawText(Lines[Index], NoteX + Layout.NoteTextX, NoteY + Layout.NoteBodyY + (Index - 1) * Layout.NoteLine, Theme.Text, Layout.SmallSize, SystemFont, 302, BodyAlpha, Room) end
-
-    DrawRect(TrackX, TrackY, TrackWidth, Layout.NoteBarHeight, Theme.Text, 302, Layout.NoteBarRadius, Alpha.NoteTrack * Fade)
-
-    if Kind then
-      DrawRect(TrackX, TrackY, BarShown, Layout.NoteBarHeight, Tint, 303, Layout.NoteBarRadius, BarAlpha)
-    else
-      GradientRect(TrackX, TrackY, BarShown, Layout.NoteBarHeight, Theme.AccentA, Theme.AccentB, 303, BarAlpha)
-    end
-
-    return TargetY - Layout.NoteGap
-  end
-
-  function DrawNotifications()
-    local Notes = State.Notes
-    local StackY = Camera.ViewportSize.Y - Layout.NoteMargin
-    local Index = 1
-
-    while #Notes > Layout.NoteMax do table.remove(Notes, 1) end
-
-    while Index <= #Notes do
-      local Note = Notes[Index]
-
-      Note.Elapsed = Note.Elapsed + State.Delta
-
-      if Note.Elapsed >= Note.Duration then
-        table.remove(Notes, Index)
-      else
-        StackY = DrawNote(Note, StackY)
-        Index = Index + 1
-      end
-    end
-  end
+local function pushRow(self, row)
+    row.Parent = self
+    self.Elements[#self.Elements + 1] = row
+    return row
 end
 
-local function DrawTooltip()
-  local Tip = State.Tip
-  if not Tip then return end
-  if Tip.Frame ~= State.Frame then Tip.Text = "" end
-  if Tip.Text == "" then return end
-  if os.clock() - Tip.At < Layout.TipDelay then return end
-
-  if Tip.Source ~= Tip.Text then Tip.Source, Tip.Lines = Tip.Text, WrapText(Tip.Text, Layout.TipWrap, Layout.SmallSize, UiFont) end
-
-  local Lines = Tip.Lines
-  local Widest = 0
-
-  for Index = 1, #Lines do Widest = math.max(Widest, TextWidth(Lines[Index], Layout.SmallSize, UiFont)) end
-
-  local View = Camera.ViewportSize
-  local Width = math.floor(Widest * Layout.TipStretch) + Layout.TipPad
-  local Height = Layout.TipTopPad + Layout.TipLine * #Lines
-  local BoxX = math.min(math.max(Tip.X + Layout.TipOffsetX, Layout.TipMargin), View.X - Width - Layout.TipMargin)
-  local BoxY = math.min(math.max(Tip.Y + Layout.TipOffsetY, Layout.TipMargin), View.Y - Height - Layout.TipBottom)
-  local TextX = BoxX + Layout.TipInset
-  local TextY = BoxY + Layout.TipTextTop
-
-  DrawRect(BoxX, BoxY, Width, Height, Theme.Background, 320, Layout.TipRadius, Alpha.TipFill)
-  DrawStroke(BoxX, BoxY, Width, Height, Theme.Text, 321, Layout.TipRadius, Alpha.CardStroke)
-
-  for Index = 1, #Lines do DrawText(Lines[Index], TextX, TextY + (Index - 1) * Layout.TipLine, Theme.Text, Layout.SmallSize, UiFont, 322, Alpha.Text) end
+function Groupbox:AddButton(info)
+    info = info or {}
+    return pushRow(self, newRow("Button", {
+        Title = tostring(info.Name or info.Title or "Button"),
+        Callback = info.OnClick or info.Callback,
+        Description = info.Description,
+    }))
 end
 
-local function DrawDialog()
-  local Dialog = State.Dialog
-
-  State.DialogFade = Approach(State.DialogFade or 0, Dialog and 1 or 0, Layout.DialogSpeed)
-
-  local Fade = State.DialogFade
-  if Fade < Layout.DialogHide then return end
-
-  local View = Camera.ViewportSize
-
-  DrawRect(0, 0, View.X, View.Y, Black, 450, 0, Alpha.DialogVeil * Fade)
-
-  if not Dialog then return end
-
-  local Room = Layout.DialogWidth - Layout.DialogInset * 2
-  local Lines = WrapText(Dialog.Text, Room, Layout.TextSize, SystemFont)
-  local Height = Layout.DialogBase + #Lines * Layout.DialogLine
-  local BoxX = math.floor(View.X / 2 - Layout.DialogWidth / 2)
-  local BoxY = math.floor(View.Y / 2 - Height / 2) - math.floor((1 - Fade) * Layout.DialogLift)
-  local Accent = Blend(Theme.AccentA, Theme.AccentB, Layout.ShimmerMix)
-  local TextX = BoxX + Layout.DialogInset
-  local TitleY = BoxY + Layout.DialogTitleTop
-  local BodyY = BoxY + Layout.DialogTextTop
-  local ButtonY = BoxY + Height - Layout.DialogButton - Layout.DialogButtonPad
-  local ButtonWidth = (Room - Layout.DialogGap) / 2
-  local ButtonTextY = ButtonY + Layout.DialogButton / 2
-  local CancelX = TextX
-  local ConfirmX = CancelX + ButtonWidth + Layout.DialogGap
-  local CancelHover = IsMouseIn(CancelX, ButtonY, ButtonWidth, Layout.DialogButton)
-  local ConfirmHover = IsMouseIn(ConfirmX, ButtonY, ButtonWidth, Layout.DialogButton)
-  local Outside = not IsMouseIn(BoxX, BoxY, Layout.DialogWidth, Height)
-  local CancelEdge = (CancelHover and Alpha.DialogHover or Alpha.Hairline) * Fade
-  local CancelLabel = (CancelHover and Alpha.Text or Alpha.Dim) * Fade
-  local ConfirmFill = (ConfirmHover and Alpha.DialogFillHover or Alpha.DialogFillIdle) * Fade
-  local ConfirmEdge = (ConfirmHover and Alpha.DialogEdgeHover or Alpha.DialogEdgeIdle) * Fade
-  local Clicked = Input.Click
-
-  DrawRect(BoxX + Layout.DialogShadowX, BoxY + Layout.DialogShadowY, Layout.DialogWidth, Height, Black, 451, Layout.DialogRadius, Alpha.DialogShadow * Fade)
-  DrawRect(BoxX, BoxY, Layout.DialogWidth, Height, Theme.Background, 452, Layout.DialogRadius, Alpha.DialogFill * Fade)
-  DrawStroke(BoxX - Layout.DialogHaloOut, BoxY - Layout.DialogHaloOut, Layout.DialogWidth + Layout.DialogHaloOut * 2, Height + Layout.DialogHaloOut * 2, Accent, 453, Layout.DialogHaloRadius, Alpha.DialogHalo * Fade)
-  DrawStroke(BoxX, BoxY, Layout.DialogWidth, Height, Theme.Text, 453, Layout.DialogRadius, Alpha.DialogEdge * Fade)
-  DrawText(Dialog.Title, TextX, TitleY, Accent, Layout.DialogTitle, BoldFont, 454, Fade, Room)
-
-  for Index = 1, #Lines do DrawText(Lines[Index], TextX, BodyY + (Index - 1) * Layout.DialogLine, Theme.Text, Layout.TextSize, SystemFont, 454, Alpha.Label * Fade, Room) end
-
-  DrawStroke(CancelX, ButtonY, ButtonWidth, Layout.DialogButton, Theme.Text, 454, Layout.DialogButtonRadius, CancelEdge)
-  DrawTextMid(Dialog.Cancel, CancelX + ButtonWidth / 2, ButtonTextY, Theme.Text, Layout.TextSize, BoldFont, 455, CancelLabel)
-  DrawRect(ConfirmX, ButtonY, ButtonWidth, Layout.DialogButton, Accent, 454, Layout.DialogButtonRadius, ConfirmFill)
-  DrawStroke(ConfirmX, ButtonY, ButtonWidth, Layout.DialogButton, Accent, 455, Layout.DialogButtonRadius, ConfirmEdge)
-  DrawTextMid(Dialog.Confirm, ConfirmX + ButtonWidth / 2, ButtonTextY, Accent, Layout.TextSize, BoldFont, 455, Fade)
-
-  Input.Click = false
-
-  if Fade <= Layout.DialogLive then return end
-
-  if Keys.Escape.Click then
-    State.Dialog = nil
-    Keys.Escape.Click = false
-    Dialog.OnCancel()
-    return
-  end
-
-  if not Clicked then return end
-
-  if ConfirmHover then
-    State.Dialog = nil
-    Dialog.OnConfirm()
-    return
-  end
-
-  if not CancelHover and not Outside then return end
-
-  State.Dialog = nil
-  Dialog.OnCancel()
+function Groupbox:AddToggle(info)
+    info = info or {}
+    return pushRow(self, newRow("Toggle", {
+        Title = tostring(info.Name or info.Title or "Toggle"),
+        State = (info.State == true),
+        Callback = info.OnChanged or info.Callback,
+        Description = info.Description,
+    }))
 end
 
-local function SplitCombo(value)
-  local Mod, Key = string.match(string.lower(value), "^(%w+)%+(.+)$")
-
-  if Mod then return Keys[Mod], Keys[Key] end
-
-  return nil, Keys[string.lower(value)]
+function Groupbox:AddSlider(info)
+    info = info or {}
+    local lo = tonumber(info.MinValue or info.Min) or 0
+    local hi = tonumber(info.MaxValue or info.Max) or 100
+    if hi <= lo then hi = lo + 1 end
+    return pushRow(self, newRow("Slider", {
+        Title = tostring(info.Name or info.Title or "Slider"),
+        Min = lo, Max = hi,
+        Value = clamp(tonumber(info.CurrentValue or info.Default or info.Value) or lo, lo, hi),
+        Step = tonumber(info.Step) or 1,
+        Suffix = tostring(info.Suffix or ""),
+        Callback = info.OnChanged or info.Callback,
+        Description = info.Description,
+        Digits = info.Digits,
+    }))
 end
 
-local function RunKeybinds()
-  if State.Focus or State.Capture then return end
-
-  for _, Tab in ipairs(State.Tabs) do
-    for _, Section in ipairs(Tab.Sections) do
-      for _, Row in ipairs(Section.Rows) do
-        local Bind = Row.Bind
-
-        if Bind and Bind.Value ~= "" and Bind.Value ~= "none" and not Bind.Listening and not RowLocked(Row) then
-          local Mod, Key = SplitCombo(Bind.Value)
-          local Mode = Bind.Mode or "Hold"
-          local Live = not Mod or Mod.Held
-          local Active = Bind.Callback and Bind.Active or Row.Value
-
-          if not Key then
-          elseif not Live then
-          elseif Mode == "Always" then
-            Active = true
-          elseif Mode == "Toggle" then
-            if Key.Click then Active = not Active end
-          else
-            Active = Key.Held
-          end
-
-          if Bind.Callback and Active ~= Bind.Active then
-            Bind.Active = Active
-            Bind.Callback(Active)
-          elseif not Bind.Callback and Active ~= Row.Value then
-            Row.Value = Active
-            Row.Callback(Active)
-          end
-        end
-      end
-    end
-  end
+function Groupbox:AddDropdown(info)
+    info = info or {}
+    local options = {}
+    for i, option in ipairs(info.Options or {}) do options[i] = tostring(option) end
+    local pick = info.Selected or info.Default
+    if type(pick) == "table" then pick = pick[1] end
+    return pushRow(self, newRow("Dropdown", {
+        Title = tostring(info.Name or info.Title or "Dropdown"),
+        Options = options,
+        Selected = tostring(pick or options[1] or ""),
+        Callback = info.OnSelecting or info.OnChanged or info.Callback,
+        Description = info.Description,
+    }))
 end
 
-local FontList = {
-  { Name = "Default", Font = SystemFont },
-  { Name = "Bold", Font = BoldFont },
-  { Name = "Proggy", Font = UiFont },
-  { Name = "Minecraft", Font = MinecraftFont },
-  { Name = "JetBrains", Font = MonoFont },
-  { Name = "Pixel", Font = PixelFont },
-  { Name = "Fortnite", Font = FortniteFont },
-}
-
-local function FontByName(name)
-  for Index = 1, #FontList do
-    local Choice = FontList[Index]
-
-    if Choice.Name == name or Choice.Font == name then return Choice.Font end
-  end
-
-  return FontList[1].Font
+function Groupbox:AddTextLabel(info)
+    info = info or {}
+    return pushRow(self, newRow("TextLabel", {
+        Title = tostring(info.Title or info.Name or ""),
+        Live = info.Live,
+        Description = info.Description,
+        Dim = info.Dim == true,
+    }))
 end
 
-local StripGlyphs, PlaceName, SafeFolder, ConfigDir
-
-do
-  function StripGlyphs(text)
-    local Clean = tostring(text or "")
-
-    Clean = string.gsub(Clean, "[\240-\244][\128-\191]*", "")
-    Clean = string.gsub(Clean, "\226[\134-\191][\128-\191]", "")
-    Clean = string.gsub(Clean, "\226\128[\139-\143]", "")
-    Clean = string.gsub(Clean, "^%s+", "")
-
-    return (string.gsub(Clean, "%s+$", ""))
-  end
-
-  function PlaceName()
-    local Name = StripGlyphs(getgamename())
-
-    if Name ~= "" then return Name end
-
-    Name = StripGlyphs(game.Name)
-
-    if Name == "Game" or Name == "Ugc" then return "" end
-
-    return Name
-  end
-
-  function SafeFolder(name)
-    return (tostring(name):gsub("[^%w%-_ ]", ""):gsub("^%s+", ""):gsub("%s+$", ""))
-  end
-
-  function ConfigDir()
-    return State.Folder
-  end
+function Groupbox:AddInputLabel(info)
+    info = info or {}
+    return pushRow(self, newRow("InputLabel", {
+        Title = tostring(info.Name or info.Title or "Input"),
+        Text = tostring(info.Text or ""),
+        Placeholder = tostring(info.Placeholder or ""),
+        Callback = info.OnChanged or info.Callback,
+        Description = info.Description,
+    }))
 end
 
-local function EnsureFolder()
-  local Dir = ConfigDir()
-
-  if not isfolder(Dir) then makefolder(Dir) end
+function Groupbox:AddDivider(info)
+    info = info or {}
+    return pushRow(self, newRow("Divider", { Title = tostring(info.Title or "") }))
 end
 
-local function RowPath(tab, section, row)
-  if type(row.Name) ~= "string" then return "" end
-
-  return tab.Name .. "." .. section.Name .. "." .. row.Name
+function Groupbox:AddParagraph(info)
+    info = info or {}
+    return pushRow(self, newRow("Paragraph", { Title = tostring(info.Title or info.Text or "") }))
 end
 
-local function EachRow(visit)
-  for _, Tab in ipairs(State.Tabs) do
-    for _, Section in ipairs(Tab.Sections) do
-      for _, Row in ipairs(Section.Rows) do visit(Tab, Section, Row) end
-    end
-
-    for _, Sub in ipairs(Tab.Subs) do
-      for _, Section in ipairs(Sub.Sections) do
-        for _, Row in ipairs(Section.Rows) do visit(Sub, Section, Row) end
-      end
-    end
-  end
-end
-
-local PackConfig, ApplyConfig
-
-local ConfigPath, ReadAutoload, WriteAutoload, ReadAutoSave, WriteAutoSave
-
-do
-  function ConfigPath(name)
-    return ConfigDir() .. "/" .. name .. ".json"
-  end
-
-  local function AutoloadFile()
-    return ConfigDir() .. "/_autoload.json"
-  end
-
-  local function ReadAutoloadTable()
-    local Path = AutoloadFile()
-    if not isfile(Path) then return nil end
-    local ok, Decoded = pcall(function() return HttpService:JSONDecode(readfile(Path)) end)
-if not ok or type(Decoded) ~= "table" then return nil end
-    return Decoded
-  end
-
-  function ReadAutoload()
-    local Saved = ReadAutoloadTable()
-    if not Saved then return nil end
-
-    local Name = Saved.autoload
-    if type(Name) ~= "string" or Name == "" then Name = Saved[State.ConfigName] end
-    if type(Name) ~= "string" or Name == "" then return nil end
-
-    return Name
-  end
-
-  function WriteAutoload(name)
-    local Path = AutoloadFile()
-    local Saved = ReadAutoloadTable() or {}
-
-    Saved.autoload = name
-    Saved[State.ConfigName] = name
-    EnsureFolder()
-    pcall(function() writefile(Path, HttpService:JSONEncode(Saved)) end)
-end
-
-  local function AutoSaveFile()
-    return ConfigDir() .. "/_autosave.json"
-  end
-
-  function ReadAutoSave()
-    local Path = AutoSaveFile()
-    if not isfile(Path) then return nil end
-
-    local Saved = HttpService:JSONDecode(readfile(Path))
-
-    return Saved and Saved[State.ConfigName]
-  end
-
-  function WriteAutoSave(on)
-    local Path = AutoSaveFile()
-    local Saved = isfile(Path) and HttpService:JSONDecode(readfile(Path)) or {}
-
-    Saved[State.ConfigName] = on
-    EnsureFolder()
-    writefile(Path, HttpService:JSONEncode(Saved))
-  end
-end
-
-local ThemePresets = {
-  Indigo = { Color3.fromRGB(122, 134, 255), Color3.fromRGB(189, 130, 255) },
-  NeverBlox = { Color3.fromRGB(82, 122, 246), Color3.fromRGB(120, 150, 255) },
-  Lemon = { Color3.fromRGB(252, 211, 49), Color3.fromRGB(240, 165, 25) },
-  Mono = { White, White },
-  Sunset = { Color3.fromRGB(255, 150, 90), Color3.fromRGB(255, 90, 140) },
-  Mint = { Color3.fromRGB(110, 230, 180), Color3.fromRGB(90, 200, 255) },
-  Rose = { Color3.fromRGB(255, 120, 160), Color3.fromRGB(200, 120, 255) },
-  Gold = { Color3.fromRGB(255, 210, 120), Color3.fromRGB(255, 150, 80) },
-  Crimson = { Color3.fromRGB(255, 100, 100), Color3.fromRGB(255, 60, 140) },
-  Ocean = { Color3.fromRGB(90, 200, 255), Color3.fromRGB(120, 140, 255) },
-  Toxic = { Color3.fromRGB(150, 255, 120), Color3.fromRGB(60, 220, 160) },
-  Lavender = { Color3.fromRGB(180, 160, 255), Color3.fromRGB(220, 160, 255) },
-  Aqua = { Color3.fromRGB(80, 230, 230), Color3.fromRGB(80, 180, 255) },
-  Ember = { Color3.fromRGB(255, 120, 60), Color3.fromRGB(255, 70, 70) },
-  Cyber = { Color3.fromRGB(0, 255, 200), Color3.fromRGB(120, 100, 255) },
-  Bubblegum = { Color3.fromRGB(255, 140, 220), Color3.fromRGB(150, 180, 255) },
-  Forest = { Color3.fromRGB(120, 220, 120), Color3.fromRGB(180, 230, 90) },
-  Slate = { Color3.fromRGB(150, 170, 200), Color3.fromRGB(110, 130, 170) },
-  Cherry = { Color3.fromRGB(255, 90, 120), Color3.fromRGB(255, 150, 110) },
-  Aurora = { Color3.fromRGB(120, 255, 200), Color3.fromRGB(160, 140, 255) },
-  Sky = { Color3.fromRGB(120, 200, 255), Color3.fromRGB(180, 210, 255) },
-  Magma = { Color3.fromRGB(255, 80, 40), Color3.fromRGB(255, 180, 40) },
-  Grape = { Color3.fromRGB(170, 110, 255), Color3.fromRGB(255, 110, 200) },
-  Steel = { Color3.fromRGB(120, 200, 220), Color3.fromRGB(150, 160, 200) },
-  Peach = { Color3.fromRGB(255, 180, 150), Color3.fromRGB(255, 130, 160) },
-  Neon = { Color3.fromRGB(0, 240, 255), Color3.fromRGB(180, 0, 255) },
-  Waifu = { Color3.fromRGB(150, 205, 120), Color3.fromRGB(195, 230, 130) },
-}
-
-local PresetBackground = {
-  Waifu = Color3.fromRGB(15, 19, 13),
-  NeverBlox = Color3.fromRGB(15, 16, 21),
-  Lemon = Color3.fromRGB(18, 17, 13),
-}
-
-local DefaultBackground = Color3.fromRGB(15, 15, 15)
-
-local InsUi = {}
-local Window
-local ApplyOptions
+ 
+ 
+ 
 local WindowClass = {}
-local TabClass = {}
-local SectionClass = {}
-
 WindowClass.__index = WindowClass
-TabClass.__index = TabClass
-SectionClass.__index = SectionClass
 
-setmetatable(WindowClass, { __index = InsUi })
+local KittyGui = {}
+local windows = {}
 
-function InsUi:CreateWindow(config)
-  local Title = StripGlyphs(config.title)
+local function round1(n) return floor(n + 0.5) end
 
-  State.Title = Title ~= "" and Title or "INSUI"
-  State.Subtitle = config.subtitle == "auto" and "" or StripGlyphs(config.subtitle)
+function KittyGui:CreateWindow(info)
+    info = info or {}
 
-  if config.subtitle == "auto" then task.spawn(function() State.Subtitle = PlaceName() end) end
-
-  State.ConfigName = config.configName or State.ConfigName
-  State.Folder = config.configFolder and SafeFolder(config.configFolder) or (LibName .. "_" .. SafeFolder(State.Title))
-  State.W = config.size and config.size.X or Layout.WindowSize.X
-  State.H = config.size and config.size.Y or Layout.WindowSize.Y
-  State.X = config.position and config.position.X or math.floor(Camera.ViewportSize.X / 2 - State.W / 2)
-  State.Y = config.position and config.position.Y or math.floor(Camera.ViewportSize.Y / 2 - State.H / 2)
-
-  ApplyOptions(config)
-  task.spawn(function() State.Avatar = FetchAvatar() end)
-State.Open = config.startOpen ~= false
-
-  ApplyInputState(true)
-
-  Window = setmetatable({}, WindowClass)
-
-  task.spawn(function()
-    task.wait()
-
-    local okWant, Wanted = pcall(ReadAutoload)
-    if not okWant or not Wanted then return end
-
-    local Loaded = false
-    local okFile, Exists = pcall(function() return isfile(ConfigPath(tostring(Wanted))) end)
-if okFile then Loaded = Exists == true end
-
-    if Loaded then
-      pcall(function() InsUi:LoadConfig(Wanted) end)
-pcall(function() InsUi:Notify("config", "auto-loaded: " .. tostring(Wanted), 4, "success") end)
-else
-
-      pcall(function() InsUi:Notify("config", "auto-load: " .. tostring(Wanted) .. " not found", 4, "warning") end)
-pcall(function() WriteAutoload(nil) end)
-end
-  end)
-return Window
-end
-
-function InsUi:Tab(name, icon)
-  return Window:Tab(name, icon)
-end
-
-function InsUi:Category(name)
-  State.Heading = name
-  return self
-end
-
-function WindowClass:Tab(name, icon)
-  local Tab = setmetatable({ Name = name, Icon = icon, Category = State.Heading, Sections = {}, Subs = {}, Scroll = 0, WantScroll = 0, MaxScroll = 0, Fling = 0 }, TabClass)
-
-  table.insert(State.Tabs, Tab)
-
-  local Active = State.Tabs[State.ActiveIndex]
-
-  if not Active or Active.Hidden then State.ActiveIndex = #State.Tabs end
-
-  return Tab
-end
-
-function TabClass:Sub(name, icon)
-  local Sub = setmetatable({ Name = name, Icon = icon, Parent = self, Sections = {}, Subs = {}, Scroll = 0, WantScroll = 0, MaxScroll = 0, Fling = 0 }, TabClass)
-
-  table.insert(self.Subs, Sub)
-
-  return Sub
-end
-
-function TabClass:Section(name, side, desc)
-  local Section = setmetatable({ Name = name, Side = side or "Left", Desc = desc, Rows = {} }, SectionClass)
-
-  table.insert(self.Sections, Section)
-
-  return Section
-end
-
-function WindowClass:AddSettingsTab(icon)
-  if SettingsTab then return SettingsTab end
-
-  local Wanted = State.ActiveIndex
-
-  State.SettingsIcon = icon or "cog"
-
-  SettingsTab = BuildSettingsTab(self, icon)
-  State.ActiveIndex = Wanted
-  State.SettingsIndex = #State.Tabs
-  State.Tabs[#State.Tabs].Hidden = true
-
-  return SettingsTab
-end
-
-function WindowClass:GetSettingsTab()
-  return SettingsTab
-end
-
-function WindowClass:SettingsSection(name, side, desc)
-  return self:AddSettingsTab():Section(name, side or "Right", desc)
-end
-
-function SectionClass:Paragraph(title, body)
-  return AddRow(self, { Kind = "Info", Name = title .. Newline .. tostring(body or "") })
-end
-
-function SectionClass:Progressbar(name, value)
-  return AddRow(self, { Kind = "Progress", Name = name, Value = value or 0, Callback = function() end })
-end
-
-function SectionClass:Space(height)
-  return AddRow(self, { Kind = "Space", Height = height or 10 })
-end
-
-function SectionClass:Checkbox(name, default, callback)
-  return self:Toggle(name, default, callback)
-end
-
-local RowClass = {}
-RowClass.__index = RowClass
-
-function RowClass:Tooltip(text)
-  self.Tip = tostring(text)
-
-  return self
-end
-
-function RowClass:Set(value)
-  self.Value = value
-  self.Callback(value)
-  return self
-end
-
-function RowClass:Get()
-  return self.Value
-end
-
-function RowClass:SetText(text)
-  self.Name = tostring(text)
-  return self
-end
-
-function RowClass:AddKeybind(key, mode, callback)
-  self.Bind = { Value = KeyName.Plain(key), Mode = mode or "Hold", Active = false, Glow = 0, Callback = callback }
-
-  return self
-end
-
-function RowClass:AddColorpicker(name, default, callback, alpha)
-  self.Swatch = { Name = name, Value = default, Alpha = alpha or 1, Callback = callback or function() end }
-
-  return self
-end
-
-function RowClass:AddButton(name, callback)
-  if not self.Buttons then self.Buttons = { { Name = self.Name, Callback = self.Callback, Glow = 0 } } end
-
-  table.insert(self.Buttons, { Name = name, Callback = callback or function() end, Glow = 0 })
-
-  return self
-end
-
-function RowClass:DependsOn(parent)
-  self.Parent = parent
-
-  return self
-end
-
-function RowClass:SetRisk(risk)
-  self.Risk = risk ~= false
-
-  return self
-end
-
-function RowClass:SetVisible(visible)
-  self.Hidden = visible == false
-
-  return self
-end
-
-function RowClass:SetLocked(locked)
-  self.Locked = locked == true
-
-  return self
-end
-
-function RowClass:UpdateChoices(choices)
-  self.Choices = choices
-
-  return self
-end
-
-function RowClass:AddChoice(choice)
-  for _, Have in ipairs(self.Choices) do
-    if Have == choice then return self end
-  end
-
-  table.insert(self.Choices, choice)
-
-  return self
-end
-
-function RowClass:RemoveChoice(choice)
-  for Index = #self.Choices, 1, -1 do
-    if self.Choices[Index] == choice then table.remove(self.Choices, Index) end
-  end
-
-  for Index = #self.Value, 1, -1 do
-    if self.Value[Index] == choice then table.remove(self.Value, Index) end
-  end
-
-  return self
-end
-
-function RowClass:ClearChoices()
-  self.Choices = {}
-  self.Value = {}
-
-  return self
-end
-
-function RowClass:SetSearchable(searchable)
-  self.Searchable = searchable == true
-
-  return self
-end
-
-function RowClass:SetMaxSelections(count)
-  self.MaxSelections = count
-
-  return self
-end
-
-function RowClass:SetRefresh(provider)
-  self.Provider = provider
-
-  return self
-end
-
-function RowClass:Refresh(choices)
-  if choices then return self:UpdateChoices(choices) end
-  if not self.Provider then return self end
-
-  return self:UpdateChoices(self.Provider())
-end
-
-function RowClass:IsActivated()
-  if self.Bind then return self.Bind.Active end
-
-  return self.Value == true
-end
-
-function RowClass:Reset()
-  if self.Default == nil then return self end
-
-  self.Value = self.Default
-  self.Callback(self.Value)
-
-  return self
-end
-
-function RowClass:SetColor(color)
-  self.Color = color
-
-  return self
-end
-
-local function AddRow(section, row)
-  table.insert(section.Rows, setmetatable(row, RowClass))
-
-  return section.Rows[#section.Rows]
-end
-
-function SectionClass:Toggle(name, default, callback, tooltip)
-  local Row = { Kind = "Toggle", Name = name, Value = default == true, Tip = tooltip, Callback = callback or function() end }
-
-  return AddRow(self, Row)
-end
-
-function SectionClass:Slider(name, default, step, minimum, maximum, suffix, callback, tooltip)
-  local Row = { Kind = "Slider", Name = name, Value = default, Step = step, Min = minimum, Max = maximum, Suffix = suffix or "", Tip = tooltip, Callback = callback or function() end }
-
-  return AddRow(self, Row)
-end
-
-function SectionClass:Button(name, callback, tooltip)
-  local Row = { Kind = "Button", Name = name, Tip = tooltip, Callback = callback or function() end }
-
-  return AddRow(self, Row)
-end
-
-function SectionClass:Dropdown(name, default, choices, multi, callback, tooltip, searchable, maxSelections)
-  local Provider = type(choices) == "function" and choices or nil
-  local List = Provider and Provider() or choices
-  local Row = { Kind = "Dropdown", Name = name, Value = default or {}, Choices = CopyList(List), Provider = Provider, Multi = multi == true, Tip = tooltip, Searchable = searchable == true, MaxSelections = maxSelections, Callback = callback or function() end }
-
-  return AddRow(self, Row)
-end
-
-function SectionClass:Colorpicker(name, default, callback, alpha)
-  local Row = { Kind = "Color", Name = name, Value = default, Alpha = alpha or 1, Callback = callback or function() end }
-
-  return AddRow(self, Row)
-end
-
-function SectionClass:Keybind(name, default, callback, tooltip)
-  local Row = { Kind = "Keybind", Name = name, Value = KeyName.Plain(default), Mode = "Hold", Active = false, Tip = tooltip, Callback = callback or function() end }
-
-  return AddRow(self, Row)
-end
-
-function SectionClass:RangeSlider(name, low, high, step, minimum, maximum, suffix, callback, tooltip)
-  local Row = { Kind = "Range", Name = name, Low = low, High = high, Step = step, Min = minimum, Max = maximum, Suffix = suffix or "", Tip = tooltip, Callback = callback or function() end }
-
-  return AddRow(self, Row)
-end
-
-function SectionClass:Label(text)
-  local Row = { Kind = "Label", Name = type(text) == "function" and text() or text, Source = type(text) == "function" and text or nil }
-
-  return AddRow(self, Row)
-end
-
-function SectionClass:Info(text)
-  local Row = { Kind = "Info", Name = text }
-
-  return AddRow(self, Row)
-end
-
-function SectionClass:Textbox(name, default, callback, tooltip)
-  local Row = { Kind = "Textbox", Name = name, Value = default or "", Tip = tooltip, Callback = callback or function() end }
-
-  return AddRow(self, Row)
-end
-
-function SectionClass:Divider(text)
-  local Row = { Kind = "Divider", Name = text }
-
-  return AddRow(self, Row)
-end
-
-IconMasks["house"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAACAAAAAAAAAAAAAAAAAAAAAAAEAAZ7fggABAAAAAAAAAAAAAAAAAAAAQMAL8v//88zAAICAAAAAAAAAAAAAAADAABq9f/6+v/3bwAAAwAAAAAAAAAAAQQAF6v///z///z//68ZAAQBAAAAAAACAQBJ4f/7/v/////++//kTQAAAwAAAAAABIn///v///////////z//40GAAAAAAAwxf/9/f/////////////9/f/INAAAAADn//v///////////////////v/7QAAAAAmpv/8/////////////////P+rJwAAAAAAmP/7/////fv7+/v9////+/+eAAAAAAACnP/7////////////////+/+iAgAAAAAAm//7//3/zI2Pj43J//3/+/+hAAAAAAAAm//7//v/WAAAAABQ//z/+/+hAAAAAAAAm//7//v/YAUJCQVZ//z/+/+hAAAAAAAAmv36//v/XgAEBABX//z/+v2gAAAAAAAAoP/8/fj7WQAAAABS+/n9/P+nAAAAAAAASuP7////9+fo6Of2/////ORPAAAAAAAAAAklP1RmeYWJiYV5ZlU/JgoAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["gear"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAgECCMPv7roEAgECAwAAAAAAAAAAAAEAAAUAR/////86AAUAAAEAAAAAAAABAQBKHwAOu/37+/6xCgAjSQABAAAAAAACAI3/9L7e//7///7/2sD2/4EAAwAAAAAAW//6/////v37+/3+////+/9QAAAAAAAAtv77/vz9/P/////9/fz++/+pAAAAAAAAN/z9///9/9iWmNv//f/+/vgtAAAAAAADAKv//P3/kQcAAAma//37/54ABAAAAAADALb/+f/IAAAFBQAA0v/5/6kABAAAAAAAb/n9+v9wAQUAAAUAff/6/fZoAAAAAAC5////+/9lAgQAAAQCcv/7////rwAAAAD//P7//P+qAAYDBAUAt//8//78/AAAAADc/vr8//39VgAAAABg//3//Pr+0AAAAACQ/////v7+/5xRU6D//v7+////ggAAAAAJNlay//3///////////3/qVM0BwAAAAAAAAAG1v79/vv7+/v//f/NAQAAAAAAAAABAgYAu/78//3///3//P6uAAYCAQAAAAAAAAAB4v/6/f/3+P/9+v/XAQEAAAAAAAAAAAIBg/f//6gbHrH///V7AAIAAAAAAAAAAAABADGjnAAAAAOjoC0AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["person"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAfO/EfzwKAAAAAAAAAAAAAAAAAAAAAQAL6/////3dcgECAAAAAAAAAAAAAAAAAwA8//39/P7/8woAAQAAAAAAAAAAAAAABAB9//v///z9wwEBAAAAAAAAAAAAAAAAAgC+/vz///v/ggAEAAAAAAAAAAAAAAABAAry//v7/fz+QQADAAAAAAAAAAAAAAAAAgKF7v/////zDgABAAAAAAAAAAAAAAAAAAMAGU+QzfGGAwUAAAAAAAAAAAAAAAAAAgAAAAAAAAMAAAACAAAAAAAAAAAAAAACADmTp6qsqKOokzkAAgAAAAAAAAAAAAMAWf7///////////5ZAAMAAAAAAAAAAQEL6f/5+/v7+/v7+f/pCwEBAAAAAAAAAwA4//3///////////3/OAADAAAAAAAABABr/vv///////////v+bAAEAAAAAAAAAwCi//v///////////v/owADAAAAAAAAAQHU//3///////////3/1AEBAAAAAAACAB/1/v7///////////7+9R8AAgAAAAADAEL//vz9/v/////+/fz+/0IAAwAAAAABAQ2i/f/////////////9og0BAQAAAAAAAAAAOo3F5fb+/vblxY06AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["two-people"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAABAAAAAAAAAAEAAAAAAAAAAwBQ1bd3OQcAAgBrv8aDDQABAAAAAAAAAgDQ/////9kpAJr/////xgkCAQAAAAACABz2/fv7+v9cIf/7/P34/2MABAAAAAAEAFf//P///v0dWfz7///7/JoABAAAAAAEAJ/99/z8/t8AR//6/v/5/34ABAAAAAAEAHT////+/6QACc///v7/8R8BAgAAAAAAAQBBhsX1+EQAAB+7/f/SPQACAAAAAAAAAAMAAAAJDwADAQAAEBYAAAQAAAAAAAAAAQApaHVrTxEAAhNUaWpkKwABAAAAAAACAIH5/////+FEAMH/////+oUAAgAAAAAAZf/++/v7+v/2GF39+Pv7/v9pAAAAAAAF2P38//////n/hAP2//7//P3bBgAAAAAs+v////////z+ygDI//z////7LwAAAABk//3///////7/9gaJ//v///z/aQAAAACh//z////////9/zRG//z///z/pwAAAADj/Pr9/f7+/fz3/X0P/P79/fr86AAAAADG/////////////2IZ////////zAAAAAANYKXM3+jn3MOURwBz5+XgzKZjDgAAAAAAAAAAChEQBwAAAAEOEBEKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["eye"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgMAAAAAAAAAAAMCAAAAAAAAAAAAAAADAAAVTXeNjXdNFQAAAwAAAAAAAAAAAAMAHZft////////7ZcdAAMAAAAAAAAAAwBK6f///Pr4+Pr8///pSgADAAAAAAADAEr9//v+/P/////8/vv//UoAAwAAAAABHvH+/P/9/+y/vev//v/8//EeAQAAAAAAqf/7//3/fw8AABSJ//3/+/+pAAAAAAA1/f3//P+BPMRxAwAAjP/8//39NQAAAACe//z+/+wI2v/6DAIDDez//vz/ngAAAADr//78/74AeOiSAgICALz//P7/6wAAAADt//78/7oAAA8AAAACALr//P7/7QAAAACj//z+/+kKBAABAAIDCun//vz/owAAAAA6/v3//P+EAAEDAwAAhP/8//3+OgAAAAAAsP/7//3/fg0AAA1+//3/+/+wAAAAAAABI/X+/f/+/+OysuP//v/9/vUjAQAAAAADAFP///v+/P/////8/vv//1MAAwAAAAAAAwBT7////Pn4+Pn8///vUwADAAAAAAAAAAMAJKP0////////9KMkAAMAAAAAAAAAAAADAAAdWIOamoNYHQAAAwAAAAAAAAAAAAAAAgMAAAAAAAAAAAMCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["folder"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAA+jI+Pj4+Pij8AAwAAAAAAAAAAAAAAAAD4//////////9PAAYDAwMDAwMDAwAAAAD/+/v7+/v7+v3zMAAAAAAAAAAAAAAAAAD+//////////3/6K6wrq6urq2rVwAAAAD////////////+/////////////wAAAAD//////////////vz8/Pz8/Pz7/wAAAAD//////////////////////////gAAAAD//////////////////////////wAAAAD//////////////////////////wAAAAD//////////////////////////wAAAAD//////////////////////////wAAAAD//////////////////////////wAAAAD//////////////////////////wAAAAD//////////////////////////wAAAAD+/////////////////////////gAAAAD/+/v7+/v7+/v7+/v7+/v7+/v7/wAAAAD9/////////////////////////QAAAABJmpydnZ2dnZ2dnZ2dnZ2dnZyaSQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["code"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQQAAAAAAgMAAQQBAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAIAEVoKAAIANkwAEVsJAAIAAAAAAAAAAwARxv86AAQA2fsATf+3CQACAAAAAAADABHF/44FBAAZ/LsACJ7/twkAAgAAAAAAEMb/kAABBABO/3cAAwCg/7cIAAAAAAARxP+RAAMBBACO/zoABAIAof+1CQAAAADS/4gABAEAAQDS9QwAAQEDAJr/vgAAAADT/4oABAEBABj9vAACAAEDAZv/vwAAAAARxP+TAAMFAE3/eAAEAQIAo/+1CQAAAAAAEMX/kgAEAI3/OwAEAACh/7cIAAAAAAADABDE/5AFAM/0DAADCZ//tgkAAgAAAAAAAwAQxf82A//CAAYAT/+2CQACAAAAAAAAAAIAEFgKAFIsAAIAEFkJAAIAAAAAAAAAAAABAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQQAAAMCAAAAAQQBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["three-sliders-horizontal"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQEBAQEBAQEBAgABKx8AAAEBAAAAAAAAAAAAAAAAAAAAADPL+PGaCAAAAAAAAAAABAMEBAQEBAUFEuP//v//iQMHAAAAAADb9PP09PT09PT0+P/9//78//P0zgAAAACKoqChoaKioaKgrv/8/fz96J+jgQAAAAAAAAAAAAAAAAAAAL//////XQAAAAAAAAAEBAQEAA4UAAAGAxWk5NhtAAYEBAAAAAADAwQDhOLqqRcCBAAADQUAAwICAwAAAAAAAAB8/////78AAAAAAAAAAAAAAAAAAACux8X3/P3+/P/MxcbGx8fGxsXHowAAAAC91tX7/P7+/P/b1tbW1tbW1tXWsgAAAAAAAACH///+/8oAAAAAAAAAAAAAAAAAAAACAgMHmfH3viEBAwAAAAAAAwEBAgAAAAAEBAQDABwkAAAGAw6Q08VcAAYEBAAAAAAAAAAAAAAAAAAAALj/////VwAAAAAAAACKoqChoaKjoaKgrf/7/fv96J+jgQAAAADb9PP09PT09PT0+f/9//78//P0zgAAAAAABAMEBAQEBAUEE+j//Pz/jgMHAAAAAAAAAAAAAAAAAAAAAD/c//ytDAAAAAAAAAABAQEBAQEBAQEBAgAORDUAAAEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["shield-check"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQQAAAADPpLk45E9AwAAAAQBAAAAAAAAAAACOIXQ/v/////+z4Q3AgAAAAAAAAABEITU//////z+/vz/////04MQAQAAAAAAhf///vv9/////////fv+//+FAAAAAAAAnvv5///////////++/7/+fueAAAAAAAAmf/7//////////7/////+/+YAAAAAAAAlf/7/////////v//iNj/+f+VAAAAAAAAjv/7//77/v/9/f9WAML/+P+OAAAAAAAAgv/7//////z+/1cAqv/9+/+CAAAAAAAAbv/5/99i5v/9VwCo//z/+/9uAAAAAAAAUv/6/t4FJNtZAKf/+v///P9SAAAAAAAALv///f/UDwEAo//6/////v8sAAAAAAAACOP//vz/0y6i//r////9/+EHAAAAAAAEAJj/+//9/////f/////7/5YABAAAAAADACv9/P7//f/9//////78/CoAAgAAAAAAAwCH//n///////////n/hQADAAAAAAAAAQMCrf/7/f/////9+/+sAgMBAAAAAAAAAAEBA5j///z+/vz//5gDAQEAAAAAAAAAAAABAQBV2P/////YVQABAQAAAAAAAAAAAAAAAQMADnvp6XsOAAMBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["lightning-bolt"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABABa7KcFAgAAAAAAAAAAAAAAAAAAAAADADL0//8kAAIAAAAAAAAAAAAAAAAAAAIBE+D//f0oAAIAAAAAAAAAAAAAAAAAAQQAuf/7//4nAAIAAAAAAAAAAAAAAAAABACM//v+//4nAAIAAAAAAAAAAAAAAAAEAFv/+//+//4qAgIAAAAAAAAAAAAAAAMAMff8/v/+//4aAAMEAwAAAAAAAAAAAgAS3f/9/////v5wIAAAAAEAAAAAAAAAAgS3//z/////////98aGPAABAAAAAAAEAGn/9v3+///////8/////1IAAwAAAAAEAF3//////P///////v32/2oABAAAAAAAAQBKldP+//////////z/vQYCAQAAAAAAAAAAAAMsfv7+/////f/hFQACAAAAAAAAAAADBAEAHP/////+/Pk3AAMAAAAAAAAAAAAAAAMCLf/////7/2IABAAAAAAAAAAAAAAAAAIAKv////v/kgAEAAAAAAAAAAAAAAAAAAIAKv//+//AAgMBAAAAAAAAAAAAAAAAAAIAKv79/+QXAQIAAAAAAAAAAAAAAAAAAAIAKP//9zgAAwAAAAAAAAAAAAAAAAAAAAEBCLj3YwAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["gift-box"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAbKtZaqxaAAEAAAAAAAAAAAACBAQEBgB2//f///f/WAAHBAQEAQAAAAAAAAAAAAHa0gDmuwDvuAEAAAAAAAAAAAAga29xUgCd/63v4LH/ewBgcW9pGQAAAADg////+RkRoP////+QBy3/////0QAAAAD/+/v4/7cAaP+Vq/9LANH9+Pv79wAAAAD//v/9/uYAWIUAAJBDBPj+/v/+9QAAAADz//////9uAABbSgAAiP//////5QAAAAAeIyAhICElAAA2LQAAJyEhISAkHAAAAAAAPklISEhIUlMAC1NRR0hIR0k3AAAAAABG//////////8mSP//////////KQAAAABL/fv8/Pz8+/wiQfz5/Pz8/Pz7LgAAAABK//7//////v8iQv/8///////8LQAAAABK//7//////v8iQv/8///////8LQAAAABK//7//////v8iQv/8///////8LQAAAABK//7//////v8iQv/8///////8LQAAAABJ/v7//////v8iQv/8///////6LQAAAABN//39/Pz8+/wiQfz5/Pz8/f7/LgAAAAAc3P////////8kRf/////////IDQAAAAAAFkpieYyapKsXLayimIp2X0YOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["star"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQmRkQgBAQAAAAAAAAAAAAAAAAAAAAAEAGT//2IABAAAAAAAAAAAAAAAAAAAAAACAMD9/b4AAgAAAAAAAAAAAAAAAAAAAAIAIfj+/vggAAIAAAAAAAAAAAACBAQEBAgDcP/7+/9uAwgEBAQEAgAAAAAAAAAAAAAAxP/8/P/EAAAAAAAAAAAAAAAncXR1dnSC+v/////6gnR2dXRxJwAAAADo////////////////////////6AAAAADk//f7+/v7////////+/v7+/f/5AAAAAAmxf/8/v/////////////+/P/FJgAAAAAABpf//////////////////5cGAAAAAAACAABi8v3+/////////v3yYgAAAgAAAAAAAQQAR//9/////////f9IAAQBAAAAAAAAAAQDXP/8/////////P9cAwQAAAAAAAAAAAMAsf/7//78/P7/+/+yAAMAAAAAAAAAAQAQ7f/+/f/////9/v/tEAABAAAAAAAAAwBL//z7//16ev3/+/z/SwADAAAAAAAABACc/Pr/1DwAADzU//r8nAAEAAAAAAAAAwCf//2QCwAEBAALkP3/nwADAAAAAAAAAQAWhEwAAAMAAAMAAEyEFgABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["globe-simplified"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACABFqxo8AAI/FaA4AAwAAAAAAAAAAAQIAYN3/+RRYSRb4/9paAAIBAAAAAAABAwCY////awL04wBu////kQADAQAAAAADAJb/+f3rA3r//2IF6/35/40AAwAAAAAAVv/6+v+PAur+/toAkf/6+v9NAAAAAAAM3v79/f8yP//8/f8qNf/9/P7WBwAAAABg//z+//QDi/76+v50BPT//v3/UwAAAAC1/vz9/9cAuv/8+/+kANf//fz+qQAAAADp/////8gA0/////+/AMr/////4QAAAAAaGhoaGxMAFRoaGhsTABMbGhoaGgAAAABbZGRjZEwAU2RjY2RLAFBkY2RkXQAAAADx/////9YA3f/////EAOH/////7AAAAACx+vj5+9cAsfv49/qSAOT7+fj6qQAAAABh//3+//YFhf77/P9YFf7//v3/VQAAAAAK2/78/f8zOv/8/voRXf/7/P/RBgAAAAAATP/6+v+MAen+/7AAwf/7+/9BAAAAAAADAIP/+vznAX7//i0p/vr8/3cAAwAAAAAAAwB/////XQb+qwC0////dAADAAAAAAAAAAIARMT/8RJYGVH//789AAMAAAAAAAAAAAADAABHoWEACLCWQwAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["grid"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACZ////////////////////////igAAAAD/y4mNi4r03IqMjIrk7YqLjYnT/AAAAAD+gQAAAADkrQAAAADA1AAAAACU/wAAAAD/jAQJBATmtAQHBwTF2AQFCASe/wAAAAD/igEGAQHmswEEBAHE1wECBQGc/wAAAAD/hgAAAADlsAAAAADC1gAAAACZ/wAAAAD/7dfZ2Nj789fY2Nf2+dfY2Nfw9QAAAAD/5MTFxMT57cTFxcTx9sTExcTo9gAAAAD/gwAAAADlrwAAAADB1QAAAACW/wAAAAD/iwMIAwPmtAMGBgPF1wMEBwOd/wAAAAD/jAMIAwPmtAMGBgPF2AMEBwOd/wAAAAD/ggAAAADkrgAAAADA1AAAAACW/wAAAAD/3bO2tLT46bO1tbPu87S0tbPi9wAAAAD/8+bm5ub99+bm5ub5++bm5ub19AAAAAD/iAABAADmsgAAAADD1gAAAACa/wAAAAD/igAFAADmswADAwDE1wABBACc/wAAAAD/jAUJBQXmtAUICAXF2AUGCQWe/wAAAAD+gQAAAADkrQAAAADA1AAAAACU/wAAAAD/y4qNi4v03YqNjIrk7YuMjYrT/AAAAACZ////////////////////////igAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["two-stacked-squares"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACK////////////////7kEAAgAAAAAAAAD72ZmbmpqampqampqX+6MABAAAAAAAAAD/lAAAAAAAAAAAAAAA66oABAAAAAAAAAD/ngQIBAQEBAQEBQQE7KgABAAAAAAAAAD/nAAEAAACAQAAAQEA9q0ABQABAwAAAAD/nAAEAAAAAAAAAAAAQykAAAAAAAAAAAD/nAAEAgBCxM/Pz8/PwsfPz8/KawAAAAD/nAAEAgDH/////////////////wAAAAD/nAAEAQDJ/Pr9/f39/f39/f38/gAAAAD/nAAEAQDJ//z//////////////wAAAAD/nAAFAQDJ//z//////////////wAAAAD+nAADAQHJ//z//////////////wAAAAD/mQABAADK//z//////////////wAAAADr/+bn5kS7//z//////////////wAAAAA7oa6trC+///z//////////////wAAAAAAAAAAAADK//z//////////////wAAAAACBAMDBQHI//z//////////////wAAAAAAAAAAAQDJ//z//////////////gAAAAAAAAAAAgDK//z//////////////wAAAAAAAAAAAwBl9fz///////////37mQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["speedometer"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQQAAAAAAAAAAAABAgAAAAAAAAAAAAACAAAFOGWAgGJADQIBAF5SAAAAAAAAAAMACXXY///////QHgACjP9xAAAAAAAAAwAx0f///vn6/5oLABu6/6kAAgAAAAADADrx//v9+//7bgAAQOH/2hEEAgAAAAACGur/+//7/+JBAABt+//4OAAAAQAAAAAAqP/7//z/vR0ACpz/+v9xABd5AAAAAAA1/f3//P+tAwAmx//4/6wAAKH/LwAAAACX//z+/uoRAEnp//n/3RIAZf/9lQAAAADY//37/6QAKPj/+vz7OQAw9/z/1wAAAAD2///7/4wCWP/2+f9wAA7W//z/9QAAAAD////8/64AHef//6kAAKP/+////gAAAAD1///+/vMiACuLdAoAZ//7////9QAAAADW//3//f/LHAAAAABP+fz+//3/1gAAAACT//z///3/6IhaY6n///7///z/lAAAAAAx/P3////9/////////v////38MQAAAAAAov/4+/v7+vf4+Pj7+/v7+P+iAAAAAAACFub//////////////////+YXAgAAAAACADGcnJ2dnZ2dnZ2dnZ2cnDEAAgAAAAAAAQAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["location-pin"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQAymNn09NeULgABAQAAAAAAAAAAAAECAYb3////////9H8AAgEAAAAAAAAAAQMBqf///P37+/38//+gAAMAAAAAAAAAAwB+//n//f/////9/vn/cwADAAAAAAACAB/4/P7+//CztPL//v788xkAAgAAAAAEAHr/+/3/xR8AACPM//37/28ABAAAAAADALj++/72IQAFBQAq+f37/q0AAwAAAAAAAND/+v/IAAMAAAIA0v/6/8YAAQAAAAABAM3/+v/RAAQBAQMB2v/6/8MAAgAAAAADAKz++/39PwAAAABJ/v37/qIABAAAAAAEAGT//P7/5k0LDFLq/v78/1kABAAAAAABAQ/o/v3////j5f////3+4QsBAQAAAAAAAwBW//v9/v3///3+/Pz/TAADAAAAAAAAAAMAdv///f/9/f/9//9tAAMAAAAAAAAAAAADAFDX//7///7/00oAAwAAAAAAAAAAAAAAAwAIsf78/P6oBgADAAAAAAAAAAAAAAAAAAYARP/8/f85AAYAAAAAAAAAAAAAAAAAAAEBE+///+gNAQEAAAAAAAAAAAAAAAAAAAACALv//7AAAwAAAAAAAAAAAAAAAAAAAAADAVb49UwBAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["location-pin-map"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAAADAAAAAAAAAAAAAAAAAAAAAAACAAUrKwUAAgAAAAAAAAAAAAAAAAAAAAIAXtr9/dpeAAIAAAAAAAAAAAAAAAAAAwBi////////YQADAAAAAAAAAAACBAECAQ/s/f/Gxv/97A8BAgEEAgAAAAAAAAAAAED//7gAALj//0AAAAAAAAAAAAAefNpxAEv//6QAAKT//0oAcdp8HgAAAADf/7k8ABz4/PuVlfv89xwAPbn/3wAAAAD/cgAABgCF//3///3/hQAGAABy/wAAAAD+bgMGAAACjv75+f6OAgAABgNu/gAAAAD/cAACXV0BAGb//2UAAV1dAgBw/wAAAAD/cAAAz9AAAgr19AoCANDPAABw/wAAAAD/cAAAwMEAAwLa2gIDAMHAAABw/wAAAAD/cAACxMUDBQAaGgAFA8XEAgBw/wAAAAD/cgEAvr8AAgQhJQQCAL++AAFy/wAAAAD9ZAAq2981CAC5ygAGNN/bKgBk/QAAAAD/ws7/8u//76TZ4aLu/+/y/87C/wAAAACY8L5hGBJMmuX//+WaTRIYYb7wlwAAAAAACAAAAAAAAAArKwAAAAAAAAAIAAAAAAACAAMEAQEDBAAAAAAEAwEBBAMAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["crown"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAgAAAAAAAgA4OQABAAAAAAACAQAAAAAAAAECAAADAEX8/UcAAwAAAgEAAAAAAAABJgAABAICCd3//90JAgIEAAAnAgAAAACt/bkwAAMAg//7+/+AAAMAMrr9sQAAAAD4///5hgYl+Pz+/vz2IAiJ+v//+gAAAADX/vv//83L//3///3/yND///v+2QAAAAC9//3+/P///v/////+///8/v3/vwAAAACf//z///39/////////f3///z/oQAAAACA//z///////////////////z/gQAAAABh//3///////////////////3/YgAAAABE//7///////////////////7/RQAAAAAq+v/+/////////////////v/6KwAAAAAV6//9/Pv7/P3+/v38+/v8/f/rFQAAAAAE1vz///////////////////zWBAAAAAAAyv/ptH9YPi8oKC8+WH+06f/KAAAAAAAAfFkAAAQfNkZOTkY2HwQAAFl8AAAAAAABABl7yfH///////////HJexkAAQAAAAABG+b///////z7+/z//////+YbAQAAAAABAR9trNTr+P7///7469SsbR8BAQAAAAAAAAAAAAMWJzQ7OzQnFgMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["flame"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEP3vXRhhwAAwAAAAAAAAAAAAAAAAAABAFQ//7//+dWAAMAAAAAAAAAAAAAAAAAAwC+//v+/P//UQADAAAAAAAAAAAAAAAEAE3//P////z+6xMBAQAAAAAAAAAAAAIBFeX+/f/////7/3EABAAAAAAAAAAAAQMBuf/8///////8/rkBBQEAAAAAAAAAAwCH//v////////9/9gAAAAAAAAAAAADAD//+/7////+///9/9cOOxwAAQAAAAACAcX//P////////////Ti/7cAAgAAAAAAKf7+//////39/f7//////vQVAAAAAAAAVv/8///9/85c//39//79/f89AAAAAAAAZf/7///7/4oAev///v///P5TAAAAAAAAWf/7///9/0ACAD7f/v3//P9OAAAAAAAAMf/+//7/9BcCCQBw//v//v8sAAAAAAABBdv+/f7+9x0ABACJ//v9/dgEAQAAAAAEAGr/+v/9/7MbBkvx/v76/2kABAAAAAABAgTD//n//v/w3f///vr/xAQCAQAAAAAAAgEX0//+/fz///38/v/UGAECAAAAAAAAAAIAEqP9/////v///qMSAAIAAAAAAAAAAAACAABCpOD6++KlQgAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["lock-closed"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAUtT//8I4AAIAAAAAAAAAAAAAAAAAAwBu/+KVnfP7RgADAAAAAAAAAAAAAAACACj/tAgAABna7A4BAQAAAAAAAAAAAAAEAIj+GQAHBwBE/1UABAAAAAAAAAAAAAMFAbHqAAIBAwIX/nwBBgMAAAAAAAAAAQAAAK/mAAAAAAAT/3oAAAABAAAAAAACAGTCye/6y8vLy8rQ/+TJukcAAgAAAAAAR/////////////////////okAQAAAAAAhv34/f7//Pz7+/z9//79+f9XAAAAAAAAg//7/////////////////P5XAAAAAAAAhP/7/////v/h6v/+/////P9XAAAAAAAAhP/7/////v8kVf/8/////P9XAAAAAAAAhP/7//////8ZSP/8/////P9XAAAAAAAAhP/7//////8dS//8/////P9XAAAAAAAAhP/7/////v8UR//8/////P9XAAAAAAAAhP/7/////v+/0P/+/////P9XAAAAAAAAhP37////////////////+/xXAAAAAAAAhv/8/Pz9/v/8/f/+/fz9/v9WAAAAAAABLs/8////////////////+L0WAQAAAAABAAM3c6nQ6ff+/fXlyaFqLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["bell"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAABawO349+q2SwABAAAAAAAAAAAAAAECCaj//////////5MBAwEAAAAAAAAAAAIArf/7/f7///79/P+QAAMAAAAAAAAAAwBQ//r//////////vv/NQADAAAAAAAAAwCy/fv///////////v+kwAEAAAAAAABAArl//7///////////3/zQABAAAAAAADADP//v////////////7/9hoAAgAAAAAEAGv/+//////////////8/00AAwAAAAADAKb/+//////////////7/4gABAAAAAAABNz//f/////////////8/8EAAgAAAAAAJvz////////////////+/+8RAAAAAAAAW//8/////////////////f8/AAAAAAAAlf/7////////////////+/93AAAAAAAAy//9/////////////////P+wAAAAAAAi8/v6/Pz+//39/f3//vz8+vvjDgAAAAA7///////////////////////3IQAAAAACNXCatsP4+Nzn5df88sK0lWosAAAAAAAAAAAAAACl+ioAAED/gQAAAAAAAAAAAAAAAgQEBQIi6fOWnv/WEgMEBAQCAAAAAAAAAAAAAAIALcD//7AdAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["compass"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAECABBpue07ZemxXwkAAwAAAAAAAAAAAQEAYN3///8nU////9NQAAMAAAAAAAABAwGa///8/P4bTP74/f//hQADAAAAAAADAJv/+v3//f+nvP77/f37/4EAAwAAAAAAXP/6/////fv////////++/9DAAAAAAAP4/39///+/////+/M0P/+/P7OBAAAAABo//z///7/xoZUNBgAB+T//f3/SgAAAAC6/Pv9/P/GAAAcAAABFO7//Pr9nAAAAAD6////+/+HALH/24kBN//+////4AAAAABBLS6q/v9YBu39//gBW///iCwuQAAAAABeTE24//8nLP///7oBjv/+nEtMWgAAAAD8//////ERCoTL82MAuP/7////4gAAAAC2+/n7/8kAAAAAAwAf6f7+/fj7mAAAAABi//39/8oHDzJWfa3p//7///3/RQAAAAAL3v79///c5////////v///P/HAgAAAAAAU//6/v////////z+///++/87AAAAAAADAJD/+/39/P+Qq//9//z8/3YAAwAAAAABAwCO///9+/4aSv74/f//eAADAAAAAAAAAQIAVNP///8nVf///8hEAAMAAAAAAAAAAAADAAlcq+E7Y92jUQIAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["controller"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAECAAAAAAAAAAAAAAAAAwAAAAAAAAAAAQAALmVyc3Nzc3NzcVgXAAIAAAAAAAABAQyj///////////////ubQACAAAAAAACArb//fv7+/v7+/v7+Pj//2oAAwAAAAAAU//5/vz+/////////////fMVAAAAAAAApf35/////f////r7kWPw+f9SAAAAAAAAyP//2UfX//3/////HwDb//+AAAAAAAAO5f/hlgCT4f39/p6Nxqu/fviwAAAAAAAr+v8fAAkAHf/+9QAA8f9BAMniAQAAAABQ//ywbABqr/39/6qavp7Hjvj1HQAAAAB5//n/zxTN//z/////HADa//7/RgAAAACj//z8+vD6/P////r7onfz+vv/dQAAAADL//3///////39/f7///////z/pwAAAADu//7///7//v///////Pv///3/1gAAAAD+///////8/8o/ReD//f////7/7gAAAADj/f3///77/DAAAEP/+v7///z90wAAAABq//77+/3/hAAGBgCP//v7+/3/XwAAAAAAhv////yTAgMBAQMFqP////+CAAAAAAABAC1kYCkAAAAAAAEAAD93cTAAAQAAAAAAAgAAAAACAAAAAAABAQAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["magnifying-glass"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAEmj2/T026NJAAADAAAAAAAAAAAAAwAotf//////////tSgAAwAAAAAAAAADAD/u//+0akREarT//+4/AAMAAAAAAAABJfH/2EEAAAAAAABB2P/wJgECAAAAAAABuv/aGgADBAMDBAMAGtr/vgECAAAAAABI//s7AAUAAAAAAAAFADv6/0MAAwAAAACo/7MABAAAAAAAAAAABACz/p4ABAAAAADh/2EBBAAAAAAAAAAABAFh/9ICAAAAAAD5/z0AAwAAAAAAAAAAAwA8/+kOAAAAAAD7/zoAAwAAAAAAAAAAAwA6/+sPAAAAAADm/1kBBAAAAAAAAAAABAFZ/9cDAAAAAACz/qYABAAAAAAAAAAABACl/qgAAwAAAABX//YpAAQAAAAAAAAEACn1/1IABAAAAAAFzP/HCgAFAwICAwUACsj/0AYBAQAAAAAAOPz/wSYAAAAAAAAmwf/4MgAFAAAAAAADAFr7/++SRyYmR5Lv////nQkABAAAAAAAAwBD1P////7+////1VDG/8YeAAAAAAAAAAMACma56P396LpmCwAf5f/hQAAAAAAAAAACAAAADyIiDwAAAAUAOPH/6QAAAAAAAAAAAQQCAAAAAAIEAQAEAF3ndgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["sword"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABACY8vL08/PscwAAAAAAAAAAAAAAAAAEAHH/////////6QAAAAAAAAAAAAAAAAMARf/8/v////7+6AAAAAAAAAAAAAAAAgAf6/79//////7/6AAAAAAAAAAAAAABAwbK//z///////7/6AAAAAAAAAAAAAAEAJ7/+/z+//////7/5gAAAAAAAAAAAAQAbf/6/v////////3+7wAAAAAAAQMAAwBA/fr9/6no//7//f//gwAAAAAAAAABARvo/fr/awC4//z8//lhAAAAAAAAKbEPAMf/+f9sAID+/fv/4DoAAwAAAAAASv9ci//4/24Aff/8+/+9GQAEAAAAAAACC77///z/cAB7//n+/5IDAAMAAAAAAAACAg7C//lmAHj/+P/6ZgABAgAAAAAAAAAAAAAFv/9Zav/3/+I9AAQBAAAAAAAAAAAAOKsqBMT///3/wRsABAAAAAAAAAAAAACf///lJgTA//iJAAADAAAAAAAAAAAAAAD9/vn/5C0MwP9bGAQBAAAAAAAAAAAAAABx//35/7EADLz/uQADAAAAAAAAAAAAAAAAbv///zgBAARGKAABAAAAAAAAAAAAAAAEAHLtoQECAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["crosshairs"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAADbyAAAAAMAAAAAAAAAAAAAAAAAAgAHQYT/+3o7AgADAAAAAAAAAAAAAAEBAF3U///9////zFAAAgAAAAAAAAAAAQMCnP//3Kf/+qXk//+JAAMBAAAAAAAAAwCc//h2CwDo1gARhP//hAADAAAAAAADAFb/9ksAAAIZFQMAAGD8/z8AAwAAAAACBtf/eAAGAQIAAAEBBgCS/78BAwAAAAAAO//gBQQBAAAAAAAAAgMT8P0kAAAAAAAAff6gCQABAReZkRABAQALuv9lAAAAAADJ+P7z6lEBAKf//5EAAWns9P32swAAAADc//76+lsAAK///5oAAHX8+v3/xQAAAAAFiP6kFwABAR+rpBYBAQAYvP9wAgAAAAAAPv/aAAQBAAAAAAAAAgMM7P4mAAAAAAACCNz/cQAGAQEAAAEBBgCL/8UCAwAAAAAEAF3/80UAAQRdUwQAAFn6/0UAAwAAAAAAAwCi//ZxCQj/9QAPf/3/igADAAAAAAAAAQIEof//26X69KPi//+OAAMBAAAAAAAAAAEBAGDU///+////zFMAAgAAAAAAAAAAAAABAgAHQYT/+3o7AgACAAAAAAAAAAAAAAAAAAMAAADbyAAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["pencil"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAQ962DgADAAAAAAAAAAAAAAAAAAAABQRO7///whIAAwAAAAAAAAAAAAAAAAADAACv//j7/88XAAAAAAAAAAAAAAAAAAQAUUYAtf/7+//TIAAAAAAAAAAAAAAABQBO//c8ALf/+/v/zwAAAAAAAAAAAAAFAFH8/f/0PQC4//j/1AAAAAAAAAAAAAUAVPz+/v3/9D0At//dJwAAAAAAAAAABQBX/f79///9//Q6AJ8sAAAAAAAAAAAFAFn+/f3//////f72QAAAAgAAAAAAAAUAXP/9/v///////f/uOgMEAAAAAAAABABf//3+///////9/+4zAAIAAAAAAAAEAGL//f7///////3/8TgABAAAAAAAAAAAY//9/v///////f/0PQAEAAAAAAAAAABl//3+///////9/vdCAAQAAAAAAAAAAAD2//7///////3++UcABAAAAAAAAAAAAAD//////////f77TAAEAAAAAAAAAAAAAAD+///////+/f1RAAUAAAAAAAAAAAAAAAD+//////3+/1cABQAAAAAAAAAAAAAAAAD//////v/9WwAEAAAAAAAAAAAAAAAAAACh/P3+/exhAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["pencil-square"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADMDIyMjIyMjItAwABBAWP6HkAAwAAAAC3////////////OQAFAG3//P99AAAAAAD/o0xPTExMTE1HCwAFJQ26//j/hgAAAAD9cgAAAAAAAAAAAACg8jIAvv/88AAAAAD/fAMHAwMDAwUFAJ7///A1Ab7/ZwAAAAD/egAEAAAAAQIAof/7/P/vMA1VAAAAAAD/egAEAAACAgCk//r///z/9RcAAwAAAAD/egAEAAEBAaf/+v///vv/gQcIAQAAAAD/egAEAQIEqv/6////+/+DAAAAAAAAAAD/egAEAgGg//r////7/4kAAw8/AgAAAAD/egAGAB3//f7///r/jwAHAFj/IQAAAAD/egAGACj7/v3++v+VAAMFAF3+JgAAAAD/egAGACX//////5oAAwEEAFz/JQAAAAD/egAFAQi3+vnzlAACAQAEAFz/JQAAAAD/egAEAQABISQaAAEBAAAEAFz/JQAAAAD/egAEAAAAAAAAAgAAAAAEAFz/JQAAAAD/fAQIBAQFBgYGBAQEBAQIBF//JQAAAAD+cAAAAAAAAAAAAAAAAAAAAE//JQAAAAD/u3p9e3t7e3t7e3t7e3t9eqv/JAAAAACh//////////////////////+rBgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["trash-can"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwFP8f/////xTwEDAAAAAAAAAAAAAQMEBQDJ2XZ6enbYygAFBAMBAAAAAAAAAAAAAAv9gQMHBwOB/QsAAAAAAAAAAAAAFlCErdT/9ff39/f1/9SthFAXAAAAAAAt/f/////////////////////9LQAAAAARWMj7+f3//f7+/v79//35+8hYEQAAAAABAKL/+//////////////7/6IAAQAAAAAFBJT/+///6//////r///7/5QEBQAAAAAEAID/+f/XEs///88S1//5/4AABAAAAAAEAG3/+f/UALP//7MA1P/5/20ABAAAAAAEAFr/+v/kAaX//6UB5P/6/1oABAAAAAADAEn/+//uAJT//5MA7v/7/0kAAwAAAAADADj//f/4CIP//4MI+P/9/zgAAwAAAAACACj+////C2n//2kL/////igAAgAAAAACABr1//3/Pn3//30+//3/9RoAAgAAAAABAA7q//3/+v3///35//3/6g4AAQAAAAABAATc//3///////////3/3AQAAQAAAAAAAADT/Pr9/f7///79/fr80wAAAAAAAAAAAwCl////////////////pQADAAAAAAAAAQEVdqrQ6ff+/vfp0Kp2FQEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["book-closed"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgB83gR48e3w8PDw8O/vxSMBAgAAAAAEAGb/+QKB//7////+/////68AAwAAAAACAMz98gOA/vr///////79/dYAAAAAAAAAANH/9AOA//7RL1Cb2P/9/9EAAAAAAAAAANH/9AOA//93ACYABHX//9IAAAAAAAAAANH/9AOA//8sQv/ZB2H//9IAAAAAAAAAANH/9AN+/+IAgv/gALX//9IAAAAAAAAAANH/9AN+/8wCADU+B+v//9IAAAAAAAAAANH/9AOA//zSjEMKU//7/9IAAAAAAAAAANH/9AOA//v////z+P/8/9IAAAAAAAAAANH/9AOA//v9+/z////9/9IAAAAAAAAAANH/9AOA//v////+/v/9/9IAAAAAAAAAANH/9AOA//v////////9/9IAAAAAAAAAANH/9AOA//v////////9/9IAAAAAAAAAANH/9AOA//v////////9/9EAAAAAAAAAANH+8wOA//v////////8/tUAAAAAAAAAAM///AeG/////////////8gAAQAAAAAAAOLAHAAEGxobGxseG8XYHwsAAQAAAAADAL/fZG9pZGRkZGRmY9bnaUMAAQAAAAACASze/////////////////8YAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["check"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQQEAgAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIABYOaJAAAAAAAAAAAAAAAAAAAAAAAAgEFsv//0gAAAAAAAAAAAAAAAAAAAAACAQWy//f95gAAAAAAAAAAAAAAAAAAAAIBBbL/+P/2SQAAAAAAAAAAAAAAAAAAAgEFsv/4/vlIAAAAAAACBAQAAAAAAAACAQWy//j/+UoABQAAAAAAAAAAAAAAAAIBBbL/+P74SQAEAAAAAAAum3QAAgEAAgEFsv/4/vlKAAQAAAAAAADn//+cAAIDAQWy//n/+UoABAAAAAAAAAD8+/n/mwAABrP/+f75SgAFAAAAAAAAAABg//35/5oRtP/4/vlKAAQAAAAAAAAAAAAAXv/8/P/j//v++UoABQAAAAAAAAAAAAAFAGH//fz/+/75SgAFAAAAAAAAAAAAAAAABQBh//z4//lLAAQAAAAAAAAAAAAAAAAAAAQAYv//+EsABQAAAAAAAAAAAAAAAAAAAAAEAEeLNwAEAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAMEAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["three-dots-horizontal"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAwQDAQAAAAMDBAIAAAACAwQDAQAAAAAAAAAAAAEAAAAAAAABAAAAAAAAAAAAAAAMlJxWGAACAGynaCsAAgA8qn07AwAAAABg////6iwAHP////1lAQDG////sgAAAACo+vj6/0gAV/z49/+QABvv+/n+5AAAAADu//r76hEAmP/6+f9KAE7//vj8mgAAAACK7f//swABSd////MTAR3G/P//TQAAAAAAFEt2IAACAAk3c0IAAgAAKGhjAwAAAAACAAAAAAAAAgAAAAABAAEAAAAAAAAAAAAAAQMEAgAAAAEDBAMAAAAAAgQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["three-bars-horizontal"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADBAQEBAQEBAQEBAQEBAQEBAQEAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABnk5KTk5OTk5OTk5OTk5OTk5KTWwAAAAD/////////////////////////+gAAAABJdHN0dHR0dHR0dHR0dHR0dHN0QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAIISAhISEhISEhISEhISEhISEhBQAAAADg////////////////////////zgAAAADE6unp6enp6enp6enp6enp6ejptAAAAAAADAwMDAwMDAwMDAwMDAwMDAwMAAAAAAAEAQEBAQEBAQEBAQEBAQEBAQEBBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABkkY+QkJCQkJCQkJCQkJCQkI+QWAAAAAD/////////////////////////+gAAAABNd3Z3d3d3d3d3d3d3d3d3d3Z3QwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADBAQEBAQEBAQEBAQEBAQEBAQEAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["chevron-small-down"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEAAAAAAAAAAAAAAAAAAAEBAAAAAAADAAADAAAAAAAAAAAAAAAAAwAAAgAAAAAAEBAAAgAAAAAAAAAAAAACAA8SAAAAAABj6OljAAQAAAAAAAAAAAQAYObqZwAAAAD7////ZwAEAAAAAAAABABm////9QAAAADw//v8/2YABQAAAAAEAGj//Pr/2wAAAABQ+f/8/P9lAAQAAAQAaP/8/P/wOwAAAAAATvz+/P3/ZAAFBABq//z8//Q9AAAAAAAFAFH7/vz9/2MAAGv//fz/9UEABAAAAAAABABR+/78/f9ZYv/8/P/2QwAEAAAAAAAAAAUAUvz+/f////78//hGAAUAAAAAAAAAAAAFAFL9/v3//v3/+EgABQAAAAAAAAAAAAAABQBT/P78/P75SwAEAAAAAAAAAAAAAAAAAAQAVP3///tOAAUAAAAAAAAAAAAAAAAAAAAEAE7U2EwABAAAAAAAAAAAAAAAAAAAAAAAAwABAwACAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["chevron-small-up"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAgAQEQACAAAAAAAAAAAAAAAAAAAAAAAEAGXo6mIABAAAAAAAAAAAAAAAAAAAAAQAaf////9jAAUAAAAAAAAAAAAAAAAABABp//z8/Pz/YQAFAAAAAAAAAAAAAAAEAGj//P3///39/14ABQAAAAAAAAAAAAQAZ//8/P/6/P/8/f9bAAQAAAAAAAAABABn//38//pETf7+/P3+WAAFAAAAAAAEAGf//Pz++k4AAFX9/vz+/lUABQAAAAAAZP/9/P77TwAEBQBU/P78/v1RAAAAAABk//38/vtPAAQAAAUAU/z+/P76TQAAAAD4/fv++1AABQAAAAAFAFL7/vr+5QAAAADz///8UQAEAAAAAAAABABR/P//7gAAAABP1tdNAAQAAAAAAAAAAAQAStPZUwAAAAAAAgIAAgAAAAAAAAAAAAADAAEDAAAAAAADAAADAAAAAAAAAAAAAAAAAwAAAgAAAAAAAQEAAAAAAAAAAAAAAAAAAAEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["chevron-large-left"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQIAmtg3AAIAAAAAAAAAAAAAAAAAAAABAgCd//9+AAQAAAAAAAAAAAAAAAAAAAECAKL//9IYAQEAAAAAAAAAAAAAAAAAAQIAo///1RkAAgAAAAAAAAAAAAAAAAABAgCk///WGgADAAAAAAAAAAAAAAAAAAICAab//9caAAMAAAAAAAAAAAAAAAAAAQIBp///1xsAAwAAAAAAAAAAAAAAAAABAAGp///YHAADAAAAAAAAAAAAAAAAAAECBar//9ocAAMAAAAAAAAAAAAAAAAAAAMAkf/7zxsAAwAAAAAAAAAAAAAAAAAAAAQAnv/7wgkBAgAAAAAAAAAAAAAAAAAAAAECDsD//8YOAAIAAAAAAAAAAAAAAAAAAAABAAvA///FDgACAAAAAAAAAAAAAAAAAAAAAgALwP//xQ4AAwAAAAAAAAAAAAAAAAAAAAIAC8D//8UOAAIAAAAAAAAAAAAAAAAAAAACAAvA///FDgACAAAAAAAAAAAAAAAAAAAAAgALwP//xg8AAQAAAAAAAAAAAAAAAAAAAAIAC8H//8USAgEAAAAAAAAAAAAAAAAAAAACAAu8//97AAQAAAAAAAAAAAAAAAAAAAAAAgAMwfFCAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["chevron-large-right"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAXdtxAAQAAAAAAAAAAAAAAAAAAAAAAAQAt///cgAEAAAAAAAAAAAAAAAAAAAAAAIBNu7//3YABAAAAAAAAAAAAAAAAAAAAAACADnw/v93AAQAAAAAAAAAAAAAAAAAAAAABAA68f7/eAAEAQAAAAAAAAAAAAAAAAAAAAQAO/H+/3oABAAAAAAAAAAAAAAAAAAAAAAEADzy/v97AAQBAAAAAAAAAAAAAAAAAAAABAA88v7/fQADAAAAAAAAAAAAAAAAAAAAAAQAPvT//34AAgAAAAAAAAAAAAAAAAAAAAAEADjo+/9eAAMAAAAAAAAAAAAAAAAAAAADACHi+/9oAAQAAAAAAAAAAAAAAAAAAAQAKef//5YBAgAAAAAAAAAAAAAAAAAABAAq5f//lgACAQAAAAAAAAAAAAAAAAAEACnl//+WAAMBAAAAAAAAAAAAAAAAAAQAKuX//5cAAwEAAAAAAAAAAAAAAAAABAAq5f//lwADAQAAAAAAAAAAAAAAAAACACrl//+XAAMBAAAAAAAAAAAAAAAAAAIBKeX//5gAAwEAAAAAAAAAAAAAAAAAAAQAs///lAADAQAAAAAAAAAAAAAAAAAAAAMAbPWZAAMBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["skull"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAEDAwAAAAADAwEAAAAAAAAAAAAAAAAAAgAAAAEODgEAAAACAAAAAAAAAAAAAAADAABMn9Xx8dWfTAAAAwAAAAAAAAAAAAMAL7/////09f///74vAAMAAAAAAAAAAwBG8f/cdDASEzB03P/wRgADAAAAAAACACzy/54PAAAAAAAAEJ7/8isAAgAAAAACA8T/nwAABAIBAQIEAACf/8MCAgAAAAMASf/dCwEDAQAAAAABAwEM3v9IAAMAAAMAof5yAAcAAAIAAAIAAAYAc/6gAAMAAQAD1/8tAQAGBgAAAAAGBgABLv/WAwABAQAO8PYWAFPc3FMAAFLc3FQAFvbvDgABAQAO8PcRBOf//+cGB+f//+cEEvfvDgABAQAD1v8rBOj//+YHB+b//+gELP/WAwABAAMAof51AFTb3FMAAFHb3FYAdv6gAAMAAAMASP/eDAAHBgACAgAGBwAM3/9IAAMAAAACAsP/oQYBAAfCwgcAAQai/8ICAgAAAAACACrq/18BAWH//2EBAV//6ikAAgAAAAABAAXh+S0AAFLo6FIAAC364AUAAQAAAAABAAzs+D8BAgAPDwACAUD46wwAAQAAAAAAAwCP//+4AgAAAAACuP//jgADAAAAAAAAAQEHk/32IA8REQ8g9v2SBwEBAAAAAAAAAAEAAOb/8/T09PTz/+UAAAEAAAAAAAAAAAADAlHZ7O7v7+7s2VACAwAAAAAAAAAAAAAAAQAHERAQEBARBwABAAAAAAAA" }
-IconMasks["leaf"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAIAAgMAAQAAAAAAAAAAAAAAAAAAAAABBQANxL8GAQEAAAAAAAAAAAAAAQIDBAIAABe+//9aAAQAAAAAAAAAAAMDAAAAAAAZaN7/8v3IAQEAAAAAAAABAgAAARxEd7Tw//+4MuP/LgACAAAAAAEAADqW0vr////5tlUBAJn/cwAEAAAAAQAKmv///+zCjVUfAAAEAlf/rAADAAABAgu///OFNA8AAAAAAQMDAC//0QEAAAACAJ3/2S4AAAABBAQCAAABABv86AkAAAMAOP/vKQAGAgECAAAAAAABABHz8w8AAAMAm/+EAAYAAQQAAQEAAAABABP28A4AAQAD2P8uAgUEAAAlycMHAQECACn/2wMAAQAR8/ISAAAACWvr/8oGAQEEAV3+rQADAQAR9fMEAytz1P//pBAAAQADALz/YgAEAQAF1P6n2P///8pSAAABAAUASf7pEgABAAMAuP3//+CfSwIAAgEABQAZ3v9vAAMAAwBy/v/3XQAAAAEEAgQCABzK/7sDAwEAACn89sf/0C0AAAAAAAAAUN7/zxUBAgAAAI7/lQjD//SHNhQTLGG7//+3FgACAAAAAs39NQALmf////b1////424BAAIAAAAAD/P/FAEAADmV0O/w1qdfEgAAAQAAAAAABr/CBQEBAgAAAA4OAgAAAAMAAAAAAAAAAAICAAAAAAIDAAAAAAMEAQAAAAAAAAAAAAAAAAAAAAAAAQEBAQAAAAAAAAAAAAAA" }
-IconMasks["rocket"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAABBAAAAAAIEgEAAAAAAAAAAAAAAAAAAAIAAAdHjMDd67MGAAAAAAAAAAAAAAAAAwAGbNf///////ISAAAAAAAAAAAAAAAEADTJ///Pfz08/dwHAAAAAAABAwQEAwUAVvX/z1EDAAA4/78AAAAAAAEAAAAAAABV/v+VCgAACAN7/o0AAAAAAQAESG5vTk70/38AAAQBAgLP/0gAAAACARrI////////mwAEAQAEAEn/3wkBAAACAbr/1o2I1/3cCgICAAEDB9D/bgAEAAMARP/eEgAA3P9KAAQAAQQAlf/RCQIBAAMAnP1/DBN9/7oAAwAEAACB//UyAAMAAQAI5//z9PP8/E8ACAIADJr//VUAAwAAAQEHue/y9PP2/8gYAABK0//wVAAEAAAAAAAAAhMLDRQlzv/LWbf///xSAAUAAAAAAAABAAAKBgAAF83////e1f9TAwQAAAAAAAEAF6Xu5o0KACDz+HoQgf9yAAQAAAAAAQIHx//6//+PAA/y8wgAiv5xAAQAAAAABABj/9YlPffsCA708wAY0/9IAAMAAAAAAQHI/1MAHvbwCQzx8n/g/8sIAgEAAAAAACH85hpZ1/+nABT3////tRwAAgAAAAAAAFj76ub//8MYAge535xGAAABAAAAAAAAAHj////DZQUAAQACCAAAAQEAAAAAAAAAABh1ViQAAAABAAAAAAMDAAAAAAAAAAAAAAAAAAABBAEAAAABAQAAAAAAAAAAAAAA" }
-IconMasks["heart"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQIAAAAAAAADAwAAAAAAAAIBAAAAAAABAAAycot9TQoAAApNfYtyMgAAAQAAAAAADKP//////91RUd3//////6MMAAAAAAAFuf/9+/v7/P/////8+/v7/f+5BQAAAABz//r///////3+/v3///////r/cwAAAADb/f3///////////////////392wAAAAD7////////////////////////+wAAAAD6////////////////////////+QAAAADY/v3///////////////////3+2AAAAACI//z///////////////////z/iAAAAAAc8P3+/////////////////v3wHAAAAAAAcf/6////////////////+v9xAAAAAAADAbb/+v/////////////6/7YBAwAAAAABAQ7L//r///////////r/yw4BAQAAAAAAAgATxv/6/v/////++v/GEwACAAAAAAAAAAIAC6r//vz///z+/6oLAAIAAAAAAAAAAAACAAB4+//7+//7eAAAAgAAAAAAAAAAAAAAAQIAOcr//8o5AAIBAAAAAAAAAAAAAAAAAAADAANkZAMAAwAAAAAAAAAAAAAAAAAAAAAAAwAAAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["clock"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAApdr9/z8tunUwMAAwAAAAAAAAAAAQIAVtX//////////8pGAAMAAAAAAAABAwCQ///9/f78/P78/f//egADAAAAAAADAJH/+/3///////////z8/3cAAwAAAAAAVP/6/v///f+Lnv/8///++/88AAAAAAAM3v79/////f8hQf/8/////P/IAwAAAABj//3//////f8xTv/8//////3/RQAAAAC6/vz//////f8uS//8//////z+mwAAAADp//7//////f8wT/38//////3/0AAAAAD8/////////f8nQ//7//////7/5gAAAAD9/////////P98AJb//f////7/5wAAAADr//7///////3/bgCR//z///3/0QAAAAC9/vz///////79/2hc//z///z+nwAAAABo//3////////+/v////////3/SgAAAAAP4/39//////////3+/////P7OBAAAAAAAXP/6///////////////++/9DAAAAAAADAJv/+v3///////////37/4EAAwAAAAABAwGb///9/f7///79/f//hQADAAAAAAAAAQEAYN3//////////9NQAAMAAAAAAAAAAAECABBpu+n8++WzXwkAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["key"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAMeLhZgAAAwAAAAAAAAAAAAAAAAAABAAu5f///7YfAAMAAAAAAAAAAAAAAAADAC7q//z+/P/nOAADAAAAAAAAAAAAAAIALun//P/9//n/8TQAAgAAAAAAAAAAAgEg6P/8///////8/+UXAgAAAAAAAAAABABg//r//vlmKrH/+f+uAAAAAAAAAAAABABg/vv8/88AAC///Pz/UAAAAAAAAAAABAJY//v+/vJGEJb//P380QAAAAAAAAAABgCB//v//v/+6v////v/sgAAAAAAAAAEAGT9/f////7///3/+/+8DgAAAAAAAAUAYv/9/v/////+/v/7/8ALAAAAAAAABABh//z+/////vz9/fv/wQwAAgAAAAAFAGD//f7////7//////+9DAACAAAAAAAAXP/9/v//////71hDQz4EAAIAAAAAAABg/v3+///+++2rNgAAAAAAAQAAAAAAAAD7//7////8/7kAAAMDAwMBAAAAAAAAAAD//v////73gjsEBAAAAAAAAAAAAAAAAAD+/v//+//fAAABAAAAAAAAAAAAAAAAAAD//////+49BAQAAAAAAAAAAAAAAAAAAACT8PLz4EEAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["flag"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACZsAAka7fZy4QWAAAAAAY5gVcAAQAAAACM+rvy///////gdUJTldb+//8rAAAAAAA3/////f3+/fz/////////+/gjAAAAAAAJ3vz8///////9+/38+/37/7AAAwAAAAAApf/7///////////////9/0oABAAAAAAAY//7//////////////3/2wADAQAAAAAAJvz+/v////////////799VwABAAAAAABAtX//f/////////////+//5MAAAAAAAEAJb/+/78/P3//////////f7zPQAAAAAEAFL//P/////8/v////78/Pz/lgAAAAACABn0/+/FueT///z8/f////vCKAAAAAAAAgDPzxUAAA105////+2yaigAAAAAAAAABACJ8gIBAwAAEUheRhUAAAABAQAAAAAAAwA+/zsAAwEDAAAAAAACBAIAAAAAAAAAAQAK+IMABAAAAQMEAwEAAAAAAAAAAAAAAAMAwNAAAgAAAAAAAAAAAAAAAAAAAAAAAAQAc/0SAAEAAAAAAAAAAAAAAAAAAAAAAAIALf9LAAQAAAAAAAAAAAAAAAAAAAAAAAEAA/GiAAQAAAAAAAAAAAAAAAAAAAAAAAADAJigAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["tag"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQBZ3+jq6urq6ejjbwAAAAAAAAAAAAAEAFX6////////////6gAAAAAAAAAAAAUAV//+/f7+/v/+//7+6QAAAAAAAAAABQBW/v3+///+/+guVvz/6AAAAAAAAAAFAFb+/f7////9/9oAIfr/6AAAAAAAAAUAVv79/f///////v/R4v//6QAAAAAABABW/v3+//////////////7/6QAAAAAFAFb+/f3////////////9/f7/6AAAAAAAVP79/f////////////////7+6QAAAABW/P79//////////////////3/6AAAAAD1/v3//////////////////v79WgAAAACw//v////////////////+/f9YAAAAAAAJs//7//////////////79/1oABQAAAAAABrf/+v///////////v3/WgAFAAAAAAACAQe3//v////////+/f9bAAUAAAAAAAAAAgAHt//6//////79/1sABQAAAAAAAAAAAAIAB7j/+////v3/XAAEAAAAAAAAAAAAAAACAAe5//v+/v9cAAUAAAAAAAAAAAAAAAAAAgAHtf///FsABQAAAAAAAAAAAAAAAAAAAAIACbXtXwAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["photo-camera"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQMCBAIKbH99fX9oBgIDAgIBAAAAAAACAAAAAACv////////oQAAAAAAAgAAAAAAEzU4Nn3/+fv7+/v6/3E2ODQPAAAAAABV6P/////+/////////v/////jSQAAAADx//3+/v3//v/7/P7///3+/vz/4wAAAAD//v/////////////+/f/////99AAAAAD+//////z/kS1sreT/////////8gAAAAD///////7/MAAAAA4+w/79////8wAAAAD//////f/iCQIFAwEAkf/7////8wAAAAD/////+/+pAAMAAQEG2f/9////8wAAAAD/////+/9gBAgCAwAq/f7/////8wAAAAD//////f8/AAAABANo//v/////8wAAAAD//////v7moV8lAACu//v/////8wAAAAD+///////////6zKX3//7/////8gAAAAD//P3+/v/++/z////////+/v389wAAAADX//////38/Pv6+fj7/P3/////xAAAAAAmrdzx////////////////79qkHAAAAAAAAAQVKT1NWWFlZWFYTDsoFAMAAAAAAAACAwAAAAAAAAAAAAAAAAAAAAADAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["image"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+kpmZmpqampqampqampqamZmSPgAAAAD4+ubo5+jo5+fn5+fn5+fn6Ob6+AAAAAD/awAAAAAAAAAAAAAAAAAAAABr/wAAAAD+cAAEAAcAAAAAAAAAAAAABABw/gAAAAD/cAACR96vDAIBAQQFAQAABABw/wAAAAD/cAAArP//MQADAgAAAAEABABw/wAAAAD/cAABOc2cBwIEAFZ4BwACBABw/wAAAAD/cAAFAAAAAAUAdP//ugkABgBw/wAAAAD/cAEGAAMCBQBz//v4/7oIAwFw/wAAAAD/cgAABQAEAHH//P7/+/+5CQBz/wAAAAD/agCm3mIAcf/8/v////v/uwBq/wAAAAD/dKH///+q//7+///////6/6R0/wAAAAD/8v/8/f///v///////////f/z/wAAAAD///3////8//////////////3//wAAAAD+/v/////////////////////+/gAAAAD/+/v7+/v7+/v7+/v7+/v7+/v7/wAAAAD9/////////////////////////AAAAABJmpydnZ2dnZ2dnZ2dnZ2dnZyaSQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["cloud"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEEBAQEBAEAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAADAAAAAAAAAAAAAAAAAAADAAVQjqSTWgwAAwAAAAAAAAAAAAAAAAMAPND//////95RAAMAAAAAAAAAAAAAAwBA+P/7+/v7+///XQADAAAAAAAAAAABARDl//v///////z9+CUEBgIAAAAAAAAEAG//+//////////7/5IAAAADAAAAAAADAbv+/P/////////+/uyfficAAgAAAAABANH//f////////////////dkAAAAAAAAA9b+/f////////////77+v//RwAAAAAVwv79//////////////////z+ywAAAACo//3/////////////////////+gAAAAD4/f/////////////////////++wAAAAD7/P7///////////////////v/wwAAAACT//37/f////////////79+v/0MwAAAAAEkv/////8+/v7+/v7/P///9o8AAAAAAAAADma3v////////////fHbw0AAgAAAAAAAgAACC9Wd4yYmItyTSEAAAACAAAAAAAAAAIDAAAAAAAAAAAAAAABBAEAAAAAAAAAAAAAAQIEBAQEBAQEBAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["sun"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAwComgADAAAAAgAAAAAAAAAAAAAAAgAAAgDYyAADAAABAAAAAAAAAAAAAAopAAAAAgCZjQADAQAAKwMAAAAAAAADAD7/bAIDAwIAAAMDAgWS/x0AAgAAAAAAAgWW/xUCAAAKCAAAAjX/cAICAAAAAAAAAAAAJgMAVbvi369AAAklAAAAAAAAAAAAAAABAACO////////agAAAgAAAAAAAAADAwMEAlv/+vz+/fv9/zYCAwMDAwAAAAAAAAABAs/9/P/////7/6YAAwAAAAAAAACju4MAF/L//v/////9/tUBA5S7kQAAAACyzI8AGPP//v/////9/9YAA6HMnwAAAAAAAAABAtH9/P/////7/qkAAwAAAAAAAAADAgIEAWD/+vz+/vv8/zoCAwMCAwAAAAAAAAABAACW////////cgAAAgAAAAAAAAAAAAAAHgIAXcPp5rhHAAgdAAAAAAAAAAAAAgOM/BUBAAAQDgAAAjX/ZwECAAAAAAADAD3/dgIDBAEAAAIDAgec/x0AAgAAAAABAA0zAAAAAgCPgwADAQAANQUAAAAAAAAAAAAAAgAAAgDYyAADAAAAAAAAAAAAAAAAAAEDAAAAAwCyowADAAABAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["moon"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAK77sOQADAAAAAAAAAAAAAAAAAAAAAwBS7f//owAEAAAAAAAAAAAAAAAAAAADAFT///j+mwAEAAAAAAAAAAAAAAAAAAABJvb+/fv/fQAEAAAAAAAAAAAAAAAAAAAAtf/7//v/gQAEAAAAAAAAAAAAAAAAAAA6/v3///v/oQADAAAAAAAAAAAAAAAAAACa//z///3/3AQBAAAAAAAAAAAAAAAAAADY//3////9/0cABAAAAAAAAAAAAAAAAAD2///////8/swBAwIAAAAAAAAAAAAAAAD//////////P+QAAIDAQAAAAAAAAAAAAD2//////////z/jwMAAAMEBAQEAgAAAADZ//7////////8/8hLBgAAAAAAAAAAAACc//z//////////P//2aOCfpyeNgAAAAA9//3///////////39////////8AAAAAAAuP/7/////////////fv7+/j+uwAAAAABKfj9/f///////////////f7vIgAAAAADAFj///v////////////7//9LAAAAAAAAAwBZ9v/+/P7////+/P//8lIAAwAAAAAAAAMALbT+//////////yvKAADAAAAAAAAAAADAABAmdf0/vTVljwAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["trophy"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAis7Mzs7Ozs7Ozc+wEAAAAAAAAAANUVZy////////////////oVVVFQAAAADA/////v39/f39/f39/f39////2QAAAADyuCA/+v/+//////////z/eCCf/wAAAACo6AAM8f/+//////////z/TQDQywAAAABd/yYE5//+//////////3/Owr+fQAAAAAe/2MC3P/9////////////Izz/NwAAAAAA4bMAyv/8/////////v/+BIn2BwAAAAAAf/8pe/77/////////f/EF/WjAAAAAAACDMz/w//9/////////f7Z7uYcAQAAAAABAA+T6vz//v/////+/f/trCAAAQAAAAAAAQAABjn0//3///77/20LAAABAAAAAAAAAAEDAABG9v/+//7/ggAAAwIAAAAAAAAAAAAAAQQAQOj+/Pt3AAQBAAAAAAAAAAAAAAAAAAAGAE/6/5EAAgEAAAAAAAAAAAAAAAAAAAIAdef8/fGlCwEBAAAAAAAAAAAAAAAAAwBi////////qgACAAAAAAAAAAAAAAABAAvn+/n8/Pv3/zwAAwAAAAAAAAAAAAABARHg////////+0MAAwAAAAAAAAAAAAAAAQAeYo+rsJpyNwABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["bug"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAQAAAAIAHK/08qkWAAEAAAABAgAAAAAAAAAAAQEL0P/////GBgIBAAAAAAAAAAAbBwAABAB1/+fV1+n/ZQAEAAAKGAAAAADzYgAEAgNDLQAAAAAzQAMCBACB6wAAAAD/bgQIAwAARpEaN4s6AAADCASO/wAAAAD/dgAAAFXc//8qWv//z0QAAACX/QAAAADA/qWXqP//+/snU/v4//+hman/oAAAAAATnd3+//39/v8nVP/7/f7/99yNCQAAAAAAAA3g+/3//v8nVP/7//z7yAAAAAAAAAAFA3H/+////v8nVP/7///9/0kDBAAAAAADALn+/P///v8nVP/7///7/pAABAAAAAAAAdf//f///v8nVP/7///8/7MAAwAAAAAABdz//f///v8nVP/7///8/7kDAwAAAAADALj+/P///v8nVP/7///7/osABgAAAAAAZOv//v///v8nVP/7///9/9lQAAAAAACE/8P4/f7//v8nVP/7//7+7cr/YgAAAAD8mwCI//n+/v8nVP/7/vr/YAC66QAAAAD/bgIFr///+/4nVP34//+OAAGR/wAAAABuJwABA4n3//8nVf//7XAAAwA1ZQAAAAAAAAABAAAzldokTtSGIwACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["wallet"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGjw5OTk5OTk5OTk5OTcGAAEAAAAAAABZ6v/////////////////WDwMCAAAAAAD0//14TE5MTExMTExMS0xUBgAAAQAAAAD//fxHEhYUFBQUFBQUFBQSISQHAAAAAAD+////////////////////+/zSGgAAAAD////+//////////////////7/ZAAAAAD//////v7+/v7+/v7+/v7+/vv9kgAAAAD////////////////+/Pz7/v3/uAAAAAD///////////////////////3/0wAAAAD//////////////v7xX0yQ7P7/5QAAAAD/////////////+/+aAAAATf//7wAAAAD//////////////P9QBw0HO///8wAAAAD//////////////P9bAAAAgv/+8AAAAAD//////////////v7ui0ZN5v7/6AAAAAD///////////////////////3/1wAAAAD////////////////++/39/v3/vQAAAAD9//////////////////////z+mQAAAAD//v7+/v7+/v7+/v7+/v7+/vv/bQAAAADA///////////////////////nJAAAAAAKRUpKSkpKSkpKSkpKSkpKSUofAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["shopping-cart"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADz//ZgBAcEBQUFBQUFBQUFBQUEAQAAAACNpu/eAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJr/iICBgICAgICAgICAgIByFQAAAAAIA2P+////////////////////wgAAAAADADH++vr7+/v7+/v7+/v7+/r74wAAAAABAArm//3///////////////z/nAAAAAAAAgC4//z///////////////3/UwAAAAAABACD//v//////////////v/tFgAAAAAAAwBN//z//////////////P64AAAAAAAAAgAe+P/7+/v7+/v7+/v79/53AAAAAAAAAAEC1P////////////////8tAAAAAAAAAAQAo/6ZkZKSkpKSkpKQkU0AAgAAAAAAAAQAa/82AAAAAAAAAAAAAAABAAAAAAAAAAIAI/r70NLR0dHR0dDRySsAAgAAAAAAAAACAEnK5OLj4+Pj5Ofl3C4AAgAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAC6FQAABAAEAFYBeAAIAAAAAAAAAAAEBDeH/+SQBAgMAtP//UgADAAAAAAAAAAEAE/P//y8AAwIAxf//YQAEAAAAAAAAAAACAF3MegACAAIAMr2XCAEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["phone"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5buzSsBAgAAAAAAAAAAAAAAAAAAAAAWtv/+/8oCAgEAAAAAAAAAAAAAAAAAAADE//v/+/9eAAQAAAAAAAAAAAAAAAAAAAD//f///f7gDQEBAAAAAAAAAAAAAAAAAAD6//////z/UgAEAAAAAAAAAAAAAAAAAADs//7///v/PQADAAAAAAAAAAAAAAAAAADN//3/+v+RAAIAAAAAAAAAAAAAAAAAAACX//z7/5UAAgEAAAAAAAAAAAAAAAAAAABN//z/lgADAQAAAAAAAAAAAAAAAAAAAAAL3v6SAAMBAAAAAAAAAAAAAAAAAAAAAAAAf/8fAgMAAAAAAAAAAAMDAQAAAAAAAAABEvW2AAQAAAAAAAAAAQAAAAMAAAAAAAADAGn/XwAFAAAAAAEBAENSCgABAgAAAAAAAwCz/zkABQAAAQIAmf//2l8AAAAAAAAAAQIO0/c6AAMDAgCc//v7///DKQAAAAAAAAIAGNP/XwAAAJz/+v///fr/ygAAAAAAAAACABCy/7MumP/6//////778QAAAAAAAAAAAgAAbPj///z8/f7///v/jAAAAAAAAAAAAAEBABaB2v///////f+vAgAAAAAAAAAAAAAABAAADE+WzOv6+7sPAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["envelope"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA9jI+Pj4+Pj4+Pj4+Pj4+Pj4+MPQAAAAD6////////////////////////+gAAAAD4//n5+/v7+/v7+/v7+/v7+fn/+AAAAAAZqf//+/7///////////77//+pGQAAAAA8AEna///8/////////P//2kkAPAAAAAD/phEAg/r//P3///38//qDABGm/wAAAAD9/+9sACO5///7+///uSMAbO///QAAAAD//P//yTMAWOT//+RYADPJ///8/wAAAAD///78//+WBwSZmQQHlv///P7//wAAAAD//////f7/5lwAAFzm//79/////wAAAAD////////7//+9vf//+////////wAAAAD//////////v3///3+/////////wAAAAD////////////8/P///////////wAAAAD//////////////////////////wAAAAD9/////////////////////////QAAAAD///37+/v7+/v7+/v7+/v7+/3//wAAAADC////////////////////////wgAAAAADK0ZcbX2Hj5SWlpSPh31tXEYrAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["microphone"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgBn3/3+/vrTTQACAAAAAAAAAAAAAAADAGP/////////+j8AAwAAAAAAAAAAAAEBCOT+/P/////6/78AAgAAAAAAAAAAAAIAH/r//v/////9/t8EAAEAAAAAAAAAAAIAIPr//v/////9/98GAAEAAAAAAAAAAAIAIPr//v/////9/98GAAEAAAAAAAAAAAIAIPr//v/////9/98GAAEAAAAAAAAAAAIAIPr//v/////9/98GAAEAAAAAAAAAAAIAIPr//v/////9/98GAAEAAAAAAAAAAAIBHvn+/v/////9/t4EAQEAAAAAAAAAAAAAB9v/+f39/f34/7QAAAAAAAAAAAAAAAIdAFX/////////9TMAHAAAAAAAAAACACv9UwBGudnb29etLgB/9w0AAQAAAAABAge2/2MAAAAAAAAAA4D/jwIDAAAAAAAAAQAJpv/xysO2ucTO+v+HAAEBAAAAAAAAAAEAAD6Xv8T/9sO9ii4AAQAAAAAAAAAAAAABAgAAAADUpgAAAAADAAAAAAAAAAAAAAAAAAMAAADXpwAAAAIAAAAAAAAAAAAAAAAAAgA1cW/q0W9xJAABAAAAAAAAAAAAAAAABACV////////aAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["headphones"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAADWY4P////3WhiUAAAEAAAAAAAAAAgAXpP//yqOamqjT//+IBwABAAAAAAACACrj/4YcAAAAAAAAKqH/xBEBAQAAAAACFeLwOAAAAgQEBAMBAABW/8AEAwAAAAAArP80AAYCAAAAAAAAAgUAWv97AAAAAAA4/4IABgAAAAAAAAAAAAAFALP2FQAAAACl9xACAgAAAAAAAAAAAAADAjP/bQAAAADvvgACAAAAAAAAAAAAAAABAALpuwAAAAD/kQEEAAAAAAAAAAAAAAAAAgDE4gAAAAD+igQIAQAAAAAAAAAAAAACBwS86gAAAAD/gAAAAAEAAAAAAAAAAAIAAAC26wAAAAD/wHhrEwACAAAAAAAAAgAkcnjc4gAAAAD/////1xMBAgAAAAADAC/v////2QAAAAD//fv5/7kAAwEAAAEBEdv/+fr+2gAAAAD0////+v+LAAMAAAIDtf/7//3/zQAAAADJ/v3//vz/NwADBABh//r///z/mAAAAABi//v///v/YAAEBACQ/Pv//vz+NQAAAAAEwf/6/vz4IAACAwBF//v++v+WAAAAAAABGdH//v+YAAMAAAIBxf///7MHAgAAAAACABKg6a4QAgEAAAIBJMXmhQMAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["speaker"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAQCAAAAAAAAAAAAAAMAWop9GAABAAAAAAAAAAAAAAAAAAAABQB4////ogAEAAAEAWUoAQAAAAABAwMGAGb/+vf7uAADAAAAAfS1AAAAAAAAAAAAVv/8/vz/tAADAQNFBHT8GQAAAAARSEpm+v7+//z/tQAEABf/WRD/aQAAAADS//////7///z/tQAEDwHXvADitwAAAAD//Pz8/v////z/uABW5gCN9gCp7QAAAAD9//////////z/uABN/x1X/wR//wAAAAD///////////z/twAt/jg//xNq/wAAAAD///////////z/twAt/Tc//xJq/wAAAAD9//////////z/uABP/xxY/wSA/wAAAAD//Pz8/v////z/uABV4QCP9QCr6wAAAADV//////////z/tQADCwHZugDktQAAAAATTE1r/P7+//z/tQAEABf/VhL/ZwAAAAAAAAAAXP/7/vz/tAADAQM+A3n7FwAAAAABAwMGAHD/+vj7twADAAAAAfWxAAAAAAAAAAAABACE////qQAEAAADAV4lAQAAAAAAAAAAAQMAa52QIQABAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAQCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["x"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACE98AQAAIAAAAAAAAAAAMAG832cAAAAAD//v/BDgACAAAAAAAAAwAY0P//8gAAAADE//j/xQ4AAgAAAAADABjU//j/rgAAAAATxv/3/8MNAAIAAAMAF9L/9/+2CgAAAAAAEMn/9//CDQACAwAX0v/2/7oIAAAAAAADABLK//f/wQwBABbR//f/uggAAgAAAAAAAwASy//3/8EFEND/9/+7CQACAAAAAAAAAAMAEsv/+P+9yP/3/7wJAAIAAAAAAAAAAAADABPO//v///v/vQoAAgAAAAAAAAAAAAAAAgAQxf76+v+1CAECAAAAAAAAAAAAAAAAAgAQxf76+v+1CAECAAAAAAAAAAAAAAADABPO//v///v/vQoAAgAAAAAAAAAAAAMAEsv/+P+9yP/3/7wJAAIAAAAAAAAAAwASy//3/8EFEND/9/+7CQACAAAAAAADABLK//f/wQwBABbR//f/uggAAgAAAAAAEMr/9//CDQACAwAX0v/2/7oIAAAAAAATxv/3/8MNAAIAAAMAF9L/9/+2CgAAAADE//j/xQ4AAgAAAAADABjU//j/rgAAAAD//v/BDgACAAAAAAAAAwAY0P//8gAAAACE98AQAAIAAAAAAAAAAAMAG832cQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["pin"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwBZ20AAAwEAAAAAAAAAAAAAAAAAAAAAAwIg5fdqAAIBAAAAAAAAAAAAAAAAAAADAABs7P3/kgACAQAAAAAAAAAAAAAAAAQAE6z///77/6YCAQEAAAAAAAACAQABAwA93P/7/v//+v+sAgIBAAAAAAAAAAMAAHL7//v///////r/pAADAQAAAAAzCwAUq//+/f/////////6/48ABAAAAAD/u0fd//v+////////////+v9kAAAAAABX/////P///////////////v/9OQAAAAAATvv8/v/////////////+/u7p4wAAAAAFAFP9/v3////////////7/14kUgAAAAAABABT/f/+//////////v/pAAAAAAAAAAAAAQAVu76/f///////f/YDAIDAwAAAAAAAAEGAK///f7////+/PkyAAMAAAAAAAAAAQQAjP+s+P/9///7/2kABAAAAAAAAAABBACH/4cAVv39/vz/pwAEAAAAAAAAAAAEAIb/ggAGAFb9/f7ZDgIBAAAAAAAAAAAAg/+DAAQBBQBV/v83AAQAAAAAAAAAAACS/4EABAEAAAQAUvm0DwIBAAAAAAAAAAD4kQAEAQAAAAAFAFz7LAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["circle-i"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAApdr9/z8tunUwMAAwAAAAAAAAAAAQIAVtX//////////8pGAAMAAAAAAAABAwCQ///9/f78/P78/f//egADAAAAAAADAJH/+/3///////////z8/3cAAwAAAAAAVP/6/v///f9nff/9///++/88AAAAAAAM3v79/////f1NZ//8/////P/IAwAAAABj//3///////////////////3/RQAAAAC6/vz///3/1Co2f//9//////z+mwAAAADp//7///3/21EETP/8//////3/0AAAAAD8//////////80Tf/8//////7/5gAAAAD9/////////PstTP/8//////7/5wAAAADr//7/////+/stS/v6//////3/0QAAAAC9/vz///////8yUv////////z+nwAAAABo//3///3/x5saLZvS//3///3/SgAAAAAP4/39//v/dAAQDgCR//v//P7OBAAAAAAAXP/6////9u7s7O74///++/9DAAAAAAADAJv/+v3///////////37/4EAAwAAAAABAwGb///9/P3+/v38/f//hQADAAAAAAAAAQEAYN3//////////9NQAAMAAAAAAAAAAAECABBpu+n8++WzXwkAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["circle-question"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAARSotTq6c+aRwAAAwAAAAAAAAAAAAIATMz//////////8E9AAMAAAAAAAABAwCG///9/Pv6+vr8/v//cQAEAAAAAAADAIn/+/3//f///////vz9/28AAwAAAAAAT//6/v///8SAdKX4//7+/P83AAAAAAAK2/79//32aAAAAAA88v7+/P/EAgAAAABf//3//v7sHS/E0EgAqf/7//3/QgAAAAC4/vz///7/7+///50Anf/7//z/mQAAAADo//7////+////1h0O4v79//3/zwAAAAD8////////+/3QFA7C//3///7/5gAAAAD9/////////f8jANb//P////7/5wAAAADr//7////+//5iiv/7//////3/0gAAAAC+/v3///////////3///////z+oAAAAABp//3////+/+8tU//+//////3/SwAAAAAP5P39///+/+sFMv/+/////P7PBQAAAAAAXv/6//////7t8P/////++/9EAAAAAAADAJz/+v3///////////37/4MAAwAAAAABAgGc///8/f7+/v79/f//hgADAAAAAAAAAQEAYd3//////////9NRAAMAAAAAAAAAAAECABFqu+n8++WzYAkAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["triangle-exclamation"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAgNycgMCAQAAAAAAAAAAAAAAAAAAAAADAH///38AAwAAAAAAAAAAAAAAAAAAAAIBI/f6+vcjAQIAAAAAAAAAAAAAAAAAAAMAsv/8/P+yAAMAAAAAAAAAAAAAAAAAAwBL//z9/fz/TAADAAAAAAAAAAAAAAABAwja/v3///3+2gkDAQAAAAAAAAAAAAADAH3/+f9+cf/5/30AAwAAAAAAAAAAAAIBIfX9+/86Kv/8/fUhAQIAAAAAAAAAAAMAr//8/P9HOf/9/P+vAAMAAAAAAAAAAwBI//z//P9AMf/9//z/SAADAAAAAAABAgfY/v3//P9VRv/8//3+2AcCAQAAAAAEAHr/+//////////+///7/3oABAAAAAABHvT9/v///v+4rP7+///+/fQeAQAAAAAAqP/8///+//IAAOH//f///P+oAAAAAABL//3//////v2IePn+//////3/SgAAAADf+/n7+/v7+/v///z7+/v7+/n73wAAAADi////////////////////////4gAAAAAlfIKDg4ODg4ODg4ODg4ODg4J8JQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["calendar"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgYCKe83AgQBAQQCOe0eAgUCAAAAAAABAAAAMv9DAAAAAAAARP8lAAAAAQAAAAAAMafE0v7WxsfHx8fG1v7Pw6MpAAAAAAAr7/////3///////////3////nIQAAAACg////////////////////////jgAAAACf4+Hk5OTk5OTk5OTk5OTk5OHjkQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgi4mLi4uLi4uLi4uLi4uLi4mLVwAAAAC9////////////////////////rAAAAACt+/j7////+/v///v7///++/j7nQAAAACw//v/63Dj//+Vlf//4XLx//v/oAAAAACw//v/4C/T//9jY///0TLo//v/oAAAAACw//z///////////////////z/oAAAAACw//z///////////////////z/oAAAAACw//z//Nn6///l5f//+tr9//z/oAAAAACv//r/1gDH//88PP//xQDh//r/nwAAAACx/vz/+cP2///V1f//9cX7//z+oQAAAACj//n9///////////////+/fn/kgAAAAA28//////////9/f/////////tLAAAAAAAOqHC1+jx+P3///z48efWwJ4yAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["hashtag"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEL3cQEAQIAHu2dAAIAAAAAAAAAAAAAAgAu/+YHAAQAUv/DAAIAAAAAAAAAAAAABABQ/r0AAgQAdv6WAAQAAAAAAAAABAQECAR1/5sECAgEnf9zBAgEAwAAAAAAAAAAAACX/2IAAAAAwP86AAAAAAAAAAAHZIB+gH/d/6d+gX+C7v6Wf39/RwAAAAA4////////////////////////9QAAAAAJbIaGhpf+9YyGiIam/uWHhoWGTwAAAAAAAAAAAC3/zgAAAABU/6cAAAAAAAAAAAAABAQIBGX/qwQHCASM/4QECAQEAwAAAAADBAQIBIf/iAQIBgOv/2EECAQEAQAAAAAAAAAAAKv/UgAAAADS/ysAAAAAAAAAAABgm5qcnOr+tZudm6H3/qmbm52BDQAAAADy////////////////////////NwAAAAA1aWlphf7qa2lraZn/1WlqaGlRBAAAAAAAAAAAPf+8AAAAAGb/kwAAAAAAAAAAAAACBAgEdf+YBAgIBJ3/cQQIBAQDAAAAAAAAAAQAl/5yAAQCAL7+TAADAAAAAAAAAAAAAAIAxf9NAAQAB+n/KgACAAAAAAAAAAAAAAIAj9oXAAIBA7TICAEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["robux"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAHKP/94sNAAADAAAAAAAAAAAAAAMBAAl5+feUof/pYQAAAgIAAAAAAAAAAgAAXOj/mxYAACmz/9RFAAACAAAAAAACAD/M/7ovAAJpVQAARdD/tCsAAgAAAAAAdf/VSgAAUdL//7g1AABg6f9RAAAAAAAn/44AAC+y///+///7lBcACbbvDAAAAABZ/xwAavj/+/L19fL//+dAAEb/LAAAAABZ/yQB0P/1QhkbHBlw+/+YAU3+LQAAAABZ/yIAxv7xEQAAAAA///6TAEz/LQAAAABZ/yIAyP/yGwECBAFJ//+UAEz/LQAAAABZ/yIAyP/yHAIDBQJJ//+UAEz/LQAAAABZ/yIAx/7xDQAAAAA9//2UAEz/LQAAAABZ/yQBzf/2Vy4wMS6B+/+UAU3+LQAAAABZ/xwAVun//////////9MyAEX/LAAAAAAn/44AAByY+//8/v/seQkACbbvDAAAAAAAdf/VSgAAOrz//58hAABg6f9RAAAAAAACAD/M/7kxAABOPAAARdD/tCsAAgAAAAAAAgAAXOj/mxkAACqz/9RFAAACAAAAAAAAAAMBAAl5+feToP/pYQAAAgIAAAAAAAAAAAAABAAAHKP/94sNAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["discord"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQMEAgAAAAACBAMBAAAAAAAAAAAAAAADAAAAAAQDAwQAAAAAAwAAAAAAAAAAAAAABTh4LwAAAAA1dzcEAAEAAAAAAAAAAgJ62P//05atrJbY///WdwECAAAAAAAEAGj///77////////+/7//2YAAwAAAAABEOr8+////fv8+/v9///7/OoQAQAAAAAAc//7///9/v/////+/f//+/9yAAAAAAAF1f79//////7///7///7//f7UBQAAAAA9/v7+///N7f/+/v/rzf///v7+PAAAAACF//z9/2gAIuH+/twdAGr//fz/ggAAAAC8//v/5gIFAIz//4EABQLm//v/uAAAAADd//3+8RcAAKn//6AAABfx/v3/2gAAAADu//79/7g/dvz+/vpzP7j//f7/6gAAAADv/v7///////39/f3///////797AAAAAD1//r+6dD//////////87q/vn/8QAAAABd5f//4X5gl8DU1MGWYYDj///iWQAAAAAAF43s/+wBAAAAAAAABfL/6ooVAAAAAAADAAAYcEABBgIAAAIGAENuFgAAAwAAAAAAAQMAAAABAAAAAAAAAQAAAAMBAAAAAAAAAAACBAIAAAAAAAAAAAIEAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["plus-small"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACADjZ1DEBAgAAAAAAAAAAAAAAAAAAAAADALf//6oAAwAAAAAAAAAAAAAAAAAAAAACAMX+/roAAgAAAAAAAAAAAAAAAAAAAAACAML//7cAAgAAAAAAAAAAAAAAAAAAAAACAMP//7gAAgAAAAAAAAAAAAAAAAAAAAACAMP//7gAAgAAAAAAAAAAAAACAwICAgIEAsT//7kCBAICAgIDAgAAAAAAAAAAAAAAAMD//7UAAAAAAAAAAAAAAAA+rbu6urq7uu///+y6u7q6ubynKgAAAADw////////////////////////zwAAAAD1////////////////////////1AAAAABFt8LDw8PEw/H//+7DxMPDwsKwMAAAAAAAAAAAAAAAAMH//7UAAAAAAAAAAAAAAAADAgICAgIEAsP//7kCBAICAgIDAgAAAAAAAAAAAAACAMP//7gAAgAAAAAAAAAAAAAAAAAAAAACAMP//7gAAgAAAAAAAAAAAAAAAAAAAAACAML//7cAAgAAAAAAAAAAAAAAAAAAAAACAMT+/rkAAgAAAAAAAAAAAAAAAAAAAAADALz//7AAAwAAAAAAAAAAAAAAAAAAAAADAEbt6j4AAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["minus-small"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAADAAAAAAAAAAAAAAAAAAAAAAAAAwAAAAAABA0MDAwMDAwMDAwMDAwMDA0EAAAAAABc2Ofm5+fn5+fn5+fn5+fn5ufYXAAAAAD7////////////////////////+wAAAADt////////////////////////7QAAAAA+uMfIycnJycnJycnJycnJyMe4PgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAgEBAQEBAQEBAQEBAQEBAQECAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["play-small"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAT/GpHwAAAwAAAAAAAAAAAAAAAAAAAAAAjf//6G4EAAMCAAAAAAAAAAAAAAAAAAAAiP74///MRgAABAEAAAAAAAAAAAAAAAAAif/7/vz//6MgAAADAAAAAAAAAAAAAAAAif/7///9/f/udQcAAwIAAAAAAAAAAAAAif/7//////z//89JAAAEAQAAAAAAAAAAif/7///////++///pyQAAAMAAAAAAAAAif/7//////////39//F7CAABAAAAAAAAif/7/////////////P//004AAgAAAAAAif/7//////////////77//9mAAAAAAAAif/7//////////////78//9iAAAAAAAAif/7/////////////P//zEYAAQAAAAAAif/7//////////3+/+xxBQABAAAAAAAAif/7///////+/P//nh4AAAMAAAAAAAAAif/7//////v//8dAAAAEAQAAAAAAAAAAif/7///8/v/oawIAAwEAAAAAAAAAAAAAif/7/vz//pcaAAEDAAAAAAAAAAAAAAAAiP74///COwAABAAAAAAAAAAAAAAAAAAAjf//4GMAAAMBAAAAAAAAAAAAAAAAAAAASOmcFgABAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["pause-small"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC3397f397YOQADAwBg3t3f393fjQAAAAD/////////cQAEBACk////////3gAAAAD9/v7+/vr+bAAEBACd/vr+/v3+1QAAAAD///////v/bQAEBACe//v///7/1wAAAAD///////v/bQAEBACe//v///7/1wAAAAD///////v/bQAEBACe//v///7/1wAAAAD///////v/bQAEBACe//v///7/1wAAAAD///////v/bQAEBACe//v///7/1wAAAAD///////v/bQAEBACe//v///7/1wAAAAD///////v/bQAEBACe//v///7/1wAAAAD///////v/bQAEBACe//v///7/1wAAAAD///////v/bQAEBACe//v///7/1wAAAAD///////v/bQAEBACe//v///7/1wAAAAD///////v/bQAEBACe//v///7/1wAAAAD///////v/bQAEBACe//v///7/1wAAAAD///////v/bQAEBACe//v///7/1wAAAAD///////v/bQAEBACe//v///7/1wAAAAD+//////v/bAAEBACd//v///7/1gAAAAD///////v/cQAEBACj//v///7/3AAAAADb//7///35SgADBAB3/vz///3/rQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-IconMasks["stop-small"] = { Width = 24, Height = 24, Data = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWpN3f4ODg4ODg4ODg4ODg39uKBQAAAAC5////////////////////////hQAAAAD//f7+/v7+/v7+/v7+/v7+/vz92QAAAAD+//////////////////////7/1gAAAAD///////////////////////7/1wAAAAD///////////////////////7/1wAAAAD///////////////////////7/1wAAAAD///////////////////////7/1wAAAAD///////////////////////7/1wAAAAD///////////////////////7/1wAAAAD///////////////////////7/1wAAAAD///////////////////////7/1wAAAAD///////////////////////7/1wAAAAD///////////////////////7/1wAAAAD///////////////////////7/1wAAAAD///////////////////////7/1wAAAAD+//////////////////////7/1gAAAAD//f////////////////////392gAAAADP//3///////////////////3/nAAAAAAtzP3+/////////////////vqzEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" }
-
-function InsUi:SetAccent(first, second)
-  Theme.AccentA = first
-  Theme.AccentB = second or first
-  Theme.Accent = Blend(Theme.AccentA, Theme.AccentB, Layout.ShimmerMix)
-
-  return self
-end
-
-function InsUi:SetTheme(overrides)
-  local First = overrides.accentA or overrides.accent
-  local Second = overrides.accentB or overrides.accent
-  local Fields = { bg = "Background", sidebar = "Background", text = "Text", idle = "Idle", track = "Track", slider = "SliderTrack", risk = "Risk" }
-
-  for Public, Field in pairs(Fields) do
-    local Color = overrides[Public]
-
-    if Color then Theme[Field] = Color end
-  end
-
-  if not First and not Second then return self end
-
-  return self:SetAccent(First or Theme.AccentA, Second or Theme.AccentB)
-end
-
-function InsUi:ApplyThemePreset(name)
-  local Preset = ThemePresets[name]
-  if not Preset then return self end
-
-  Theme.Background = PresetBackground[name] or DefaultBackground
-
-  return self:SetAccent(Preset[1], Preset[2])
-end
-
-function InsUi:ThemePresets()
-  local Names = {}
-
-  for Name in pairs(ThemePresets) do Names[#Names + 1] = Name end
-
-  table.sort(Names)
-
-  return Names
-end
-
-function InsUi:FontChoices()
-  local Names = {}
-
-  for Index = 1, #FontList do Names[Index] = FontList[Index].Name end
-
-  return Names
-end
-
-function InsUi:SetFont(name)
-  local Chosen = FontByName(name)
-
-  State.FontName = name
-  SystemFont, BoldFont = Chosen, Chosen
-
-  return self
-end
-
-function InsUi:Notify(title, description, duration, kind)
-  State.Notes[#State.Notes + 1] = {
-    Title = string.lower(tostring(title or "notification")),
-    Body = string.lower(tostring(description or "")),
-    Duration = tonumber(duration) or State.NoteDuration,
-    Kind = kind and string.lower(tostring(kind)) or nil,
-    Elapsed = 0,
-  }
-
-  return self
-end
-
-function InsUi:SaveConfig(name)
-  name = tostring(name or State.ConfigName)
-
-  EnsureFolder()
-  writefile(ConfigPath(name), HttpService:JSONEncode(PackConfig()))
-
-  return self
-end
-
-function InsUi:LoadConfig(name)
-  name = tostring(name or State.ConfigName)
-
-  local Path = ConfigPath(name)
-  if not isfile(Path) then return self end
-
-  ApplyConfig(HttpService:JSONDecode(readfile(Path)))
-
-  return self
-end
-
-function InsUi:ListConfigs()
-  local Names = {}
-
-  for _, File in ipairs(listfiles(ConfigDir())) do
-    local Name = string.match(File, "([^/\]+)%.json$")
-
-    if Name and string.sub(Name, 1, 1) ~= "_" then Names[#Names + 1] = Name end
-  end
-
-  return Names
-end
-
-function InsUi:DeleteConfig(name)
-  local Path = ConfigPath(tostring(name))
-
-  if isfile(Path) then delfile(Path) end
-
-  return self
-end
-
-function InsUi:GetValue(path)
-  local Found
-
-  EachRow(function(tab, section, row)
-    if RowPath(tab, section, row) == path then Found = row end
-  end)
-if not Found then return nil end
-  if Found.Kind == "Range" then return Found.Low, Found.High end
-  if Found.Kind == "Color" then return Found.Value, Found.Alpha end
-
-  return Found.Value
-end
-
-function InsUi:SetValue(path, value)
-  EachRow(function(tab, section, row)
-    if RowPath(tab, section, row) ~= path then return end
-
-    row.Value = value
-    row.Callback(value)
-  end)
-return self
-end
-
-function InsUi:Dialog(options)
-  State.Dialog = {
-    Title = tostring(options.title or "Confirm"),
-    Text = tostring(options.text or ""),
-    Confirm = tostring(options.confirm or "Confirm"),
-    Cancel = tostring(options.cancel or "Cancel"),
-    OnConfirm = options.onConfirm or function() end,
-    OnCancel = options.onCancel or function() end,
-  }
-
-  return self
-end
-
-local BoxClass = {}
-BoxClass.__index = BoxClass
-
-function InsUi:CreateBox(options)
-  options = options or {}
-
-  local Box = setmetatable({
-    Title = tostring(options.title or "Box"),
-    X = options.position and options.position.X or options.x or 20,
-    Y = options.position and options.position.Y or options.y or 140,
-    Width = options.width or options.w,
-    Visible = options.visible ~= false,
-    Lines = {},
-  }, BoxClass)
-
-  table.insert(State.Boxes, Box)
-
-  return Box
-end
-
-local function BoxLine(box, kind, value, color)
-  local Line = { Kind = kind, Value = value, Color = color }
-
-  table.insert(box.Lines, Line)
-
-  return Line
-end
-
-function BoxClass:Text(value, color)
-  return BoxLine(self, "Text", value, color)
-end
-
-function BoxClass:Stat(value, color)
-  return BoxLine(self, "Stat", value, color)
-end
-
-function BoxClass:Bar(value, color)
-  return BoxLine(self, "Bar", value, color)
-end
-
-function BoxClass:SetTitle(title)
-  self.Title = tostring(title)
-  return self
-end
-
-function BoxClass:SetVisible(visible)
-  self.Visible = visible ~= false
-  return self
-end
-
-function BoxClass:Clear()
-  self.Lines = {}
-  return self
-end
-
-function BoxClass:Remove()
-  for Index, Box in ipairs(State.Boxes) do
-    if Box == self then
-      table.remove(State.Boxes, Index)
-      return
+    local size = info.size or info.Size
+    local w, h = 880, 600
+    if size ~= nil then
+        pcall(function()
+            w = tonumber(size.X) or w
+            h = tonumber(size.Y) or h
+        end)
     end
-  end
+
+    local window = setmetatable({
+        Title = tostring(info.title or info.Title or "menu"),
+        MiniTitle = tostring(info.subtitle or info.MiniTitle or ""),
+        Icon = info.icon or "dot",
+        W = w,
+        H = h,
+        X = 0,
+        Y = 0,
+        Placed = false,
+        Visible = info.startOpen ~= false,
+        Anim = 0,
+        Tabs = {},
+        ActiveTab = nil,
+        Keybind = 112,
+        Accent = accent,
+        Notifications = {},
+        Drag = nil,
+        Dropdown = nil,
+        DropdownRect = nil,
+        Dialog = nil,
+        Search = "",
+        SearchFocus = false,
+        Alive = true,
+        Reduced = false,
+    }, WindowClass)
+
+    local accentColor = info.theme and (info.theme.accent or info.accentA)
+    if accentColor then window.Accent = accentColor end
+    if info.theme and info.theme.Base and info.theme.Base.R then window.Bg = info.theme.Base end
+
+    windows[#windows + 1] = window
+    return window
 end
 
-function InsUi:SetTitle(title)
-  State.Title = tostring(title)
-  return self
-end
-
-function InsUi:SetSize(width, height)
-  State.W = math.max(Layout.MinWidth, width)
-  State.H = math.max(Layout.MinHeight, height)
-  return self
-end
-
-function InsUi:SetPos(x, y)
-  State.X, State.Y = x, y
-  return self
-end
-
-function InsUi:Center()
-  local Viewport = Camera.ViewportSize
-
-  State.X = math.floor(Viewport.X / 2 - State.W / 2)
-  State.Y = math.floor(Viewport.Y / 2 - State.H / 2)
-
-  return self
-end
-
-function InsUi:SetMenuKey(key)
-  State.MenuKey = KeyName.Plain(key)
-
-  return self
-end
-
-function InsUi:Toggle()
-  State.Open = not State.Open
-  return self
-end
-
-function InsUi:Destroy()
-  State.Alive = false
-  State.Open = false
-
-  setrobloxinput(true)
-
-  for Kind, List in pairs(Pool) do
-    for Index = 1, #List do
-      List[Index].Visible = false
-      List[Index]:Remove()
-      List[Index] = nil
-      Cache[Kind][Index] = nil
+function WindowClass:CreateTab(info)
+    info = info or {}
+    local tab = {
+        Type = "Tab",
+        Name = tostring(info.Name or info.Title or "Tab"),
+        Icon = tostring(info.Icon or info.icon or info.Image or "dot"),
+        Parent = self,
+        Groupboxes = {},
+        Locked = false,
+    }
+    tab.AddGroupbox = function(_, config)
+        config = config or {}
+        local side = config.Side or config.side
+        local group = {
+            Type = "Groupbox",
+            Name = tostring(config.Name or "section"),
+            Side = side,
+            Parent = tab,
+            Elements = {},
+            Collapsed = false,
+        }
+        setmetatable(group, Groupbox)
+        tab.Groupboxes[#tab.Groupboxes + 1] = group
+        return group
     end
-  end
-
-  for _, Tab in ipairs(State.Tabs) do
-    if Tab.Image then Tab.Image:Remove() end
-    if Tab.ImageOn then Tab.ImageOn:Remove() end
-  end
-
-  State.Tabs = {}
-
-  for _, Key in ipairs({ LibName, LibName .. "UI", "INSUI" }) do
-    if _G[Key] == InsUi then _G[Key] = nil end
-  end
-
-  return self
+    self.Tabs[#self.Tabs + 1] = tab
+    if not self.ActiveTab then self.ActiveTab = tab end
+    return tab
 end
 
-function InsUi:SetAutoLoad(name)
-  WriteAutoload(name)
-  return self
+function WindowClass:SetMenuKey(vk)
+    self.Keybind = tonumber(vk) or 112
 end
 
-function InsUi:GetAutoLoad()
-  return ReadAutoload()
+function WindowClass:Minimize()
+     
+     
+     
+    self.Visible = false
+    self.Minimized = true
+    self.SearchFocus = false
+    self.NeedsClear = true
+    touchBusy(0.6)
 end
 
-function InsUi:SetOpen(open)
-  State.Open = open == true
-  return self
+function WindowClass:Open()
+    self.Visible = true
+    self.Minimized = false
+    touchBusy(0.6)
 end
 
-function InsUi:SetLayout(mode)
-  State.TabLayout = (mode == "Top" or mode == "top") and "top" or "side"
-
-  return self
+function WindowClass:Toggle()
+    self.Visible = not self.Visible
+    self.Minimized = not self.Visible
+    self.SearchFocus = false
+    if not self.Visible then self.NeedsClear = true end
+    touchBusy(0.6)
 end
 
-function InsUi:BackgroundEffects()
-  return EffectNames
+function WindowClass:IsOpen() return self.Visible end
+
+function WindowClass:SetTheme(name)
+    local theme = THEMES[name]
+    if not theme then return false end
+    self.ThemeName = name
+    self.Accent = theme.accent
+    self.Bg = theme.bg
+    touchBusy(0.4)
+    return true
 end
 
-function InsUi:SetBackgroundEffect(name)
-  State.Effect = nil
+function WindowClass:NeedsDraw()
+    if not self.Alive then return true end
 
-  for Index = 1, #EffectNames do
-    if EffectNames[Index] == name and name ~= "Off" then State.Effect = name end
-  end
+    local target = self.Visible and 1 or 0
+    if math.abs(self.Anim - target) > 0.002 then return true end
 
-  return self
-end
+    if not self.Visible then return self.NeedsClear == true or self.Minimized == true end
 
-function InsUi:SetBackgroundEffectColor(color)
-  State.EffectColor = color
+    if os.clock() < busyUntil then return true end
+    if Pointer.Click or Pointer.Down or self.Drag then return true end
+    if self.Dirty or self.Dropdown or self.Dialog then return true end
 
-  return self
-end
-
-function InsUi:SetGameInput(on)
-  State.GameInput = (on == "always") and "always" or (on ~= false)
-
-  ApplyInputState(true)
-
-  return self
-end
-
-function InsUi:SetSpotlight(on)
-  State.SpotlightEnabled = on ~= false
-
-  if not State.SpotlightEnabled then ShowSpotlight(false) end
-
-  return self
-end
-
-function InsUi:OpenSettings()
-  if not SettingsTab then return self end
-
-  for Index, Tab in ipairs(State.Tabs) do
-    if Tab == SettingsTab then State.ActiveIndex = Index end
-  end
-
-  State.ActiveSub = nil
-  State.ContentFade = 0
-
-  return self
-end
-
-function ShowSpotlight(open)
-  State.SpotlightOpen = open
-  State.Spotlight.Value = ""
-  State.Spotlight.Caret = 0
-  State.Spotlight.Sel = 1
-  State.Focus = open and State.Spotlight or nil
-end
-
-function InsUi:OpenSpotlight(open)
-  ShowSpotlight(open ~= false)
-
-  return self
-end
-
-function InsUi:OpenColorpicker(row)
-  local Target = row.Swatch or row
-
-  if Target.Value then StartPicker({ Row = Target, X = State.X + 80, Y = State.Y + 80 }) end
-
-  return self
-end
-
-function InsUi:SetCheckboxStyle(on)
-  State.CheckboxStyle = on == true
-
-  return self
-end
-
-function InsUi:IsCheckboxStyle()
-  return State.CheckboxStyle == true
-end
-
-function InsUi:SetPerformance(on)
-  State.Lite = on == true
-
-  return self
-end
-
-function InsUi:IsPerformance()
-  return State.Lite == true
-end
-
-function InsUi:SetRounding(value)
-  local Amount = tonumber(value)
-  if not Amount then return self end
-
-  if Amount > 2.5 then Amount = Amount / Layout.Percent end
-
-  RoundScale = math.min(math.max(Amount, 0), 2.5)
-
-  return self
-end
-
-function InsUi:GetRounding()
-  return RoundScale
-end
-
-function InsUi:SetRowLines(on)
-  State.RowLines = on == true
-
-  return self
-end
-
-function InsUi:SetOpacity(value)
-  local Amount = tonumber(value)
-  if not Amount then return self end
-
-  if Amount > 1 then Amount = Amount / Layout.Percent end
-
-  State.Opacity = math.min(math.max(Amount, 0.4), 1)
-
-  return self
-end
-
-function InsUi:SetKeybindOverlay(on)
-  State.HotkeyShown = on ~= false
-
-  return self
-end
-
-function InsUi:SetAutoSave(on)
-  State.AutoSave = on == true
-
-  return self
-end
-
-function InsUi:ExportConfig()
-  return "INScfg_" .. base64encode(HttpService:JSONEncode(PackConfig()))
-end
-
-function InsUi:ImportConfig(code)
-  local Body = string.match(tostring(code), "^INScfg_(.+)$") or tostring(code)
-
-  ApplyConfig(HttpService:JSONDecode(base64decode(Body)))
-
-  return self
-end
-
-function InsUi:SetLogo(source)
-  State.Logo = LoadPicture(source, "logo")
-
-  return self
-end
-
-function InsUi:SetIcon(source)
-  State.Icon = LoadPicture(source, "icon")
-
-  return self
-end
-
-function InsUi:SetBackgroundImage(source, alpha, widthFraction, heightFraction)
-  State.Backdrop = LoadPicture(source, "bg")
-  State.BackdropAlpha = alpha or State.BackdropAlpha
-  State.BackdropWide = tonumber(widthFraction)
-  State.BackdropTall = tonumber(heightFraction)
-
-  return self
-end
-
-function ApplyOptions(config)
-  if config.menuKey then InsUi:SetMenuKey(config.menuKey) end
-  if config.gameInput ~= nil then InsUi:SetGameInput(config.gameInput) end
-  if config.spotlight ~= nil then InsUi:SetSpotlight(config.spotlight) end
-  if config.logo then InsUi:SetLogo(config.logo) end
-  if config.logoSize then State.LogoSize = math.min(math.max(tonumber(config.logoSize), 16), 96) end
-  if config.icon then InsUi:SetIcon(config.icon) end
-  if config.opacity then InsUi:SetOpacity(config.opacity) end
-  if config.rounding ~= nil then InsUi:SetRounding(config.rounding) end
-  if config.rowLines ~= nil then InsUi:SetRowLines(config.rowLines) end
-  if config.checkboxStyle ~= nil then InsUi:SetCheckboxStyle(config.checkboxStyle) end
-  if config.smartFps ~= nil then State.SmartFps = config.smartFps == true end
-  if config.keybindOverlay ~= nil then State.HotkeyShown = config.keybindOverlay ~= false end
-  if config.theme then InsUi:SetTheme(config.theme) end
-  if config.accent or config.accentA or config.accentB then InsUi:SetAccent(config.accentA or config.accent, config.accentB or config.accent) end
-  if config.font then InsUi:SetFont(config.font) end
-  if config.backgroundEffect then InsUi:SetBackgroundEffect(config.backgroundEffect) end
-  if config.backgroundEffectColor then InsUi:SetBackgroundEffectColor(config.backgroundEffectColor) end
-  if config.autoSave then InsUi:SetAutoSave(true) end
-end
-
-function InsUi:IsOpen()
-  return State.Open
-end
-
-local BoxWidth, DrawBoxes
-
-do
-  local BoxIdleTint = Color3.fromRGB(120, 122, 130)
-  local BoxLiveTint = Color3.fromRGB(195, 197, 205)
-  local BoxReadyWords = { "READY", "FARMING", "GO" }
-  local BoxIdleWords = { "PAUSED", "WAIT", "IDLE", "OFF", "SOON" }
-
-  local function BoxHasWord(text, words)
-    for Index = 1, #words do
-      if string.find(text, words[Index], 1, true) then return true end
+     
+     
+    if self.LastPX ~= Pointer.X or self.LastPY ~= Pointer.Y then
+        local over = Pointer.X >= self.X - 6 and Pointer.X <= self.X + self.W + 6
+            and Pointer.Y >= self.Y - 6 and Pointer.Y <= self.Y + self.H + 6
+        if over or self.WasOver then return true end
     end
 
     return false
-  end
-
-  local function SplitStat(value)
-    local Label, Text = string.match(value, "^(.-)%s+|%s+(.+)$")
-    if Label then return Label, Text end
-
-    Label, Text = string.match(value, "^(.-):%s+(.+)$")
-    if Label then return Label, Text end
-
-    return "", value
-  end
-
-  local function BuildStat(line, lines)
-    local Value = tostring(line.Value)
-    if Value == "" then return end
-
-    local Label, Text = SplitStat(Value)
-
-    lines[#lines + 1] = { Kind = "Stat", Label = Label, Text = Text, Color = line.Color }
-  end
-
-  local function BuildBar(line, lines)
-    local Number = tonumber(line.Value) or 0
-    local Percent = (Number > 0 and Number <= 1) and Number * Layout.BoxFull or Number
-
-    lines[#lines + 1] = { Kind = "Bar", Percent = math.min(math.max(Percent, 0), Layout.BoxFull) }
-  end
-
-  local function BuildText(line, lines)
-    lines[#lines + 1] = { Kind = "Text", Text = tostring(line.Value), Color = line.Color }
-  end
-
-  local BoxBuilder = {
-    Stat = BuildStat,
-    Bar = BuildBar,
-    Text = BuildText,
-  }
-
-  local function BoxContent(box)
-    local Lines = {}
-
-    for _, Line in ipairs(box.Lines) do BoxBuilder[Line.Kind](Line, Lines) end
-
-    return Lines
-  end
-
-  function BoxWidth(box, lines)
-    local Widest = TextWidth(box.Title, Layout.SmallSize, BoldFont) + Layout.BoxTitlePad
-
-    for Index = 1, #lines do
-      local Line = lines[Index]
-
-      if Line.Kind == "Stat" then
-        Widest = math.max(Widest, TextWidth(Line.Label, Layout.SmallSize, SystemFont) + TextWidth(Line.Text, Layout.SmallSize, MonoFont) + Layout.BoxStatRoom)
-      elseif Line.Kind == "Bar" then
-        Widest = math.max(Widest, Layout.BoxBarWidth)
-      else
-        Widest = math.max(Widest, TextWidth(Line.Text, Layout.SmallSize, SystemFont) + Layout.BoxTextRoom)
-      end
-    end
-
-    return box.Width or math.max(Layout.BoxMinWidth, Widest)
-  end
-
-  local function DrawStatLine(line, x, y, width)
-    local Upper = string.upper(line.Text)
-    local Ready = BoxHasWord(Upper, BoxReadyWords)
-    local Idle = BoxHasWord(Upper, BoxIdleWords) or Upper == "--" or string.match(Upper, "^%d+:%d") ~= nil
-    local DotColor = Ready and Theme.Accent or (Idle and BoxIdleTint or BoxLiveTint)
-    local Pulse = Alpha.BoxPulse + Alpha.BoxPulseGain * math.sin(os.clock() * Layout.BoxPulseSpeed)
-    local DotAlpha = Ready and Pulse or (Idle and Alpha.BoxIdleDot or Alpha.BoxLiveDot)
-    local ValueX = x + width - Layout.BoxValuePad - TextWidth(line.Text, Layout.SmallSize, MonoFont)
-    local ValueColor = line.Color or Theme.Text
-    local ValueAlpha = Ready and Alpha.Text or Alpha.Label
-
-    DrawCircle(x + Layout.BoxStatDotX, y + Layout.BoxStatDotY, Layout.BoxStatDot, DotColor, 163, true, 1, Layout.BoxStatDotSides, DotAlpha)
-    DrawText(line.Label, x + Layout.BoxLabelX, y, Theme.Text, Layout.SmallSize, SystemFont, 162, Alpha.Label, width - Layout.BoxLabelRoom)
-    DrawText(line.Text, ValueX, y, ValueColor, Layout.SmallSize, MonoFont, 162, ValueAlpha)
-  end
-
-  local function DrawBarLine(line, x, y, width)
-    local BarX = x + Layout.BoxInset
-    local BarY = y + Layout.BoxBarTop
-    local TrackWidth = width - Layout.BoxInset * 2
-    local FillWidth = math.max(Layout.BoxBarMin, TrackWidth * line.Percent / Layout.BoxFull)
-
-    DrawRect(BarX, BarY, TrackWidth, Layout.BoxBarHeight, Theme.Text, 162, Layout.BoxBarRadius, Alpha.Field)
-
-    if line.Percent <= 0 then return end
-
-    DrawRect(BarX, BarY, FillWidth, Layout.BoxBarHeight, Theme.AccentA, 163, Layout.BoxBarRadius, Alpha.BoxBarFill)
-  end
-
-  local function DrawTextLine(line, x, y, width)
-    local TextColor = line.Color or Theme.Text
-
-    DrawText(line.Text, x + Layout.BoxInset, y, TextColor, Layout.SmallSize, SystemFont, 162, Alpha.Label, width - Layout.BoxTextRoom)
-  end
-
-  local BoxDrawer = {
-    Stat = DrawStatLine,
-    Bar = DrawBarLine,
-    Text = DrawTextLine,
-  }
-
-  local function DragBox(box)
-    if not Input.Down then box.Drag = nil end
-
-    local Drag = box.Drag
-    if not Drag then return end
-
-    if State.Open then Drag.ToX, Drag.ToY = Input.X - Drag.GrabX, Input.Y - Drag.GrabY end
-    if not Drag.ToX then return end
-
-    box.X = Approach(box.X, Drag.ToX, Layout.BoxDragSpeed)
-    box.Y = Approach(box.Y, Drag.ToY, Layout.BoxDragSpeed)
-  end
-
-  local function DrawBox(box)
-    if not box.Visible then return end
-
-    DragBox(box)
-
-    local Lines = BoxContent(box)
-    local Count = #Lines
-    local Width = BoxWidth(box, Lines)
-    local Height = Layout.BoxTitle + Count * Layout.BoxLine + (Count > 0 and Layout.BoxPad or Layout.BoxEmptyPad)
-    local X, Y = box.X, box.Y
-    local TitleY = TextTop(Y, Layout.BoxTitle, Layout.SmallSize)
-    local RuleY = Y + Layout.BoxTitle - Layout.BoxRuleLift
-    local RuleWidth = Width - Layout.BoxRuleInset * 2
-    local LineTop = Y + Layout.BoxTitle + Layout.BoxLineTop
-
-    DrawRect(X, Y, Width, Height, Theme.Background, 160, Layout.BoxRadius, Alpha.BoxFill)
-    DrawStroke(X, Y, Width, Height, Theme.Text, 161, Layout.BoxRadius, Alpha.CardStroke)
-    DrawCircle(X + Layout.BoxDotX, Y + Layout.BoxTitle / 2, Layout.BoxDot, Theme.AccentA, 162, true, 1, Layout.BoxDotSides, 1)
-    DrawText(box.Title, X + Layout.BoxTitleX, TitleY, Theme.Text, Layout.SmallSize, BoldFont, 162, Alpha.Text, Width - Layout.BoxTitleRoom)
-    GradientRect(X + Layout.BoxRuleInset, RuleY, RuleWidth, Layout.BoxRuleHeight, Theme.AccentA, Theme.AccentB, 162, Alpha.BoxRule)
-
-    for Index = 1, Count do
-      local Line = Lines[Index]
-
-      BoxDrawer[Line.Kind](Line, X, LineTop + (Index - 1) * Layout.BoxLine, Width)
-    end
-
-    if not State.Open or not Input.Click or box.Drag then return end
-    if not IsMouseIn(X, Y, Width, Layout.BoxTitle) then return end
-
-    box.Drag = { GrabX = Input.X - X, GrabY = Input.Y - Y }
-    Input.Click = false
-  end
-
-  function DrawBoxes()
-    for _, Box in ipairs(State.Boxes) do DrawBox(Box) end
-  end
 end
 
-local DrawHotkeyOverlay, DrawMinBubble
-
-do
-  local HotkeyPlain = { enabled = true, enable = true, active = true, on = true }
-
-  local function CollectHotkeys(view, list)
-    for _, Section in ipairs(view.Sections) do
-      for _, Row in ipairs(Section.Rows) do
-        local Bind = Row.Bind
-
-        if Bind then
-          local Bound = Bind.Value ~= "" and Bind.Value ~= "none" and Row.Value == true
-          local Plain = HotkeyPlain[string.lower(Row.Name)] and Section.Name ~= ""
-
-          Row.Overlay = Approach(Row.Overlay or 0, Bound and 1 or 0, Layout.HotkeySpeed)
-
-          if Row.Overlay > Layout.HotkeyGone then list[#list + 1] = { Name = Plain and Section.Name or Row.Name, Key = KeyName.Label(Bind.Value), Fade = Row.Overlay } end
-        end
-      end
-    end
-
-    for _, Sub in ipairs(view.Subs) do CollectHotkeys(Sub, list) end
-  end
-
-  function DrawHotkeyOverlay()
-    if not Window or State.HotkeyShown == false then return end
-
-    local List = {}
-
-    for _, Tab in ipairs(State.Tabs) do CollectHotkeys(Tab, List) end
-
-    local Span = 0
-
-    for Index = 1, #List do Span = Span + List[Index].Fade end
-
-    State.HotkeyFade = Approach(State.HotkeyFade or 0, 1, Layout.HotkeyFadeSpeed)
-
-    local Fade = State.HotkeyFade
-    if Fade < Layout.HotkeyGone then return end
-
-    local Width = Layout.HotkeyWidth
-    local Height = Layout.HotkeyBase + Span * Layout.HotkeyRow + Layout.HotkeyPad
-    local Pos = State.HotkeyPos or { X = Layout.HotkeyX, Y = Layout.HotkeyY }
-    local Viewport = Camera.ViewportSize
-
-    State.HotkeyPos = Pos
-
-    local Drag = State.HotkeyDrag
-
-    if Drag then
-      Pos.X = Approach(Pos.X, Input.X - Drag.X, Layout.HotkeyDragSpeed)
-      Pos.Y = Approach(Pos.Y, Input.Y - Drag.Y, Layout.HotkeyDragSpeed)
-    end
-
-    local X = math.min(math.max(Pos.X, 0), math.max(0, Viewport.X - Width))
-    local Y = math.min(math.max(Pos.Y, 0), math.max(0, Viewport.Y - Height))
-    local RowTop = Y + Layout.HotkeyBase
-
-    Pos.X, Pos.Y = X, Y
-
-    DrawRect(X, Y, Width, Height, Theme.Background, 150, Layout.HotkeyRadius, Alpha.HotkeyFill * Fade)
-    DrawStroke(X, Y, Width, Height, Theme.Text, 151, Layout.HotkeyRadius, Alpha.CardStroke * Fade)
-    DrawText("keybinds", X + Layout.HotkeyTitleX, Y + Layout.HotkeyTitleY, Theme.Text, Layout.SmallSize, BoldFont, 152, Alpha.Text * Fade, Width - Layout.HotkeyTitleRoom)
-    GradientRect(X + Layout.HotkeyRuleX, Y + Layout.HotkeyRuleY, Width - Layout.HotkeyRuleRoom, Layout.HotkeyRuleHeight, Theme.AccentA, Theme.AccentB, 152, Alpha.HotkeyRule * Fade)
-
-    for Index = 1, #List do
-      local Item = List[Index]
-      local Shade = Item.Fade * Fade
-      local Slide = (1 - Item.Fade) * Layout.HotkeySlide
-      local ChipWidth = math.max(Layout.HotkeyChipMin, TextWidth(Item.Key, Layout.TinySize, MonoFont) + Layout.HotkeyChipPad)
-      local ChipX = X + Width - Layout.HotkeyChipRight - ChipWidth + Slide
-      local ChipY = RowTop + Layout.HotkeyChipInset
-      local ChipHeight = Layout.HotkeyRow - Layout.HotkeyChipTrim
-      local DotX = X + Layout.HotkeyDotX + Slide
-      local DotY = RowTop + Layout.HotkeyRow / 2
-      local LabelX = X + Layout.HotkeyLabelX + Slide
-      local LabelY = TextTop(RowTop, Layout.HotkeyRow, Layout.SmallSize)
-      local KeyY = RowTop + Layout.HotkeyRow / 2
-
-      DrawCircle(DotX, DotY, Layout.HotkeyDot, Theme.AccentA, 152, true, 1, Layout.HotkeyDotSides, Shade)
-      DrawText(Item.Name, LabelX, LabelY, Theme.Text, Layout.SmallSize, SystemFont, 152, Alpha.Text * Shade, Width - Layout.HotkeyLabelRoom)
-      DrawRect(ChipX, ChipY, ChipWidth, ChipHeight, Theme.Text, 152, Layout.HotkeyChipRadius, Alpha.Field * Shade)
-      DrawTextMid(Item.Key, ChipX + ChipWidth / 2, KeyY, Theme.Text, Layout.TinySize, MonoFont, 153, Alpha.Text * Shade)
-
-      RowTop = RowTop + Layout.HotkeyRow * Item.Fade
-    end
-
-    if Drag then return end
-    if not Input.Click then return end
-    if not IsMouseIn(X, Y, Width, Layout.HotkeyGrab) then return end
-
-    State.HotkeyDrag = { X = Input.X - X, Y = Input.Y - Y }
-    Input.Click = false
-  end
-
-  function DrawMenuBars(cx, cy, size, color, z, transparency)
-    local BarWidth = size * Layout.BarsWidth
-    local BarThick = size * Layout.BarsThick
-    local Gap = size * Layout.BarsGap
-    local BarX = cx - BarWidth / 2
-    local BarY = cy - BarThick / 2
-    local Radius = BarThick / 2
-
-    DrawRect(BarX, BarY - Gap, BarWidth, BarThick, color, z, Radius, transparency)
-    DrawRect(BarX, BarY, BarWidth, BarThick, color, z, Radius, transparency)
-    DrawRect(BarX, BarY + Gap, BarWidth, BarThick, color, z, Radius, transparency)
-  end
-
-  function DrawMinBubble()
-    State.BubbleFade = Approach(State.BubbleFade, State.Rolled and 1 or 0, Layout.BubbleSpeed)
-
-    local Shown = State.Visible
-    local Live = State.BubbleFade * Shown
-    if Live < Layout.BubbleGone then return end
-
-    local Pos = State.BubblePos or { X = Layout.BubbleX, Y = Layout.BubbleY }
-    local Drag = State.BubbleDrag
-    local Viewport = Camera.ViewportSize
-
-    State.BubblePos = Pos
-
-    if Drag and Input.Down then
-      local ToX = Approach(Pos.X, Input.X - Drag.X, Layout.BubbleDragSpeed)
-      local ToY = Approach(Pos.Y, Input.Y - Drag.Y, Layout.BubbleDragSpeed)
-
-      if math.abs(Input.X - Drag.DownX) + math.abs(Input.Y - Drag.DownY) > Layout.BubbleSlop then Drag.Moved = true end
-
-      Pos.X = math.min(math.max(ToX, 0), math.max(0, Viewport.X - Layout.BubbleSize))
-      Pos.Y = math.min(math.max(ToY, 0), math.max(0, Viewport.Y - Layout.BubbleSize))
-    end
-
-    if Drag and not Input.Down then
-      if not Drag.Moved then
-        State.X, State.Y = Pos.X, Pos.Y
-        State.Rolled = false
-      end
-
-      State.BubbleDrag = nil
-    end
-
-    local Grow = State.BubbleFade
-    local Ease = Grow * Grow * (3 - 2 * Grow)
-    local Size = Layout.BubbleSize
-    local BoxX = State.X + (Pos.X - State.X) * Ease
-    local BoxY = State.Y + (Pos.Y - State.Y) * Ease
-    local BoxWidth = State.W + (Size - State.W) * Ease
-    local BoxHeight = State.H + (Size - State.H) * Ease
-    local Radius = Layout.BubbleRadius + Ease
-    local Cx, Cy = BoxX + BoxWidth / 2, BoxY + BoxHeight / 2
-    local Settled = State.BubbleFade > Layout.BubbleSettled
-    local Hovered = Settled and IsMouseIn(BoxX, BoxY, BoxWidth, BoxHeight)
-    local Glow = Approach(State.BubbleGlow or 0, Hovered and 1 or 0, Layout.BubbleGlowSpeed)
-
-    State.BubbleGlow = Glow
-
-    local Fill = Blend(Theme.Background, Theme.Accent, Ease)
-    local Crown = Blend(Theme.Accent, Theme.Text, Layout.BubbleCrownMix)
-    local GlowOut = Layout.BubbleGlowOut
-    local FillAlpha = (Alpha.BubbleFill - Alpha.BubbleFillFade * Ease) * Shown
-    local EdgeAlpha = (Alpha.BubbleEdge + Alpha.BubbleEdgeGrow * Ease + Alpha.BubbleEdgeHover * Glow) * Shown
-
-    for Index = 1, Layout.BubbleShadowSteps do
-      local Spread = Index * Layout.BubbleShadowStep
-
-      DrawRect(BoxX - Spread, BoxY - Spread + Layout.BubbleShadowLift, BoxWidth + Spread * 2, BoxHeight + Spread * 2, Black, 199, Radius + Spread, (Alpha.BubbleShadow - Index * Alpha.BubbleShadowFall) * Ease * Shown)
-    end
-
-    DrawRect(BoxX - GlowOut, BoxY - GlowOut, BoxWidth + GlowOut * 2, BoxHeight + GlowOut * 2, Theme.Accent, 200, Radius + Layout.BubbleGlowRadius, Alpha.BubbleGlow * Glow * Shown)
-    DrawRect(BoxX, BoxY, BoxWidth, BoxHeight, Fill, 201, Radius, FillAlpha)
-    DrawRect(BoxX, BoxY, BoxWidth, BoxHeight * Layout.BubbleCrown, Crown, 202, Radius, Alpha.BubbleCrown * Ease * Shown)
-    DrawStroke(BoxX, BoxY, BoxWidth, BoxHeight, Theme.Text, 203, Radius, EdgeAlpha)
-
-    if Ease > Layout.BubbleIconAt then
-      local IconAlpha = math.min(math.max((Ease - Layout.BubbleIconAt) / Layout.BubbleIconSpan, 0), 1) * Shown
-
-      DrawMenuBars(Cx, Cy, BoxHeight, BarTint, 204, IconAlpha)
-    end
-
-    if not Hovered then return end
-    if not Input.Click then return end
-    if State.BubbleDrag then return end
-
-    State.BubbleDrag = { X = Input.X - BoxX, Y = Input.Y - BoxY, DownX = Input.X, DownY = Input.Y, Moved = false }
-    Input.Click = false
-  end
-end
-
-local DrawSpotlight
-
-do
-  local function FuzzyScore(query, text)
-    local QueryLength, TextLength = #query, #text
-
-    if QueryLength == 0 then return 0 end
-
-    local QueryIndex, TextIndex, First, Prev, Gaps = 1, 1, nil, 0, 0
-
-    while QueryIndex <= QueryLength and TextIndex <= TextLength do
-      if string.sub(query, QueryIndex, QueryIndex) == string.sub(text, TextIndex, TextIndex) then
-        if not First then First = TextIndex elseif TextIndex - Prev > 1 then Gaps = Gaps + 1 end
-
-        Prev = TextIndex
-        QueryIndex = QueryIndex + 1
-      end
-
-      TextIndex = TextIndex + 1
-    end
-
-    if QueryIndex <= QueryLength then return nil end
-
-    local Head = (First == 1 or string.sub(text, First - 1, First - 1) == " ") and -Layout.FuzzyHead or 0
-
-    return (First - 1) + Gaps * Layout.FuzzyGap + Head
-  end
-
-  local function SpotlightOrder(first, second)
-    if first.Score ~= second.Score then return first.Score < second.Score end
-
-    return first.Name < second.Name
-  end
-
-  local function AddSpotlightResult(found, tab, index, section, row, needle)
-    if not row.Name then return end
-    if row.Kind == "Divider" or row.Kind == "Label" then return end
-
-    local Score = needle == "" and 0 or FuzzyScore(needle, string.lower(row.Name))
-    if not Score then return end
-
-    found[#found + 1] = { Tab = tab, Index = index, Row = row, Name = row.Name, Path = tab.Name .. "  >  " .. section.Name, Kind = row.Kind, Score = Score }
-  end
-
-  local function SpotlightResults(query)
-    local Needle = string.lower(query)
-    local Found = {}
-
-    for Index, Tab in ipairs(State.Tabs) do
-      for _, Section in ipairs(Tab.Sections) do
-        for _, Row in ipairs(Section.Rows) do AddSpotlightResult(Found, Tab, Index, Section, Row, Needle) end
-      end
-    end
-
-    table.sort(Found, SpotlightOrder)
-
-    return Found
-  end
-
-  local function SpotlightJump(result)
-    if not result then return end
-
-    if State.ActiveIndex ~= result.Index then
-      State.ActiveIndex = result.Index
-      State.ActiveSub = nil
-      State.ContentFade = 0
-    end
-
-    result.Row.Reveal = os.clock() + Layout.RevealTime
-    State.SpotJump = result.Row
-    State.Rolled = false
-    State.Open = true
-    State.SpotlightOpen = false
-  end
-
-  local function ResetSpotlightSelection()
-    State.Spotlight.Sel = 1
-  end
-
-  State.Spotlight.Callback = ResetSpotlightSelection
-
-  local function DrawSpotlightField(x, y, width, fade)
-    local Spot = State.Spotlight
-    local Open = State.SpotlightOpen
-    local Value = Spot.Value
-    local Length = #Value
-    local TextX = x + Layout.SpotQueryX
-    local TextY = TextTop(y, Layout.SpotField, Layout.SpotText)
-    local Room = width - Layout.SpotTextRoom
-    local CharWidth = Layout.SpotText * Layout.EditWidth
-    local Caret = math.min(math.max(Spot.Caret or Length, 0), Length)
-    local Fit = math.max(1, math.floor(Room / CharWidth))
-    local Scroll = Open and Caret > Fit and Caret - Fit or 0
-    local Shown = string.sub(Value, Scroll + 1, math.min(Length, Scroll + Fit))
-    local Anchor = Spot.Anchor or Caret
-    local Selecting = Open and Spot.Anchor ~= nil and Spot.Anchor ~= Caret
-    local Blink = os.clock() % 1 < Layout.CaretBlink
-    local Low = math.min(math.max(math.min(Anchor, Caret) - Scroll, 0), #Shown)
-    local High = math.min(math.max(math.max(Anchor, Caret) - Scroll, 0), #Shown)
-    local CaretX = TextX + math.min(math.max(Caret - Scroll, 0), #Shown) * CharWidth
-    local SelectX = TextX + Low * CharWidth
-    local SelectWidth = math.max(1, (High - Low) * CharWidth)
-    local SelectShade = High > Low and Alpha.Select * Alpha.Text * fade or 0
-    local Accent = Blend(Theme.AccentA, Theme.AccentB, Layout.ShimmerMix)
-    local Hit = math.min(math.max(Scroll + math.floor((Input.X - TextX) / CharWidth + 0.5), 0), Length)
-
-    if Value == "" and not Open then
-      DrawText("Search widgets...", TextX, TextY, Theme.Text, Layout.SpotText, SystemFont, 402, Alpha.Placeholder * fade, Room)
-      return
-    end
-
-    for Index = 1, #Shown do
-      DrawText(string.sub(Shown, Index, Index), TextX + (Index - 1) * CharWidth, TextY, Theme.Text, Layout.SpotText, UiFont, 402, Alpha.Text * fade)
-    end
-
-    if Open and not Selecting and Blink then DrawRect(CaretX, TextY, Layout.CaretWidth, Layout.SpotText, Theme.Text, 402, 0, Alpha.Text * fade) end
-    if Selecting then DrawRect(SelectX, TextY - Layout.SelectLift, SelectWidth, Layout.SpotText + Layout.SelectGrow, Accent, 402, Layout.SelectRadius, SelectShade) end
-    if not Open then return end
-
-    if Input.Click and IsMouseIn(x + Layout.SpotHitX, y, width - Layout.SpotHitRoom, Layout.SpotField) then
-      Spot.Caret = Hit
-      Spot.Anchor = Hit
-      State.TextDrag = Spot
-      Input.Click = false
-    end
-
-    if not State.TextDrag then return end
-    if State.TextDrag ~= Spot then return end
-
-    Spot.Caret = Hit
-  end
-
-  local function DrawSpotlightRow(result, index, x, width, rowWidth, areaTop, areaHeight, smooth, moved, fade)
-    local Spot = State.Spotlight
-    local RowY = areaTop + (index - smooth) * Layout.SpotRow
-
-    if RowY + Layout.SpotRow <= areaTop or RowY >= areaTop + areaHeight then return end
-
-    local EdgeFade = math.min(math.max((RowY + Layout.SpotRow - areaTop) / Layout.SpotRow, 0), 1) * math.min(math.max((areaTop + areaHeight - RowY) / Layout.SpotRow, 0), 1)
-    local Shade = fade * EdgeFade
-    local RowX = x + Layout.SpotRowX
-    local Inside = RowY >= areaTop - Layout.SpotSlack and RowY + Layout.SpotRow <= areaTop + areaHeight + Layout.SpotSlack
-    local Hovered = Inside and IsMouseIn(RowX, RowY, rowWidth, Layout.SpotRow)
-
-    if Hovered and moved and not Spot.BarDrag then Spot.Sel = index + 1 end
-
-    local Selected = index + 1 == Spot.Sel
-    local Height = Layout.SpotRow - Layout.SpotRowTrim
-    local FillY = RowY + Layout.SpotRowLift
-    local Accent = Blend(Theme.AccentA, Theme.AccentB, Layout.ShimmerMix)
-    local NameRoom = width - Layout.SpotNameRoom
-    local Kind = KindName[result.Kind]
-    local KindX = x + rowWidth - Layout.SpotKindPad - TextWidth(Kind, Layout.TinySize, SystemFont)
-
-    DrawRect(RowX, FillY, rowWidth, Height, Accent, 401, Layout.SpotRowRadius, (Selected and Alpha.SpotSelect or 0) * Shade)
-    DrawRect(RowX, FillY, Layout.SpotMark, Height, Accent, 402, Layout.SpotMarkRadius, (Selected and Alpha.SpotMark or 0) * Shade)
-    DrawText(result.Name, x + Layout.SpotNameX, RowY + Layout.SpotNameY, Theme.Text, Layout.SpotName, BoldFont, 402, Alpha.Text * Shade, NameRoom)
-    DrawText(result.Path, x + Layout.SpotNameX, RowY + Layout.SpotPathY, Theme.Text, Layout.TinySize, SystemFont, 402, Alpha.Dim * Shade, NameRoom)
-    DrawText(Kind, KindX, TextTop(RowY, Layout.SpotRow, Layout.TinySize), Theme.Text, Layout.TinySize, SystemFont, 402, Alpha.Dim * Shade)
-
-    if not Inside or not Input.Click or not Hovered then return end
-
-    SpotlightJump(result)
-
-    Input.Click = false
-  end
-
-  local function DrawSpotlightBar(count, x, width, areaTop, areaHeight, maxOffset, fade)
-    local Spot = State.Spotlight
-    local BarX = x + width - Layout.SpotBarInset
-    local ThumbHeight = math.max(Layout.ThumbMin, areaHeight * Layout.SpotRows / count)
-    local Fraction = Spot.Offset / maxOffset
-    local ThumbY = areaTop + (areaHeight - ThumbHeight) * Fraction
-    local Grab = IsMouseIn(BarX - Layout.TrackReach, areaTop, Layout.TrackGrab, areaHeight)
-    local Target = (Grab or Spot.BarDrag) and 1 or 0
-
-    Spot.BarGlow = Approach(Spot.BarGlow or 0, Target, Layout.ThumbGlowSpeed)
-
-    if math.abs(Spot.BarGlow - Target) < Layout.ThumbGlowSnap then Spot.BarGlow = Target end
-
-    local Glow = Spot.BarGlow
-    local BarColor = Blend(Theme.AccentA, Theme.AccentB, Fraction)
-    local ThumbColor = Blend(Theme.Text, BarColor, Layout.ThumbMix)
-
-    DrawRect(BarX, areaTop, Layout.TrackWidth, areaHeight, Theme.Text, 403, Layout.TrackRadius, Alpha.Track * fade)
-    DrawRect(BarX - Layout.ThumbHaloX, ThumbY - Layout.ThumbHaloY, Layout.ThumbHaloWidth, ThumbHeight + Layout.ThumbHaloGrow, BarColor, 404, Layout.ThumbHaloRadius, Alpha.ThumbHalo * Glow * fade)
-    DrawRect(BarX, ThumbY, Layout.ThumbWidth, ThumbHeight, ThumbColor, 404, Layout.ThumbRadius, (Alpha.Thumb + Alpha.ThumbGlow * Glow) * fade)
-
-    if Input.Click and Grab then Spot.BarDrag = true Input.Click = false end
-    if not Spot.BarDrag or not Input.Down then return end
-
-    local Along = math.min(math.max((Input.Y - areaTop - ThumbHeight / 2) / math.max(1, areaHeight - ThumbHeight), 0), 1)
-
-    Spot.Offset = math.min(math.max(math.floor(Along * maxOffset + 0.5), 0), maxOffset)
-    Spot.Sel = math.min(math.max(Spot.Sel, Spot.Offset + 1), Spot.Offset + Layout.SpotRows)
-  end
-
-  function DrawSpotlight()
-    local Spot = State.Spotlight
-
-    if not Spot then Spot = { Value = "", Caret = 0, Sel = 1, Offset = 0, Callback = ResetSpotlightSelection } State.Spotlight = Spot end
-
-    State.SpotlightFade = Approach(State.SpotlightFade or 0, State.SpotlightOpen and 1 or 0, Layout.SpotSpeed)
-
-    local Fade = State.SpotlightFade
-    if Fade < Layout.SpotGoneAt then return end
-
-    local Open = State.SpotlightOpen
-
-    if Open and Keys.Escape.Click then State.SpotlightOpen = false Keys.Escape.Click = false end
-
-    local Live = State.SpotlightOpen
-    local Jump = Live and Keys.Enter.Click
-
-    if Open then Keys.Enter.Click = false end
-    if Spot.Value ~= Spot.Query then Spot.Query, Spot.Results = Spot.Value, SpotlightResults(Spot.Value) end
-
-    local Results = Spot.Results
-    local Count = #Results
-
-    Spot.Sel = math.min(math.max(Spot.Sel, 1), math.max(1, Count))
-
-    if Live and Keys.Down.Click then Spot.Sel = math.min(Count, Spot.Sel + 1) Keys.Down.Click = false end
-    if Live and Keys.Up.Click then Spot.Sel = math.max(1, Spot.Sel - 1) Keys.Up.Click = false end
-    if Jump then SpotlightJump(Results[Spot.Sel]) return end
-
-    local MaxOffset = math.max(0, Count - Layout.SpotRows)
-
-    Spot.Offset = math.min(math.max(Spot.Offset, 0), MaxOffset)
-
-    if Spot.Sel - 1 < Spot.Offset then Spot.Offset = Spot.Sel - 1 end
-    if Spot.Sel - 1 > Spot.Offset + Layout.SpotRows - 1 then Spot.Offset = Spot.Sel - Layout.SpotRows end
-
-    Spot.Offset = math.min(math.max(Spot.Offset, 0), MaxOffset)
-    Spot.Smooth = Approach(Spot.Smooth or Spot.Offset, Spot.Offset, Layout.SpotScrollSpeed)
-
-    local View = Camera.ViewportSize
-    local Width = Layout.SpotWidth
-    local Shown = math.min(Count, Layout.SpotRows)
-    local Height = Layout.SpotHead + (Shown > 0 and (Shown * Layout.SpotRow + Layout.SpotPad) or Layout.SpotEmpty)
-    local X = math.floor((View.X - Width) / 2)
-    local Y = math.floor(View.Y * Layout.SpotTop)
-    local RuleWidth = Width - Layout.SpotRuleX * 2
-    local AreaTop = Y + Layout.SpotHead
-    local AreaHeight = Layout.SpotRows * Layout.SpotRow
-    local RowWidth = Count > Layout.SpotRows and (Width - Layout.SpotRowRoom) or (Width - Layout.SpotRowWide)
-    local Smooth = Spot.Smooth
-    local Moved = Input.X ~= Spot.MouseX or Input.Y ~= Spot.MouseY
-
-    Spot.MouseX, Spot.MouseY = Input.X, Input.Y
-
-    DrawRect(0, 0, View.X, View.Y, Black, 398, 0, Alpha.SpotVeil * Fade)
-    DrawRect(X, Y, Width, Height, Theme.Background, 400, Layout.SpotRadius, Alpha.SpotFill * Fade)
-    DrawStroke(X, Y, Width, Height, Theme.Text, 401, Layout.SpotRadius, Alpha.CardStroke * Fade)
-    DrawCircle(X + Layout.SpotGlassX, Y + Layout.SpotGlassY, Layout.SpotGlass, Theme.Text, 402, false, Layout.SpotGlassThick, Layout.SpotGlassSides, Alpha.Label * Fade)
-    DrawLine(X + Layout.SpotHandleX, Y + Layout.SpotHandleY, X + Layout.SpotHandleTipX, Y + Layout.SpotHandleTipY, Theme.Text, 402, Layout.SpotGlassThick, Alpha.Label * Fade)
-    GradientRect(X + Layout.SpotRuleX, Y + Layout.SpotRuleY, RuleWidth, Layout.SpotRuleHeight, Theme.AccentA, Theme.AccentB, 402, Alpha.SpotRule * Fade)
-    DrawSpotlightField(X, Y, Width, Fade)
-
-    if Count == 0 then DrawText("no matches", X + Layout.SpotEmptyX, Y + Layout.SpotEmptyY, Theme.Text, Layout.TextSize, SystemFont, 402, Alpha.Dim * Fade, Width - Layout.SpotEmptyRoom) end
-
-    for Step = 0, Layout.SpotRows do
-      local Index = math.floor(Smooth) + Step
-      local Result = Index >= 0 and Results[Index + 1] or nil
-
-      if Result then DrawSpotlightRow(Result, Index, X, Width, RowWidth, AreaTop, AreaHeight, Smooth, Moved, Fade) end
-    end
-
-    if MaxOffset > 0 then DrawSpotlightBar(Count, X, Width, AreaTop, AreaHeight, MaxOffset, Fade) end
-    if not Input.Click then return end
-    if IsMouseIn(X, Y, Width, Height) then return end
-
-    State.SpotlightOpen = false
-    Input.Click = false
-  end
-end
-
-local ApplyAccents, ThemeSection, AppearanceSection, InterfaceSection, ConfigSection, SystemSection
-
-do
-  local function PresetNames()
-    local Names = {}
-
-    for Name in pairs(ThemePresets) do Names[#Names + 1] = Name end
-
-    table.sort(Names)
-
-    return Names
-  end
-
-  function ApplyAccents(first, second)
-    Theme.AccentA, Theme.AccentB = first, second
-    Theme.Accent = Blend(first, second, Layout.ShimmerMix)
-  end
-
-  function ThemeSection(tab)
-    local Look = tab:Section("Theme", "Left")
-    local Choices = { "Default" }
-    local Preset, First, Second
-
-    for _, Name in ipairs(PresetNames()) do Choices[#Choices + 1] = Name end
-
-    local function MarkCustom()
-      if not State.Loading then Preset:Set({ "Custom" }) end
-    end
-
-    local function PickPreset(value)
-      local Name = value[1]
-
-      if Name == "Default" then
-        local Shipped = State.Shipped
-
-        ApplyAccents(Shipped.AccentA, Shipped.AccentB)
-
-        Theme.Background, Theme.Text = Shipped.Background, Shipped.Text
-        First.Value, Second.Value = Shipped.AccentA, Shipped.AccentB
-
-        return
-      end
-
-      local Pair = ThemePresets[Name]
-      if not Pair then return end
-
-      ApplyAccents(Pair[1], Pair[2])
-
-      Theme.Background = PresetBackground[Name] or DefaultBackground
-      First.Value, Second.Value = Pair[1], Pair[2]
-    end
-
-    local function PickFirst(color)
-      ApplyAccents(color, State.BaseAccentB)
-      MarkCustom()
-    end
-
-    local function PickSecond(color)
-      ApplyAccents(State.BaseAccentA, color)
-      MarkCustom()
-    end
-
-    local function SetRainbow(on)
-      if not on then ApplyAccents(State.BaseAccentA, State.BaseAccentB) end
-
-      State.Rainbow = on
-    end
-
-    Preset = Look:Dropdown("Preset", { "Default" }, Choices, false, PickPreset, "Default = the look this script ships with; pick a preset, or a colour below for Custom", true)
-    First = Look:Colorpicker("Color 1", Theme.AccentA, PickFirst)
-    Second = Look:Colorpicker("Color 2", Theme.AccentB, PickSecond)
-
-    Look:Toggle("Rainbow", State.Rainbow == true, SetRainbow)
-    Look:Slider("Rainbow speed", 30, 1, 5, 200, "%", function(value) State.RainbowSpeed = value / Layout.Percent end)
-end
-
-  function AppearanceSection(tab)
-    local Look = tab:Section("Appearance", "Left")
-
-    local function SetBorder(value)
-      Alpha.CardStroke = value / Layout.Percent
-      Alpha.Hairline = value / Layout.Percent * Layout.BorderRatio
-    end
-
-    Look:Colorpicker("Background", Theme.Background, function(color) Theme.Background = color end, 1)
-    Look:Colorpicker("Text color", Theme.Text, function(color) Theme.Text = color end, 1)
-    Look:Slider("Card glow", 100, 5, 0, 200, "%", function(value) State.Glow = value / Layout.Percent end, "strength of the accent glow when you hover a section card")
-    Look:Dropdown("Background FX", { State.Effect or "Off" }, EffectNames, false, function(value) InsUi:SetBackgroundEffect(value[1]) end, "decorative particles behind the menu (off by default)")
-    Look:Colorpicker("FX colour", White, function(color) State.EffectColor = color end, 1):Tooltip("recolour the background particles; untouched = each effect's own colour")
-    Look:Slider("Border", Layout.BorderAmount, Layout.BorderStep, Layout.BorderMin, Layout.BorderMax, "", SetBorder, "how visible the card / control outlines are")
-    Look:Slider("Frost", Layout.FrostAmount, Layout.FrostStep, Layout.FrostMin, Layout.FrostMax, "", function(value) Alpha.Card = value / Layout.Percent end, "how milky the card fills are")
-    Look:Slider("Corner radius", math.floor(RoundScale * Layout.Percent + 0.5), 5, 0, 250, "%", function(value) InsUi:SetRounding(value) end, "roundness of every corner; 100% = default, 0% = sharp")
-    Look:Toggle("Performance mode", State.Lite == true, function(on) State.Lite = on end, "lite rendering for weak PCs: 60fps, no shadow / outer glow / animations, sidebar stays open")
-    Look:Toggle("Smart FPS", State.SmartFps ~= false, function(on) State.SmartFps = on end, "drop to ~30fps when idle / minimized / closed and jump to full speed on activity, frees the CPU for the game")
-  end
-
-  function InterfaceSection(tab)
-    local Panel = tab:Section("Interface", "Right")
-    local Style = State.SearchStyle
-
-    local function SetMenuKey(key)
-      InsUi:SetMenuKey(key)
-      InsUi:Notify("menu key", "set to " .. string.upper(key), 2)
-    end
-
-    local function SetFont(value)
-      InsUi:SetFont(value[1])
-      InsUi:Notify("ui", "font: " .. value[1], 2)
-    end
-
-    Panel:Keybind("Menu key", State.MenuKey, SetMenuKey, "the key that opens / closes this menu")
-    Panel:Toggle("Keybind overlay", State.HotkeyShown ~= false, function(on) State.HotkeyShown = on end)
-Panel:Toggle("Hover effects", State.HoverEffects ~= false, function(on) State.HoverEffects = on end)
-Panel:Toggle("Checkbox style", State.CheckboxStyle == true, function(on) State.CheckboxStyle = on end, "Draw every toggle as a filling checkbox instead of a switch")
-    Panel:Toggle("Collapse sidebar", not State.RailPinned, function(on) State.RailPinned = not on end, "on = the sidebar shrinks to an icon rail and expands on hover; off = it always stays open")
-    Panel:Toggle("Inline dropdowns", State.DropdownInline == true, function(on) State.DropdownInline = on end, "put the dropdown box on the same row as its label instead of below it")
-    Panel:Dropdown("Tab layout", { State.TabLayout == "top" and "Top" or "Sidebar" }, { "Sidebar", "Top" }, false, function(value) InsUi:SetLayout(value[1]) end, "tabs on the left rail or across the top")
-    Panel:Dropdown("Search", { string.upper(string.sub(Style, 1, 1)) .. string.sub(Style, 2) }, { "Bar", "Icon", "Off" }, false, function(value) State.SearchStyle = string.lower(value[1]) end, "titlebar search: a bar, just an icon, or hidden (Ctrl+Space always works)")
-    Panel:Dropdown("Font", { State.FontName or "Default" }, InsUi:FontChoices(), false, SetFont, "UI font, built-ins only (custom web fonts can't be loaded into Drawing)", true)
-    Panel:Slider("Menu opacity", 98, 1, 40, 100, "%", function(value) State.Opacity = value / Layout.Percent end)
-Panel:Toggle("Animations", State.NoAnim ~= true, function(on) State.NoAnim = not on end)
-Panel:Slider("Notify time", 5, 1, 1, 15, "s", function(value) State.NoteDuration = value end)
-end
-
-  function ConfigSection(tab)
-    local Panel = tab:Section("Configs", "Right")
-    local NameBox = Panel:Textbox("Name", State.ConfigName, function(text) State.ConfigName = text ~= "" and text or "default" end)
-
-local Saved, Auto
-
-    NameBox.NoSave = true
-
-    local function AutoChoices()
-      local List = { "Off" }
-
-      for _, Name in ipairs(InsUi:ListConfigs()) do List[#List + 1] = Name end
-
-      return List
-    end
-
-    local function Refresh()
-      Saved:UpdateChoices(InsUi:ListConfigs())
-      Auto:UpdateChoices(AutoChoices())
-    end
-
-    local function SaveNow()
-      InsUi:SaveConfig(State.ConfigName)
-      Refresh()
-      InsUi:Notify("config", "saved: " .. tostring(State.ConfigName), 4, "success")
-    end
-
-    local function LoadNow()
-      for _, Name in ipairs(InsUi:ListConfigs()) do
-        if Name == State.ConfigName then
-          InsUi:LoadConfig(Name)
-          InsUi:Notify("config", "loaded: " .. tostring(Name), 3)
-
-          return
-        end
-      end
-
-      InsUi:Notify("config", "no config named " .. tostring(State.ConfigName), 3, "warning")
-    end
-
-    local function DeleteNow()
-      InsUi:DeleteConfig(State.ConfigName)
-      Saved:Set({})
-      Refresh()
-      InsUi:Notify("config", "deleted", 3, "warning")
-    end
-
-    local function PickConfig(value)
-      if not value[1] then return end
-
-      State.ConfigName = value[1]
-
-      NameBox:Set(value[1])
-    end
-
-    local function SetAutoSave(on)
-      InsUi:SetAutoSave(on)
-      WriteAutoSave(on)
-      InsUi:Notify("config", on and "auto-save on" or "auto-save off", 2)
-    end
-
-    local function PickAutoload(value)
-      local Pick = value[1]
-
-      WriteAutoload(Pick ~= "Off" and Pick or nil)
-      InsUi:Notify("config", Pick ~= "Off" and ("auto-load: " .. Pick) or "auto-load off", Pick ~= "Off" and 3 or 2)
-    end
-
-    Panel:Button("Save", SaveNow):AddButton("Load", LoadNow):AddButton("Delete", DeleteNow)
-
-    Saved = Panel:Dropdown("Config", {}, InsUi:ListConfigs(), false, PickConfig, "pick a saved config, then Load or Delete it", true)
-    Saved.NoSave = true
-
-    local Wanted = ReadAutoSave()
-
-    if Wanted ~= nil then State.AutoSave = Wanted end
-
-    Panel:Toggle("Auto-save", State.AutoSave == true, SetAutoSave, "save changes to the current config automatically as you change things; off = nothing is written until you press Save").NoSave = true
-
-    Auto = Panel:Dropdown("Auto-load", { ReadAutoload() or "Off" }, AutoChoices(), false, PickAutoload, "load a config every launch (Off = none); separate from Auto-save", true)
-    Auto.NoSave = true
-  end
-
-  function SystemSection(tab)
-    local Panel = tab:Section("System", "Right")
-
-    local function Recenter()
-      InsUi:Center()
-      InsUi:Notify("ui", "re-centered", 2)
-    end
-
-    Panel:Button("Re-center window", Recenter)
-    Panel:Button("Minimize", Minimize)
-  end
-end
-
-function BuildSettingsTab(window, icon)
-  EnsureFolder()
-
-  local Tab = window:Tab("Settings", icon or "cog")
-
-  State.Shipped = { AccentA = Theme.AccentA, AccentB = Theme.AccentB, Background = Theme.Background, Text = Theme.Text }
-  State.BaseAccentA = Theme.AccentA
-  State.BaseAccentB = Theme.AccentB
-
-  ThemeSection(Tab)
-  AppearanceSection(Tab)
-  InterfaceSection(Tab)
-  ConfigSection(Tab)
-  SystemSection(Tab)
-
-  return Tab
-end
-
-do
-  local function EachSavedRow(visit)
-    for _, Tab in ipairs(State.Tabs) do
-      for _, Section in ipairs(Tab.Sections) do
-        for _, Row in ipairs(Section.Rows) do
-          if type(Row.Name) == "string" and not Row.NoSave and Row.Kind ~= "Button" then visit(Tab.Name .. "." .. Section.Name .. "." .. Row.Name, Row) end
-        end
-      end
-    end
-  end
-
-  function PackConfig()
-    local Data = { flags = {}, keybinds = {}, colors = {}, uiFont = State.FontName, layout = State.TabLayout, search = State.SearchStyle }
-
-    EachSavedRow(function(key, row)
-      if row.Kind == "Range" then
-        Data.flags[key] = { row.Low, row.High }
-      elseif row.Kind == "Color" then
-        Data.flags[key] = { row.Value.R, row.Value.G, row.Value.B, row.Alpha or 1 }
-      elseif row.Kind == "Dropdown" then
-        Data.flags[key] = CopyList(row.Value)
-      elseif row.Value ~= nil then
-        Data.flags[key] = row.Value
-      end
-
-      if row.Swatch then Data.colors[key] = { row.Swatch.Value.R, row.Swatch.Value.G, row.Swatch.Value.B, row.Swatch.Alpha or 1 } end
-      if row.Bind then Data.keybinds[key] = { row.Bind.Value, row.Bind.Mode } end
-    end)
-
-local AccentA = State.BaseAccentA or Theme.AccentA
-    local AccentB = State.BaseAccentB or Theme.AccentB
-    local Effect = State.EffectColor
-
-    Data.settings = {
-      accentA = { AccentA.R, AccentA.G, AccentA.B },
-      accentB = { AccentB.R, AccentB.G, AccentB.B },
-      bg = { Theme.Background.R, Theme.Background.G, Theme.Background.B },
-      txt = { Theme.Text.R, Theme.Text.G, Theme.Text.B },
-      rainbow = State.Rainbow == true,
-      rainbowSpeed = State.RainbowSpeed,
-      menuOpacity = State.Opacity,
-      noAnim = State.NoAnim == true,
-      notifyDur = State.NoteDuration,
-      hoverEffects = State.HoverEffects ~= false,
-      checkboxStyle = State.CheckboxStyle == true,
-      hotkeyEnabled = State.HotkeyShown ~= false,
-      menuKey = State.MenuKey,
-      w = State.W,
-      h = State.H,
-      glowMul = State.Glow,
-      cardStrk = Alpha.CardStroke,
-      hairline = Alpha.Hairline,
-      cardFill = Alpha.Card,
-      lite = State.Lite == true,
-      roundScale = RoundScale,
-      smartFps = State.SmartFps ~= false,
-      sidebarPinned = State.RailPinned == true,
-      dropdownInline = State.DropdownInline == true,
-      bgImg = State.BackdropSource,
-      bgImgA = State.BackdropAlpha,
-      bgFx = State.Effect,
-      bgFxColor = Effect and { Effect.R, Effect.G, Effect.B } or nil,
-      logo = State.LogoSource,
-      icon = State.IconSource,
+function WindowClass:Notify(info)
+    info = info or {}
+    touchBusy((tonumber(info.Duration) or 4) + 0.4)
+    local entry = {
+        Title = tostring(info.Title or "lolcat"),
+        Content = tostring(info.Content or ""),
+        Left = tonumber(info.Duration) or 4,
+        Kind = tostring(info.Type or "info"),
+        Anim = 0,
     }
-
-    return Data
-  end
-
-  local function UnpackColor(parts)
-    return Color3.new(parts[1], parts[2], parts[3])
-  end
-
-  local function SameList(first, second)
-    if #first ~= #second then return false end
-
-    for Index = 1, #first do
-      if first[Index] ~= second[Index] then return false end
-    end
-
-    return true
-  end
-
-  local function ApplyRow(row, saved, bind, swatch)
-    if row.Kind == "Range" then
-      local Low, High = SnapValue(saved[1], row), SnapValue(saved[2], row)
-
-      if Low > High then Low, High = High, Low end
-
-      if Low ~= row.Low or High ~= row.High then
-        row.Low, row.High = Low, High
-
-        row.Callback(Low, High)
-      end
-    elseif row.Kind == "Color" then
-      local Color = Color3.new(saved[1], saved[2], saved[3])
-      local Shade = saved[4] or 1
-
-      if Color ~= row.Value or Shade ~= row.Alpha then
-        row.Value, row.Alpha = Color, Shade
-
-        row.Callback(Color, Shade)
-      end
-    elseif row.Kind == "Dropdown" then
-      if not SameList(saved, row.Value) then
-        row.Value = CopyList(saved)
-
-        row.Callback(row.Value)
-      end
-    elseif saved ~= row.Value then
-      row.Value = saved
-
-      row.Callback(saved)
-    end
-
-    if bind and row.Bind then row.Bind.Value, row.Bind.Mode = bind[1], bind[2] end
-    if not swatch or not row.Swatch then return end
-
-    row.Swatch.Value = Color3.new(swatch[1], swatch[2], swatch[3])
-    row.Swatch.Alpha = swatch[4] or 1
-
-    row.Swatch.Callback(row.Swatch.Value, row.Swatch.Alpha)
-  end
-
-  local SettingsMirror = {
-    ["Performance mode"] = "Lite",
-    ["Smart FPS"] = "SmartFps",
-    ["Hover effects"] = "HoverEffects",
-    ["Keybind overlay"] = "HotkeyShown",
-    ["Inline dropdowns"] = "DropdownInline",
-    ["Rainbow"] = "Rainbow",
-    ["Checkbox style"] = "CheckboxStyle",
-  }
-
-  local function MirrorSettings()
-    if not SettingsTab then return end
-
-    for _, Section in ipairs(SettingsTab.Sections) do
-      for _, Row in ipairs(Section.Rows) do
-        local Field = SettingsMirror[Row.Name]
-
-        if Row.Kind ~= "Toggle" then
-        elseif Field then Row.Value = State[Field] == true
-        elseif Row.Name == "Animations" then Row.Value = State.NoAnim ~= true
-        elseif Row.Name == "Collapse sidebar" then Row.Value = not State.RailPinned end
-      end
-    end
-  end
-
-  function ApplyConfig(data)
-    if not data then return end
-
-    local Flags = data.flags or {}
-    local Binds = data.keybinds or {}
-    local Colors = data.colors or {}
-
-    State.Loading = true
-
-    if data.uiFont then InsUi:SetFont(data.uiFont) end
-    if data.layout then State.TabLayout = data.layout end
-    if data.search then State.SearchStyle = data.search end
-
-    EachSavedRow(function(key, row)
-      local Saved = Flags[key]
-
-      if Saved ~= nil then ApplyRow(row, Saved, Binds[key], Colors[key]) end
-    end)
-
-local Settings = data.settings
-
-    if Settings then
-      local Rainbow = Settings.rainbow == true
-
-      if Settings.accentA and Settings.accentB then
-        State.BaseAccentA = UnpackColor(Settings.accentA)
-        State.BaseAccentB = UnpackColor(Settings.accentB)
-
-        if not Rainbow then ApplyAccents(State.BaseAccentA, State.BaseAccentB) end
-      end
-
-      if Settings.bg then Theme.Background = UnpackColor(Settings.bg) end
-      if Settings.txt then Theme.Text = UnpackColor(Settings.txt) end
-      if Settings.bgFxColor then State.EffectColor = UnpackColor(Settings.bgFxColor) end
-
-      if Settings.rainbow ~= nil then State.Rainbow = Rainbow end
-      if Settings.rainbowSpeed then State.RainbowSpeed = Settings.rainbowSpeed end
-      if Settings.menuOpacity then State.Opacity = Settings.menuOpacity end
-      if Settings.noAnim ~= nil then State.NoAnim = Settings.noAnim == true end
-      if Settings.notifyDur then State.NoteDuration = Settings.notifyDur end
-      if Settings.hoverEffects ~= nil then State.HoverEffects = Settings.hoverEffects ~= false end
-      if Settings.checkboxStyle ~= nil then State.CheckboxStyle = Settings.checkboxStyle == true end
-      if Settings.hotkeyEnabled ~= nil then State.HotkeyShown = Settings.hotkeyEnabled ~= false end
-      if Settings.glowMul then State.Glow = Settings.glowMul end
-      if Settings.lite ~= nil then State.Lite = Settings.lite == true end
-      if Settings.smartFps ~= nil then State.SmartFps = Settings.smartFps ~= false end
-      if Settings.sidebarPinned ~= nil then State.RailPinned = Settings.sidebarPinned == true end
-      if Settings.dropdownInline ~= nil then State.DropdownInline = Settings.dropdownInline == true end
-      if Settings.cardStrk then Alpha.CardStroke = Settings.cardStrk end
-      if Settings.hairline then Alpha.Hairline = Settings.hairline end
-      if Settings.cardFill then Alpha.Card = Settings.cardFill end
-      if Settings.roundScale then RoundScale = math.min(math.max(tonumber(Settings.roundScale) or 1, 0), 2.5) end
-      if Settings.menuKey then InsUi:SetMenuKey(Settings.menuKey) end
-      if tonumber(Settings.w) and tonumber(Settings.h) then InsUi:SetSize(Settings.w, Settings.h) end
-      if Settings.logo then InsUi:SetLogo(Settings.logo) end
-      if Settings.icon then InsUi:SetIcon(Settings.icon) end
-      if Settings.bgImg then InsUi:SetBackgroundImage(Settings.bgImg, Settings.bgImgA) end
-
-      InsUi:SetBackgroundEffect(Settings.bgFx)
-    end
-
-    MirrorSettings()
-
-    State.Loading = false
-  end
+    self.Notifications[#self.Notifications + 1] = entry
+    while #self.Notifications > 4 do table.remove(self.Notifications, 1) end
+    return entry
 end
 
-local ArrowTabs
-
-do
-  local function StepTab(step)
-    local Index = State.ActiveIndex
-
-    repeat Index = Index + step until Index < 1 or Index > #State.Tabs or not State.Tabs[Index].Hidden
-
-    if Index < 1 or Index > #State.Tabs then return end
-
-    State.ActiveIndex = Index
-    State.ActiveSub = nil
-    State.ContentFade = 0
-  end
-
-  function ArrowTabs()
-    if not State.Open or State.SpotlightOpen or State.Focus then return end
-    if State.Dropdown or State.Picker or #State.Tabs == 0 then return end
-
-    if Keys.Left.Click then StepTab(-1) end
-    if Keys.Right.Click then StepTab(1) end
-  end
+function WindowClass:Confirm(info)
+    info = info or {}
+    self.Dialog = {
+        Title = tostring(info.Title or "Confirm"),
+        Text = tostring(info.Text or ""),
+        Text2 = tostring(info.Text2 or ""),
+        Confirm = tostring(info.Confirm or "Confirm"),
+        OnConfirm = info.OnConfirm,
+    }
 end
 
-local DrawBackgroundEffect
-
-do
-  local EffectCount = { Snow = 48, Rain = 80 }
-  local EffectGlyphs = "01ABCDEFGHJKLMNPRSTUVXYZ#$%&@"
-
-  local function EffectGlyph()
-    local Index = 1 + math.floor(math.random() * #EffectGlyphs)
-
-    return string.sub(EffectGlyphs, Index, Index)
-  end
-
-  local function SpawnEffect(name, width)
-    local Parts = {}
-    local Thin = State.Lite and 0.55 or 1
-
-    if name == "Matrix" then
-      local Columns = math.max(6, math.floor(width / 18 * Thin))
-
-      for Index = 1, Columns do
-        local Trail = 6 + math.floor(math.random() * 6)
-        local Glyphs = {}
-
-        for Step = 1, Trail do Glyphs[Step] = EffectGlyph() end
-
-        Parts[Index] = { Column = (Index - 0.5) / Columns, Y = math.random() * 1.4 - 0.4, Speed = 0.25 + math.random() * 0.55, Trail = Trail, Glyphs = Glyphs }
-      end
-
-      return Parts
+function WindowClass:Destroy()
+    self.Alive = false
+    self.Visible = false
+    for i = #windows, 1, -1 do
+        if windows[i] == self then table.remove(windows, i) end
     end
-
-    local Count = math.max(6, math.floor((EffectCount[name] or 80) * Thin))
-
-    for Index = 1, Count do
-      Parts[Index] = {
-        X = math.random(),
-        Y = math.random(),
-        Phase = math.random() * 6.2832,
-        Speed = 0.3 + math.random() * 0.9,
-        Size = 1 + math.random() * 2.2,
-        Alpha = 0.35 + math.random() * 0.6,
-        Depth = math.random(),
-        Sway = 0.005 + math.random() * 0.018,
-        Flutter = 1.6 + math.random() * 1.8,
-      }
-    end
-
-    return Parts
-  end
-
-  local function DrawSnow(parts, rx, ry, rw, rh, clock, delta, fade, tint)
-    local Wind = math.sin(clock * 0.13) * 0.5 + math.sin(clock * 0.31 + 1.3) * 0.22 + math.sin(clock * 0.07) * 0.3
-
-    for Index = 1, #parts do
-      local Flake = parts[Index]
-      local Depth = Flake.Depth
-
-      Flake.Y = Flake.Y + (0.035 + Depth * 0.11) * delta
-
-      if Flake.Y > 1.04 then Flake.Y, Flake.X = -0.04, math.random() end
-
-      local Sway = math.sin(clock * Flake.Speed + Flake.Phase) * Flake.Sway + math.sin(clock * Flake.Speed * Flake.Flutter + Flake.Phase) * Flake.Sway * 0.45
-      local Ax = rx + (Flake.X + Sway + Wind * (0.012 + Depth * 0.03)) * rw
-      local Ay = ry + Flake.Y * rh
-      local Radius = 2 + Depth * 4.5
-      local Color = tint or Blend(Color3.fromRGB(215, 228, 255), White, Depth)
-      local Edge = math.min(math.max((Ay - ry - Radius) / 6, 0), 1) * math.min(math.max((ry + rh - Ay - Radius * 1.4) / 8, 0), 1)
-      local Shade = (0.3 + Depth * 0.5) * (0.85 + 0.15 * math.sin(clock * 2 + Flake.Phase)) * fade * Edge
-      local Spin = clock * Flake.Speed * 0.3 + Flake.Phase
-
-      if Depth > 0.55 then DrawCircle(Ax, Ay, Radius * 1.4, Color, 12, true, 1, 12, Shade * 0.08) end
-
-      for Arm = 0, 2 do
-        local Angle = Spin + Arm * 1.0472
-        local Ux, Uy = math.cos(Angle) * Radius, math.sin(Angle) * Radius
-
-        DrawLine(Ax - Ux, Ay - Uy, Ax + Ux, Ay + Uy, Color, 13, 1, Shade)
-      end
-
-      DrawCircle(Ax, Ay, math.max(1, Radius * 0.28), Color, 13, true, 1, 8, Shade)
-    end
-  end
-
-  local function DrawRain(parts, rx, ry, rw, rh, delta, fade, tint)
-    local Floor = ry + rh
-
-    for Index = 1, #parts do
-      local Drop = parts[Index]
-
-      Drop.Y = Drop.Y + (0.85 + Drop.Size * 0.25) * delta
-
-      if Drop.Y > 1.06 then Drop.Y, Drop.X = -0.05, math.random() end
-
-      local Ax = rx + Drop.X * rw
-      local TopY = ry + Drop.Y * rh
-      local Length = 6 + Drop.Size * 5
-      local Head = math.max(TopY, ry)
-      local Tail = math.min(TopY + Length, Floor)
-      local Shade = Drop.Alpha * fade * 0.5
-
-      if Tail <= Head then Tail, Shade = Head, 0 end
-
-      DrawLine(Ax + (Head - TopY) / Length * 2.5, Head, Ax + (Tail - TopY) / Length * 2.5, Tail, tint or Color3.fromRGB(170, 200, 255), 12, 1, Shade)
-    end
-  end
-
-  local function DrawMatrix(parts, rx, ry, rw, rh, clock, delta, fade, tint)
-    local Line = 14
-
-    for Index = 1, #parts do
-      local Column = parts[Index]
-
-      Column.Y = Column.Y + Column.Speed * delta
-
-      if Column.Y * rh - Column.Trail * Line > rh then
-        Column.Y = -math.random() * 0.3
-
-        for Step = 1, Column.Trail do Column.Glyphs[Step] = EffectGlyph() end
-      end
-
-      local Cx = rx + Column.Column * rw
-
-      for Step = 1, Column.Trail do
-        local Ay = ry + Column.Y * rh - (Step - 1) * Line
-        local Falloff = 1 - (Step - 1) / Column.Trail
-        local Shown = math.min(math.max((Ay - ry + 2) / 4, 0), 1) * math.min(math.max((ry + rh - Ay - Line + 2) / 4, 0), 1)
-        local Head = tint and Blend(tint, White, 0.35) or Color3.fromRGB(205, 255, 215)
-        local Body = tint and Blend(Black, tint, 0.3 + 0.5 * Falloff) or Color3.fromRGB(40 + 60 * Falloff, 200, 80 + 40 * Falloff)
-
-        DrawText(Column.Glyphs[Step] or "0", Cx, Ay, Step == 1 and Head or Body, 13, SystemFont, 12, Falloff * fade * 0.9 * Shown)
-      end
-
-      if math.sin(clock * 3 + Column.Column * 30) > 0.985 then Column.Glyphs[1] = EffectGlyph() end
-    end
-  end
-
-  function DrawBackgroundEffect()
-    local Name = State.Effect
-
-    if not Name or State.Lite or State.Visible <= 0.02 then
-      State.Parts, State.PartsName = nil, nil
-
-      return
-    end
-
-    local Rx, Ry = State.X + 2, State.Y + Layout.TopbarHeight + 2
-    local Rw, Rh = State.W - 4, State.H - Layout.TopbarHeight - 4
-
-    if Rw <= 12 or Rh <= 12 then return end
-
-    if State.PartsName ~= Name then State.Parts, State.PartsName = SpawnEffect(Name, Rw), Name end
-
-    local Clock = os.clock()
-    local Delta = math.min(State.Delta, 0.1)
-    local Fade = State.Visible
-    local Tint = State.EffectColor
-
-    if Name == "Snow" then
-      DrawSnow(State.Parts, Rx, Ry, Rw, Rh, Clock, Delta, Fade, Tint)
-    elseif Name == "Rain" then
-      DrawRain(State.Parts, Rx, Ry, Rw, Rh, Delta, Fade, Tint)
-    else
-      DrawMatrix(State.Parts, Rx, Ry, Rw, Rh, Clock, Delta, Fade, Tint)
-    end
-  end
+    hideAll()
 end
 
-local HideWindowImages, FrameDelay
+ 
+ 
+ 
+local TOPBAR = 40
+local SIDEBAR = 172
+local PAD = 14
+local GAP = 14
+local ROW_GAP = 3
 
-do
-  local function HideIcon(owner, key)
-    local Image = owner[key]
-
-    if Image then Image.Visible = false end
-  end
-
-  function HideWindowImages()
-    for _, Tab in ipairs(State.Tabs) do
-      HideIcon(Tab, "Image")
-      HideIcon(Tab, "ImageOn")
-
-      for _, Sub in ipairs(Tab.Subs) do
-        HideIcon(Sub, "Image")
-        HideIcon(Sub, "ImageOn")
-      end
-    end
-
-    HideIcon(State, "GearImage")
-    HidePicture(State.Avatar)
-    HidePicture(State.Logo)
-    HidePicture(State.Icon)
-    HidePicture(State.Backdrop)
-  end
-
-  function FrameDelay()
-    local Full = State.Lite and Layout.LiteFrame or Layout.FullFrame
-    if not State.SmartFps then return Full end
-
-    local Moved = Input.X ~= State.LastX or Input.Y ~= State.LastY
-
-    State.LastX, State.LastY = Input.X, Input.Y
-
-    if Moved or Input.Down or Input.RightDown or State.Drag or State.Resize or State.BarDrag
-      or State.Dropdown or State.Picker or State.Focus or State.Capture or State.SpotlightOpen then
-      State.LastAct = os.clock()
-    end
-
-    local Busy = (State.Visible > 0.01 and State.Visible < 0.99)
-      or (State.BubbleFade > 0.01 and State.BubbleFade < 0.99)
-      or State.ContentFade < 0.99
-      or (State.Rainbow and State.Open)
-
-    if Busy then return Full end
-    if State.Open and os.clock() - State.LastAct < Layout.IdleGrace then return Full end
-
-    return Layout.IdleFrame
-  end
+function WindowClass:Bounds()
+    local a = self.Anim
+    return self.X, self.Y + (1 - a) * 8, self.W, self.H, a
 end
 
-local function StepTheme()
-  if State.Rainbow then
-    local Turn = os.clock() * State.RainbowSpeed * Layout.RainbowScale
-
-    ApplyAccents(Color3.fromHSV(Turn % 1, 0.65, 1), Color3.fromHSV((Turn + Layout.RainbowSpread) % 1, 0.72, 1))
-  end
-
-  local Accent = Theme.Accent
-  local Key = math.floor(Accent.R * Layout.ByteScale / Layout.IconBucket) * 65536
-    + math.floor(Accent.G * Layout.ByteScale / Layout.IconBucket) * 256
-    + math.floor(Accent.B * Layout.ByteScale / Layout.IconBucket)
-  local Now = os.clock()
-
-  if Key == IconKey then return end
-  if Now - State.IconAt < Layout.IconRebuild then return end
-
-  IconKey, IconTint, State.IconAt = Key, Accent, Now
-end
-
-do
-  local function GameCaptures()
-    if State.Dialog then return true end
-    if not State.Open or State.Rolled then return false end
-    if State.GameInput == "always" then return false end
-    if State.GameInput ~= true then return true end
-    if State.Dropdown or State.Picker or State.Menu or State.SpotlightOpen then return true end
-
-    return IsMouseIn(State.X, State.Y, State.W, State.H)
-  end
-
-  function ApplyInputState(force)
-    local ToGame = not GameCaptures()
-
-    if not force and State.InputSent == ToGame then return end
-
-    State.InputSent = ToGame
-
-    setrobloxinput(ToGame)
-  end
-end
-
-local function DrawMenu()
-  local View = ActiveView()
-
-  if View ~= State.SeenView then
-    State.SeenView = View
-    State.Dropdown = nil
-    State.Picker = nil
-    State.Menu = nil
-    State.Focus = nil
-  end
-
-  ApplyDrag()
-  ArrowTabs()
-
-  local Rail = RailWidth()
-
-  DrawFrame(Rail)
-
-  if State.TabLayout == "top" then DrawGem() end
-
-  DrawHeader(Rail)
-  GrabWindow(Rail)
-
-  if State.TabLayout == "top" then
-    DrawTopStrip()
-  else
-    DrawRail(Rail, DrawBrand(Rail))
-    DrawUserCard(Rail)
-  end
-
-  State.ContentFade = Approach(State.ContentFade, 1, 12)
-
-  if State.ContentFade > 0.997 then State.ContentFade = 1 end
-
-  DrawSections(Rail)
-  DrawGrip()
-  DrawDropdownList()
-  DrawPicker()
-  DrawKeyMenu()
-  DrawTooltip()
-end
-
-task.spawn(function()
-  while State.Alive do
-    if _G[LibName .. "Instance"] ~= Instance then
-      InsUi:Destroy()
-      return
+local function sideOf(tab, index)
+    local left, right = {}, {}
+    for i, group in ipairs(tab.Groupboxes) do
+        local side = group.Side
+        if side == "Right" or side == "right" or side == 2 then
+            right[#right + 1] = group
+        elseif side == "Left" or side == "left" or side == 1 then
+            left[#left + 1] = group
+        else
+            if i % 2 == 1 then left[#left + 1] = group else right[#right + 1] = group end
+        end
     end
+    return left, right
+end
 
-    local Now = os.clock()
-
-    State.Delta = math.min(Now - State.LastFrame, 0.05)
-    State.LastFrame = Now
-    State.Frame = State.Frame + 1
-
-    ResetFrame()
-    ReadInput()
-    ReadKeys()
-    StepTheme()
-
-    if Input.Up then ReleaseDrags() end
-
-    State.Visible = Approach(State.Visible, State.Open and 1 or 0, 12)
-
-    if State.Visible > 0.997 then State.Visible = 1 end
-    if State.Visible < 0.003 then State.Visible = 0 end
-
-    if State.SpotlightEnabled and (Keys.Ctrl.Held or Keys.LeftCtrl.Held or Keys.RightCtrl.Held) and Keys.Space.Click then
-      ShowSpotlight(not State.SpotlightOpen)
-
-      Keys.Space.Click = false
+local function wrapText(str, width, size)
+    local chars = max(8, floor(width / (size * 0.505)))
+    local lines, line = {}, ""
+    for word in string.gmatch(tostring(str or ""), "%S+") do
+        local candidate = line == "" and word or (line .. " " .. word)
+        if #candidate <= chars then
+            line = candidate
+        else
+            if line ~= "" then lines[#lines + 1] = line end
+            line = word
+        end
     end
+    if line ~= "" then lines[#lines + 1] = line end
+    if #lines == 0 then lines[1] = "" end
+    return lines
+end
 
-    local MenuKey = Keys[State.MenuKey]
+local function measureElement(row, colW)
+    local kind = row.Type
+    if kind == "Paragraph" then
+        return 12 + #wrapText(row.Title, colW - 8, 11) * 13
+    elseif kind == "Divider" then
+        return 20
+    elseif kind == "TextLabel" then
+        return row.Description and row.Description ~= "" and 30 or 18
+    end
+    return 0
+end
 
-    if MenuKey and MenuKey.Click and not State.Focus and not State.Capture then State.Open = not State.Open end
+local function columnHeights(groups, colW, rowH)
+    local rows, fixed = 0, 0
+    for _, group in ipairs(groups) do
+        fixed = fixed + 22
+        for _, row in ipairs(group.Elements) do
+            local h = measureElement(row, colW)
+            if h > 0 then fixed = fixed + h + ROW_GAP else rows = rows + 1 end
+        end
+        fixed = fixed + 6
+    end
+    return rows * (rowH + ROW_GAP) + fixed, rows, fixed
+end
 
-    local Editing = State.Focus
+local function pickRowHeight(groupsA, groupsB, colW, avail)
+    for h = 30, 17, -1 do
+        local aTotal = columnHeights(groupsA, colW, h)
+        local bTotal = columnHeights(groupsB, colW, h)
+        if aTotal <= avail and bTotal <= avail then return h end
+    end
+    return 17
+end
 
-    if Editing and Editing.Kind == "Slider" then
-      if Keys.Enter.Click or Keys.Escape.Click then
-        if Keys.Enter.Click then
-          local Wanted = SnapValue(tonumber(Editing.Typing) or Editing.Value, Editing)
+ 
+ 
+local function balance(left, right, colW)
+    local REF = 24
 
-          if Wanted ~= Editing.Value then
-            Editing.Value = Wanted
+    local function total(list) return (columnHeights(list, colW, REF)) end
 
-            Editing.Callback(Wanted)
-          end
+    local l, r = total(left), total(right)
+    local from, to = (l > r) and left or right
+    local other = (l > r) and right or left
+
+    local moved = 0
+    while #from > 1 and moved < 3 do
+        local before = max(total(from), total(other))
+
+        local candidate = from[#from]
+        table.remove(from, #from)
+        other[#other + 1] = candidate
+
+        local after = max(total(from), total(other))
+        if after >= before - 1 then
+            table.remove(other, #other)
+            from[#from + 1] = candidate
+            break
         end
 
-        Editing.Typing, Editing.Anchor, State.Focus = nil, nil, nil
-        Keys.Enter.Click, Keys.Escape.Click = false, false
-      else
-        EditText(Editing, "Typing")
-      end
-    elseif Editing then
-      EditText(Editing)
+        moved = moved + 1
     end
-    if State.Capture then CaptureKey(State.Capture) end
-    RunKeybinds()
-
-    local Over = State.SpotlightOpen or State.Dialog ~= nil
-    local Click, Right, Down = Input.Click, Input.Right, Input.Down
-
-    if Over then Input.Click, Input.Right, Input.Down = false, false, false end
-
-    if State.Visible > 0 then
-      DrawHotkeyOverlay()
-      DrawBoxes()
-
-      local Lift = (1 - State.Visible) * 14
-
-      FrameFade = State.Visible
-      State.Y = State.Y + Lift
-
-      if State.BubbleFade < Layout.BubbleShown then
-        DrawMenu()
-      else
-        HideWindowImages()
-      end
-
-      State.Y = State.Y - Lift
-      FrameFade = 1
-    else
-      HideWindowImages()
-      DrawBoxes()
-      DrawHotkeyOverlay()
-    end
-
-    ApplyInputState(false)
-    DrawMinBubble()
-
-    Input.Click, Input.Right, Input.Down = Click, Right, Down
-
-    DrawSpotlight()
-    DrawNotifications()
-    DrawDialog()
-    DrawBackgroundEffect()
-    HideUnused()
-
-    task.wait(FrameDelay())
-  end
-end)
-for _, Key in ipairs({ LibName, LibName .. "UI", "INSUI" }) do _G[Key] = InsUi end
-
-return InsUi
-
-end)()
-local function note(msg, title)
-    pcall(function() notify(msg, title or "lolcat", 3) end)
 end
 
+ 
+ 
+ 
+local drawRow
+
+local function toggleRow(row, x, y, w, h, alpha)
+    local hover = inside(x, y, w, h) and not Pointer.Blocked
+    local on = row.State == true
+
+     
+    row.Anim = approach(row.Anim or (on and 1 or 0), on and 1 or 0, 22, Pointer.DT)
+    local k = clamp(row.Anim, 0, 1)
+    if k > 0.001 and k < 0.999 then touchBusy(0.25) end
+
+    rect(x, y, w, h, hover and C.cardHi or C.card, alpha * (hover and 0.95 or 0.8), 5, 22)
+
+    text(x + 10, y + h / 2 - 7, fit(row.Title, w - 62, 12, false), 12, C.text, alpha * 0.92, false, 31)
+
+    local pw, ph = 30, 16
+    local px, py = x + w - pw - 10, y + (h - ph) / 2
+
+    rect(px, py, pw, ph, mix(C.track, accent, k), alpha * (0.7 + 0.28 * k), ph / 2, 23)
+    circle(px + ph / 2 + (pw - ph) * k, py + ph / 2, 5.2, mix(C.dim, C.white, k), alpha * 0.95, true, 24)
+
+    if hover and clickFree() then
+        row.State = not row.State
+        claimClick()
+        touchBusy(0.4)
+        if row.Callback then pcall(row.Callback, row.State) end
+    end
+end
+
+local function sliderRow(row, x, y, w, h, alpha)
+    local hover = inside(x, y, w, h) and not Pointer.Blocked
+    rect(x, y, w, h, hover and C.cardHi or C.card, alpha * (hover and 0.95 or 0.8), 5, 22)
+
+    local value = row.Value or row.Min or 0
+    local label = row.Suffix ~= "" and (round1(value) .. row.Suffix) or tostring(round1(value))
+    local labelW = textWidth(label, 11, true) + 6
+
+    local trackX = x + floor(w * 0.44)
+    local trackW = w - (trackX - x) - labelW - 16
+    if trackW < 24 then trackW = 24 end
+    local trackY = y + h / 2 - 2
+
+    text(x + 10, y + h / 2 - 7, fit(row.Title, trackX - x - 14, 12, false), 12, C.text, alpha * 0.92, false, 31)
+
+    rect(trackX, trackY, trackW, 4, C.track, alpha * 0.85, 2, 23)
+    local t = clamp((value - row.Min) / max(0.0001, row.Max - row.Min), 0, 1)
+    rect(trackX, trackY, trackW * t, 4, accent, alpha * 0.95, 2, 24)
+    circle(trackX + trackW * t, trackY + 2, 4.6, C.white, alpha, true, 25)
+
+    text(x + w - 10 - textWidth(label, 11, true), y + h / 2 - 6.5, label, 11, C.dim, alpha * 0.9, true, 31)
+
+     
+     
+     
+    local onTrack = Pointer.X >= trackX - 7 and Pointer.X <= trackX + trackW + 7
+        and Pointer.Y >= y and Pointer.Y <= y + h
+
+    if onTrack and hover and Pointer.Down and (Pointer.Click or row.Dragging) then
+        row.Dragging = true
+        local rel = clamp((Pointer.X - trackX) / max(1, trackW), 0, 1)
+        local raw = row.Min + rel * (row.Max - row.Min)
+        local step = row.Step or 1
+        if step >= 1 then raw = floor(raw / step + 0.5) * step end
+        raw = clamp(raw, row.Min, row.Max)
+        if raw ~= row.Value then
+            row.Value = raw
+            if row.Callback then pcall(row.Callback, raw) end
+        end
+        claimClick()
+    end
+
+    if not Pointer.Down then row.Dragging = false end
+end
+
+local function dropdownRow(row, x, y, w, h, alpha, window)
+    local hover = inside(x, y, w, h) and not Pointer.Blocked
+    local open = window.Dropdown == row
+    rect(x, y, w, h, (hover or open) and C.cardHi or C.card, alpha * (hover and 0.95 or 0.8), 5, 22)
+
+    text(x + 10, y + h / 2 - 7, fit(row.Title, w * 0.4, 12, false), 12, C.text, alpha * 0.92, false, 31)
+
+    local bw, bh = min(140, floor(w * 0.46)), h - 8
+    local bx, by = x + w - bw - 8, y + 4
+    rect(bx, by, bw, bh, open and mix(C.card, accent, 0.18) or C.track, alpha * 0.75, 4, 23)
+    stroke(bx, by, bw, bh, open and accent or C.hair, alpha * (open and 0.8 or 0.6), 4, 24)
+    text(bx + 8, by + bh / 2 - 6, fit(row.Selected, bw - 32, 11, false), 11, C.text, alpha * 0.9, false, 31)
+    icon("down", bx + bw - 15, by + bh / 2 - 5, 10, open and accent or C.dim, alpha * 0.9, 31)
+
+    row.Anchor = { x = bx, y = by, w = bw, h = bh }
+
+    if hover and clickFree() and Pointer.Click then
+        window.Dropdown = open and nil or row
+        window.SearchFocus = false
+        claimClick()
+    end
+end
+
+local function buttonRow(row, x, y, w, h, alpha)
+    local hover = inside(x, y, w, h) and not Pointer.Blocked
+    local base = row.Risk and mix(C.bg, C.red, 0.66) or BTN
+    local fill = hover and (row.Risk and mix(base, C.white, 0.10) or BTN_HI) or base
+
+    rect(x, y, w, h, fill, alpha * 0.96, 5, 22)
+    stroke(x, y, w, h, row.Risk and mix(C.red, C.white, 0.12) or mix(accent, C.white, 0.10), alpha * 0.45, 5, 23)
+    text(x + w / 2, y + h / 2 - 7, fit(row.Title, w - 20, 12, true), 12,
+        C.white, alpha * 0.98, true, 31, true)
+
+    if hover and clickFree() then
+        claimClick()
+        if row.Callback then pcall(row.Callback) end
+    end
+end
+
+local function textRow(row, x, y, w, alpha)
+    local value = row.Title
+    if row.Live then
+        local ok, live = pcall(row.Live)
+        if ok then value = tostring(live) end
+    end
+    if value == "" then return end
+    text(x + 2, y + 1, fit(value, w - 6, 11, false), 11, row.Dim and C.dim or C.text, alpha * 0.78, false, 31)
+    if row.Description and row.Description ~= "" then
+        text(x + 2, y + 14, fit(row.Description, w - 6, 10, false), 10, C.faint, alpha * 0.8, false, 31)
+    end
+end
+
+local function dividerRow(row, x, y, w, alpha)
+    local label = string.upper(row.Title or "")
+    local wl = label ~= "" and textWidth(label, 9, true) + 10 or 0
+    if label ~= "" then
+        text(x + 2, y + 3, label, 9, C.faint, alpha * 0.9, true, 31)
+    end
+    line(x + wl + 2, y + 7, x + w, y + 7, C.hair, alpha * 0.7, 24, 1)
+end
+
+local function paragraphRow(row, x, y, w, alpha, colW)
+    local lines = wrapText(row.Title, colW - 8, 11)
+    for i, entry in ipairs(lines) do
+        text(x + 2, y + 2 + (i - 1) * 13, entry, 11, C.dim, alpha * 0.75, false, 31)
+    end
+end
+
+ 
+ 
+ 
+local function renderNotifications(window, dt, vp)
+    local n = #window.Notifications
+    for i = n, 1, -1 do
+        local note = window.Notifications[i]
+        note.Left = note.Left - dt
+        if note.Left <= 0 then table.remove(window.Notifications, i) end
+    end
+
+    local y = 18
+    for i = 1, #window.Notifications do
+        local note = window.Notifications[i]
+        note.Anim = approach(note.Anim, 1, 12, dt)
+        local a = note.Anim * clamp(note.Left / 0.4, 0, 1)
+        local w = 250
+        local h = 46
+        local x = vp.X - w - 18
+        rect(x, y, w, h, C.panel, a * 0.97, 6, 60)
+        stroke(x, y, w, h, note.Kind == "error" and C.red or C.hair, a * 0.6, 6, 61)
+        rect(x, y + 10, 3, h - 20, note.Kind == "error" and C.red or accent, a * 0.9, 2, 62)
+        text(x + 12, y + 9, fit(note.Title, w - 24, 12, true), 12, C.text, a, true, 62)
+        text(x + 12, y + 25, fit(note.Content, w - 24, 10, false), 10, C.dim, a * 0.85, false, 62)
+        y = y + h + 8
+    end
+end
+
+local function renderDialog(window, x, y, w, h)
+    local d = window.Dialog
+    if not d then return end
+
+    rect(x, y, w, h, C.black, 0.5, 0, 90)
+
+    local pw, ph = 330, 138
+    local px, py = x + (w - pw) / 2, y + (h - ph) / 2
+    rect(px, py, pw, ph, C.panel, 1, 8, 91)
+    stroke(px, py, pw, ph, C.hair, 0.8, 8, 92)
+
+    text(px + 18, py + 16, d.Title, 14, C.text, 1, true, 93)
+    text(px + 18, py + 42, fit(d.Text, pw - 36, 11, false), 11, C.dim, 0.9, false, 93)
+    if d.Text2 ~= "" then text(px + 18, py + 58, fit(d.Text2, pw - 36, 11, false), 11, C.dim, 0.9, false, 93) end
+
+    local bw, bh = (pw - 46) / 2, 30
+    local by = py + ph - bh - 16
+
+    for index = 1, 2 do
+        local bx = px + 18 + (index - 1) * (bw + 10)
+        local hover = inside(bx, by, bw, bh)
+        local confirm = index == 1
+        rect(bx, by, bw, bh, confirm and mix(C.card, C.red, 0.35) or C.card, hover and 1 or 0.9, 5, 93)
+        text(bx + bw / 2, by + bh / 2 - 7, confirm and d.Confirm or "Cancel", 12,
+            confirm and C.red or C.text, 0.95, false, 94, true)
+        if hover and Pointer.Click then
+            window.Dialog = nil
+            claimClick()
+            if confirm and d.OnConfirm then pcall(d.OnConfirm) end
+            return
+        end
+    end
+end
+
+local function drawTabs(window, bounds, alpha)
+    local x, y, w, h = bounds.x, bounds.y, bounds.w, bounds.h
+    local top = y + TOPBAR
+    local bottom = y + h
+
+    rect(x, top, SIDEBAR, bottom - top, C.side, alpha * 0.96, 0, 12)
+    line(x + SIDEBAR, top + 1, x + SIDEBAR, bottom - 1, C.hair, alpha * 0.8, 13, 1)
+
+     
+    local sx, sy, sw, sh = x + 12, top + 12, SIDEBAR - 24, 28
+    local searchHover = inside(sx, sy, sw, sh) and not Pointer.Blocked
+    rect(sx, sy, sw, sh, C.card, alpha * (searchHover and 1 or 0.8), 5, 14)
+    stroke(sx, sy, sw, sh, window.SearchFocus and accent or C.hair, alpha * (window.SearchFocus and 0.9 or 0.5), 5, 15)
+    icon("sliders", sx + 8, sy + 7, 14, window.SearchFocus and accent or C.dim, alpha * 0.9, 16)
+
+    local query = window.Search
+    local shown = query ~= "" and query or "search"
+    text(sx + 28, sy + 8, fit(shown, sw - 44, 11, false), 11,
+        query ~= "" and C.text or C.faint, alpha * 0.9, false, 16)
+
+    local clearHover = query ~= "" and inside(sx + sw - 22, sy + 6, 16, 16) and not Pointer.Blocked
+    if query ~= "" then
+        icon("close", sx + sw - 20, sy + 9, 10, clearHover and C.red or C.faint, alpha * 0.95, 16)
+        if clearHover and clickFree() then
+            window.Search = ""
+            window.SearchFocus = false
+            claimClick()
+        end
+    end
+
+    if searchHover and clickFree() then
+        if window.SearchFocus and query ~= "" then
+            window.Search = ""
+        end
+        window.SearchFocus = true
+        claimClick()
+    end
+
+    if window.SearchFocus then
+        for vk, char in pairs(TEXT_KEYS) do
+            if pollKeys(vk) then
+                if vk == 8 then
+                    window.Search = string.sub(window.Search, 1, max(0, #window.Search - 1))
+                elseif #window.Search < 18 then
+                    window.Search = window.Search .. char
+                end
+            end
+        end
+        if pollKeys(13) then window.SearchFocus = false end
+        if Pointer.Click and not inside(sx - 12, sy - 12, SIDEBAR, sh + 24) then
+            window.SearchFocus = false
+            window.Search = ""
+        end
+    end
+
+    local needle = string.lower(window.Search)
+    local rowY = sy + sh + 10
+    local shownTabs = {}
+
+    for _, tab in ipairs(window.Tabs) do
+        if needle == "" or string.find(string.lower(tab.Name), needle, 1, true) then
+            shownTabs[#shownTabs + 1] = tab
+        end
+    end
+
+    for _, tab in ipairs(shownTabs) do
+        local hover = inside(x + 8, rowY, SIDEBAR - 16, 30) and not Pointer.Blocked
+        local active = window.ActiveTab == tab
+
+        if active then
+            rect(x + 8, rowY, SIDEBAR - 16, 30, mix(C.card, accent, 0.18), alpha * 0.95, 5, 14)
+        elseif hover then
+            rect(x + 8, rowY, SIDEBAR - 16, 30, C.card, alpha * 0.55, 5, 14)
+        end
+
+        if dragging then
+             
+            rect(x + 22, rowY + 12, 7, 7, active and accent or C.dim, alpha * 0.85, 3, 16)
+        else
+            icon(tab.Icon, x + 18, rowY + 8, 15, active and accent or C.dim, alpha * (active and 1 or 0.75), 16)
+        end
+        text(x + 42, rowY + 9, fit(tab.Name, SIDEBAR - 58, 12, active), 12,
+            active and C.text or C.dim, alpha * (active and 1 or 0.8), active, 16)
+
+        if hover and clickFree() then
+            window.ActiveTab = tab
+            window.Dropdown = nil
+            window.SearchFocus = false
+            claimClick()
+        end
+
+        rowY = rowY + 32
+    end
+
+     
+    local pw, ph = SIDEBAR - 24, 42
+    local px, py = x + 12, bottom - ph - 12
+    rect(px, py, pw, ph, C.card, alpha * 0.55, 5, 14)
+
+    local name, display
+    pcall(function() name = lp.Name end)
+    pcall(function() display = lp.DisplayName end)
+    name = tostring(name or "player")
+    display = tostring(display or name)
+    if display == "" then display = name end
+
+     
+     
+    rect(px, py + 9, 3, ph - 18, accent, alpha * 0.9, 2, 15)
+    text(px + 12, py + 8, fit(display, pw - 24, 11, true), 11, C.text, alpha * 0.9, true, 16)
+    text(px + 12, py + 23, fit("@" .. name, pw - 24, 10, false), 10, C.faint, alpha * 0.9, false, 16)
+end
+
+function WindowClass:Render(dt, vp)
+    local alive = self.Alive
+
+    if not alive then return end
+
+    self.HitRects = {}
+    self.LastPX, self.LastPY = Pointer.X, Pointer.Y
+    self.Dirty = false
+
+    self.Anim = approach(self.Anim, self.Visible and 1 or 0, 16, dt)
+    if self.Anim <= 0.01 and not self.Visible then
+        self.Anim = 0
+        self.Dropdown = nil
+        self.DropdownRect = nil
+        self.NeedsClear = false
+
+         
+         
+         
+        if self.Minimized == true then
+            local size = 38
+            local ix = clamp(self.X, 6, max(6, vp.X - size - 6))
+            local iy = clamp(self.Y, 6, max(6, vp.Y - size - 6))
+            local acc = self.Accent or ACCENT
+            rect(ix + 2, iy + 3, size, size, C.black, 0.12, 9, 40)
+            rect(ix, iy, size, size, self.Bg or C.bg, 0.97, 9, 41)
+            stroke(ix, iy, size, size, acc, 0.9, 9, 42)
+            icon(self.Icon or "bolt", ix + 11, iy + 11, 16, acc, 0.98, 43)
+            if Pointer.Click and clickFree() and inside(ix, iy, size, size) then
+                self:Open()
+                claimClick()
+            end
+        end
+        return
+    end
+
+    accent = self.Accent or ACCENT
+    refreshButtonColors()
+
+    if self.Dialog then Pointer.Blocked = true end
+
+     
+    local maxW = max(360, vp.X - 24)
+    local maxH = max(260, vp.Y - 24)
+    if self.W > maxW then self.W = maxW end
+    if self.H > maxH then self.H = maxH end
+
+     
+     
+    if not self.Placed then
+        self.X = floor((vp.X - self.W) / 2)
+        self.Y = floor((vp.Y - self.H) / 2)
+        self.Placed = true
+    end
+
+    self.X = clamp(self.X, 6, max(6, vp.X - self.W - 6))
+    self.Y = clamp(self.Y, 6, max(6, vp.Y - self.H - 6))
+
+    local a = self.Anim
+     
+    local slide = self.Visible and (1 - a) * 10 or (1 - a) * 26
+    local x, y = self.X, self.Y + slide
+    local w, h = self.W, self.H
+
+    self.WasOver = Pointer.X >= x - 6 and Pointer.X <= x + w + 6 and Pointer.Y >= y - 6 and Pointer.Y <= y + h + 6
+
+    dragging = self.Drag ~= nil
+
+     
+     
+    if not dragging then
+        for i = 4, 1, -1 do
+            rect(x - i * 3, y - i * 2, w + i * 6, h + i * 4, C.black, a * 0.05, 10 + i, 8)
+        end
+    end
+    rect(x, y, w, h, self.Bg or C.bg, a * 0.98, 9, 10)
+    stroke(x, y, w, h, C.hair, a * 0.9, 9, 11)
+    rect(x, y, w, TOPBAR, C.panel, a * 0.98, 9, 11)
+    line(x + 1, y + TOPBAR, x + w - 1, y + TOPBAR, C.hair, a * 0.9, 12, 1)
+
+     
+    icon(self.Icon, x + 14, y + 12, 16, accent, a * 0.95, 15)
+    text(x + 38, y + 11, self.Title, 14, C.text, a, true, 15)
+    if self.MiniTitle ~= "" then
+        text(x + 38 + textWidth(self.Title, 14, true) + 10, y + 14, self.MiniTitle, 10, C.faint, a * 0.95, false, 15)
+    end
+
+    local cx, cy = x + w - 30, y + 10
+    local closeHover = inside(cx, cy, 20, 20) and self.Visible and not Pointer.Blocked
+    if closeHover then rect(cx, cy, 20, 20, C.card, a, 5, 15) end
+    icon("minus", cx + 4, cy + 4, 12, closeHover and C.text or C.dim, a * 0.95, 16)
+
+    if closeHover and clickFree() and Pointer.Click then
+        self:Minimize()
+        self.Dropdown = nil
+        claimClick()
+    end
+
+     
+    if Pointer.Click and inside(x, y, w, TOPBAR) and not closeHover then
+        self.Drag = { dx = Pointer.X - x, dy = Pointer.Y - y }
+        claimClick()
+    end
+    if Pointer.Down and self.Drag then
+        self.X = clamp(Pointer.X - self.Drag.dx, 6, max(6, vp.X - w - 6))
+        self.Y = clamp(Pointer.Y - self.Drag.dy, 6, max(6, vp.Y - h - 6))
+        x, y = self.X, self.Y + slide
+    end
+    if not Pointer.Down then self.Drag = nil end
+    dragging = self.Drag ~= nil
+
+     
+     
+     
+     
+     
+    if dragging then
+        rect(x, y + TOPBAR, SIDEBAR, h - TOPBAR, C.side, a * 0.96, 0, 12)
+        line(x + SIDEBAR, y + TOPBAR + 1, x + SIDEBAR, y + h - 1, C.hair, a * 0.8, 13, 1)
+        rect(x + SIDEBAR + 1, y + TOPBAR + 1, w - SIDEBAR - 1, h - TOPBAR - 1, C.bg, a * 0.55, 0, 12)
+        text(x + SIDEBAR + PAD, y + TOPBAR + 12, "Moving window", 11, C.faint, a * 0.85, false, 31)
+        circle(x + SIDEBAR + PAD + textWidth("Moving window", 11, false) + 8, y + TOPBAR + 18, 3, accent, a * 0.8, true, 31)
+        text(x + SIDEBAR + PAD, y + TOPBAR + 28, "release to drop it here", 10, C.faint, a * 0.6, false, 31)
+        return
+    end
+
+    drawTabs(self, { x = x, y = y, w = w, h = h }, a)
+
+     
+    local colX0 = x + SIDEBAR + PAD
+    local colY0 = y + TOPBAR + PAD
+    local contentW = w - SIDEBAR - PAD * 2
+    local contentH = h - TOPBAR - PAD * 2
+    local colW = (contentW - GAP) / 2
+
+    local tab = self.ActiveTab
+    if not tab then return end
+
+    local left, right = sideOf(tab, 0)
+    balance(left, right, colW)
+    local rowH = pickRowHeight(left, right, colW, contentH)
+
+     
+    if self.Dropdown and self.DropdownRect then
+        local p = self.DropdownRect
+        if inside(p.x, p.y, p.w, p.h) then
+            Pointer.Blocked = true
+        elseif Pointer.Click and not self.Dialog then
+            self.Dropdown = nil
+            claimClick()
+        end
+    end
+
+    local needle = string.lower(self.Search)
+    local function visible(row)
+        if needle == "" then return true end
+        return string.find(string.lower(row.Title or ""), needle, 1, true) ~= nil
+    end
+
+    local function drawColumn(groups, columnX)
+        local cursor = colY0
+        for _, group in ipairs(groups) do
+            local shown = {}
+            for _, row in ipairs(group.Elements) do
+                if row.Type == "Divider" or visible(row) then shown[#shown + 1] = row end
+            end
+            if #shown > 0 then
+                text(columnX + 2, cursor, string.upper(group.Name), 9, C.head or C.faint, a, true, 31)
+                cursor = cursor + 20
+
+                for _, row in ipairs(shown) do
+                    local kind = row.Type
+                    if kind ~= "Divider" and kind ~= "Paragraph" and kind ~= "TextLabel" then
+                        self.HitRects[#self.HitRects + 1] = { x = columnX, y = cursor, w = colW, h = rowH, row = row }
+                    end
+                    if kind == "Divider" then
+                        dividerRow(row, columnX, cursor, colW, a)
+                        cursor = cursor + 20 + ROW_GAP
+                    elseif kind == "Paragraph" then
+                        paragraphRow(row, columnX, cursor, colW, a, colW)
+                        cursor = cursor + measureElement(row, colW) + ROW_GAP
+                    elseif kind == "TextLabel" then
+                        textRow(row, columnX, cursor, colW, a)
+                        cursor = cursor + measureElement(row, colW) + ROW_GAP
+                    else
+                        if kind == "Toggle" then toggleRow(row, columnX, cursor, colW, rowH, a)
+                        elseif kind == "Slider" then sliderRow(row, columnX, cursor, colW, rowH, a)
+                        elseif kind == "Dropdown" then dropdownRow(row, columnX, cursor, colW, rowH, a, self)
+                        elseif kind == "Button" then buttonRow(row, columnX, cursor, colW, rowH, a)
+                        elseif kind == "InputLabel" then
+                            toggleRow(row, columnX, cursor, colW, rowH, a)
+                        end
+                        cursor = cursor + rowH + ROW_GAP
+                    end
+                end
+                cursor = cursor + 6
+            end
+        end
+        return cursor
+    end
+
+    drawColumn(left, colX0)
+    drawColumn(right, colX0 + colW + GAP)
+
+     
+    if self.Dropdown then
+        local row = self.Dropdown
+        local anchor = row.Anchor
+        if anchor then
+            local lineH = 20
+            local panelW = max(anchor.w, 150)
+            local panelH = #row.Options * lineH + 8
+            local px = anchor.x + anchor.w - panelW
+            local py = anchor.y + anchor.h + 4
+
+            if py + panelH > y + h - 8 then
+                py = anchor.y - panelH - 4
+            end
+            px = clamp(px, x + 8, x + w - panelW - 8)
+            py = clamp(py, y + TOPBAR + 6, y + h - panelH - 8)
+
+            self.DropdownRect = { x = px, y = py, w = panelW, h = panelH }
+
+            rect(px, py, panelW, panelH, C.panel, a, 6, 65)
+            stroke(px, py, panelW, panelH, accent, a * 0.55, 6, 66)
+
+            for i, option in ipairs(row.Options) do
+                local oy = py + 4 + (i - 1) * lineH
+                local hover = inside(px + 4, oy, panelW - 8, lineH)
+                if hover then rect(px + 4, oy, panelW - 8, lineH, C.card, a * 0.95, 4, 66) end
+                if option == row.Selected then
+                    rect(px + 4, oy, 2, lineH, accent, a, 1, 67)
+                end
+                text(px + 12, oy + 4, fit(option, panelW - 24, 11, false), 11,
+                    option == row.Selected and C.text or C.dim, a * 0.95, false, 67)
+
+                if hover and Pointer.Click then
+                    row.Selected = option
+                    self.Dropdown = nil
+                    claimClick()
+                    if row.Callback then pcall(row.Callback, option) end
+                    break
+                end
+            end
+        end
+    end
+
+    if self.Dialog then renderDialog(self, x, y, w, h) end
+end
+
+function WindowClass:RenderNotes(dt, vp)
+    if not self.Alive then return end
+    renderNotifications(self, dt, vp)
+end
+
+function WindowClass:DebugLayout()
+    local contentH = self.H - TOPBAR - PAD * 2
+    local colW = (self.W - SIDEBAR - PAD * 2 - GAP) / 2
+    local out = {}
+
+    for _, tab in ipairs(self.Tabs) do
+        local left, right = sideOf(tab, 0)
+        balance(left, right, colW)
+        local rowH = pickRowHeight(left, right, colW, contentH)
+        out[#out + 1] = {
+            name = tab.Name,
+            rowH = rowH,
+            left = columnHeights(left, colW, rowH),
+            right = columnHeights(right, colW, rowH),
+            leftGroups = #left,
+            rightGroups = #right,
+            avail = contentH,
+            colW = colW,
+        }
+    end
+
+    return out
+end
+
+function WindowClass:HandleKey()
+    if self.Keybind and self.Keybind > 0 and self.Visible ~= nil then
+        if pollKeys(self.Keybind) then
+            self.Visible = not self.Visible
+            self.Dropdown = nil
+            self.SearchFocus = false
+            if not self.Visible then self.NeedsClear = true end
+            touchBusy(0.6)
+        end
+    end
+end
+
+ 
+ 
+ 
+local frame = 0
+local connection
+
+connection = RS.Heartbeat:Connect(function(dt)
+    frame = frame + 1
+    dt = clamp(dt or 0.016, 0, 0.1)
+
+    pollInput(dt)
+
+    for i = #windows, 1, -1 do
+        if not windows[i].Alive then table.remove(windows, i) end
+    end
+
+     
+     
+    local needDraw = false
+    for i = 1, #windows do
+        if windows[i]:NeedsDraw() then needDraw = true; break end
+    end
+
+    if needDraw then
+        beginFrame()
+
+        local camera = workspace.CurrentCamera
+        local vp = camera and camera.ViewportSize or V(1280, 720)
+
+        for i = 1, #windows do
+            local window = windows[i]
+            local ok, err = pcall(window.Render, window, dt, vp)
+            if not ok then
+                if window.LastError ~= tostring(err) then
+                    window.LastError = tostring(err)
+                    warn("[kitty] render: " .. tostring(err))
+                end
+            end
+            local okNotes, errNotes = pcall(window.RenderNotes, window, dt, vp)
+            if not okNotes and window.LastNotesError ~= tostring(errNotes) then
+                window.LastNotesError = tostring(errNotes)
+                warn("[kitty] notes: " .. tostring(errNotes))
+            end
+        end
+
+        endFrame()
+    end
+
+     
+     
+    for i = 1, #windows do
+        local window = windows[i]
+        local okKey, errKey = pcall(window.HandleKey, window)
+        if not okKey and window.LastKeyError ~= tostring(errKey) then
+            window.LastKeyError = tostring(errKey)
+            warn("[kitty] key: " .. tostring(errKey))
+        end
+    end
+end)
+
+env.__kittyDestroy = function()
+    if connection then connection:Disconnect() end
+    for i = #windows, 1, -1 do
+        local window = windows[i]
+        window.Alive = false
+        windows[i] = nil
+    end
+    hideAll()
+end
+
+env.KittyGui = KittyGui
+env.KittyGui.Windows = windows
+env.KittyGui.Pointer = Pointer
+_G.KittyGui = KittyGui
+end
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+local env = getfenv()
+local KittyGui = env.KittyGui or _G.KittyGui
+
+if type(KittyGui) ~= "table" then
+    error("lolcat: kittygui core is not loaded")
+end
+
+local HttpService
+pcall(function() HttpService = game:GetService("HttpService") end)
+
+local CONFIG_FOLDER = "lolcatbss"
+
+local VK = {
+    f1 = 112, f2 = 113, f3 = 114, f4 = 115, f5 = 116, f6 = 117, f7 = 118, f8 = 119,
+    f9 = 120, f10 = 121, f11 = 122, f12 = 123,
+    insert = 45, home = 36, delete = 46, ["end"] = 35, ["tab"] = 9, escape = 27,
+}
+
+local ICONS = {
+    home = "home", sun = "sun", plant = "plant", swords = "swords",
+    box = "cube", layers = "layers", gauge = "gauge", clock = "clock",
+    gear = "gear", dot = "dot", spark = "info", power = "power",
+    play = "bolt", bolt = "bolt", shield = "shield", palette = "palette",
+    key = "key", script = "script", sliders = "sliders",
+}
+
+local function iconName(name)
+    name = tostring(name or "")
+    return ICONS[name] or (name ~= "" and name or "dot")
+end
+
+local function short(text, limit)
+    text = tostring(text or "")
+    if #text <= limit then return text end
+    return string.sub(text, 1, limit - 2) .. ".."
+end
+
+local app
+
+local liveRows = {}
+local firstSelected = false
+
+ 
+ 
+ 
+local Section = {}
+Section.__index = Section
+
+local function newSection(tab, name, side)
+    local group = tab:AddGroupbox({ Name = tostring(name or "Section"), Side = side })
+
+    return setmetatable({ Group = group, Tab = tab, Side = side }, Section)
+end
+
+function Section:Toggle(label, value, callback, tip)
+    return self.Group:AddToggle({
+        Name = tostring(label),
+        State = value == true,
+        OnChanged = callback,
+        Description = tostring(tip or ""),
+    })
+end
+
+function Section:Slider(label, value, step, lo, hi, suffix, callback, tip)
+    return self.Group:AddSlider({
+        Name = tostring(label),
+        CurrentValue = tonumber(value) or tonumber(lo) or 0,
+        MinValue = tonumber(lo) or 0,
+        MaxValue = tonumber(hi) or 100,
+        Step = tonumber(step) or 1,
+        Suffix = tostring(suffix or ""),
+        OnChanged = callback,
+        Description = tostring(tip or ""),
+    })
+end
+
+function Section:Dropdown(label, selected, choices, _multi, callback, tip)
+    local default = type(selected) == "table" and selected[1] or selected
+
+    return self.Group:AddDropdown({
+        Name = tostring(label),
+        Options = choices,
+        Selected = default,
+        OnSelecting = callback,
+        Description = tostring(tip or ""),
+    })
+end
+
+function Section:Button(label, callback)
+    return self.Group:AddButton({ Name = tostring(label), OnClick = callback })
+end
+
+function Section:Label(fn)
+    local row = self.Group:AddTextLabel({ Title = "" })
+
+    liveRows[#liveRows + 1] = { row = row, fn = fn }
+
+    local ok, value = pcall(fn)
+    if ok then row.Title = short(value, 60) end
+
+    return row
+end
+
+function Section:Info(text)
+    return self.Group:AddParagraph({ Title = tostring(text or "") })
+end
+
+function Section:Divider(text)
+    return self.Group:AddDivider({ Title = tostring(text or "") })
+end
+
+function Section:Keybind(label) return self:Label(function() return tostring(label) .. ": F1" end) end
+function Section:Textbox(label) return self:Label(function() return tostring(label) end) end
+function Section:Colorpicker(label) return self:Label(function() return tostring(label) end) end
+
+ 
+ 
+ 
+local TabProxy = {}
+TabProxy.__index = TabProxy
+
+local function proxyTab(tab)
+    return setmetatable({ Tab = tab }, TabProxy)
+end
+
+function TabProxy:Section(name, side, _desc)
+    return newSection(self.Tab, name, side)
+end
+
+ 
+ 
+ 
+local window = {}
+
+local function ensureFolder()
+    pcall(function()
+        if type(makefolder) == "function" and type(isfolder) == "function" and not isfolder(CONFIG_FOLDER) then
+            makefolder(CONFIG_FOLDER)
+        end
+    end)
+end
+
+local function configPath(name)
+    return CONFIG_FOLDER .. "/" .. tostring(name) .. ".json"
+end
+
+local function keepSettingsLast()
+    if not app or not app.SettingsTab then return end
+
+    for index, tab in ipairs(app.Tabs) do
+        if tab == app.SettingsTab and index ~= #app.Tabs then
+            table.remove(app.Tabs, index)
+            app.Tabs[#app.Tabs + 1] = app.SettingsTab
+            return
+        end
+    end
+end
+
+function window:Tab(name, icon)
+    local tab = app:CreateTab({ Name = tostring(name), Icon = iconName(icon) })
+
+    keepSettingsLast()
+
+    if not firstSelected then
+        firstSelected = true
+        app.ActiveTab = tab
+    end
+
+    return proxyTab(tab)
+end
+
+local THEME_LIST = { "Purple", "Blue", "Mint", "Amber", "Rose", "Mono" }
+
+function window:AddSettingsTab(icon)
+    if icon then app.SettingsTab.Icon = iconName(icon) end
+    keepSettingsLast()
+
+     
+     
+    if not window.__interfaceAdded then
+        window.__interfaceAdded = true
+
+        local group = app.SettingsTab:AddGroupbox({ Name = "Interface", Side = "Left" })
+
+        group:AddDropdown({
+            Name = "Theme",
+            Options = THEME_LIST,
+            Selected = app.ThemeName or "Purple",
+            OnSelecting = function(value) app:SetTheme(value) end,
+        })
+
+        group:AddButton({
+            Name = "Centre the window",
+            OnClick = function() app.Placed = false end,
+        })
+
+        group:AddButton({
+            Name = "Hide menu (F1 to reopen)",
+            OnClick = function() app:Minimize() end,
+        })
+    end
+
+    return proxyTab(app.SettingsTab)
+end
+
+function window:SettingsSection(name, side)
+    return newSection(app.SettingsTab, name, side)
+end
+
+function window:IsOpen() return app.Visible == true end
+function window:Open() app:Open() end
+function window:Close() app:Minimize() end
+
+function window:SetMenuKey(key)
+    local code = VK[string.lower(tostring(key or ""))]
+    if code then app:SetMenuKey(code) end
+end
+
+function window:Destroy()
+    pcall(function() app:Destroy() end)
+end
+
+function window:Notify(title, text, duration, kind)
+    Lib:Notify(title, text, duration, kind)
+end
+
+function window:SaveConfig(name)
+    if type(writefile) ~= "function" or not HttpService then return end
+
+    local ok, payload = pcall(function()
+        local out = {}
+
+        for _, tab in ipairs(app.Tabs) do
+            local values = {}
+
+            for _, group in ipairs(tab.Groupboxes) do
+                for _, row in ipairs(group.Elements) do
+                    local kind = row.Type
+                    if kind == "Toggle" then
+                        values[row.Title] = row.State
+                    elseif kind == "Slider" then
+                        values[row.Title] = row.Value
+                    elseif kind == "Dropdown" then
+                        values[row.Title] = row.Selected
+                    end
+                end
+            end
+
+            out[tab.Name] = values
+        end
+
+        return out
+    end)
+
+    if not ok then return end
+
+    local encoded
+    ok, encoded = pcall(function() return HttpService:JSONEncode(payload) end)
+    if not ok then return end
+
+    ensureFolder()
+    pcall(function() writefile(configPath(name), encoded) end)
+end
+
+function window:LoadConfig(name)
+    if type(readfile) ~= "function" or type(isfile) ~= "function" or not HttpService then return end
+
+    local path = configPath(name)
+
+    local ok, decoded = pcall(function()
+        if not isfile(path) then return nil end
+        return HttpService:JSONDecode(readfile(path))
+    end)
+
+    if not ok or type(decoded) ~= "table" then return end
+
+    for _, tab in ipairs(app.Tabs) do
+        local values = decoded[tab.Name]
+
+        if type(values) == "table" then
+            for _, group in ipairs(tab.Groupboxes) do
+                for _, row in ipairs(group.Elements) do
+                    local saved = values[row.Title]
+
+                    if saved ~= nil and row.Type ~= "Button" and row.Type ~= "TextLabel"
+                        and row.Type ~= "Divider" and row.Type ~= "Paragraph" then
+                        pcall(function() row:Set(saved) end)
+                    end
+                end
+            end
+        end
+    end
+end
+
+ 
+ 
+ 
+local Lib = {}
+
+function Lib:Category(_name) end
+
+function Lib:Notify(title, text, duration, kind)
+    if not app then return end
+
+    local tone = string.lower(tostring(kind or "info"))
+
+    app:Notify({
+        Title = tostring(title or "lolcat"),
+        Content = tostring(text or ""),
+        Duration = tonumber(duration) or 4,
+        Type = (tone == "error" or tone == "warn" or tone == "warning") and "error" or "info",
+    })
+end
+
+function Lib:Dialog(options)
+    options = options or {}
+
+    app:Confirm({
+        Title = tostring(options.title or "Confirm"),
+        Text = tostring(options.text or ""),
+        Confirm = tostring(options.confirm or "Confirm"),
+        OnConfirm = options.onConfirm,
+    })
+end
+
+function Lib:CreateWindow(config)
+    config = config or {}
+
+    app = KittyGui:CreateWindow({
+        title = config.title or "menu",
+        subtitle = config.subtitle or "",
+        size = config.size,
+        startOpen = config.startOpen ~= false,
+        theme = config.theme,
+        icon = "bolt",
+    })
+
+    app.SettingsTab = app:CreateTab({ Name = "Settings", Icon = "gear" })
+
+    return window
+end
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+task.spawn(function()
+    while _G.__lolcatBSS == INSTANCE do
+        local w = app
+        if w then
+            for _, entry in ipairs(liveRows) do
+                if w.Alive == false then break end
+                local ok, value = pcall(entry.fn)
+                if ok then
+                    local text = short(value, 60)
+                    if entry.row.Title ~= text then
+                        entry.row.Title = text
+                        w.Dirty = true
+                    end
+                end
+            end
+        end
+        task.wait(0.2)
+    end
+end)
+
+env.LolcatWindow = window
+env.LolcatLib = Lib
 local Engine
 local function initEngine()
     local Engine = {}
@@ -6709,6 +1956,10 @@ local function initEngine()
     local RS        = game:GetService("ReplicatedStorage")
     local lp        = Plrs.LocalPlayer
 
+    
+    
+    
+    
     local function findEvents()
         local fallback
         for _, c in ipairs(RS:GetChildren()) do
@@ -6766,6 +2017,12 @@ local function initEngine()
         return nil
     end
 
+    
+    
+    
+    
+    
+    
     local bg
     bg = function(fn)
         local claimed = false
@@ -6776,11 +2033,11 @@ local function initEngine()
         end
         if type(task) == "table" and type(task.spawn) == "function" then
             pcall(function() task.spawn(body) end)
-end
+        end
         if claimed then return end
         if type(spawn) == "function" then
             pcall(function() spawn(body) end)
-end
+        end
     end
 
     local function safeText(obj)
@@ -6790,12 +2047,22 @@ end
             if type(v) == "string" then return v end
             return nil
         end)
-return (ok and type(res) == "string") and res or ""
+        return (ok and type(res) == "string") and res or ""
     end
 
+    
+    
+    
     local S = {
         farm_on       = false,
-
+        
+        
+        
+        
+         
+         
+         
+         
         hybrid        = (function()
                             local forced = _G.__LOLCAT_FORCE_MODE
                             if type(forced) == "string" then
@@ -6810,14 +2077,17 @@ return (ok and type(res) == "string") and res or ""
         close_r       = 12,
         full_pct      = 90,
         glide_speed   = 80,
-
+         
+         
         walk_speed    = 0,
-
+         
+         
+         
         speed_override = false,
         walk_force    = false,
         force_tween   = 1400,
         travel_mode   = "Pathfinding",
-
+         
         walk_method   = "Offsets",
         path_trace    = false,
         sprinkler     = "Auto",
@@ -6825,11 +2095,15 @@ return (ok and type(res) == "string") and res or ""
         face_center   = false,
         face_bubbles  = false,
         face_balloons = false,
+        face_flame    = false,
         face_camera   = false,
-
+         
+         
+         
+         
         face_hz       = 10,
-        noclip        = true,
-        world_noclip  = true,
+        noclip        = true,   
+        world_noclip  = true,   
         reset_mode    = false,
 
         auto_polar_quests  = false,
@@ -6843,19 +2117,43 @@ return (ok and type(res) == "string") and res or ""
         catch_coconuts     = false,
         catch_stars        = false,
         convert_balloon     = false,
-
+         
+         
         balloon_convert     = true,
         collect_tokens      = false,
-
+         
+         
         collect_duped       = true,
 
+         
+         
+         
+         
         mark_target        = true,
 
+         
+         
+         
         kill_crab    = false,
         kill_beetle  = false,
         kill_bear    = false,
         kill_vicious = false,
         kill_mondo   = false,
+         
+         
+        mondo_loot   = true,
+         
+         
+         
+        vicious_cd   = 0,
+        mondo_cd     = 0,
+
+         
+         
+         
+        misc         = {},
+        misc_any     = false,
+        misc_status  = "Off",
 
         nectar_farm   = false,
         nectar_repeat = true,
@@ -6863,9 +2161,11 @@ return (ok and type(res) == "string") and res or ""
         nectar_mode   = "Growth %",
         nectar_collect_pct   = 100,
         nectar_collect_every = 1,
-
-        nectar_slots  = { "Motivating", "Comforting", "Satisfying", "Refreshing", "Invigorating" },
-
+         
+         
+        nectar_slots  = { "None", "None", "None", "None", "None" },
+         
+         
         nectar_planters = {
             ["Plastic Planter"]      = false,
             ["Candy Planter"]        = false,
@@ -6882,12 +2182,27 @@ return (ok and type(res) == "string") and res or ""
         },
     }
 
-    if not S.hybrid then S.travel_mode = "Tween" else S.travel_mode = "Pathfinding" end
+     
+     
+     
+     
+    S.travel_mode = "Pathfinding"
 
+     
+     
+     
+     
+     
+     
+     
+     
     S.dig  = { interval = 0.2, last = 0, uiOpen = false, converting = false, convCooldown = 0 }
     S.face = {
         fieldCache = nil, fieldAt = 0,
-
+         
+         
+         
+         
         minAngle = 0.05,
         wroteAt = 0, resolvedAt = 0, target = nil, autoOff = false, autoAt = 0,
         mode = "off", pauseUntil = 0, lastTick = 0, spin = 0, autoTried = false,
@@ -6901,6 +2216,10 @@ return (ok and type(res) == "string") and res or ""
         ["Off"] = 0, ["Basic"] = 1, ["Silver"] = 2, ["Gold"] = 3, ["Diamond"] = 4, ["Supreme"] = 1,
     }
 
+    
+    
+    
+    
     local function fireEvent(name, arg)
         local ev = getRemote(name)
         if not ev then return false end
@@ -6916,15 +2235,22 @@ return (ok and type(res) == "string") and res or ""
         return ok
     end
 
+    
+
     local myHive, forceReturn, collecting, currentField, needSprinkler
     local status = "Off"
     local FeaturesActive = true
-
+    
+    
+    
     local facingTarget = nil
     local sprinklerBusy = false
     local lastSprinklerField = nil
     local lastSprinklerAt = 0
 
+    
+    
+    
     local function getHRP()
         local c = lp and lp.Character
         return c and c:FindFirstChild("HumanoidRootPart")
@@ -6940,16 +2266,82 @@ return (ok and type(res) == "string") and res or ""
         return hum ~= nil and hum.Health > 0
     end
 
+     
+     
+     
+     
+     
+     
+    Engine.anyFeatureOn = function()
+        if S.hard_off then return false end
+        return S.farm_on == true
+            or S.misc_any == true
+            or S.nectar_farm == true
+            or S.kill_beetle == true or S.kill_bear == true
+            or S.kill_vicious == true or S.kill_mondo == true or S.kill_crab == true
+            or S.auto_polar_quests == true or S.polar_only == true
+    end
+
+     
+     
+     
+     
+     
+     
+    Engine.spinAutoRotate = function(on)
+        local hum = getHum()
+        local addr = hum and hum.Address
+        if not addr or type(memory_write) ~= "function" then return false end
+        return pcall(function()
+            memory_write("byte", addr + 457, on and 1 or 0)
+        end)
+    end
+
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+    Engine.walkAnimDrive = function(on, dirX, dirZ)
+        local hum = getHum()
+        local addr = hum and hum.Address
+        if not addr or type(memory_write) ~= "function" then return false end
+        local k = on and 0.12 or 0
+        local x, z = (dirX or 0) * k, (dirZ or 0) * k
+        return pcall(function()
+             
+             
+             
+             
+            memory_write("float", addr + 0x134, x)
+            memory_write("float", addr + 0x138, 0)
+            memory_write("float", addr + 0x13C, z)
+             
+             
+            memory_write("float", addr + 0x14C, x)
+            memory_write("float", addr + 0x150, 0)
+            memory_write("float", addr + 0x154, z)
+        end)
+    end
+
     local function isOn()
-        return S.farm_on == true and isAlive() and FeaturesActive
+        return Engine.anyFeatureOn() and isAlive() and FeaturesActive
     end
 
     local function rbxActive()
         local ok, v = pcall(function() return isrbxactive() end)
-if ok and type(v) == "boolean" then return v end
+        if ok and type(v) == "boolean" then return v end
         return true
     end
 
+    
+    
+    
     local BASE_PART_CLASSES = {
         Part = true, MeshPart = true, UnionOperation = true, WedgePart = true,
         CornerWedgePart = true, TrussPart = true, SpawnLocation = true,
@@ -6979,7 +2371,7 @@ if ok and type(v) == "boolean" then return v end
         for _, p in ipairs(c:GetDescendants()) do
             if isPart(p) then
                 pcall(function() p.CanCollide = true end)
-end
+            end
         end
     end
 
@@ -7003,16 +2395,24 @@ end
                     end
                 end
             end)
-end)
+        end)
     end
 
+    
+    
+    
     local function makeLookAt(eye, target)
         local cf = try(function() return CFrame.lookAt(eye, target) end)
-if cf then return cf end
-
+        if cf then return cf end
+         
+         
+         
         return try(function() return CFrame.lookAt(eye, target) end)
-end
+    end
 
+    
+    
+    
     local function flatYaw(fromPos, toPos)
         local dx = toPos.X - fromPos.X
         local dz = toPos.Z - fromPos.Z
@@ -7025,11 +2425,12 @@ end
             local _, y = cf:ToOrientation()
             return y
         end)
-if ok and type(ry) == "number" then return ry end
+        if ok and type(ry) == "number" then return ry end
         local look = cf.LookVector
         return math.atan2(-look.X, -look.Z)
     end
 
+    
     local function clampYawDelta(d, maxStep)
         d = ((d + math.pi) % (2 * math.pi)) - math.pi
         if d > maxStep then return maxStep end
@@ -7037,12 +2438,16 @@ if ok and type(ry) == "number" then return ry end
         return d
     end
 
-    local FACE_TURN_STEP = 0.30
-    local FACE_MOVE_LIMIT = 8
+    local FACE_TURN_STEP = 0.30   
+    local FACE_MOVE_LIMIT = 8     
 
+    
+    
+    
+    
     local glideActive, glideActiveSince = false, 0
-    local walkingWithKeys = false
-    local lastMoveMode, lastMoveAt = "Idle", 0
+    local walkingWithKeys = false   
+    local lastMoveMode, lastMoveAt = "Idle", 0   
 
     local function glideOwnsRotation()
         return glideActive and (tick() - glideActiveSince) < 50
@@ -7051,30 +2456,56 @@ if ok and type(ry) == "number" then return ry end
     local function facePosition(targetPos)
         local hrp = getHRP()
         if not hrp or not targetPos then return false end
-
+         
+         
+         
         if S.face.pauseUntil and S.face.pauseUntil > tick() then return false end
 
         local pos = hrp.Position
         local flat = Vector3.new(targetPos.X, pos.Y, targetPos.Z)
         if (flat - pos).Magnitude < 0.3 then return false end
 
+         
+         
+         
+         
         local yaw = flatYaw(pos, flat)
         if not yaw then return false end
 
+         
+         
+         
+         
+         
         local hum = getHum()
-        if hum and not S.face.autoTried then
-            S.face.autoTried = true
-            local okA = pcall(function() hum.AutoRotate = false end)
-S.face.autoOff = okA
+        if hum then
+            if not S.face.spinTried then
+                S.face.spinTried = true
+                S.face.spinOff = Engine.spinAutoRotate(false)
+                S.face.spinAt = tick()
+            elseif S.face.spinOff and (tick() - (S.face.spinAt or 0)) > 1 then
+                S.face.spinAt = tick()
+                Engine.spinAutoRotate(false)
+            end
+            if not S.face.autoTried then
+                S.face.autoTried = true
+                local okA = pcall(function() hum.AutoRotate = false end)
+                if okA and not S.face.spinOff then S.face.autoOff = true end
+            end
         end
         local delta = 0
         local look = try(function() return hrp.CFrame.LookVector end)
-if look then
+        if look then
             local cur = math.atan2(-look.X, -look.Z)
             delta = ((yaw - cur + math.pi) % (2 * math.pi)) - math.pi
             if math.abs(delta) < S.face.minAngle then return true end
         end
 
+         
+         
+         
+         
+         
         local nowFace = tick()
         local hz = tonumber(S.face_hz) or 10
         if hz < 1 then hz = 1 elseif hz > 60 then hz = 60 end
@@ -7083,19 +2514,22 @@ if look then
         S.face.writes = (S.face.writes or 0) + 1
 
         local velA = try(function() return hrp.AssemblyLinearVelocity end)
-
-local okW = pcall(function()
-
+        local okW = pcall(function()
+             
+             
+             
             hrp.CFrame = CFrame.new(pos.X, pos.Y, pos.Z) * CFrame.Angles(0, yaw, 0)
         end)
-if not okW then
+        if not okW then
             pcall(function()
                 hrp.CFrame = CFrame.lookAt(pos, Vector3.new(targetPos.X, pos.Y, targetPos.Z))
             end)
-end
-
+        end
+         
+         
         if velA then pcall(function() hrp.AssemblyLinearVelocity = velA end) end
 
+        
         if S.face_camera and not walkingWithKeys then
             pcall(function()
                 local cam = Workspace.CurrentCamera
@@ -7105,32 +2539,46 @@ end
                     if camLook then cam.CFrame = camLook end
                 end
             end)
-end
+        end
     end
 
+     
+     
+     
+     
     local function restoreFacing()
-        if S.face_balloons or S.face_bubbles or S.face_center then return end
+        if S.face_balloons or S.face_bubbles or S.face_center or S.face_flame then return end
         local hum = getHum()
+         
+         
+         
+        if S.face.spinOff then Engine.spinAutoRotate(true) end
         if hum then pcall(function() hum.AutoRotate = true end) end
+        S.face.spinOff = false
+        S.face.spinTried = false
+        S.face.spinAt = 0
         S.face.autoOff = false
         S.face.target = nil
         S.face.spin = 0
         S.face.autoTried = false
     end
 
+    
+    
+    
     local function getPartPos(part)
         if not part then return nil end
         local p = try(function() return part.Position end)
-if p and p.X then return p end
+        if p and p.X then return p end
         local cf = try(function() return part.CFrame end)
-if cf and cf.Position and cf.Position.X then return cf.Position end
+        if cf and cf.Position and cf.Position.X then return cf.Position end
         if part.ClassName == "Model" then
             local pp = try(function() return part.PrimaryPart and part.PrimaryPart.Position end)
-if pp and pp.X then return pp end
+            if pp and pp.X then return pp end
             local bp = try(function() return part:FindFirstChildWhichIsA("BasePart", true) end)
-if bp then
+            if bp then
                 local bpPos = try(function() return bp.Position end)
-if bpPos and bpPos.X then return bpPos end
+                if bpPos and bpPos.X then return bpPos end
             end
         end
         return nil
@@ -7139,11 +2587,11 @@ if bpPos and bpPos.X then return bpPos end
     local function partOf(obj)
         if not obj then return nil end
         local p = try(function() return obj.Position end)
-if p and p.X then return obj end
+        if p and p.X then return obj end
         local pp = try(function() return obj.PrimaryPart end)
-if pp then return pp end
+        if pp then return pp end
         local ok, kids = pcall(function() return obj:GetChildren() end)
-if ok then
+        if ok then
             for _, ch in ipairs(kids) do
                 local cl = ch.ClassName
                 if cl == "Part" or cl == "MeshPart" or cl == "UnionOperation"
@@ -7177,11 +2625,11 @@ if ok then
         if isPart(obj) and getPartPos(obj) then return obj end
         if obj.ClassName == "Model" then
             local primary = try(function() return obj.PrimaryPart end)
-if isPart(primary) and getPartPos(primary) then return primary end
+            if isPart(primary) and getPartPos(primary) then return primary end
             local bp = try(function() return obj:FindFirstChildWhichIsA("BasePart", true) end)
-if isPart(bp) and getPartPos(bp) then return bp end
+            if isPart(bp) and getPartPos(bp) then return bp end
             local kids = try(function() return obj:GetChildren() end)
-if kids then
+            if kids then
                 for _, ch in ipairs(kids) do
                     if isPart(ch) and getPartPos(ch) then return ch end
                 end
@@ -7198,8 +2646,7 @@ if kids then
                 local direct = HiveTool.part(child)
                 if direct then return direct end
                 local val = try(function() return child.Value end)
-
-local fromVal = HiveTool.part(val)
+                local fromVal = HiveTool.part(val)
                 if fromVal then return fromVal end
             end
         end
@@ -7209,13 +2656,12 @@ local fromVal = HiveTool.part(val)
                 local found = HiveTool.part(p)
                 if found then return found end
                 local val = try(function() return p.Value end)
-
-local fromVal = HiveTool.part(val)
+                local fromVal = HiveTool.part(val)
                 if fromVal then return fromVal end
             end
         end
         local primary = try(function() return hive.PrimaryPart end)
-if isPart(primary) and getPartPos(primary) then return primary end
+        if isPart(primary) and getPartPos(primary) then return primary end
         return HiveTool.part(hive)
     end
 
@@ -7231,7 +2677,7 @@ if isPart(primary) and getPartPos(primary) then return primary end
         local owner = hive:FindFirstChild("Owner") or hive:FindFirstChild("Player")
         if not owner then return nil end
         return try(function() return owner.Value end)
-end
+    end
 
     HiveTool.unclaimed = function()
         local honey = Workspace:FindFirstChild("Honeycombs") or Workspace:FindFirstChild("Hives")
@@ -7251,16 +2697,17 @@ end
         local myDisplay = (lp.DisplayName or ""):lower()
         local myUserId  = lp.UserId
 
+        
         for _, hive in ipairs(honey:GetChildren()) do
             local ownerObj = hive:FindFirstChild("Owner") or hive:FindFirstChild("Player")
             if ownerObj then
                 local ov = try(function() return ownerObj.Value end)
-if ov then
+                if ov then
                     if ov == lp then
                         myHive = hive; return hive
                     elseif (typeof and typeof(ov) == "Instance") or type(ov) == "userdata" then
                         local nm = try(function() return ov.Name end)
-if nm and type(nm) == "string" and (nm:lower() == myName or nm:lower() == myDisplay) then
+                        if nm and type(nm) == "string" and (nm:lower() == myName or nm:lower() == myDisplay) then
                             myHive = hive; return hive
                         end
                     elseif type(ov) == "string" then
@@ -7275,6 +2722,7 @@ if nm and type(nm) == "string" and (nm:lower() == myName or nm:lower() == myDisp
             end
         end
 
+        
         local sp = lp:FindFirstChild("SpawnPos")
         if sp and sp.Value then
             local spPos = (typeof and typeof(sp.Value) == "CFrame" and sp.Value.Position) or sp.Value
@@ -7288,6 +2736,7 @@ if nm and type(nm) == "string" and (nm:lower() == myName or nm:lower() == myDisp
             end
         end
 
+        
         for _, hive in ipairs(honey:GetChildren()) do
             for _, attr in ipairs({ "Owner", "Player", "UserId", "Username", "OwnerName" }) do
                 local val = hive:GetAttribute(attr)
@@ -7301,6 +2750,7 @@ if nm and type(nm) == "string" and (nm:lower() == myName or nm:lower() == myDisp
             end
         end
 
+        
         local hrp = getHRP()
         if hrp then
             for _, hive in ipairs(honey:GetChildren()) do
@@ -7329,30 +2779,40 @@ if nm and type(nm) == "string" and (nm:lower() == myName or nm:lower() == myDisp
         if best and bestDist <= 60 then myHive = best end
     end
 
-    local glideYaw   = nil
-    local glideSpeed = 0
-
+    
+    
+    
+    local glideYaw   = nil     
+    local glideSpeed = 0       
+     
+     
+     
+     
     local flightSaves = nil
     local function flightNoclip(on)
         local character = lp and lp.Character
         if not character then return end
         if on then
+             
+             
+             
+            if S.travel_mode ~= "Tween" then return end
             if flightSaves == nil then flightSaves = {} end
             local list = try(function() return character:GetDescendants() end)
-if list then
+            if list then
                 for _, part in ipairs(list) do
                     if isPart(part) and flightSaves[part] == nil then
                         local can = try(function() return part.CanCollide end)
-flightSaves[part] = (can ~= false)
+                        flightSaves[part] = (can ~= false)
                         pcall(function() part.CanCollide = false end)
-end
+                    end
                 end
             end
         elseif flightSaves then
             for part, val in pairs(flightSaves) do
                 if part and part.Parent then
                     pcall(function() part.CanCollide = val end)
-end
+                end
             end
             flightSaves = nil
         end
@@ -7360,7 +2820,9 @@ end
 
     local function moveToVelocity(targetPos, speed, thr, modeLabel, noAnim)
         thr = thr or 3.5
-
+        
+        
+        
         speed = tonumber(speed) or 110
         if speed ~= speed or speed < 1 then speed = 110 end
         if not targetPos then return false end
@@ -7369,12 +2831,19 @@ end
         local hum = getHum()
         if not hrp or not hum then return false end
 
+        
+        
         glideActive = true
         glideActiveSince = tick()
         lastMoveMode, lastMoveAt = modeLabel or "Glide", tick()
 
+        
+        
+        
+        
         pcall(function() keyrelease(0x57) end)
-flightNoclip(true)
+
+        flightNoclip(true)
 
         local start = tick()
         local lastTick = start
@@ -7392,7 +2861,8 @@ flightNoclip(true)
             lastTick = now
 
             if now - noclipAt > 0.5 then
-
+                 
+                 
                 noclipAt = now
                 flightNoclip(true)
             end
@@ -7406,9 +2876,13 @@ flightNoclip(true)
                     curHrp.AssemblyLinearVelocity = Vector3.new(0, 0, 0)
                     curHrp.Velocity = Vector3.new(0, 0, 0)
                 end)
-break
+                break
             end
 
+
+            
+            
+            
             local want = speed
             if dist < brake then want = math.max(speed * 0.12, dist * 2.2) end
             want = math.min(want, dist / math.max(dt, 0.001))
@@ -7422,9 +2896,15 @@ break
             local step = math.min(glideSpeed * dt, dist)
             local newPos = pos + dir * step
 
+            
+            
+            
             local goal = facingTarget or (newPos + dir)
             local goalYaw = flatYaw(newPos, Vector3.new(goal.X, newPos.Y, goal.Z))
-
+             
+             
+             
+             
             local yaw = glideYaw or currentYaw(curHrp.CFrame)
             if goalYaw then
                 yaw = yaw + clampYawDelta(goalYaw - yaw, math.max(0.5, dt * 22))
@@ -7432,31 +2912,39 @@ break
             glideYaw = yaw
 
             pcall(function()
-
+                
+                
+                
                 local base = CFrame.new(newPos.X, newPos.Y, newPos.Z) * CFrame.Angles(0, glideYaw or 0, 0)
                 curHrp.CFrame = base
 
+                
+                
+                
+                
                 if not noAnim then
                     curHrp.AssemblyLinearVelocity = dir * glideSpeed
                     curHrp.Velocity = dir * glideSpeed
                 end
             end)
-task.wait(0.010)
+
+            task.wait(0.010)
         end
 
         glideActive = false
         pcall(function() keyrelease(0x57) end)
 
-local done = getHRP()
+        local done = getHRP()
         if done and done.Parent then
             pcall(function()
                 done.AssemblyLinearVelocity = Vector3.new(0, 0, 0)
                 done.Velocity = Vector3.new(0, 0, 0)
             end)
-end
+        end
         if not isOn() then glideSpeed = 0 end
         flightNoclip(false)
-
+        
+        
         glideYaw = nil
         return true
     end
@@ -7491,10 +2979,76 @@ end
         ["Ant Field"] = { { -114, 2, 272 }, { -60, 1, 300 }, { -20, 1, 330 }, { 20, 1, 340 }, { 50, 3, 370 }, { 70, 8, 400 }, { 85, 15, 430 }, { 92, 22, 470 }, { 95, 29, 520 }, { 96, 29, 560 }, { 96, 30, 595 } },
     }
 
-    ;(function()
+     
+     
+     
+     
+     
+     
+     
+     
+    Nav.legRoutes = {
+        ["Pepper Patch"] = {
+            Vector3.new(-113.5, 4.9, 271.0),
+            Vector3.new(-211.1, 5.7, 324.3),
+            Vector3.new(-211.5, 17.0, 352.3),
+            Vector3.new(-306.2, 17.1, 348.4),
+            Vector3.new(-310.1, 32.7, 346.8),
+            Vector3.new(-327.4, 33.6, 355.3),
+            Vector3.new(-332.9, 50.0, 359.9),
+            Vector3.new(-416.5, 50.0, 417.0),
+            Vector3.new(-427.6, 59.5, 422.5),
+            Vector3.new(-427.5, 71.5, 436.2),
+            Vector3.new(-374.5, 71.5, 454.8),
+            Vector3.new(-361.8, 81.4, 455.4),
+            Vector3.new(-362.3, 81.4, 466.4),
+            Vector3.new(-362.6, 97.9, 471.9),
+            Vector3.new(-397.4, 97.5, 507.0),
+            Vector3.new(-406.9, 110.9, 524.2),
+            Vector3.new(-438.0, 110.9, 523.9),
+            Vector3.new(-457.7, 123.2, 524.3),
+        },
+        ["Tunnel Bear"] = {
+            Vector3.new(-113.9, 4.9, 271.6),
+            Vector3.new(-112.4, 4.0, 222.4),
+            Vector3.new(11.1, 10.5, 134.5),
+            Vector3.new(10.5, 20.0, 11.2),
+            Vector3.new(207.0, 21.0, -17.1),
+            Vector3.new(204.7, 41.3, 50.7),
+            Vector3.new(223.4, 41.3, 48.9),
+            Vector3.new(224.8, 68.0, -84.3),
+            Vector3.new(265.1, 68.0, -85.1),
+            Vector3.new(262.6, 68.0, -45.7),
+            Vector3.new(277.4, 81.5, -44.9),
+            Vector3.new(285.9, 98.8, -44.9),
+            Vector3.new(281.4, 6.3, -44.4),
+        },
+        ["King Beetle"] = {
+            Vector3.new(-113.6, 4.9, 271.2),
+            Vector3.new(-111.4, 4.0, 235.1),
+            Vector3.new(74.6, 4.0, 109.4),
+            Vector3.new(224.5, 4.0, 110.1),
+            Vector3.new(220.0, 18.5, 130.4),
+            Vector3.new(218.7, 4.1, 140.6),
+            Vector3.new(194.3, 4.1, 172.0),
+        },
+        ["King Beetle Return"] = {
+            Vector3.new(123.7, 4.1, 143.7),
+            Vector3.new(123.1, 4.0, 129.5),
+            Vector3.new(56.1, 4.0, 97.7),
+        },
+    }
+     
+    ;(function()  
+ 
+ 
+ 
+ 
+ 
 
 local AtlasGraphData = (function()
-
+ 
+ 
 local ATLAS_NODE_DATA = [==[
 1|47,30,479;2|47,30,492;3|47,30,505;4|47,30,518;5|47,30,531;6|47,30,544;7|47,30,557;8|60,30,479;9|60,30,492;10|60,30,505;11|60,30,518;12|60,30,531;13|60,30,544;14|60,30,557;15|73,30,479;16|73,30,492;17|73,30,505;18|73,30,518;19|73,30,531;20|73,30,544;21|73,30,557;22|86,30,479;23|86,30,492;24|86,30,505;
 25|86,30,518;26|86,30,531;27|86,30,544;28|86,30,557;31|99,30,505;32|99,30,518;33|99,30,531;34|99,30,544;35|99,30,557;38|112,30,505;39|112,30,518;40|112,30,531;41|112,30,544;42|112,30,557;43|89,18,-61;44|89,18,-48;45|89,18,-35;46|89,18,-22;47|89,18,-9;48|89,18,4;49|102,18,-61;50|102,18,-48;51|102,18,-35;52|102,18,-22;
@@ -11204,6 +6758,7 @@ end)()
         return WALK_LABELS[link.label] == true
     end
 
+     
     local function findNodePath(from, to)
         if not from or not to then return nil end
         local startId = nearestNode(from)
@@ -11270,6 +6825,8 @@ end)()
         return path
     end
 
+     
+     
     local function expandNodePath(path, fromPos)
         local out = {}
         if not path then return out end
@@ -11317,8 +6874,10 @@ end)()
         return nodes, links
     end
     end)()
+     
 
-    ;(function()
+     
+    ;(function()  
     local savedCollide = nil
     local savedCharacter = nil
     local driveInst, driveAttach = nil, nil
@@ -11327,10 +6886,12 @@ end)()
         if not savedCollide then return end
         for part, value in pairs(savedCollide) do
             pcall(function() part.CanCollide = value end)
-end
+        end
         savedCollide = nil
     end
 
+     
+     
     Nav.noclipTravel = function(on)
         if not on then
             restoreCollide()
@@ -11339,20 +6900,20 @@ end
         local character = lp and lp.Character
         if not character then return end
         if savedCollide then
-
+             
             if savedCharacter == character then return end
             restoreCollide()
         end
         local list = try(function() return character:GetDescendants() end)
-if not list then return end
+        if not list then return end
         savedCharacter = character
         savedCollide = {}
         for _, part in ipairs(list) do
             if isPart(part) then
                 local can = try(function() return part.CanCollide end)
-savedCollide[part] = can ~= false
+                savedCollide[part] = can ~= false
                 pcall(function() part.CanCollide = false end)
-end
+            end
         end
     end
 
@@ -11363,6 +6924,9 @@ end
     end
     Nav.stopDrive = killDrive
 
+     
+     
+     
     local function ensureDrive(hrp)
         if driveInst and driveInst.Parent and driveAttach and driveAttach.Parent then return true end
         killDrive()
@@ -11380,7 +6944,7 @@ end
             vel.Parent = hrp
             driveAttach, driveInst = attach, vel
         end)
-if not ok or not driveInst then
+        if not ok or not driveInst then
             killDrive()
             return false
         end
@@ -11390,23 +6954,32 @@ if not ok or not driveInst then
     local function driveVelocity(velocity)
         if driveInst then
             local ok = pcall(function() driveInst.VectorVelocity = velocity end)
-if ok then return end
+            if ok then return end
             killDrive()
         end
-
+         
         local hrp = getHRP()
         if hrp then
             pcall(function()
                 hrp.AssemblyLinearVelocity = Vector3.new(velocity.X, velocity.Y + 3.2, velocity.Z)
             end)
-end
+        end
     end
 
+     
+     
+     
+     
+     
     local runTrack = nil
     local function stopRunAnim(fade)
+         
+         
+         
+        pcall(function() Engine.walkAnimDrive(false) end)
         if runTrack == nil then return end
         pcall(function() runTrack:Stop(fade or 0.15) end)
-runTrack = nil
+        runTrack = nil
     end
     local function startRunAnim(speed)
         stopRunAnim()
@@ -11414,9 +6987,18 @@ runTrack = nil
         if not hum then return end
         local playSpeed = clamp((tonumber(speed) or 110) / 110, 0.8, 2.2)
 
+         
+         
+         
+         
         local played = false
         pcall(function()
-            local animate = hum:FindFirstChild("Animate")
+             
+             
+             
+            local char = lp and lp.Character
+            local animate = (char and char:FindFirstChild("Animate"))
+                or hum:FindFirstChild("Animate")
             local branch = animate and (animate:FindFirstChild("run")
                 or animate:FindFirstChild("RunAnim"))
             local runAnim = branch and (branch:IsA("Animation") and branch
@@ -11431,8 +7013,9 @@ runTrack = nil
                 if runTrack ~= nil then played = true end
             end
         end)
-if played then return end
+        if played then return end
 
+         
         pcall(function()
             local animator = hum:FindFirstChildOfClass("Animator")
             if not animator or not animator.Parent then
@@ -11447,9 +7030,25 @@ if played then return end
             track:Play(0.15, 1, playSpeed)
             runTrack = track
         end)
-end
+    end
+     
+     
+     
+     
+    pcall(function()
+        local hAnim = getHum()
+        if hAnim then hAnim:ChangeState(Enum.HumanoidStateType.Running) end
+    end)
+
     Nav.stopRunAnim = stopRunAnim
 
+     
+     
+     
+     
+     
+     
+     
     Nav.flyTo = function(targetPos, speed, thr, label, keepGoing)
         if not targetPos then return false end
         thr = thr or 4
@@ -11458,7 +7057,8 @@ end
         local hrp = getHRP()
         if not hrp then return false end
 
-        ensureDrive(hrp)
+         
+        pcall(killDrive)
         lastMoveMode, lastMoveAt = label or "Tween", tick()
         startRunAnim(speed)
         flightNoclip(true)
@@ -11467,15 +7067,33 @@ end
         local budget = math.min(120, ((targetPos - hrp.Position).Magnitude / speed) * 3 + 6)
         local bestDistance, bestAt = math.huge, start
         local noclipAt = start
+        local lastStep = start
+        local yaw = glideYaw or currentYaw(hrp.CFrame)
+
+         
+         
+         
+         
+        local driveX, driveZ = 0, 0
+        local firstDelta = targetPos - hrp.Position
+        if firstDelta.Magnitude > 0.1 then
+            driveX, driveZ = firstDelta.Unit.X, firstDelta.Unit.Z
+        end
+        Engine.walkAnimDrive(true, driveX, driveZ)
 
         while tick() - start < budget do
             if not isOn() then break end
             hrp = getHRP()
             if not hrp or not isAlive() then break end
 
-            if tick() - noclipAt > 0.5 then
+            local now = tick()
+            local dt = clamp(now - lastStep, 0.001, 0.1)
+            lastStep = now
 
-                noclipAt = tick()
+            if now - noclipAt > 0.5 then
+                 
+                 
+                noclipAt = now
                 flightNoclip(true)
             end
 
@@ -11483,14 +7101,34 @@ end
             local distance = delta.Magnitude
             if distance <= thr then break end
 
-            local flat = Vector3.new(delta.X, 0, delta.Z)
-            local flatLength = flat.Magnitude
-            local direction = flatLength > 0.001 and flat.Unit or Vector3.new(0, 0, 0)
             local want = speed
-            if not keepGoing and distance < 10 then want = math.max(6, distance * 3) end
-            local climb = clamp(delta.Y * 6, -50, 50)
+            if not keepGoing and distance < 12 then want = math.max(24, distance * 4) end
+            local step = math.min(want * dt, distance)
+            local newPos = hrp.Position + delta.Unit * step
 
-            driveVelocity(Vector3.new(direction.X * want, climb, direction.Z * want))
+            driveX, driveZ = delta.Unit.X, delta.Unit.Z
+            Engine.walkAnimDrive(true, driveX, driveZ)
+
+            local goalYaw = flatYaw(newPos, Vector3.new(targetPos.X, newPos.Y, targetPos.Z))
+            if goalYaw then
+                yaw = yaw + clampYawDelta(goalYaw - yaw, math.max(0.5, dt * 22))
+            end
+            glideYaw = yaw
+
+            pcall(function()
+                hrp.CFrame = CFrame.new(newPos.X, newPos.Y, newPos.Z) * CFrame.Angles(0, glideYaw or 0, 0)
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                local vmag = math.min(want, 14)
+                hrp.AssemblyLinearVelocity = Vector3.new(driveX * vmag, 0, driveZ * vmag)
+                hrp.Velocity = Vector3.new(driveX * vmag, 0, driveZ * vmag)
+            end)
 
             if distance < bestDistance - 0.4 then
                 bestDistance, bestAt = distance, tick()
@@ -11501,43 +7139,50 @@ end
             task.wait(0.01)
         end
 
+        glideYaw = nil
         local current = getHRP()
         if not keepGoing then
             if current then
                 pcall(function() current.AssemblyLinearVelocity = Vector3.new(0, 0, 0) end)
-end
-            if driveInst then pcall(function() driveInst.VectorVelocity = Vector3.new(0, 0, 0) end) end
-
+            end
+             
             stopRunAnim()
             flightNoclip(false)
         end
         return current ~= nil and (targetPos - current.Position).Magnitude <= thr + 2
     end
 
+     
+     
     Nav.tweenTravel = function(targetPos, speed, thr, label)
         if not targetPos then return false end
         if not isOn() then return false end
         local ok = false
         local pinned = false
         pcall(function() Nav.traceTarget(targetPos) end)
-pcall(function()
+        pcall(function()
             Nav.noclipTravel(true)
             pinned = true
         end)
-glideActive = true
+        glideActive = true
         glideActiveSince = tick()
-
+         
+         
+         
         local distance = (getHRP() and (getHRP().Position - targetPos).Magnitude) or 400
         S.face.pauseUntil = tick() + math.clamp(distance / math.max(speed or 80, 20) + 6, 4, 45)
         ok = Nav.flyTo(targetPos, speed, thr or 4, label or "Tween")
         S.face.pauseUntil = 0
         glideActive = false
         pcall(function() Nav.traceClear() end)
-if pinned then pcall(function() Nav.noclipTravel(false) end) end
+        if pinned then pcall(function() Nav.noclipTravel(false) end) end
         pcall(killDrive)
         return ok
     end
 
+     
+     
+     
     local Trace = {
         points = {}, target = nil, ok = nil,
         core = {}, glow = {}, dots = {}, ring = nil,
@@ -11556,7 +7201,7 @@ if pinned then pcall(function() Nav.noclipTravel(false) end) end
                 Trace.probe = probe
                 Trace.ok = true
             end)
-end
+        end
         return Trace.ok
     end
 
@@ -11607,16 +7252,19 @@ end
         if Trace.ring then Trace.ring.Visible = false end
     end
 
+     
+     
+     
     local function traceScreen(camera, point)
         if not camera or not point then return nil end
         local ok, screen, onScreen = pcall(function() return camera:WorldToScreenPoint(point) end)
-if not ok or not screen or onScreen == false then return nil end
+        if not ok or not screen or onScreen == false then return nil end
         if screen.Z and screen.Z < 0 then return nil end
         return Vector2.new(screen.X, screen.Y)
     end
 
     local function traceDraw()
-
+         
         if S.path_trace ~= true then return end
         if not traceReady() then return end
         local camera = Workspace.CurrentCamera
@@ -11709,6 +7357,9 @@ if not ok or not screen or onScreen == false then return nil end
         tracePool(#list - 1)
     end
 
+     
+     
+     
     Nav.traceTarget = function(target)
         if S.path_trace ~= true then return end
         if not traceReady() then return end
@@ -11731,8 +7382,10 @@ if not ok or not screen or onScreen == false then return nil end
             end
             pcall(traceDraw)
         end)
-end)
+    end)
 
+     
+     
     Nav.nodeTravel = function(targetPos, label, tolerance)
         if not targetPos then return false end
         local hrp = getHRP()
@@ -11751,7 +7404,11 @@ end)
         if points and #points > 0 then
             status = label .. ": " .. tostring(#points) .. " nodes"
             pcall(function() Nav.tracePath(points) end)
-if S.walk_method ~= "Keyboard" and type(Nav.walkRoute) == "function"
+
+             
+             
+             
+            if S.walk_method ~= "Keyboard" and type(Nav.walkRoute) == "function"
                 and type(Nav.memAvailable) == "function" and Nav.memAvailable() then
                 Nav.walkRoute(points, { arrive = 3.5, label = label })
             else
@@ -11778,8 +7435,7 @@ if S.walk_method ~= "Keyboard" and type(Nav.walkRoute) == "function"
         end
 
         pcall(function() Nav.traceClear() end)
-
-local current = getHRP()
+        local current = getHRP()
         if not current then return false end
         if (Vector3.new(current.Position.X, targetPos.Y, current.Position.Z) - targetPos).Magnitude <= tolerance then
             return true
@@ -11793,17 +7449,105 @@ local current = getHRP()
         })
     end
     end)()
+     
+
+     
+     
+     
+     
+     
+     
+     
+     
+    Nav.walkLegs = function(list, label, arrive, opts)
+        if type(list) ~= "table" or #list < 1 then return false end
+        arrive = tonumber(arrive) or 3.5
+        label = label or "Route"
+        local first = 1
+        if opts and opts.viaHive then
+            local startPoint = list[1]
+            local hrp0 = getHRP()
+            if hrp0 and (startPoint - hrp0.Position).Magnitude > 45 then
+                status = label .. ": pathfinding to hive"
+                if S.travel_mode == "Tween" then
+                    Nav.tweenTravel(startPoint, S.glide_speed, 4, label)
+                else
+                    Nav.nodeTravel(startPoint, label, 4)
+                end
+                if not isOn() then return false end
+            end
+            first = 2
+        end
+        for index = first, #list do
+            if not isOn() then return false end
+            local point = list[index]
+            local hrp = getHRP()
+            if not hrp then return false end
+            local gap = (point - hrp.Position).Magnitude
+            if gap > arrive then
+                status = label .. " " .. index .. "/" .. #list
+                local prev = list[index - 1]
+                local climb = prev ~= nil and (point.Y - prev.Y) > 6
+                local jumper = nil
+                if climb and type(Nav.jumpNow) == "function" then
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                    jumper = task.spawn(function()
+                        local hops = 0
+                        local baseAt, baseX, baseY, baseZ = tick(), nil, nil, nil
+                        while isOn() and hops < 4 do
+                            local current = getHRP()
+                            if not current then break end
+                            local pos = current.Position
+                            if (point - pos).Magnitude <= arrive then break end
+                            if pos.Y >= point.Y - 2 then break end
+                            local now = tick()
+                            local moved = baseX ~= nil
+                                and (math.abs(pos.X - baseX) > 1.5
+                                    or math.abs(pos.Z - baseZ) > 1.5
+                                    or math.abs(pos.Y - baseY) > 1.5)
+                            if baseX == nil or moved or (point - pos).Magnitude > 30 then
+                                baseX, baseY, baseZ, baseAt = pos.X, pos.Y, pos.Z, now
+                            elseif now - baseAt > 1.2 then
+                                Nav.jumpNow()
+                                hops = hops + 1
+                                baseX, baseY, baseZ, baseAt = pos.X, pos.Y, pos.Z, now
+                            end
+                            task.wait(0.15)
+                        end
+                    end)
+                end
+                if S.travel_mode == "Tween" then
+                    Nav.tweenTravel(point, S.glide_speed, arrive, label)
+                else
+                    Nav.walk(point, {
+                        arrive = arrive,
+                        timeout = math.max(6, math.min(45, gap / 4 + 6)),
+                        label = label,
+                    })
+                end
+                if jumper then pcall(task.cancel, jumper) end
+            end
+        end
+        return true
+    end
 
     Nav.firePromptOn = function(obj)
         if not obj or type(fireproximityprompt) ~= "function" then return false end
         local ok, desc = pcall(function() return obj:GetDescendants() end)
-if not ok or not desc then return false end
+        if not ok or not desc then return false end
         for _, o in ipairs(desc) do
             if o.ClassName == "ProximityPrompt" then
                 local enabled = try(function() return o.Enabled end)
-if enabled ~= false then
+                if enabled ~= false then
                     local fired = pcall(function() fireproximityprompt(o) end)
-if fired then return true end
+                    if fired then return true end
                 end
             end
         end
@@ -11813,13 +7557,12 @@ if fired then return true end
     Nav.firePromptNear = function(pos, radius)
         if not pos or type(fireproximityprompt) ~= "function" then return false end
         local ok, list = pcall(function() return Workspace:GetDescendants() end)
-if not ok or not list then return false end
+        if not ok or not list then return false end
         local best, bestD = nil, radius or 18
         for _, o in ipairs(list) do
             if o.ClassName == "ProximityPrompt" then
                 local enabled = try(function() return o.Enabled end)
-
-local pp = enabled ~= false and getPartPos(o.Parent) or nil
+                local pp = enabled ~= false and getPartPos(o.Parent) or nil
                 if pp then
                     local d = (pp - pos).Magnitude
                     if d < bestD then bestD = d; best = o end
@@ -11828,7 +7571,7 @@ local pp = enabled ~= false and getPartPos(o.Parent) or nil
         end
         if best then
             pcall(function() fireproximityprompt(best) end)
-return true
+            return true
         end
         return false
     end
@@ -11838,14 +7581,14 @@ return true
         local part = tok
         if not getPartPos(part) then
             part = try(function() return tok:FindFirstChildWhichIsA("BasePart", true) end)
-end
+        end
         local hrp = getHRP()
         if not hrp or not part or not getPartPos(part) then return false end
         local ok = pcall(function()
             firetouchinterest(hrp, part, 0)
             firetouchinterest(hrp, part, 1)
         end)
-return ok
+        return ok
     end
 
     Nav.hiveKeyAt = function(pos)
@@ -11889,9 +7632,8 @@ return ok
         local f = zones and zones:FindFirstChild(name)
         if not f or not pos then return false end
         local p = try(function() return f.Position end)
-
-local s = try(function() return f.Size end)
-if not p or not s then return false end
+        local s = try(function() return f.Size end)
+        if not p or not s then return false end
         local m = margin or 4
         return math.abs(pos.X - p.X) <= s.X / 2 + m
            and math.abs(pos.Z - p.Z) <= s.Z / 2 + m
@@ -11905,10 +7647,10 @@ if not p or not s then return false end
         if want and not held then
             Nav.walkKeys[code] = true
             pcall(function() keypress(code) end)
-elseif not want and held then
+        elseif not want and held then
             Nav.walkKeys[code] = nil
             pcall(function() keyrelease(code) end)
-end
+        end
     end
 
     Nav.release = function()
@@ -11918,10 +7660,10 @@ end
         for i = 1, #held do
             local code = held[i]
             pcall(function() keyrelease(code) end)
-end
+        end
     end
 
-    ;(function()
+    ;(function()  
     local RAY_CELL = 8
     local RAY_RADIUS = 6
     local RAY_STEP_UP = 4.5
@@ -11947,23 +7689,23 @@ end
         local filterOk = pcall(function()
             params.FilterType = Enum.RaycastFilterType.Exclude
         end)
-if not filterOk then
+        if not filterOk then
             filterOk = pcall(function()
                 params.FilterType = Enum.RaycastFilterType.Blacklist
             end)
-end
+        end
         local listOk = false
         if lp.Character then
             listOk = pcall(function()
                 params.FilterDescendantsInstances = { lp.Character }
             end)
-end
+        end
         pcall(function() params.IgnoreWater = true end)
-pcall(function() params.RespectCanCollide = true end)
-if filterOk and listOk then Nav.rayParams = params end
+        pcall(function() params.RespectCanCollide = true end)
+        if filterOk and listOk then Nav.rayParams = params end
     end)
 
-local function ownCharacterPart(inst)
+    local function ownCharacterPart(inst)
         local c = lp and lp.Character
         if not c or not inst then return false end
         local node = inst
@@ -11983,7 +7725,7 @@ local function ownCharacterPart(inst)
         pcall(function()
             Nav.rayParams.FilterDescendantsInstances = c and { c } or {}
         end)
-end
+    end
 
     Nav.ray = function(origin, direction)
         if not origin or not direction then return nil end
@@ -12002,7 +7744,7 @@ end
                 local ok, hit = pcall(function()
                     return Workspace:Raycast(originNow, directionNow, Nav.rayParams)
                 end)
-if ok then
+                if ok then
                     Nav.rayAvailable = true
                     usedParams = true
                     result = hit
@@ -12014,7 +7756,7 @@ if ok then
                 local ok, hit = pcall(function()
                     return Workspace:Raycast(originNow, directionNow)
                 end)
-if ok then
+                if ok then
                     Nav.rayAvailable = true
                     result = hit
                 end
@@ -12027,7 +7769,7 @@ if ok then
             local ignore = own
             if not ignore and inst then
                 local collide = try(function() return inst.CanCollide end)
-if collide == false then ignore = true end
+                if collide == false then ignore = true end
             end
             if not ignore then return result end
             local hitDist = tonumber(result.Distance) or (hitPos - originNow).Magnitude
@@ -12421,7 +8163,7 @@ if collide == false then ignore = true end
         tol = tol or 3.2
         local expectY = (gy or (hrp.Position.Y - 2.6)) + 2.6
         pcall(function() setrobloxinput(true) end)
-Nav.onFoot = true
+        Nav.onFoot = true
         walkingWithKeys = true
         lastMoveMode, lastMoveAt = label or "WASD walk", tick()
         local deadline = tick() + 55
@@ -12511,8 +8253,7 @@ Nav.onFoot = true
                     local v = cur.AssemblyLinearVelocity
                     if v then vy, vx, vz = v.Y, v.X, v.Z end
                 end)
-
-local grounded = math.abs(vy) < 12
+                local grounded = math.abs(vy) < 12
                 local hspd = math.sqrt(vx * vx + vz * vz)
                 local rise = expectY - p.Y
                 local needUp = rise > 3.5 and hd < 20
@@ -12626,7 +8367,7 @@ local grounded = math.abs(vy) < 12
 
         if hum then
             local ok = pcall(function() hum.Health = 0 end)
-if ok then healthWorked = true else hum = nil end
+            if ok then healthWorked = true else hum = nil end
         end
 
         if healthWorked then
@@ -12658,7 +8399,7 @@ if ok then healthWorked = true else hum = nil end
                     if not rbxActive() then return end
                     keypress(0x0D); task.wait(0.12); keyrelease(0x0D)
                 end)
-end
+            end
         end
 
         local deadline = tick() + 16
@@ -12880,13 +8621,17 @@ end
         return Nav.walkPath(pts, label or "Walk")
     end
 
+     
+     
+     
+     
+     
     Nav.go = function(targetPos, speed, thr, label)
         if not targetPos then return false end
         if not isOn() then return false end
-        if (not S.hybrid) and S.travel_mode == "Tween" then
+        if S.travel_mode == "Tween" then
             return Nav.tweenTravel(targetPos, speed, thr, label or "Travel")
         end
-        S.travel_mode = "Pathfinding"
         return Nav.nodeTravel(targetPos, label or "Travel", thr or 5)
     end
 
@@ -12939,7 +8684,12 @@ end
         end
     end)
 
-local function getField(name)
+    
+    
+    
+    
+    
+    local function getField(name)
         local z = getFieldFolder()
         if not z or not name then return fallbackField(name) end
         local f = z:FindFirstChild(name)
@@ -12959,23 +8709,21 @@ local function getField(name)
         end
         if base then
             local p = try(function() return base.Position end)
-
-local s = try(function() return base.Size end)
-if p and s and s.X > 1 and s.Z > 1 then return base end
+            local s = try(function() return base.Size end)
+            if p and s and s.X > 1 and s.Z > 1 then return base end
             return fallbackField(name) or base
         end
 
         local cf, size = nil, nil
         pcall(function() cf, size = f:GetBoundingBox() end)
-if cf and size and size.X > 1 and size.Z > 1 then
+        if cf and size and size.X > 1 and size.Z > 1 then
             return { Position = cf.Position, Size = size, Name = f.Name, raw = f }
         end
         local bp = f.PrimaryPart or f:FindFirstChildWhichIsA("BasePart", true)
         if bp then
             local p = try(function() return bp.Position end)
-
-local s = try(function() return bp.Size end)
-if p and s and s.X > 1 and s.Z > 1 then
+            local s = try(function() return bp.Size end)
+            if p and s and s.X > 1 and s.Z > 1 then
                 return { Position = p, Size = s, Name = f.Name, raw = f }
             end
         end
@@ -12993,6 +8741,28 @@ if p and s and s.X > 1 and s.Z > 1 then
 
     local function distToCenter(pos, f)
         return Vector3.new(pos.X - f.Position.X, 0, pos.Z - f.Position.Z).Magnitude
+    end
+
+     
+     
+     
+     
+     
+    Nav.fieldStandPoint = function(f)
+        if not f then return nil end
+
+        local c, s = f.Position, f.Size
+        local inset = math.max(6, math.min(s.X, s.Z) * 0.16)
+        local loX, hiX = c.X - s.X / 2 + inset, c.X + s.X / 2 - inset
+        local loZ, hiZ = c.Z - s.Z / 2 + inset, c.Z + s.Z / 2 - inset
+        if loX > hiX then loX, hiX = c.X, c.X end
+        if loZ > hiZ then loZ, hiZ = c.Z, c.Z end
+
+        local hx, hz = c.X, c.Z
+        local hrp = getHRP()
+        if hrp then hx, hz = hrp.Position.X, hrp.Position.Z end
+
+        return Vector3.new(math.clamp(hx, loX, hiX), groundY(f) + 2, math.clamp(hz, loZ, hiZ))
     end
 
     local function clampTarget(tgt, f, fm, cr)
@@ -13016,13 +8786,23 @@ if p and s and s.X > 1 and s.Z > 1 then
         return tgt
     end
 
+    
+    
+    
+     
+     
+     
+     
+     
+     
+     
     Nav._wsKids, Nav._wsKidsAt = nil, 0
     Nav.workspaceKids = function()
         local now = tick()
         local cached = Nav._wsKids
         if cached and now - (Nav._wsKidsAt or 0) < 0.25 then return cached end
         local ok, list = pcall(function() return Workspace:GetChildren() end)
-if ok and type(list) == "table" then
+        if ok and type(list) == "table" then
             Nav._wsKids, Nav._wsKidsAt = list, now
             return list
         end
@@ -13085,28 +8865,40 @@ if ok and type(list) == "table" then
         return best, bestDist
     end
 
+     
+     
+     
+     
+     
+     
     Nav.hiveBalloons = function(center, radius)
         local hrp = getHRP()
         local root = Workspace:FindFirstChild("Balloons")
         local hive = root and root:FindFirstChild("HiveBalloons")
         if not hive then return 0, 0 end
 
+         
+         
+         
         local pos = center or (hrp and hrp.Position)
         if not pos then return 0, 0 end
         radius = radius or 60
         local count, pollen = 0, 0
         for _, obj in ipairs(hive:GetChildren()) do
-
+             
+             
             local body = obj:FindFirstChild("BalloonBody")
                 or obj:FindFirstChildWhichIsA("BasePart", true)
             local p = body and try(function() return body.Position end)
-if p and (p - pos).Magnitude <= radius then
+            if p and (p - pos).Magnitude <= radius then
                 count = count + 1
-
+                 
+                 
                 local best = 0
                 for _, d in ipairs(obj:GetDescendants()) do
                     if d.ClassName == "TextLabel" then
-
+                         
+                         
                         local n = tonumber((string.gsub(tostring(d.Text), "[^%d]", "")))
                         if n and n > best then best = n end
                     end
@@ -13212,6 +9004,12 @@ if p and (p - pos).Magnitude <= radius then
         return best
     end
 
+    
+    
+    
+    
+    
+    
     local function findNearestSpecial()
         local tokens = {}
         if S.catch_coconuts then tokens[#tokens + 1] = "coconut" end
@@ -13249,9 +9047,10 @@ if p and (p - pos).Magnitude <= radius then
                 end
             end
         end)
-return best
+        return best
     end
 
+    
     local function findNearestToken(maxDist)
         local hrp = getHRP()
         local folder = Workspace:FindFirstChild("Collectibles")
@@ -13267,6 +9066,9 @@ return best
         return best
     end
 
+    
+    
+    
     local function findNearestTokenCluster(maxDist, maxN, field)
         local hrp = getHRP()
         local folder = Workspace:FindFirstChild("Collectibles")
@@ -13284,8 +9086,10 @@ return best
         end
         if #near == 0 then return nil end
         table.sort(near, function(a, b) return a.d < b.d end)
-
-local anchor = near[1].p
+        
+        
+        
+        local anchor = near[1].p
         local cap = maxN or 10
         local sx, sy, sz, n = 0, 0, 0, 0
         for i = 1, #near do
@@ -13300,6 +9104,11 @@ local anchor = near[1].p
         return Vector3.new(sx / n, sy / n, sz / n)
     end
 
+    
+    
+    
+     
+     
     local _capP, _capC, _capT = 0, 0, 0
     local _capLabel = nil
     local function parseCapText(t)
@@ -13318,6 +9127,10 @@ local anchor = near[1].p
         return parseNum(a), parseNum(b)
     end
 
+    
+    
+    
+    
     local function getPollenAndCap()
         local now = tick()
         if now - _capT < 0.5 then return _capP, _capC end
@@ -13325,10 +9138,12 @@ local anchor = near[1].p
 
         local p, c = _capP, _capC
 
+        
         if _capLabel then
             if _capLabel.Parent then
                 local pp, cc = parseCapText(safeText(_capLabel))
-
+                
+                
                 if pp and cc and cc > 0 and pp <= cc then
                     _capP, _capC = pp, cc
                     return pp, cc
@@ -13338,6 +9153,7 @@ local anchor = near[1].p
             end
         end
 
+        
         local done = false
         pcall(function()
             local core = lp:FindFirstChild("CoreStats")
@@ -13346,13 +9162,20 @@ local anchor = near[1].p
                 local ca = core:FindFirstChild("Capacity")
                 local pv = po and tonumber(po.Value)
                 local cv = ca and tonumber(ca.Value)
-
+                 
+                 
                 if pv and cv and cv > 0 and pv >= 0 then
                     p, c, done = pv, cv, true
                 end
             end
         end)
-if not done then
+
+        
+        
+        
+        
+        
+        if not done then
             pcall(function()
                 local pg = lp:FindFirstChildOfClass("PlayerGui")
                 if not pg then return end
@@ -13364,7 +9187,7 @@ if not done then
                             local pp, cc = parseCapText(t)
                             if pp and cc and cc > 0 and pp <= cc then
                                 local sc = 0
-
+                                
                                 if string.find(t, ",", 1, true) then sc = sc + 2 end
                                 local cur, depth = o, 0
                                 while cur and depth < 6 do
@@ -13388,29 +9211,35 @@ if not done then
                     end
                 end
             end)
-end
+        end
 
         _capP, _capC = p, c
         return p, c
     end
 
+    
+    
+    
     local lastHybridCollect = 0
 
+     
+     
     S.dig.clickPoint = function()
         local cam = try(function() return Workspace.CurrentCamera end)
-
-local vp  = (cam and cam.ViewportSize) or Vector2.new(1280, 720)
+        local vp  = (cam and cam.ViewportSize) or Vector2.new(1280, 720)
         local center = Vector2.new(floor(vp.X * 0.5), floor(vp.Y * 0.55))
         local hrp = getHRP()
         if cam and hrp then
             local look = try(function() return hrp.CFrame.LookVector end)
-if look then
+            if look then
                 local flat = Vector3.new(look.X, 0, look.Z)
                 if flat.Magnitude > 0.01 then
                     local ahead = hrp.Position + flat.Unit * 9 - Vector3.new(0, 1.5, 0)
                     local ok, sp, onScreen = pcall(function() return cam:WorldToScreenPoint(ahead) end)
-if ok and sp and onScreen ~= false and sp.Z and sp.Z > 0 then
-
+                    if ok and sp and onScreen ~= false and sp.Z and sp.Z > 0 then
+                         
+                         
+                         
                         if sp.X > vp.X * 0.15 and sp.X < vp.X * 0.85
                             and sp.Y > vp.Y * 0.2 and sp.Y < vp.Y * 0.8 then
                             return Vector2.new(floor(sp.X), floor(sp.Y))
@@ -13422,11 +9251,14 @@ if ok and sp and onScreen ~= false and sp.Z and sp.Z > 0 then
         return center
     end
 
+     
+     
+     
     S.dig.click = function(pt)
         local cx, cy = floor(pt.X), floor(pt.Y)
         pcall(function() if type(mousemoveabs) == "function" then mousemoveabs(cx, cy) end end)
 
-local done = false
+        local done = false
         pcall(function()
             if type(mouse1press) == "function" and type(mouse1release) == "function" then
                 mouse1press()
@@ -13435,14 +9267,14 @@ local done = false
                 done = true
             end
         end)
-if not done then
+        if not done then
             pcall(function()
                 if type(mouse1click) == "function" then
                     mouse1click(cx, cy)
                     done = true
                 end
             end)
-end
+        end
         if not done then
             pcall(function()
                 local vim = game:GetService("VirtualInputManager")
@@ -13451,17 +9283,19 @@ end
                     vim:SendMouseButtonEvent(cx, cy, 0, false, game, 0)
                 end
             end)
-end
+        end
         S.dig.clicks = (S.dig.clicks or 0) + 1
     end
 
     local function autoDigCursorFree()
         if not S.dig_tool then return end
-
+         
+         
         if S.dig.converting then return end
 
         if S.hybrid then
-
+             
+             
             local now = tick()
             if now - lastHybridCollect < 0.18 then return end
             lastHybridCollect = now
@@ -13469,6 +9303,9 @@ end
             return
         end
 
+         
+         
+         
         if S.dig.uiOpen or not rbxActive() then return end
 
         local char = lp and lp.Character
@@ -13478,6 +9315,10 @@ end
         local hum  = getHum()
         local bp   = lp:FindFirstChild("Backpack")
 
+         
+         
+         
+         
         local equippedIsScoop = tool ~= nil
             and string.find(string.lower(tostring(tool.Name)), "scoop", 1, true) ~= nil
         if (not equippedIsScoop) and bp and hum then
@@ -13490,7 +9331,7 @@ end
             end
             if scoop then
                 pcall(function() hum:EquipTool(scoop) end)
-tool = scoop
+                tool = scoop
             elseif not tool then
                 local any = bp:FindFirstChildOfClass("Tool")
                 if any then pcall(function() hum:EquipTool(any) end) end
@@ -13501,10 +9342,19 @@ tool = scoop
         if now - S.dig.last < S.dig.interval then return end
         S.dig.last = now
 
+         
+         
         if tool then pcall(function() tool:Activate() end) end
         S.dig.click(S.dig.clickPoint())
     end
 
+    
+    
+    
+    
+    
+    
+    
     local lastCombatHit = 0
     local function combatHit()
         if not isOn() then return end
@@ -13529,8 +9379,15 @@ tool = scoop
             return
         end
         pcall(function() tool:Activate() end)
-end
+    end
 
+    
+    
+    
+    
+    
+    
+    
     local function catchSpecialForceTween()
         local sp = findNearestSpecial()
         if not sp then return false end
@@ -13545,7 +9402,7 @@ end
         while isOn() and tick() < dl do
             local alive = false
             pcall(function() alive = sp.Parent ~= nil end)
-if not alive then break end
+            if not alive then break end
             local cur = getPartPos(sp)
             local hrp = getHRP()
             if cur and hrp and (cur - hrp.Position).Magnitude > 10 then
@@ -13563,6 +9420,9 @@ if not alive then break end
         return true
     end
 
+    
+    
+    
     local walkWithKeys
 
     local NECTAR_TYPES = { "Comforting", "Motivating", "Satisfying", "Refreshing", "Invigorating" }
@@ -13575,6 +9435,10 @@ if not alive then break end
         ["Invigorating"] = { "Clover Field", "Cactus Field", "Mountain Top Field", "Pepper Patch" },
     }
 
+     
+     
+     
+     
     local PLANTER_NAMES = {
         "Plastic Planter", "Candy Planter", "Red Clay Planter", "Blue Clay Planter",
         "Tacky Planter", "Pesticide Planter", "Heat-Treated Planter",
@@ -13639,7 +9503,10 @@ if not alive then break end
     end
 
     local function planterOwned(name)
-
+         
+         
+         
+         
         if N.owned == nil then return true end
         local any = false
         for _ in pairs(N.owned) do any = true; break end
@@ -13663,7 +9530,7 @@ if not alive then break end
         local v = nil
         if gv then
             local ok, x = pcall(function() return gv.Value end)
-if ok then v = tonumber(x) end
+            if ok then v = tonumber(x) end
         end
         if not v and type(text) == "string" then
             local pct = text:match("%(([%d%.]+)%%%)")
@@ -13680,8 +9547,10 @@ if ok then v = tonumber(x) end
             if cl == "Part" or cl == "MeshPart" then return ch end
         end
         return nil
-    end
-
+    end         
+     
+     
+     
     Nav._planterCache, Nav._planterCacheAt = nil, 0
     local function scanPlanters(force)
             local nowScan = tick()
@@ -13694,7 +9563,7 @@ if ok then v = tonumber(x) end
             local kids = {}
             if folder then
                 local okf, fkids = pcall(function() return folder:GetChildren() end)
-if okf and type(fkids) == "table" then
+                if okf and type(fkids) == "table" then
                     for _, c in ipairs(fkids) do kids[#kids + 1] = c end
                 end
             end
@@ -13702,7 +9571,10 @@ if okf and type(fkids) == "table" then
 
             local bulbs = {}
             for _, c in ipairs(kids) do
-
+             
+             
+             
+             
             if c.ClassName == "MeshPart" and c.Name == "PlanterBulb" then
                 local gv = c:FindFirstChild("GrowthPercent")
                 local gui = nil
@@ -13714,11 +9586,16 @@ if okf and type(fkids) == "table" then
                     local text = ""
                     if tl then
                         local ok, tx = pcall(function() return tl.Text end)
-if ok and type(tx) == "string" then text = tx end
+                        if ok and type(tx) == "string" then text = tx end
                     end
                     local okp, pos = pcall(function() return c.Position end)
-
-local mine = c:FindFirstChild("Gui Attach") ~= nil
+                     
+                     
+                     
+                     
+                     
+                     
+                    local mine = c:FindFirstChild("Gui Attach") ~= nil
                     bulbs[#bulbs + 1] = {
                         part = c,
                         name = planterNameFromText(text),
@@ -13737,7 +9614,7 @@ local mine = c:FindFirstChild("Gui Attach") ~= nil
                 local pos = nil
                 if soil then
                     local ok, p = pcall(function() return soil.Position end)
-if ok then pos = p end
+                    if ok then pos = p end
                 end
                 local best, bd = nil, 30
                 if pos then
@@ -13818,10 +9695,29 @@ if ok then pos = p end
     end
 
     local function chooseNectarField(nectar, usedFields)
+         
+         
+         
+         
+        local hrp = getHRP()
+        local here = hrp and hrp.Position or nil
+        local best, bestDist = nil, math.huge
+
         for _, fn in ipairs(NECTAR_FIELDS[nectar] or {}) do
-            if not usedFields[fn] and getField(fn) then return fn end
+            if not usedFields[fn] then
+                local f = getField(fn)
+                if f then
+                    local d = 0
+                    if here and f.Position then
+                        local dx, dz = f.Position.X - here.X, f.Position.Z - here.Z
+                        d = math.sqrt(dx * dx + dz * dz)
+                    end
+                    if d < bestDist then best, bestDist = fn, d end
+                end
+            end
         end
-        return nil
+
+        return best
     end
 
     local function fireRemote(ev, arg)
@@ -13829,11 +9725,11 @@ if ok then pos = p end
         local ok
         if ev.ClassName == "RemoteFunction" then
             ok = pcall(function() ev:InvokeServer(arg) end)
-elseif arg ~= nil then
+        elseif arg ~= nil then
             ok = pcall(function() ev:FireServer(arg) end)
-else
+        else
             ok = pcall(function() ev:FireServer() end)
-end
+        end
         return ok
     end
 
@@ -13842,12 +9738,15 @@ end
         local ok
         if ev.ClassName == "RemoteFunction" then
             ok = pcall(function() ev:InvokeServer(arg, true) end)
-else
+        else
             ok = pcall(function() ev:FireServer(arg, true) end)
-end
+        end
         return ok
     end
 
+     
+     
+     
     Nav.planterPotCount = function(name)
         local n = 0
         for _, p in ipairs(scanPlanters(true)) do
@@ -13859,7 +9758,10 @@ end
     local function attemptPlanterRemote(remoteName, planter, beforeCount)
         local ev = getRemote(remoteName)
         if not ev then return false end
-
+         
+         
+         
+         
         local args = { { Name = planter }, planter }
         for _, arg in ipairs(args) do
             fireRemote(ev, arg)
@@ -13889,6 +9791,11 @@ end
         return false
     end
 
+     
+     
+     
+     
+     
     local function myPlanters(force)
         local out = {}
         for _, p in ipairs(scanPlanters(force)) do
@@ -13919,23 +9826,38 @@ end
 
         local f = getField(fieldName)
         if not f then return nil end
-        local c = f.Position
-        local target = Vector3.new(c.X, groundY(f) + 2, c.Z)
-        N.status = "Placing " .. planter .. " in " .. fieldName
-        Nav.go(target, S.glide_speed, 3, "Planter travel")
 
-        local t0 = tick()
-        while tick() - t0 < 3 do
-            local hrp = getHRP()
-            if hrp and (hrp.Position - target).Magnitude <= 10 then break end
-            task.wait(0.1)
+        local target = Nav.fieldStandPoint(f)
+            or Vector3.new(f.Position.X, groundY(f) + 2, f.Position.Z)
+
+        local start = getHRP()
+        local inside = start ~= nil and inField(start.Position, f, 0)
+
+        if not inside then
+            N.status = "Placing " .. planter .. " in " .. fieldName
+            Nav.go(target, S.glide_speed, 4, "Planter travel")
+
+            local t0 = tick()
+            while tick() - t0 < 4 do
+                local hrp = getHRP()
+                if hrp and inField(hrp.Position, f, 0) then break end
+                task.wait(0.1)
+            end
+
+             
+             
+             
+            local here0 = getHRP()
+            if not here0 or not inField(here0.Position, f, 0) then
+                Nav.walk(target, { arrive = 5, timeout = 14 })
+            end
+        else
+             
+             
+            N.status = "Placing " .. planter .. " in " .. fieldName
         end
 
         local here = getHRP()
-        if not here or not inField(here.Position, f, 8) then
-            Nav.walk(target, { arrive = 6, timeout = 10 })
-            here = getHRP()
-        end
         if not here or not inField(here.Position, f, 10) then
             N.status = "Could not reach " .. fieldName
             N.placeCooldown[planter] = tick() + 15
@@ -13949,6 +9871,9 @@ end
             return { planter = planter, field = fieldName, nectar = nectar }
         end
 
+         
+         
+         
         if getRemote("ItemUseCommand") or getRemote("PlayerActivesCommand") then
             N.placeCooldown[planter] = tick() + 30
             N.status = "Place failed: " .. planter
@@ -13958,15 +9883,21 @@ end
         return nil
     end
 
+     
+     
+     
+     
+     
     Nav.ensureInput = function()
         if Nav._inputReady then return end
         Nav._inputReady = true
         if type(setrobloxinput) == "function" then pcall(setrobloxinput, true) end
     end
 
+     
     Nav.questionBoxOpen = function()
         local okPg, pg = pcall(function() return lp:FindFirstChildOfClass("PlayerGui") end)
-if not okPg or not pg then return false end
+        if not okPg or not pg then return false end
         local sg = pg:FindFirstChild("ScreenGui")
         local qbox = sg and sg:FindFirstChild("QuestionBox")
         local box = qbox and qbox:FindFirstChild("Box")
@@ -13976,7 +9907,7 @@ if not okPg or not pg then return false end
 
     local function answerHarvestPrompt()
         local okPg, pg = pcall(function() return lp:FindFirstChildOfClass("PlayerGui") end)
-if not okPg or not pg then return false end
+        if not okPg or not pg then return false end
         local sg = pg:FindFirstChild("ScreenGui")
         local qbox = sg and sg:FindFirstChild("QuestionBox")
         if not qbox then return false end
@@ -13990,9 +9921,8 @@ if not okPg or not pg then return false end
         local clicked = false
         for _ = 1, 2 do
             local okp, ap = pcall(function() return yes.AbsolutePosition end)
-
-local oks, asz = pcall(function() return yes.AbsoluteSize end)
-if not okp or not ap then break end
+            local oks, asz = pcall(function() return yes.AbsoluteSize end)
+            if not okp or not ap then break end
             local w = (oks and asz and asz.X) or 120
             local h = (oks and asz and asz.Y) or 40
             pcall(function()
@@ -14003,15 +9933,30 @@ if not okp or not ap then break end
                 mouse1release()
                 clicked = true
             end)
-task.wait(0.15)
-
+            task.wait(0.15)
+             
+             
             if safeText(tx) == "" then break end
         end
         return clicked
     end
 
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
     N.pressActivate = function()
-
+         
+         
+         
         if type(setrobloxinput) == "function" then pcall(setrobloxinput, true) end
         for _ = 1, 2 do
             pcall(function()
@@ -14019,7 +9964,7 @@ task.wait(0.15)
                 task.wait(0.05)
                 keyrelease(0x45)
             end)
-task.wait(0.35)
+            task.wait(0.35)
         end
     end
 
@@ -14030,7 +9975,7 @@ task.wait(0.35)
             local ab = sg:FindFirstChild("ActivateButton")
             if ab then return ab end
             local ok, list = pcall(function() return sg:GetDescendants() end)
-if ok and type(list) == "table" then
+            if ok and type(list) == "table" then
                 for _, d in ipairs(list) do
                     if d.Name == "ActivateButton" then return d end
                 end
@@ -14039,14 +9984,16 @@ if ok and type(list) == "table" then
         return nil
     end
 
+     
+     
+     
     local function clickGui(btn)
         if not btn then return false end
         Nav.ensureInput()
         local ok, ap = pcall(function() return btn.AbsolutePosition end)
-if not ok or not ap then return false end
+        if not ok or not ap then return false end
         local oks, asz = pcall(function() return btn.AbsoluteSize end)
-
-local w = (oks and asz and asz.X) or 60
+        local w = (oks and asz and asz.X) or 60
         local h = (oks and asz and asz.Y) or 24
         local clicked = false
         pcall(function()
@@ -14057,21 +10004,44 @@ local w = (oks and asz and asz.X) or 60
             mouse1release()
             clicked = true
         end)
-return clicked
+        return clicked
     end
 
     local function planterGone(p, before)
+        if not p then return true end
+         
+         
+         
+         
+         
+         
         if p.model then
             local ok, par = pcall(function() return p.model.Parent end)
-if ok and par == nil then return true end
+            if ok then
+                if par == nil then return true end
+                return false
+            end
         end
-        local ok, list = pcall(scanPlanters)
-        if ok and type(list) == "table" and #list < before then return true end
+         
+         
+        if p.pos then
+            local okList, list = pcall(function() return scanPlanters(true) end)
+            if okList and type(list) == "table" then
+                for _, q in ipairs(list) do
+                    if q.mine ~= false and q.pos and (q.pos - p.pos).Magnitude < 7 then
+                        return false
+                    end
+                end
+                return true
+            end
+        end
         return false
     end
 
     local function waitPlanterGone(p, before, seconds)
-
+         
+         
+         
         local deadline = tick() + (seconds or 3)
         while tick() < deadline do
             if planterGone(p, before) then return true end
@@ -14110,7 +10080,13 @@ if ok and par == nil then return true end
                 local y = field and (groundY(field) + 2) or (hrp and hrp.Position.Y or target.Y)
                 local left = deadline - tick()
                 if left > 0 then
-                    Nav.walk(Vector3.new(target.X, y, target.Z), { arrive = 6, timeout = math.min(2.5, left) })
+                     
+                     
+                     
+                    Nav.walk(Vector3.new(target.X, y, target.Z), {
+                        arrive = 2, timeout = math.min(4.5, left),
+                    })
+                    touchCollectibles(field)
                     autoDigCursorFree()
                 end
             else
@@ -14150,12 +10126,19 @@ if ok and par == nil then return true end
                 if f and inField(p.pos, f, 12) then field = f; break end
             end
         end
-
-        collectPlanterTokens(field, 3)
+         
+         
+        collectPlanterTokens(field, 5)
         if isOn() then N.status = "Planter tokens collected" end
         return true
     end
 
+     
+     
+     
+     
+     
+     
     N.FULL_GROWTH = 0.999
 
     local function shouldHarvest(p)
@@ -14165,7 +10148,8 @@ if ok and par == nil then return true end
         if at and tick() - at < N.planterGrace then
             return growth >= N.FULL_GROWTH
         end
-
+         
+         
         if S.nectar_mode == "Every X hours" then
             if not at then return growth >= N.FULL_GROWTH end
             return (tick() - at) >= (tonumber(S.nectar_collect_every) or 1) * 3600
@@ -14176,6 +10160,9 @@ if ok and par == nil then return true end
         return growth >= pct
     end
 
+     
+     
+     
     local function nearestPlanterIsMine()
         local hrp = getHRP()
         if not hrp then return false end
@@ -14192,6 +10179,11 @@ if ok and par == nil then return true end
         return bestMine
     end
 
+     
+     
+     
+     
+     
     Nav.planterActorIds = function(force)
         local nowIds = tick()
         local cached = Nav._planterIds
@@ -14204,7 +10196,8 @@ if ok and par == nil then return true end
         local out = {}
         pcall(function()
             for index, entry in ipairs(getgc("ActorID")) do
-
+                 
+                 
                 if index % 8 == 0 then task.wait() end
                 if entry.type == "number" and (tonumber(entry.value) or -1) > 0 then
                     local info = { id = tonumber(entry.value) }
@@ -14228,14 +10221,33 @@ if ok and par == nil then return true end
                 end
             end
         end)
-Nav._planterIds, Nav._planterIdsAt, Nav._planterIdsBusy = out, nowIds, false
+        Nav._planterIds, Nav._planterIdsAt, Nav._planterIdsBusy = out, nowIds, false
         return out
     end
 
     local function harvestPlanter(p)
         if not p or not p.model then return false end
-
-        if not p.mine then return false end
+         
+         
+         
+        if not p.mine then
+             
+             
+             
+             
+            local refreshed = nil
+            for _, q in ipairs(scanPlanters(true)) do
+                if q.mine and p.pos and q.pos and (q.pos - p.pos).Magnitude < 8 then
+                    refreshed = q
+                    break
+                end
+            end
+            if not refreshed then
+                N.status = "Skipped " .. tostring(p.name) .. " (not yours)"
+                return false
+            end
+            p = refreshed
+        end
         if N.harvestCooldown[p.name] and tick() < N.harvestCooldown[p.name] then return false end
         local before = #scanPlanters()
         local target = p.pos
@@ -14243,32 +10255,48 @@ Nav._planterIds, Nav._planterIdsAt, Nav._planterIdsBusy = out, nowIds, false
             local soil = p.model:FindFirstChild("Soil") or firstBasePart(p.model)
             if soil then
                 local ok, sp = pcall(function() return soil.Position end)
-if ok then target = sp end
+                if ok then target = sp end
             end
         end
         N.status = "Collecting " .. tostring(p.name)
 
+         
+         
+         
         if target then
             Nav.go(Vector3.new(target.X, target.Y + 3, target.Z), S.glide_speed, 3, "Collect travel")
             local arrive = tick() + 4
             while isOn() and tick() < arrive do
                 local h = getHRP()
-                if h and (Vector3.new(h.Position.X, target.Y, h.Position.Z) - target).Magnitude <= 6 then break end
+                if h and (Vector3.new(h.Position.X, target.Y, h.Position.Z) - target).Magnitude <= 3 then break end
                 task.wait(0.1)
             end
-
+             
+             
+             
+             
             local h = getHRP()
-            if h and (Vector3.new(h.Position.X, target.Y, h.Position.Z) - target).Magnitude > 6 then
-                Nav.walk(Vector3.new(target.X, target.Y + 1.5, target.Z), { arrive = 5, timeout = 8 })
+            if h and (Vector3.new(h.Position.X, target.Y, h.Position.Z) - target).Magnitude > 3 then
+                Nav.walk(Vector3.new(target.X, target.Y + 1.5, target.Z), { arrive = 3, timeout = 8 })
             end
         end
 
         if not nearestPlanterIsMine() then
-            N.status = "Another player's planter is closer - skipped"
-            N.harvestCooldown[p.name] = tick() + 20
-            return false
+             
+             
+            local target2 = p.pos
+            if target2 then
+                Nav.walk(Vector3.new(target2.X, target2.Y + 1.5, target2.Z), { arrive = 1.5, timeout = 4 })
+            end
+            if not nearestPlanterIsMine() then
+                N.status = "Another player's planter is closer - skipped"
+                N.harvestCooldown[p.name] = tick() + 5
+                return false
+            end
         end
 
+         
+         
         if (p.growth or 0) < N.FULL_GROWTH then
             N.status = string.format("Growing %s (%d%%)", tostring(p.name), math.floor((p.growth or 0) * 100))
             N.harvestCooldown[p.name] = tick() + 10
@@ -14281,10 +10309,16 @@ if ok then target = sp end
 
         while isOn() and not collected and tick() < deadline and attempts < 4 do
             attempts = attempts + 1
-
+             
+             
+             
+             
             local ids = Nav.planterActorIds(false)
             if #ids > 0 then
-
+                 
+                 
+                 
+                 
                 for index = 1, #ids do
                     local countBefore = #(scanPlanters(true))
                     fireEvent("PlanterModelCollect", ids[index].id)
@@ -14295,23 +10329,29 @@ if ok then target = sp end
                     end
                 end
             else
-
+                 
+                 
+                 
                 N.pressActivate()
                 task.wait(0.2)
             end
             if Nav.questionBoxOpen() then
-
+                 
+                 
                 N.status = "Harvest prompt open - click Yes/No once"
                 break
             end
             collected = planterGone(p, before)
         end
 
+         
+         
+         
         if not collected and (tick() - (Nav._planterIdsAt or 0)) > 150 then
             N.status = "Reading planter ids"
             local ids = Nav.planterActorIds(true)
             if #ids > 0 then
-
+                 
                 for index = 1, #ids do
                     local countBefore = #(scanPlanters(true))
                     fireEvent("PlanterModelCollect", ids[index].id)
@@ -14331,6 +10371,8 @@ if ok then target = sp end
             return false
         end
 
+         
+         
         N.status = "Collected " .. tostring(p.name) .. " - collecting rewards"
         local holdField = p.field and getField(p.field) or nil
         local holdUntil = tick() + 5
@@ -14339,17 +10381,31 @@ if ok then target = sp end
             local h = getHRP()
             if h and p.pos then
                 local d = (Vector3.new(h.Position.X, 0, h.Position.Z) - Vector3.new(p.pos.X, 0, p.pos.Z)).Magnitude
-                if d > 14 then break end
+                if d > 26 then break end
             end
             if holdField then touchCollectibles(holdField) end
+             
+             
+             
+            local tok = findNearestToken(140)
+            local tp = tok and getPartPos(tok)
+            if tp and h then
+                local dx, dz = tp.X - h.Position.X, tp.Z - h.Position.Z
+                if math.sqrt(dx * dx + dz * dz) > 3 then
+                    Nav.walk(Vector3.new(tp.X, h.Position.Y, tp.Z), { arrive = 2, timeout = 3 })
+                    touchCollectibles(holdField)
+                end
+            end
             autoDigCursorFree()
-            task.wait(0.25)
+            task.wait(0.2)
         end
         return finishHarvest(p)
     end
 
     local function nectarStep()
-
+         
+         
+         
         if not S.nectar_farm then return nil end
         if not S.hybrid then
             N.status = "Nectar needs Hybrid input"
@@ -14357,11 +10413,19 @@ if ok then target = sp end
         end
         if not isOn() then N.status = "Auto farm off"; return nil end
 
+         
+         
+         
+         
         if not N.collectedAll then
             local existing = myPlanters()
             if #existing > 0 then
                 N.status = "Collecting " .. tostring(#existing) .. " planter(s)"
-
+                 
+                 
+                 
+                 
+                 
                 local done = 0
                 for _, p in ipairs(existing) do
                     if not isOn() or done >= 5 then break end
@@ -14391,7 +10455,8 @@ if ok then target = sp end
         for _, p in ipairs(PLANTER_NAMES) do
             if S.nectar_planters[p] and planterOwned(p) then ownedCount = ownedCount + 1 end
         end
-
+         
+         
         if ownedCount == 0 and anyOwned then
             N.status = "Put planters in your backpack"
             return nil
@@ -14461,7 +10526,12 @@ if ok then target = sp end
             end
         end
 
-        local want = math.min(#list, 3, chosenCount)
+         
+         
+         
+         
+         
+        local want = math.min(#list, 3)
         if #active >= want then
         else
             for _, n in ipairs(list) do
@@ -14487,6 +10557,9 @@ if ok then target = sp end
             end
         end
 
+         
+         
+         
         if S.nectar_extra == true and #active < 3 then
             local extras = 0
             while #active < 3 and extras < 3 do
@@ -14495,10 +10568,22 @@ if ok then target = sp end
                 for _, q in ipairs(active) do
                     if q.field then usedFields[q.field] = true end
                 end
-                local pick = nil
+                 
+                 
+                 
+                 
+                 
+                local pick, repeatNectar = nil, nil
                 for _, nn in ipairs(list) do
-                    if chooseNectarField(nn, usedFields) then pick = nn; break end
+                    if chooseNectarField(nn, usedFields) then
+                        if repeatNectar == nil then repeatNectar = nn end
+                        if not activeNectars[nn] and not N.harvested[nn] then
+                            pick = nn
+                            break
+                        end
+                    end
                 end
+                pick = pick or repeatNectar
                 if not pick then break end
                 if not placePlanterFor(pick) then break end
                 task.wait(0.5)
@@ -14515,6 +10600,9 @@ if ok then target = sp end
             end
         end
 
+         
+         
+         
         local growing = 0
         for _, _ in pairs(activeNectars) do growing = growing + 1 end
         N.status = "Planters: " .. tostring(growing) .. "/" .. tostring(want) .. " growing; farming " .. tostring(S.field)
@@ -14530,6 +10618,12 @@ if ok then target = sp end
         return n .. " -> " .. p .. " (x" .. string.format("%.2f", score) .. ")"
     end
 
+    
+    
+    
+    
+    
+    
     local SPRINK_GADGET_WORDS = { "sprinkler", "saturator", "drencher", "soaker", "gusher" }
     local function sprinklerModels()
         local out = {}
@@ -14558,8 +10652,7 @@ if ok then target = sp end
         local out = {}
         for _, m in ipairs(sprinklerModels()) do
             local part = try(function() return m:FindFirstChildWhichIsA("BasePart", true) end)
-
-local p = part and try(function() return part.Position end) or nil
+            local p = part and try(function() return part.Position end) or nil
             if p then
                 out[#out + 1] = m.Name .. "@" .. math.floor(p.X) .. "," .. math.floor(p.Y) .. "," .. math.floor(p.Z)
             else
@@ -14591,8 +10684,7 @@ local p = part and try(function() return part.Position end) or nil
             local t = tierFromName(m.Name)
             if t then
                 local part = try(function() return m:FindFirstChildWhichIsA("BasePart", true) end)
-
-local p = part and try(function() return part.Position end) or nil
+                local p = part and try(function() return part.Position end) or nil
                 if me and p then
                     local d = (p - me).Magnitude
                     if d < bd then bd = d; best = t end
@@ -14608,21 +10700,20 @@ local p = part and try(function() return part.Position end) or nil
         local hrp = getHRP()
         if not hrp then return false end
         local v = try(function() return hrp.AssemblyLinearVelocity end)
-or try(function() return hrp.Velocity end) or Vector3.new(0, 0, 0)
+            or try(function() return hrp.Velocity end) or Vector3.new(0, 0, 0)
         local y0 = hrp.Position.Y
         local up = strength or 55
         pcall(function()
             hrp.AssemblyLinearVelocity = Vector3.new(v.X, up, v.Z)
             hrp.Velocity = Vector3.new(v.X, up, v.Z)
         end)
-
-local t0 = tick()
+        local t0 = tick()
         while tick() - t0 < 0.5 do
             task.wait(0.03)
             local h = getHRP()
             if not h then return false end
             if h.Position.Y - y0 >= 4 then
-
+                
                 task.wait(0.12)
                 return true
             end
@@ -14649,7 +10740,7 @@ local t0 = tick()
         local function fire()
             local before = sprinklerSnapshot()
             local ok = pcall(function() cmd:FireServer({ Name = "Sprinkler Builder" }) end)
-if not ok then return false end
+            if not ok then return false end
             local dl = tick() + 1.8
             while tick() < dl do
                 task.wait(0.15)
@@ -14683,7 +10774,8 @@ if not ok then return false end
                 end
                 local ok = fire()
                 if not ok and i == 1 then
-
+                    
+                    
                     local t = detectSprinklerTier(14)
                     if t then
                         lastSprinkTier = t
@@ -14715,7 +10807,8 @@ if not ok then return false end
                 end
             end
         end)
-if placedCount > 0 then task.wait(0.65) end
+
+        if placedCount > 0 then task.wait(0.65) end
         sprinklerBusy = false
         if not okAll then warn("[sprink] " .. tostring(errAll)) end
 
@@ -14727,13 +10820,19 @@ if placedCount > 0 then task.wait(0.65) end
         return true
     end
 
+    
+    
+    
+    
+    
+    
     local WALK_KEY = { W = 0x57, A = 0x41, S = 0x53, D = 0x44 }
     local walkKeysHeld = {}
 
     local function releaseWalkKeys()
         for code in pairs(walkKeysHeld) do
             pcall(function() keyrelease(code) end)
-end
+        end
         walkKeysHeld = {}
     end
 
@@ -14741,26 +10840,42 @@ end
         if want and not walkKeysHeld[code] then
             walkKeysHeld[code] = true
             pcall(function() keypress(code) end)
-elseif not want and walkKeysHeld[code] then
+        elseif not want and walkKeysHeld[code] then
             walkKeysHeld[code] = nil
             pcall(function() keyrelease(code) end)
-end
+        end
     end
 
+     
+     
+     
+     
+     
+     
+     
     local function humanoidAirborne()
         local hum = getHum()
         if not hum then return true end
-        local ok, state = pcall(function() return hum:GetState() end)
-if ok and state ~= nil then
-            local n = tostring(state)
-            if string.find(n, "Freefall", 1, true) or string.find(n, "Jumping", 1, true) then
-                return true
+        if Nav._humProbe == nil then
+            local okState = pcall(function() return hum:GetState() end)
+            local okFloor, floor = pcall(function() return hum.FloorMaterial end)
+            Nav._humProbe = { state = okState, floor = (okFloor and floor ~= nil) }
+        end
+        if Nav._humProbe.state then
+            local ok, state = pcall(function() return hum:GetState() end)
+            if ok and state ~= nil then
+                local n = tostring(state)
+                if string.find(n, "Freefall", 1, true) or string.find(n, "Jumping", 1, true) then
+                    return true
+                end
             end
         end
-        local okf, floor = pcall(function() return hum.FloorMaterial end)
-if okf and floor ~= nil then
-            local okm, air = pcall(function() return Enum.Material.Air end)
-if okm and air ~= nil then return floor == air end
+        if Nav._humProbe.floor then
+            local okf, floor = pcall(function() return hum.FloorMaterial end)
+            if okf and floor ~= nil then
+                local okm, air = pcall(function() return Enum.Material.Air end)
+                if okm and air ~= nil then return floor == air end
+            end
         end
         return false
     end
@@ -14777,7 +10892,7 @@ if okm and air ~= nil then return floor == air end
         if not hum then return false end
 
         pcall(function() setrobloxinput(true) end)
-walkingWithKeys = true
+        walkingWithKeys = true
         lastMoveMode, lastMoveAt = "WASD walk", tick()
         local start      = tick()
         local lastDig    = 0
@@ -14801,6 +10916,10 @@ walkingWithKeys = true
                 reached = true
                 break
             end
+
+             
+             
+             
 
             local look = cam and cam.CFrame.LookVector or Vector3.new(0, 0, -1)
             local fx, fz = look.X, look.Z
@@ -14829,14 +10948,14 @@ walkingWithKeys = true
                 local stuckFor = now - stuckSince
                 if stuckFor > 4.0 then break end
                 if stuckFor > 0.6 + jumps * 0.8 and jumps < 4 and not humanoidAirborne() then
-
+                     
                     jumps = jumps + 1
                     pcall(function()
                         keypress(0x20)
                         task.wait(0.06)
                         keyrelease(0x20)
                     end)
-end
+                end
             else
                 stuckSince = now
                 lastPos = pos
@@ -14851,6 +10970,10 @@ end
         return reached
     end
 
+     
+     
+     
+     
     walkWithKeys = function(targetPos, opts)
         local ok, res = pcall(Nav._walkKeysImpl, targetPos, opts)
         releaseWalkKeys()
@@ -14861,18 +10984,46 @@ end
         end
         return res == true
     end
-
-    ;(function()
-
+     
+    ;(function()  
+     
+     
+     
+     
+     
     local OFF_MOVE_DIR   = 0x134
     local OFF_MOVE_POINT = 0x158
     local OFF_TARGET_POINT = 0x140
+     
+     
+     
+     
+     
+     
+    local OFF_WALK_DIR   = 0x14C
     local OFF_WALKSPEED  = 0x1C4
-
+     
+     
+     
+     
     local OFF_WALKSPEED_CHECK = 0x39C
-    local OFF_JUMP       = 0x1CF
+     
+     
+     
+     
+     
+    local OFF_JUMP       = 0x1D0
 
-    local MemWalk = { on = false, dirX = 0, dirZ = 0, target = nil, conns = {} }
+    local MemWalk = { on = false, dirX = 0, dirZ = 0, target = nil, conns = {}, wdAt = 0 }
+
+     
+     
+     
+     
+     
+     
+     
+    local ESCAPE_STEPS = { 50, 100, 150, 180, -150, -100, -50 }
 
     local function memBase()
         local hum = getHum()
@@ -14881,6 +11032,9 @@ end
         return base
     end
 
+     
+     
+     
     local MEM_WRITE = nil
     local function memWriter()
         if MEM_WRITE ~= nil then return MEM_WRITE or nil end
@@ -14905,11 +11059,20 @@ end
         return memWriter() ~= nil and memBase() ~= nil
     end
 
+     
+     
+     
+     
+     
+     
+     
+     
+     
     local SpeedWrite = { on = false, value = 0, thread = nil, gen = 0, restore = nil }
     local function readWalkSpeed(addr)
         if type(memory_read) ~= "function" then return nil end
         local ok, v = pcall(function() return memory_read("float", addr) end)
-if ok and type(v) == "number" and v > 0 and v < 500 then return v end
+        if ok and type(v) == "number" and v > 0 and v < 500 then return v end
         return nil
     end
     local function writeWalkSpeed(v)
@@ -14921,7 +11084,7 @@ if ok and type(v) == "number" and v > 0 and v < 500 then return v end
             write(base + OFF_WALKSPEED, v)
             write(base + OFF_WALKSPEED_CHECK, v)
         end)
-end
+    end
 
     local function startSpeedWrite(v)
         local speed = tonumber(v) or 0
@@ -14944,7 +11107,8 @@ end
             end
             if SpeedWrite.gen == myGen then
                 SpeedWrite.thread = nil
-
+                 
+                 
                 local base2 = memBase()
                 local write2 = memWriter()
                 local restore = SpeedWrite.restore
@@ -14953,15 +11117,17 @@ end
                         write2(base2 + OFF_WALKSPEED, restore[1])
                         write2(base2 + OFF_WALKSPEED_CHECK, restore[2])
                     end)
-end
+                end
             end
         end)
-end
+    end
 
     local function stopSpeedWrite()
         SpeedWrite.on = false
     end
 
+     
+     
     Nav.stopSpeedWrite = stopSpeedWrite
     Nav.setSpeedValue = function(v)
         local n = tonumber(v) or 0
@@ -14970,6 +11136,10 @@ end
         SpeedWrite.value = n
     end
 
+     
+     
+     
+     
     local function later(seconds, fn)
         local thread = type(task) == "table" and task.spawn or spawn
         pcall(function()
@@ -14978,9 +11148,13 @@ end
                 pcall(waitFn, seconds)
                 fn()
             end)
-end)
+        end)
     end
 
+     
+     
+     
+     
     local InputBridge = false
     local function inputBridge()
         if InputBridge then return end
@@ -14988,6 +11162,13 @@ end)
         if type(setrobloxinput) == "function" then pcall(setrobloxinput, true) end
     end
 
+     
+     
+     
+     
+     
+     
+     
     local MEM_WRITE_BYTE = nil
     local function memByteWriter()
         if MEM_WRITE_BYTE ~= nil then return MEM_WRITE_BYTE or nil end
@@ -15004,34 +11185,60 @@ end)
         return MEM_WRITE_BYTE or nil
     end
 
+     
+     
+     
+     
+     
+     
     local function jumpTap()
         local base = memBase()
         local wbyte = base and memByteWriter() or nil
-        if wbyte then
-            pcall(function() wbyte(base + OFF_JUMP, 1) end)
-later(0.12, function()
-                local again = memBase()
-                if again then pcall(function() wbyte(again + OFF_JUMP, 0) end) end
-            end)
-return
-        end
+        if not wbyte then return end
 
-        inputBridge()
-        pcall(function() keypress(0x20) end)
-later(0.08, function() pcall(function() keyrelease(0x20) end) end)
-end
+        pcall(function() wbyte(base + OFF_JUMP, 1) end)
+         
+         
+         
+        later(0.06, function()
+            local again = memBase()
+            if again then pcall(function() wbyte(again + OFF_JUMP, 0) end) end
+        end)
+    end
 
     local lastJumpAt = 0
     local function jumpNow()
         local now = tick()
-        if now - lastJumpAt < 0.6 then return end
-
+         
+         
+         
+        if now - lastJumpAt < 0.7 then return end
+         
+         
+         
         if humanoidAirborne() then return end
+         
+         
+        local base = memBase()
+        if base and type(memory_read) == "function" then
+            local ok, flag = pcall(function() return memory_read("byte", base + OFF_JUMP) end)
+            if ok and flag == 1 then return end
+        end
         lastJumpAt = now
         jumpTap()
     end
     Nav.jumpNow = jumpNow
 
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
     local function memWritePointNow()
         local base, write = MemWalk.base, MemWalk.write
         write(base + OFF_MOVE_POINT, MemWalk.tx)
@@ -15046,12 +11253,37 @@ end
         write(base + OFF_MOVE_DIR + 8, MemWalk.dirZ)
     end
 
+     
+     
+     
+     
+    local function memWriteWalkDirNow()
+        local base, write = MemWalk.base, MemWalk.write
+        write(base + OFF_WALK_DIR, MemWalk.dirX)
+        write(base + OFF_WALK_DIR + 4, 0)
+        write(base + OFF_WALK_DIR + 8, MemWalk.dirZ)
+    end
+    local function memGuardWalkDir() pcall(memWriteWalkDirNow) end
+
+    local function memRefreshWalkDir(now)
+        if (now - (MemWalk.wdAt or 0)) < 0.09 then return end
+        MemWalk.wdAt = now
+        memGuardWalkDir()
+    end
+
+     
+     
     local function memGuardPoint() pcall(memWritePointNow) end
     local function memGuardDir() pcall(memWriteDirNow) end
 
+     
+     
+     
+     
     local function memHook()
         if not MemWalk.on or not MemWalk.base then return end
         memGuardDir()
+        memRefreshWalkDir(tick())
     end
 
     local function memConnect()
@@ -15061,10 +11293,10 @@ end
             MemWalk.conns[#MemWalk.conns + 1] = RunService.RenderStepped:Connect(memHook)
             MemWalk.conns[#MemWalk.conns + 1] = RunService.Heartbeat:Connect(memHook)
         end)
-if not ok then
+        if not ok then
             for index = #MemWalk.conns, 1, -1 do
                 pcall(function() MemWalk.conns[index]:Disconnect() end)
-MemWalk.conns[index] = nil
+                MemWalk.conns[index] = nil
             end
         end
         return #MemWalk.conns > 0
@@ -15078,7 +11310,13 @@ MemWalk.conns[index] = nil
             write(base + OFF_MOVE_DIR, 0)
             write(base + OFF_MOVE_DIR + 4, 0)
             write(base + OFF_MOVE_DIR + 8, 0)
-
+             
+             
+            write(base + OFF_WALK_DIR, 0)
+            write(base + OFF_WALK_DIR + 4, 0)
+            write(base + OFF_WALK_DIR + 8, 0)
+             
+             
             local hrp = getHRP()
             if hrp then
                 write(base + OFF_MOVE_POINT, hrp.Position.X)
@@ -15086,7 +11324,7 @@ MemWalk.conns[index] = nil
                 write(base + OFF_MOVE_POINT + 8, hrp.Position.Z)
             end
         end)
-end
+    end
 
     Nav.memWalkStop = function()
         MemWalk.on = false
@@ -15094,11 +11332,13 @@ end
         memZeroDirection()
         for index = #MemWalk.conns, 1, -1 do
             pcall(function() MemWalk.conns[index]:Disconnect() end)
-MemWalk.conns[index] = nil
+            MemWalk.conns[index] = nil
         end
     end
 
     Nav.memAvailable = function() return memReady() end
+    Nav.memBase = memBase
+    Nav.memWriter = memWriter
 
     Nav.memWalkTo = function(targetPos, opts)
         opts = opts or {}
@@ -15109,6 +11349,10 @@ MemWalk.conns[index] = nil
         local arrive = opts.arrive or 4.5
         local timeout = opts.timeout or 20
         local label = opts.label or "Offsets walk"
+         
+         
+         
+        local noHop = opts.noJump == true
 
         local hrp = getHRP()
         if not hrp then return false end
@@ -15117,7 +11361,9 @@ MemWalk.conns[index] = nil
         MemWalk.write = memWriter()
         MemWalk.tx, MemWalk.ty, MemWalk.tz = targetPos.X, targetPos.Y, targetPos.Z
         MemWalk.on = true
-
+         
+         
+         
         if S.speed_override == true then
             startSpeedWrite(S.walk_speed or 0)
         else
@@ -15130,21 +11376,27 @@ MemWalk.conns[index] = nil
         if type(killDrive) == "function" then pcall(killDrive) end
         lastMoveMode, lastMoveAt = label, tick()
 
+         
+         
         memGuardPoint()
 
         local start = tick()
         local best = (Vector3.new(targetPos.X, hrp.Position.Y, targetPos.Z) - hrp.Position).Magnitude
         local bestAt = start
         local jumps = 0
+        local escIdx, escFrom = 0, nil
         local reached = false
         local steerStage = 0
         local reboundUntil = 0
         local lastBaseAt = start
         local lastPointAt = start
+        local lastStepProbe = 0
         local startFlat = Vector3.new(targetPos.X - hrp.Position.X, 0, targetPos.Z - hrp.Position.Z)
         local startLen = math.max(startFlat.Magnitude, 0.001)
         MemWalk.dirX = startFlat.X / startLen
         MemWalk.dirZ = startFlat.Z / startLen
+        MemWalk.lastPos = Vector3.new(hrp.Position.X, 0, hrp.Position.Z)
+        MemWalk.slowSince = start
         inputBridge()
 
         while tick() - start < timeout do
@@ -15153,7 +11405,8 @@ MemWalk.conns[index] = nil
             if not current or not isAlive() then break end
 
             local now = tick()
-
+             
+             
             if now - lastBaseAt > 0.25 then
                 lastBaseAt = now
                 local base = memBase()
@@ -15164,6 +11417,9 @@ MemWalk.conns[index] = nil
                 end
             end
 
+             
+             
+             
             if now - lastPointAt > 0.35 then
                 lastPointAt = now
                 memGuardPoint()
@@ -15178,41 +11434,90 @@ MemWalk.conns[index] = nil
             end
             lastMoveMode, lastMoveAt = label, now
 
+             
+             
+             
+             
+             
+            local here = Vector3.new(pos.X, 0, pos.Z)
+             
+             
+            if (here - MemWalk.lastPos).Magnitude > 0.5 then
+                MemWalk.lastPos = here
+                MemWalk.slowSince = now
+            elseif now - (MemWalk.slowSince or now) > 0.6 and distance > 8 and not noHop then
+                MemWalk.slowSince = now
+                jumpNow()
+            end
+
+             
+             
+             
+             
             if now > reboundUntil then
                 local inv = 1 / math.max(distance, 0.001)
                 MemWalk.dirX = flat.X * inv
                 MemWalk.dirZ = flat.Z * inv
             end
+             
+             
+            memRefreshWalkDir(now)
 
             local stuckFor = now - bestAt
             local airborne = humanoidAirborne()
+             
+             
+             
+            if not noHop and not airborne and distance < 16 then
+                if now - lastStepProbe > 0.12 then
+                    lastStepProbe = now
+                    if Nav.stepAhead(pos, flat.X, flat.Z, 5.5) then jumpNow() end
+                end
+            end
             if distance < best - 0.5 then
                 best, bestAt = distance, now
                 jumps, steerStage = 0, 0
                 reboundUntil = 0
             elseif airborne then
-
+                 
+                 
                 task.wait(0.04)
             elseif stuckFor > 4.5 then
                 status = "Offsets stalled"
                 break
-            elseif stuckFor > 0.9 then
-                local step = math.floor((stuckFor - 0.9) / 0.85) + 1
+            elseif stuckFor > 0.45 then
+                local step = math.floor((stuckFor - 0.45) / 0.5) + 1
                 if step > jumps then
                     jumps = step
                     bestAt = now
-                    if step <= 3 then
-
+                    if step <= 2 and not noHop then
+                         
                         jumpNow()
                     else
+                         
+                         
+                         
+                        local hereNow = Vector3.new(pos.X, 0, pos.Z)
+                        local moved = escFrom and (hereNow - escFrom).Magnitude or 0
+                        escFrom = hereNow
 
-                        steerStage = steerStage + 1
-                        local ang = math.rad(50) * ((steerStage % 2 == 0) and -1 or 1)
-                        local ca, sa = math.cos(ang), math.sin(ang)
-                        local dx, dz = MemWalk.dirX, MemWalk.dirZ
-                        MemWalk.dirX = dx * ca - dz * sa
-                        MemWalk.dirZ = dx * sa + dz * ca
-                        reboundUntil = now + 1.2
+                        if moved >= 1.2 and escIdx > 0 then
+                            reboundUntil = now + 0.6
+                        else
+                            escIdx = escIdx > 0 and escIdx + 1 or 1
+                            if escIdx > #ESCAPE_STEPS then
+                                escIdx, escFrom = 0, nil
+                                status = "Offsets stalled"
+                                break
+                            end
+                            local ang = math.rad(ESCAPE_STEPS[escIdx])
+                            local ca, sa = math.cos(ang), math.sin(ang)
+                            local dx = flat.X / math.max(distance, 0.001)
+                            local dz = flat.Z / math.max(distance, 0.001)
+                            MemWalk.dirX = dx * ca - dz * sa
+                            MemWalk.dirZ = dx * sa + dz * ca
+                            reboundUntil = now + 0.55
+                        end
                     end
                 end
             end
@@ -15226,6 +11531,11 @@ MemWalk.conns[index] = nil
         return reached
     end
 
+     
+     
+     
+     
+     
     Nav.walkRoute = function(points, opts)
         opts = opts or {}
         if type(points) ~= "table" or #points == 0 then return false end
@@ -15261,6 +11571,7 @@ MemWalk.conns[index] = nil
             return p
         end
 
+         
         local function setLeg(target)
             local flat = Vector3.new(target.X - hrp.Position.X, 0, target.Z - hrp.Position.Z)
             local len = math.max(flat.Magnitude, 0.001)
@@ -15276,14 +11587,61 @@ MemWalk.conns[index] = nil
             return false
         end
         setLeg(first)
+        MemWalk.lastPos = Vector3.new(hrp.Position.X, 0, hrp.Position.Z)
+        MemWalk.slowSince = tick()
 
         local index = 1
         local start = tick()
         local best = math.huge
         local bestAt = start
-        local jumps, steerStage = 0, 0
+        local jumps, steerStage, skips = 0, 0, 0
+        local reboundUntil = 0
+        local escIdx, escFrom, escStartDist = 0, nil, nil
         local done = false
         local lastPointAt = start
+        local lastStepProbe = 0
+        local backedOff = false
+
+         
+         
+         
+         
+         
+         
+         
+        local function stallAdvance()
+            if skips >= 3 and not backedOff then
+                local backPos = (index > 1) and getPoint(points[index - 1])
+                if backPos then
+                    backedOff = true
+                    local bx = backPos.X - hrp.Position.X
+                    local bz = backPos.Z - hrp.Position.Z
+                    local bl = math.max(math.sqrt(bx * bx + bz * bz), 0.001)
+                    MemWalk.tx, MemWalk.ty, MemWalk.tz = backPos.X, backPos.Y, backPos.Z
+                    MemWalk.dirX, MemWalk.dirZ = bx / bl, bz / bl
+                    memGuardPoint()
+                    jumps, steerStage = 0, 0
+                    reboundUntil = tick() + 1.1
+                    best, bestAt = math.huge, tick()
+                    return true
+                end
+            end
+
+            skips = skips + 1
+             
+             
+             
+            if skips > 6 then return false end
+            index = index + 1
+            if index > #points then return false end
+            local nextPos = getPoint(points[index])
+            if not nextPos then return false end
+            setLeg(nextPos)
+            jumps, steerStage = 0, 0
+            reboundUntil = 0
+            best, bestAt = math.huge, tick()
+            return true
+        end
 
         while tick() - start < pool do
             if not isOn() then break end
@@ -15300,6 +11658,26 @@ MemWalk.conns[index] = nil
             local pos = current.Position
             local flat = Vector3.new(target.X - pos.X, 0, target.Z - pos.Z)
             local distance = flat.Magnitude
+            local routeNow = tick()
+             
+             
+            memRefreshWalkDir(routeNow)
+            local hereRoute = Vector3.new(pos.X, 0, pos.Z)
+             
+             
+             
+             
+             
+             
+             
+            if (hereRoute - MemWalk.lastPos).Magnitude > 0.5 then
+                MemWalk.lastPos = hereRoute
+                MemWalk.slowSince = routeNow
+            elseif routeNow - (MemWalk.slowSince or routeNow) > 0.6
+                and distance > 8 and not humanoidAirborne() then
+                MemWalk.slowSince = routeNow
+                jumpNow()
+            end
 
             if distance <= arrive then
                 index = index + 1
@@ -15309,40 +11687,88 @@ MemWalk.conns[index] = nil
                 end
                 local nextPos = getPoint(points[index])
                 if nextPos then
-
+                     
+                     
                     setLeg(nextPos)
-                    jumps, steerStage = 0, 0
+                    jumps, steerStage, backedOff = 0, 0, false
                     best, bestAt = math.huge, tick()
                 end
             else
-                local inv = 1 / math.max(distance, 0.001)
-                MemWalk.dirX = flat.X * inv
-                MemWalk.dirZ = flat.Z * inv
+                 
+                 
+                 
+                 
+                 
+                if routeNow > reboundUntil then
+                    local inv = 1 / math.max(distance, 0.001)
+                    MemWalk.dirX = flat.X * inv
+                    MemWalk.dirZ = flat.Z * inv
+                end
                 local stuckFor = tick() - bestAt
                 local airborne = humanoidAirborne()
                 if distance < best - 0.5 then
                     best, bestAt = distance, tick()
-                    jumps, steerStage = 0, 0
+                    jumps, steerStage, skips = 0, 0, 0
+                    reboundUntil = 0
+                     
+                     
+                    backedOff = false
                 elseif airborne then
                     task.wait(0.05)
                 else
-
-                    if stuckFor > 4.5 then
-                        break
-                    elseif stuckFor > 0.9 then
-                        local step = math.floor((stuckFor - 0.9) / 0.85) + 1
+                     
+                     
+                    if stuckFor > 3.2 then
+                         
+                         
+                         
+                        if not stallAdvance() then break end
+                    elseif stuckFor > 0.45 then
+                        local step = math.floor((stuckFor - 0.45) / 0.5) + 1
                         if step > jumps then
                             jumps = step
                             bestAt = tick()
-                            if step <= 3 then
+                             
+                             
+                             
+                             
+                             
+                            if step == 1 then
                                 jumpNow()
                             else
-                                steerStage = steerStage + 1
-                                local ang = math.rad(45) * ((steerStage % 2 == 0) and -1 or 1)
-                                local ca, sa = math.cos(ang), math.sin(ang)
-                                local dx, dz = MemWalk.dirX, MemWalk.dirZ
-                                MemWalk.dirX = dx * ca - dz * sa
-                                MemWalk.dirZ = dx * sa + dz * ca
+                                local hereNow = Vector3.new(pos.X, 0, pos.Z)
+                                local moved = escFrom and (hereNow - escFrom).Magnitude or 0
+                                escFrom = hereNow
+
+                                 
+                                 
+                                 
+                                 
+                                 
+                                local drifted = escStartDist ~= nil and distance > escStartDist + 8
+
+                                if moved >= 1.2 and escIdx > 0 and not drifted then
+                                    reboundUntil = routeNow + 0.6
+                                else
+                                    escIdx = escIdx > 0 and escIdx + 1 or 1
+                                    if escIdx == 1 then escStartDist = distance end
+
+                                    if escIdx > #ESCAPE_STEPS then
+                                         
+                                         
+                                         
+                                        escIdx, escFrom, escStartDist = 0, nil, nil
+                                        if not stallAdvance() then break end
+                                    else
+                                        local ang = math.rad(ESCAPE_STEPS[escIdx])
+                                        local ca, sa = math.cos(ang), math.sin(ang)
+                                        local dx = flat.X / math.max(distance, 0.001)
+                                        local dz = flat.Z / math.max(distance, 0.001)
+                                        MemWalk.dirX = dx * ca - dz * sa
+                                        MemWalk.dirZ = dx * sa + dz * ca
+                                        reboundUntil = routeNow + 0.55
+                                    end
+                                end
                             end
                         end
                     end
@@ -15355,6 +11781,7 @@ MemWalk.conns[index] = nil
         return done
     end
 
+     
     Nav.walk = function(targetPos, opts)
         if not targetPos then return false end
         opts = opts or {}
@@ -15363,7 +11790,8 @@ MemWalk.conns[index] = nil
         end
         if Nav.memWalkTo(targetPos, opts) then return true end
         if not memReady() then
-
+             
+             
             status = "Offsets unavailable, using keyboard"
             S.walk_method = "Keyboard"
             pcall(function()
@@ -15371,15 +11799,20 @@ MemWalk.conns[index] = nil
 
                 if type(sync) == "function" then sync("Keyboard") end
             end)
-return walkWithKeys(targetPos, opts) == true
+            return walkWithKeys(targetPos, opts) == true
         end
         return false
     end
     end)()
+     
 
+    
+    
+    
     local _tokCache, _tokT = nil, 0
     local function scanTokens(field, farmMode, closeR, eyePos)
-
+        
+        
         local now = tick()
         if _tokCache and now - _tokT < 0.2 then return _tokCache end
         _tokT = now
@@ -15387,14 +11820,14 @@ return walkWithKeys(targetPos, opts) == true
         local folder = Workspace:FindFirstChild("Collectibles")
         if not folder then return out end
         local okk, kids = pcall(function() return folder:GetChildren() end)
-if not okk or not kids then return out end
+        if not okk or not kids then return out end
         for i = 1, #kids do
             local obj = kids[i]
             local pos
             local okp, p = pcall(function() return obj.Position end)
-if okp and p then pos = p else
+            if okp and p then pos = p else
                 local okm, mp = pcall(function() return obj.PrimaryPart.Position end)
-if okm and mp then pos = mp end
+                if okm and mp then pos = mp end
             end
             if pos and inField(pos, field, 4) then
                 if farmMode ~= 1 or distToCenter(pos, field) <= closeR then
@@ -15431,7 +11864,7 @@ if okm and mp then pos = mp end
                 Vector3.new(c.X, standY, c.Z),
             }
         end
-
+        
         local pts = {}
         for i = 0, 7 do
             local theta = (i / 8) * math.pi * 2
@@ -15451,17 +11884,18 @@ if okm and mp then pos = mp end
         if #waypoints == 0 then return end
 
         local list = scanTokens(field, 2, closeR or 15, hrp.Position)
-
+        
+        
+        
         local cluster = {}
         if #list > 0 then
             table.sort(list, function(a, b) return a.score < b.score end)
-
-local anchor = list[1]
+            local anchor = list[1]
             if anchor.score <= 120 then
                 for i = 1, #list do
                     local p = list[i].pos
                     local dx, dz = p.X - anchor.pos.X, p.Z - anchor.pos.Z
-                    if dx * dx + dz * dz <= 900 then
+                    if dx * dx + dz * dz <= 900 then          
                         cluster[#cluster + 1] = list[i]
                         if #cluster >= 8 then break end
                     end
@@ -15470,7 +11904,9 @@ local anchor = list[1]
         end
 
         if #cluster > 0 then
-
+            
+            
+            
             local tripEnd = tick() + 24
             for i = 1, #cluster do
                 if not isOn() then break end
@@ -15479,7 +11915,7 @@ local anchor = list[1]
                 if left <= 1 then break end
                 local alivePart = false
                 pcall(function() alivePart = leg.part ~= nil and leg.part.Parent ~= nil end)
-if alivePart then
+                if alivePart then
                     local targetPos = clampTarget(leg.pos, field, 2, closeR or 15)
                     Nav.walk(targetPos, { arrive = 5.5, timeout = math.min(12, left) })
                     autoDigCursorFree()
@@ -15490,15 +11926,34 @@ if alivePart then
         else
             if farmTurnIdx > #waypoints then farmTurnIdx = 1 end
             local targetWp = waypoints[farmTurnIdx]
-
+             
+             
             Nav.walk(targetWp, { arrive = 4, timeout = 16 })
             autoDigCursorFree()
 
+             
+             
             farmTurnIdx = (farmTurnIdx % #waypoints) + 1
             task.wait(0.06)
         end
     end
 
+    
+    
+    
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
 Nav.markVisited = {}
 Nav.markKey = function(pos)
     return tostring(math.floor(pos.X / 2)) .. ":" .. tostring(math.floor(pos.Z / 2))
@@ -15508,7 +11963,10 @@ Nav.markDone = function(pos)
     Nav.markVisited[Nav.markKey(pos)] = tick()
 end
 Nav.markSeen = {}
-
+ 
+ 
+ 
+ 
 Nav._particleCache, Nav._particleCacheAt = nil, 0
 Nav._particlesFolder = nil
 Nav.particleChildren = function()
@@ -15523,14 +11981,15 @@ Nav.particleChildren = function()
     local cached = Nav._particleCache
     if cached and now - Nav._particleCacheAt < 0.2 then return cached end
     local ok, list = pcall(function() return folder:GetChildren() end)
-if not ok or type(list) ~= "table" then return cached or {} end
+    if not ok or type(list) ~= "table" then return cached or {} end
     Nav._particleCache, Nav._particleCacheAt = list, now
     return list
 end
 
 Nav.preciseMarkTarget = function(field)
     if not field or S.mark_target ~= true then return nil end
-
+     
+     
     local marks = Nav.particleChildren() or {}
     local hrp = getHRP()
     if not hrp then return nil end
@@ -15540,6 +11999,8 @@ Nav.preciseMarkTarget = function(field)
     local visited = Nav.markVisited
     local seen = Nav.markSeen
 
+     
+     
     if now - (Nav.markSeenPrune or 0) > 4 then
         Nav.markSeenPrune = now
         for key, rec in pairs(seen) do
@@ -15552,12 +12013,14 @@ Nav.preciseMarkTarget = function(field)
     local fhx = field.Size.X / 2 + 2
     local fhz = field.Size.Z / 2 + 2
     local function consider(mark)
-
+         
+         
         if mark.Name ~= "Crosshair" then return end
         local pos = mark.Position
         if not pos then return end
         local height = pos.Y - gY
-
+         
+         
         if height > -4 and height < 6
             and math.abs(pos.X - fc.X) <= fhx and math.abs(pos.Z - fc.Z) <= fhz then
             local key = Nav.markKey(pos)
@@ -15569,7 +12032,8 @@ Nav.preciseMarkTarget = function(field)
                 still = math.abs(pos.X - rec.x) + math.abs(pos.Z - rec.z) <= 0.8
                 rec.x, rec.z = pos.X, pos.Z
             end
-
+             
+             
             if height <= 3.5 or still then
                 local seenAt = visited[key]
                 if not seenAt or (now - seenAt) > 20 then
@@ -15581,6 +12045,11 @@ Nav.preciseMarkTarget = function(field)
         end
     end
 
+     
+     
+     
+     
+     
     pcall(function()
         for i = 1, #marks do consider(marks[i]) end
         local kids = Nav.workspaceKids()
@@ -15589,9 +12058,13 @@ Nav.preciseMarkTarget = function(field)
             if m.Name == "Crosshair" then consider(m) end
         end
     end)
-return best
+    return best
 end
 
+     
+     
+     
+     
 Nav.collectDupedToken = function(field, standY)
     if S.collect_duped == false or not field then return false end
     local cam = Workspace:FindFirstChild("Camera")
@@ -15602,7 +12075,7 @@ Nav.collectDupedToken = function(field, standY)
     local best, bestD = nil, math.huge
     for _, tok in ipairs(folder:GetChildren()) do
         local ok, tp = pcall(function() return tok.Position end)
-if ok and tp then
+        if ok and tp then
             local d = Vector3.new(tp.X - hrp.Position.X, 0, tp.Z - hrp.Position.Z).Magnitude
             if d < bestD and (inField(tp, field, 25) or d <= 60) then
                 best, bestD = tp, d
@@ -15624,6 +12097,93 @@ if ok and tp then
     task.wait(0.15)
     return true
 end
+
+     
+     
+     
+    do
+     
+     
+     
+     
+     
+     
+    local PRIO_TOKENS = {
+        { rank = 1, name = "Token Link", r = 255, g = 255, b = 255 },
+        { rank = 1, name = "Smile Token", r = 255, g = 255, b = 255 },
+        { rank = 2, name = "Bear Morph", r = 242, g = 129, b = 255 },
+        { rank = 3, name = "Puppy Love", r = 251, g = 220, b = 135 },
+    }
+
+     
+     
+    local function colour255(c)
+        if not c then return nil end
+        local ok, r, g, b = pcall(function() return c.R, c.G, c.B end)
+        if not ok or type(r) ~= "number" then return nil end
+        if r <= 1.001 and g <= 1.001 and b <= 1.001 then
+            return r * 255, g * 255, b * 255
+        end
+        return r, g, b
+    end
+
+    local function tokenSaysPollen(tok)
+        local ok, found = pcall(function()
+            for _, d in ipairs(tok:GetDescendants()) do
+                local txt = nil
+                if d.ClassName == "TextLabel" then
+                    txt = d.Text
+                elseif d.ClassName == "BillboardGui" then
+                    local tl = d:FindFirstChildWhichIsA("TextLabel")
+                    txt = tl and tl.Text
+                end
+                if txt and string.find(string.lower(tostring(txt)), "pollen", 1, true) then
+                    return true
+                end
+            end
+            return false
+        end)
+        return ok and found == true
+    end
+
+    Nav.priorityToken = function(field)
+        local coll = Workspace:FindFirstChild("Collectibles")
+        local hrp = getHRP()
+        if not coll or not hrp then return nil end
+        local ok, kids = pcall(function() return coll:GetChildren() end)
+        if not ok or not kids then return nil end
+        local best, bestScore = nil, math.huge
+        for _, tok in ipairs(kids) do
+            local pos = getPartPos(tok)
+            if pos then
+                local d = Vector3.new(pos.X - hrp.Position.X, 0, pos.Z - hrp.Position.Z).Magnitude
+                 
+                 
+                if d <= 90 and (not field or inField(pos, field, 40)) then
+                    local r, g, b = colour255(tok.Color)
+                    if r then
+                        local rank, name = nil, nil
+                        for _, c in ipairs(PRIO_TOKENS) do
+                            if math.abs(r - c.r) <= 26 and math.abs(g - c.g) <= 26 and math.abs(b - c.b) <= 26 then
+                                if rank == nil or c.rank < rank then
+                                    rank, name = c.rank, c.name
+                                end
+                            end
+                        end
+                        if rank and not tokenSaysPollen(tok) then
+                            local score = rank * 100000 + d
+                            if score < bestScore then
+                                bestScore = score
+                                best = { pos = pos, part = tok, rank = rank, name = name, dist = d }
+                            end
+                        end
+                    end
+                end
+            end
+        end
+        return best
+    end
+    end
 
     local MOB_LOCATIONS = {
         ["Rhino Beetle"] = {
@@ -15753,13 +12313,19 @@ end
 
     local function getPolarBearQuest()
         local now = tick()
-
+        
+        
+        
         if _polarT > 0 and now - _polarT < 0.4 then return _polarCache end
         _polarT = now
         _polarCache = getPolarBearQuestRaw()
         return _polarCache
     end
 
+    
+    
+    
+    
     local lastPolarAsk = 0
     local function hybridPolarDialogue()
         local quest = getPolarBearQuest()
@@ -15777,6 +12343,12 @@ end
             return
         end
 
+        
+        
+        
+        
+        
+        
         local now = tick()
         if now - lastPolarAsk < 15 then return end
         lastPolarAsk = now
@@ -15792,23 +12364,24 @@ end
 
     local function spamClickDialogue(duration, force)
         if S.hybrid then
-
+            
             hybridPolarDialogue()
             return
         end
         duration = duration or 5.0
         local dl = tick() + duration
         local cam = try(function() return Workspace.CurrentCamera end)
-
-local vp = Vector2.new(1920, 1080)
+        local vp = Vector2.new(1920, 1080)
         pcall(function()
             if cam and cam.ViewportSize then vp = cam.ViewportSize end
         end)
-
-local defaultClickPos = Vector2.new(vp.X * 0.50, vp.Y * 0.77)
+        local defaultClickPos = Vector2.new(vp.X * 0.50, vp.Y * 0.77)
 
         while tick() < dl do
-
+            
+            
+            
+            
             if (not FeaturesActive) and not force then return end
             local clickPos = defaultClickPos
 
@@ -15829,7 +12402,7 @@ local defaultClickPos = Vector2.new(vp.X * 0.50, vp.Y * 0.77)
                                     pcall(function()
                                         if isGuiButton(obj) then obj.Activated:Fire() end
                                     end)
-break
+                                    break
                                 end
                             end
                         end
@@ -15837,23 +12410,23 @@ break
                 end
             end)
 
-local cx = math.floor(clickPos.X)
+            local cx = math.floor(clickPos.X)
             local cy = math.floor(clickPos.Y)
 
             pcall(function()
                 if type(mousemoveabs) == "function" then mousemoveabs(cx, cy) end
             end)
-pcall(function()
+            pcall(function()
                 if type(mouse1click) == "function" then mouse1click(cx, cy) end
             end)
-pcall(function()
+            pcall(function()
                 if type(mouse1press) == "function" and type(mouse1release) == "function" then
                     mouse1press()
                     task.wait(0.02)
                     mouse1release()
                 end
             end)
-pcall(function()
+            pcall(function()
                 local vim = game:GetService("VirtualInputManager")
                 if vim then
                     vim:SendMouseButtonEvent(cx, cy, 0, true, game, 0)
@@ -15861,7 +12434,7 @@ pcall(function()
                     vim:SendMouseButtonEvent(cx, cy, 0, false, game, 0)
                 end
             end)
-pcall(function()
+            pcall(function()
                 local vu = game:GetService("VirtualUser")
                 if vu then
                     vu:Button1Down(Vector2.new(cx, cy))
@@ -15869,29 +12442,30 @@ pcall(function()
                     vu:Button1Up(Vector2.new(cx, cy))
                 end
             end)
-pcall(function()
+            pcall(function()
                 keypress(0x20); task.wait(0.02); keyrelease(0x20)
                 keypress(0x0D); task.wait(0.02); keyrelease(0x0D)
                 keypress(0x45); task.wait(0.02); keyrelease(0x45)
             end)
-task.wait(0.08)
+
+            task.wait(0.08)
         end
     end
 
     local function clickAt(x, y)
         pcall(function() mousemoveabs(math.floor(x), math.floor(y)) end)
-pcall(function() mouse1click() end)
-pcall(function()
+        pcall(function() mouse1click() end)
+        pcall(function()
             mouse1press()
             task.wait(0.02)
             mouse1release()
         end)
-end
+    end
 
     local function clickGuiObject(obj, dx, dy)
         if not obj then return false end
         local ok, ap = pcall(function() return obj.AbsolutePosition end)
-if not ok or not ap then return false end
+        if not ok or not ap then return false end
         clickAt(ap.X + (dx or 18), ap.Y + (dy or 10))
         return true
     end
@@ -15918,7 +12492,7 @@ if not ok or not ap then return false end
         local ab = sg and sg:FindFirstChild("ActivateButton")
         if not ab then return false end
         local ok, ap = pcall(function() return ab.AbsolutePosition end)
-if not ok or not ap then return false end
+        if not ok or not ap then return false end
         clickAt(ap.X + 40, ap.Y + 8)
         return true
     end
@@ -15993,7 +12567,50 @@ if not ok or not ap then return false end
         return
     end
 
+    
+    
+    
     local tunnelBearCooldown, kingBeetleCooldown, crabCooldown = 0, 0, 0
+
+     
+     
+     
+     
+ 
+ 
+ 
+Nav.findStinger = function()
+    local roots = {}
+    local coll = Workspace:FindFirstChild("Collectibles")
+    if coll then roots[#roots + 1] = coll end
+    roots[#roots + 1] = Workspace
+    local hrp = getHRP()
+    local me = hrp and hrp.Position
+    local best, bestD = nil, math.huge
+    for _, root in ipairs(roots) do
+        local ok, kids = pcall(function() return root:GetChildren() end)
+        if ok and kids then
+            for _, tok in ipairs(kids) do
+                local tn = string.lower(tostring(tok.Name or ""))
+                 
+                local decor = string.find(tn, "sign", 1, true) or string.find(tn, "icon", 1, true)
+                    or string.find(tn, "sound", 1, true)
+                if not decor and string.find(tn, "sting", 1, true) then
+                    local p = getPartPos(tok)
+                    if p then
+                        local d = 0
+                        if me then d = Vector3.new(p.X - me.X, 0, p.Z - me.Z).Magnitude end
+                        if d < bestD then
+                            bestD = d
+                            best = { part = tok, pos = p }
+                        end
+                    end
+                end
+            end
+        end
+    end
+    return best
+end
 
 Nav.findMonster = function(pattern)
     local pat = string.lower(tostring(pattern or ""))
@@ -16003,40 +12620,618 @@ Nav.findMonster = function(pattern)
     if mon then roots[#roots + 1] = mon end
     local bees = Workspace:FindFirstChild("Bees")
     if bees then roots[#roots + 1] = bees end
-    roots[#roots + 1] = Workspace
+     
+     
+     
     for _, root in ipairs(roots) do
         local ok, kids = pcall(function() return root:GetChildren() end)
-if ok and kids then
+        if ok and kids then
             for _, m in ipairs(kids) do
                 local n = string.lower(tostring(m.Name or ""))
                 local decor = string.find(n, "lair", 1, true) or string.find(n, "door", 1, true)
                     or string.find(n, "sign", 1, true) or string.find(n, "gate", 1, true)
-                if not decor and string.find(n, pat, 1, true) and getPartPos(m) then return m end
+                if not decor and string.find(n, pat, 1, true) and getPartPos(m) then
+                     
+                    local live = false
+                    pcall(function()
+                        live = m:FindFirstChild("HumanoidRootPart") ~= nil
+                            or m:FindFirstChildOfClass("Humanoid") ~= nil
+                    end)
+                    if live then return m end
+                end
             end
         end
     end
     return nil
 end
 
-    local function checkBossOnCooldown(bossName)
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+    Nav.bossRespawn = function(bossName)
+        local pat = string.lower(tostring(bossName or ""))
+        if pat == "" then return nil end
+        local cache = Nav._bossTimerCache
+        if not cache then cache = {}; Nav._bossTimerCache = cache end
+        local now = tick()
+        local hit = cache[pat]
+        if hit and now - hit.at < 1 then return hit.secs, hit.txt end
+
+        local secs, txt = nil, nil
         local spawners = Workspace:FindFirstChild("MonsterSpawners")
         if spawners then
-            for _, s in ipairs(spawners:GetChildren()) do
-                if string.find(string.lower(s.Name), string.lower(bossName), 1, true) then
-                    for _, desc in ipairs(s:GetDescendants()) do
+            local ok, kids = pcall(function() return spawners:GetChildren() end)
+            for _, s in ipairs((ok and kids) or {}) do
+                 
+                 
+                local typeName = ""
+                pcall(function()
+                    local mt = s:FindFirstChild("MonsterType")
+                    if mt and type(mt.Value) == "string" then typeName = mt.Value end
+                end)
+                local typeLower = string.lower(typeName)
+                local partLower = string.lower(tostring(s.Name or ""))
+                local isMine = (typeLower ~= "" and string.find(typeLower, pat, 1, true) ~= nil)
+                    or string.find(partLower, pat, 1, true) ~= nil
+                if isMine then
+                    local okDesc, descs = pcall(function() return s:GetDescendants() end)
+                    for _, desc in ipairs((okDesc and descs) or {}) do
                         if desc.ClassName == "TextLabel" then
                             local t = safeText(desc)
-
-                            local num, unit = string.match(t, "(%d+)%s*([hms])")
-                            if num and unit then
-                                return true, t
+                            local head = nil
+                            if typeLower ~= "" then
+                                local _, he = string.find(string.lower(t), typeLower .. ":", 1, true)
+                                head = he
                             end
+                            if head then
+                                local clock = string.sub(t, head + 1)
+                                local total = nil
+                                 
+                                for num, unit in string.gmatch(clock, "(%d+)%s*([hms])") do
+                                    local n = tonumber(num) or 0
+                                    total = (total or 0)
+                                    if unit == "h" then total = total + n * 3600
+                                    elseif unit == "m" then total = total + n * 60
+                                    else total = total + n end
+                                end
+                                 
+                                 
+                                 
+                                 
+                                if not total then
+                                    local parts = string.match(clock, "([%d:]+)%s*$")
+                                    if parts then
+                                        local groups, count = {}, 0
+                                        for g in string.gmatch(parts, "%d+") do
+                                            count = count + 1
+                                            groups[count] = tonumber(g) or 0
+                                        end
+                                        if count >= 1 and count <= 4 then
+                                            local mult = { 1, 60, 3600, 86400 }
+                                            total = 0
+                                            for i = 1, count do
+                                                total = total + groups[count - i + 1] * mult[i]
+                                            end
+                                        end
+                                    end
+                                end
+                                if total then
+                                    secs = total
+                                    txt = (string.gsub(clock, "^%s+", ""))
+                                end
+                            else
+                                 
+                                 
+                                 
+                                secs, txt = 0, nil
+                            end
+                            break
                         end
                     end
                 end
+                if secs ~= nil then break end
             end
         end
-        return false, nil
+        cache[pat] = { at = now, secs = secs, txt = txt }
+        return secs, txt
+    end
+
+     
+     
+    Nav.bossStatus = function(pattern)
+        local pat = string.lower(tostring(pattern or ""))
+        if pat == "" then return "-" end
+        local cache = Nav._bossTimerCache
+        if not cache then cache = {}; Nav._bossTimerCache = cache end
+        local now = tick()
+        local key = "s:" .. pat
+        local hit = cache[key]
+        if hit and now - hit.at < 1 then return hit.txt end
+        local txt
+        if Nav.findMonster(pat) then
+            txt = "up"
+        else
+            local secs, raw = Nav.bossRespawn(pat)
+            if secs and secs > 0 then
+                txt = raw and tostring(raw) or "cooling"
+            elseif secs then
+                txt = "ready"
+            else
+                txt = "-"
+            end
+        end
+        cache[key] = { at = now, txt = txt }
+        return txt
+    end
+
+     
+     
+     
+    local function checkBossOnCooldown(bossName)
+        local secs, txt = Nav.bossRespawn(bossName)
+        if secs and secs > 0 then return true, txt, secs end
+        return false, txt, 0
+    end
+
+     
+     
+     
+     
+     
+    Nav.bossRetry = function(secs)
+        return math.min(math.max(tonumber(secs) or 60, 5), 120)
+    end
+
+     
+     
+     
+     
+     
+     
+     
+     
+    Nav.miscToys = {
+        { key = "honeystorm", label = "Summon Honeystorm", cd = 4 * 3600,
+          at = Vector3.new(234.2, 35.2, 163.3), toy = "Honeystorm" },
+        { key = "sprout", label = "Summon Special Sprout", cd = 16 * 3600,
+          at = Vector3.new(-269.1, 28.5, 265.8), toy = "Sprout Summoner" },
+        { key = "coconut", label = "Use Coconut Dispenser", cd = 4 * 3600,
+          at = Vector3.new(-177.8, 74.4, 531.2), toy = "Coconut Dispenser",
+          needsCrab = true },
+        { key = "blueberry", label = "Use Blueberry Dispenser", cd = 4 * 3600,
+          at = Vector3.new(309.2, 6.0, 135.9), toy = "Blueberry Dispenser" },
+        { key = "strawberry", label = "Use Strawberry Dispenser", cd = 4 * 3600,
+          at = Vector3.new(-319.9, 47.9, 272.2), toy = "Strawberry Dispenser" },
+        { key = "redbooster", label = "Use Red Field Booster", cd = 45 * 60,
+          at = Vector3.new(-317.0, 22.0, 241.9), toy = "Red Field Booster" },
+        { key = "bluebooster", label = "Use Blue Field Booster", cd = 45 * 60,
+          at = Vector3.new(271.2, 59.5, 84.3), toy = "Blue Field Booster" },
+        { key = "treat", label = "Use Treat Dispenser", cd = 60 * 60,
+          at = Vector3.new(192.6, 69.7, -122.7), toy = "Treat Dispenser" },
+        { key = "fieldbooster", label = "Use Field Booster", cd = 45 * 60,
+          at = Vector3.new(-35.0, 177.8, -188.6), toy = "Field Booster" },
+         
+         
+        { key = "meteor", label = "Use Mythic Meteor Shower", cd = 22 * 3600,
+          at = Vector3.new(-449.4, 118.6, 49.7), toy = "Mythic Meteor Shower",
+          travel = "tween" },
+        { key = "honeydispenser", label = "Use Honey Dispenser", cd = 60 * 60,
+          at = Vector3.new(46.0, 6.9, 321.1), toy = "Honey Dispenser" },
+         
+         
+         
+         
+         
+         
+         
+         
+         
+        { key = "glue", label = "Use Glue Dispenser", cd = 22 * 3600,
+          resetAfter = true,
+          steps = {
+            standard = {
+              { at = Vector3.new(271.9, 25258.3, -722.2), teleport = true, pressE = true },
+            },
+            hybrid = {
+              { at = Vector3.new(14.6, 94.0, 485.8), tween = true },
+              { active = "Gumdrops" },
+              { awaitRide = true, at = Vector3.new(271.3, 25258.3, -722.9), tween = true },
+              { toy = "Glue Dispenser" },
+            },
+          } },
+    }
+
+     
+     
+    Nav.miscState = {}
+    Nav.crabKilled = false
+
+    Nav.hmsText = function(secs)
+        secs = math.max(0, math.floor(tonumber(secs) or 0))
+        local h = math.floor(secs / 3600)
+        local m = math.floor((secs % 3600) / 60)
+        local s = secs % 60
+        if h > 0 then return string.format("%dh %dm", h, m) end
+        if m > 0 then return string.format("%dm %ds", m, s) end
+        return tostring(s) .. "s"
+    end
+
+     
+     
+    Nav.crabUp = function()
+        local mon = Workspace:FindFirstChild("Monsters")
+        if not mon then return false end
+        local ok, kids = pcall(function() return mon:GetChildren() end)
+        for _, m in ipairs((ok and kids) or {}) do
+            local n = string.lower(tostring(m.Name or ""))
+            if (string.find(n, "coconut", 1, true) or string.find(n, "crab", 1, true)) and getPartPos(m) then
+                return true
+            end
+        end
+        return false
+    end
+
+     
+     
+    Nav.usePromptAt = function(pos, radius)
+        pcall(function() Nav.firePromptNear(pos, radius or 30) end)
+        pcall(function() keypress(0x45) end)
+        task.wait(0.06)
+        pcall(function() keyrelease(0x45) end)
+        task.wait(0.25)
+    end
+
+     
+     
+     
+    Nav.hardTeleport = function(pos)
+        local hrp = getHRP()
+        if not hrp then return false end
+        pcall(function() Nav.noclipTravel(true) end)
+        for _ = 1, 2 do
+            pcall(function()
+                local h = getHRP()
+                if h then
+                    h.CFrame = CFrame.new(pos.X, pos.Y, pos.Z)
+                    h.AssemblyLinearVelocity = Vector3.new(0, 0, 0)
+                    h.Velocity = Vector3.new(0, 0, 0)
+                end
+            end)
+            task.wait(0.2)
+        end
+        pcall(function() Nav.noclipTravel(false) end)
+        local after = getHRP()
+        return after ~= nil and (after.Position - pos).Magnitude <= 14
+    end
+
+     
+     
+     
+     
+    Nav.awaitRide = function(before, timeout)
+        timeout = tonumber(timeout) or 20
+        local deadline = tick() + timeout
+        while tick() < deadline do
+            if not isOn() then return false end
+            local hrp = getHRP()
+            if not hrp then return false end
+            local moved = (hrp.Position - before).Magnitude > 400
+            if moved or hrp.Position.Y > 1000 then
+                task.wait(0.4)
+                return true
+            end
+            task.wait(0.25)
+        end
+        return false
+    end
+
+     
+     
+     
+     
+    Nav.miscTravel = function(step, label)
+        if step.teleport then
+            return Nav.hardTeleport(step.at)
+        end
+        local here = getHRP()
+        if step.awaitRide and here then
+            if Nav.awaitRide(here.Position, 20) then
+                here = getHRP()
+                 
+                 
+                if here and (here.Position - step.at).Magnitude <= 8 then return true end
+            end
+        elseif not step.tween then
+            if Nav.nodeTravel(step.at, label, 5) then return true end
+             
+             
+        end
+        local dist = here and (here.Position - step.at).Magnitude or 200
+         
+         
+        local speed = math.max(tonumber(S.glide_speed) or 120, math.min(900, dist / 20))
+        return Nav.tweenTravel(step.at, speed, 5, label)
+    end
+
+    Nav.miscRun = function(entry)
+        local steps = entry.steps and (S.hybrid and entry.steps.hybrid or entry.steps.standard)
+        if not steps then
+            local glide = entry.travel == "tween"
+            if S.hybrid then
+                steps = { { at = entry.at, tween = glide }, { toy = entry.toy } }
+            else
+                steps = { { at = entry.at, pressE = true, tween = glide } }
+            end
+        end
+        for _, step in ipairs(steps) do
+            if not isOn() then return false end
+            if step.at then
+                local label = entry.label .. " travel"
+                local ok = Nav.miscTravel(step, label)
+                if not ok and not getHRP() then return false end
+                task.wait(0.25)
+            end
+            if step.toy then
+                fireEvent("ToyEvent", step.toy)
+                task.wait(0.4)
+            end
+            if step.active then
+                fireEvent("PlayerActivesCommand", { Name = step.active })
+                task.wait(0.4)
+            end
+            if step.pressE and step.at then
+                Nav.usePromptAt(step.at)
+            end
+        end
+         
+         
+         
+         
+         
+        if entry.resetAfter and type(Nav.resetCharacter) == "function" then
+            for _ = 1, 12 do
+                if Nav.resetCharacter(entry.label) then break end
+                if not isOn() then break end
+                task.wait(2)
+            end
+        end
+        return true
+    end
+
+     
+     
+    Nav.miscStep = function()
+        if not isOn() then return end
+        local now = tick()
+        for _, entry in ipairs(Nav.miscToys) do
+            if S.misc and S.misc[entry.key] and now >= (tonumber(Nav.miscState[entry.key]) or 0) then
+                 
+                 
+                if entry.needsCrab and not Nav.crabKilled and Nav.crabUp() then
+                    S.misc_status = entry.label .. ": kill the Coconut Crab first"
+                    return
+                end
+                status = "Misc: " .. entry.label
+                if Nav.miscRun(entry) then
+                    Nav.miscState[entry.key] = tick() + entry.cd
+                    S.misc_status = entry.label .. " done, ready again in " .. Nav.hmsText(entry.cd)
+                else
+                     
+                     
+                    Nav.miscState[entry.key] = tick() + 30
+                    S.misc_status = entry.label .. ": retrying"
+                end
+                 
+                 
+                return true
+            end
+        end
+    end
+
+     
+     
+     
+     
+    Nav.bossTravel = function(pos, arrive, label)
+        if not pos then return false end
+        if S.travel_mode == "Tween" then
+            return Nav.tweenTravel(pos, S.glide_speed, arrive or 6, label or "Boss travel")
+        end
+        return Nav.go(pos, S.glide_speed, arrive or 6, label or "Boss travel")
+    end
+
+     
+     
+     
+     
+    Nav.goField = function(name, point, speed, label)
+        local legs = name and Nav.legRoutes and Nav.legRoutes[name]
+        if legs and S.travel_mode ~= "Tween" then
+            local done = Nav.walkLegs(legs, label or ("To " .. tostring(name)), 3.5, { viaHive = true })
+            if not done and not isOn() then return false end
+            if point then
+                return Nav.walk(point, { arrive = 4, timeout = 25, label = label or "Field centre" })
+            end
+            return done
+        end
+        return Nav.go(point, speed, 3, label or "Travel")
+    end
+
+     
+     
+    Nav.spawnHits = function(stopFlag)
+        return task.spawn(function()
+            while stopFlag.running and isOn() do
+                combatHit()
+                task.wait(0.2)
+            end
+        end)
+    end
+
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+    local Watch = {
+        fails = 0, resets = 0, lastReset = 0,
+        lastPos = nil, stillSince = nil, onReset = nil,
+        offsets = nil, offsetTried = false, busy = false,
+    }
+
+    Watch.humanoidOffsets = function()
+        if Watch.offsetTried then return Watch.offsets end
+        Watch.offsetTried = true
+        pcall(function()
+            local get = game.HttpGet
+            if type(get) ~= "function" then get = HttpGet end
+            if type(get) ~= "function" then return end
+            local version = getrbxversion and getrbxversion() or nil
+            if type(version) ~= "string" or version == "" then return end
+            local body = get(game, "https://offsets.imtheo.lol/" .. version .. "/offsets.json")
+            if type(body) ~= "string" or body == "" then return end
+            local decoded = HttpService and HttpService:JSONDecode(body) or nil
+             
+             
+            local classes = decoded and (decoded.Offsets or decoded)
+            local hum = classes and classes.Humanoid
+            if type(hum) == "table" and tonumber(hum.Health) then
+                Watch.offsets = hum
+            end
+        end)
+        return Watch.offsets
+    end
+
+    Watch.fail = function(what)
+        Watch.fails = Watch.fails + 1
+        status = "Watchdog: " .. tostring(what) .. " failed " .. Watch.fails .. "/2"
+        if Watch.fails < 2 then return false end
+        return Watch.reset(what)
+    end
+
+     
+     
+     
+    Watch.reset = function(what, force)
+        if Watch.busy then return false end
+        if not force and tick() - Watch.lastReset < 25 then return false end
+        Watch.busy = true
+        Watch.lastReset = tick()
+        Watch.fails = 0
+        Watch.resets = Watch.resets + 1
+        status = "Watchdog: reset after " .. tostring(what)
+        pcall(function() Nav.release() end)
+        pcall(function() if Nav.stopSpeedWrite then Nav.stopSpeedWrite() end end)
+
+        local oldChar = lp.Character
+        local killed = false
+        pcall(function()
+            local hum = getHum()
+            local base = hum and hum.Address
+            local offsets = base and Watch.humanoidOffsets() or nil
+            local write = Nav.memWriter and Nav.memWriter() or nil
+            local healthOffset = offsets and tonumber(offsets.Health) or nil
+            if write and base and healthOffset and healthOffset > 0 then
+                write(base + healthOffset, 0)
+                killed = true
+            end
+        end)
+        if not killed then
+            pcall(function()
+                local hum = getHum()
+                if hum then hum.Health = 0 end
+            end)
+        end
+        task.wait(0.8)
+        local died = false
+        pcall(function()
+            local c = lp.Character
+            local h = c and c:FindFirstChildOfClass("Humanoid")
+            died = (h == nil) or (h.Health <= 0) or (c ~= oldChar)
+        end)
+        if not died then
+             
+             
+            pcall(function()
+                if not rbxActive() then return end
+                setrobloxinput(true)
+                keypress(0x1B); task.wait(0.12); keyrelease(0x1B)
+                task.wait(0.55)
+                keypress(0x52); task.wait(0.12); keyrelease(0x52)
+                task.wait(0.55)
+                keypress(0x0D); task.wait(0.12); keyrelease(0x0D)
+            end)
+        end
+
+        local deadline = tick() + 22
+        while isOn() and tick() < deadline do
+            local character = lp.Character
+            local hum = character and character:FindFirstChildOfClass("Humanoid")
+            if character ~= oldChar and hum and hum.Health > 0 then
+                task.wait(1.2)
+                break
+            end
+            task.wait(0.25)
+        end
+        Watch.lastPos = nil
+        Watch.stillSince = nil
+        if type(Watch.onReset) == "function" then pcall(Watch.onReset) end
+        Watch.busy = false
+        status = "Watchdog: back at hive, retrying"
+        return true
+    end
+
+     
+     
+     
+    Watch.tick = function(farming)
+        local hrp = getHRP()
+        local now = tick()
+        if not hrp or not farming then
+            Watch.lastPos = nil
+            Watch.stillSince = nil
+            return
+        end
+        local pos = hrp.Position
+        if not Watch.lastPos or (pos - Watch.lastPos).Magnitude > 3 then
+            Watch.lastPos = pos
+            Watch.stillSince = now
+            return
+        end
+        if Watch.stillSince == nil then Watch.stillSince = now; return end
+        if now - Watch.stillSince > 8 then
+            Watch.lastPos = nil
+            Watch.stillSince = nil
+            Watch.fail("stuck")
+        end
+    end
+
+    if _G then _G.__lolcatWatch = Watch end
+
+     
+     
+     
+     
+     
+    Nav.resetCharacter = function(label)
+        return Watch.reset(label or "reset", true)
     end
 
     local function killTunnelBear()
@@ -16044,70 +13239,222 @@ end
         if tick() < tunnelBearCooldown then return end
 
         status = "Combat: checking Tunnel Bear"
-        local startPos = Vector3.new(380, 15, -45)
-        local endPos   = Vector3.new(515, 15, -45)
+         
+         
+         
+        local tunnelFloor = Vector3.new(281.4, 6.3, -44.4)
+        local activatePos = Vector3.new(380.6, 6.3, -45.7)
+        local portalPos   = Vector3.new(548.6, 6.6, -48.9)
 
         local tb = Nav.findMonster("tunnel")
         if not tb then
-            local onCd, txt = checkBossOnCooldown("Tunnel")
+            local onCd, txt, secs = checkBossOnCooldown("Tunnel")
             if onCd then
-                status = "Tunnel Bear: " .. tostring(txt)
-                tunnelBearCooldown = tick() + 60
+                 
+                 
+                status = "Tunnel Bear respawns in " .. tostring(txt)
+                tunnelBearCooldown = tick() + Nav.bossRetry(secs)
                 return
             end
-            moveToVelocity(startPos, S.glide_speed, 4)
-            task.wait(0.3)
+             
+             
+             
+            local tunnelLegs = Nav.legRoutes["Tunnel Bear"]
+            local climbLegs = {}
+            for index = 1, 11 do climbLegs[index] = tunnelLegs[index] end
+            Nav.walkLegs(climbLegs, "Tunnel Bear travel", 3.5, { viaHive = true })
+            if not getHRP() then return end
+            status = "Tunnel Bear: dropping in"
+            Nav.tweenTravel(Vector3.new(281.6, 6.3, -45.0),
+                math.max(tonumber(S.glide_speed) or 120, 120), 3, "Tunnel drop")
+            if not getHRP() then return end
+             
+             
+            status = "Tunnel Bear: activating"
+            Nav.walk(activatePos, { arrive = 3.5, timeout = 30, label = "Tunnel Bear activate" })
+            pcall(function() Nav.firePromptNear(activatePos, 22) end)
+            task.wait(0.4)
             local tWait = tick()
-            while isOn() and tick() - tWait < 4 do
+            while isOn() and tick() - tWait < 6 do
                 tb = Nav.findMonster("tunnel")
                 if tb then break end
                 task.wait(0.2)
             end
         end
 
-        if not tb then tunnelBearCooldown = tick() + 45; return end
+        if not tb then
+            tunnelBearCooldown = tick() + 45
+            Watch.fail("tunnel bear")
+            return
+        end
 
         status = "Combat: fighting Tunnel Bear"
-        local dl = tick() + 120
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+        local swing = { running = true }
+        Nav.spawnHits(swing)
+        local dl = tick() + 240
         local lastSeen = tick()
+        local laneMinX, laneMaxX = 300, 990
+        local dir, dirSet = 1, false
         while isOn() and tick() < dl do
-            local alive = false
-            pcall(function() alive = tb.Parent ~= nil end)
-if not alive then
+            if not (tb and tb.Parent) then
                 tb = Nav.findMonster("tunnel")
                 if not tb then break end
             end
             local bp2 = getPartPos(tb)
             local hrp2 = getHRP()
-            if bp2 then
+            if bp2 and hrp2 then
                 lastSeen = tick()
-                if not hrp2 or (bp2 - hrp2.Position).Magnitude > 10 then
-                    moveToVelocity(bp2 + Vector3.new(0, 6, 0), S.glide_speed, 3)
+                local here = hrp2.Position
+                local gap = math.abs(bp2.X - here.X) + math.abs(bp2.Z - here.Z)
+                if not dirSet then
+                     
+                    dirSet = true
+                    if bp2.X <= here.X then
+                        dir = ((laneMaxX - here.X) >= 60) and 1 or -1
+                    else
+                        dir = ((here.X - laneMinX) >= 60) and -1 or 1
+                    end
+                elseif (bp2.X - here.X) * dir > 0 then
+                     
+                     
+                    if (dir > 0 and (here.X - laneMinX) > 60) or (dir < 0 and (laneMaxX - here.X) > 60) then
+                        dir = -dir
+                    end
+                end
+                local stepLen
+                if gap < 22 then
+                    stepLen = 18            
+                elseif gap > 34 then
+                    stepLen = 4             
+                else
+                    stepLen = 7             
+                end
+                local stepX = math.clamp(here.X + dir * stepLen, laneMinX, laneMaxX)
+                if math.abs(stepX - here.X) < 1.5 then
+                     
+                     
+                    task.wait(0.2)
+                else
+                    Nav.walk(Vector3.new(stepX, here.Y, here.Z), {
+                        arrive = 3, timeout = 4, label = "Tunnel Bear kite",
+                    })
+                     
+                     
+                    if gap >= 22 then task.wait(0.18) end
                 end
                 combatHit()
             end
-            if tick() - lastSeen > 6 then break end
-            task.wait(0.12)
+            if tick() - lastSeen > 8 then break end
+            task.wait(0.05)
+        end
+        swing.running = false
+
+         
+         
+        if Nav.findMonster("tunnel") then
+            status = "Tunnel Bear: still alive"
+            tunnelBearCooldown = tick() + 12
+            return
         end
 
         status = "Looting Tunnel Bear"
         tunnelBearCooldown = tick() + 60
-        local lootEnd = tick() + 8
+         
+         
+         
+         
+         
+        local lootEnd = tick() + 12
         while isOn() and tick() < lootEnd do
-            moveToVelocity(endPos, 85, 4)
-            combatHit()
             local coll = Workspace:FindFirstChild("Collectibles")
-            if coll then
-                for _, tok in ipairs(coll:GetChildren()) do
+            local hrp3 = getHRP()
+            local best, bestD = nil, 1e9
+            if coll and hrp3 then
+                local okKids, kids = pcall(function() return coll:GetChildren() end)
+                for _, tok in ipairs((okKids and kids) or {}) do
                     local p = getPartPos(tok)
-                    if p and p.X >= 360 and p.X <= 530 and math.abs(p.Z - (-45)) <= 30 then
-                        moveToVelocity(Vector3.new(p.X, 15, p.Z), 95, 2)
+                    if p and p.X >= 290 and p.X <= 1010 and math.abs(p.Z + 48) <= 22 then
+                        local d = (p - hrp3.Position).Magnitude
+                        if d <= 24 then pcall(function() Nav.touchToken(tok) end) end
+                        if d < bestD then bestD = d; best = p end
                     end
                 end
             end
-            moveToVelocity(startPos, 85, 4)
-            task.wait(0.1)
+            if not best then break end
+            if bestD > 7 then
+                Nav.walk(Vector3.new(best.X, best.Y + 1, best.Z), {
+                    arrive = 6, timeout = 3, label = "Tunnel loot",
+                })
+            else
+                task.wait(0.08)
+            end
         end
+
+         
+         
+         
+        status = "Tunnel Bear: leaving"
+        if S.hybrid then
+            Nav.walk(portalPos, { arrive = 4, timeout = 35, label = "Tunnel portal" })
+            pcall(function()
+                local events = game:GetService("ReplicatedStorage"):FindFirstChild("Events")
+                local toy = events and events:FindFirstChild("ToyEvent")
+                if toy then toy:FireServer("Tunnel Portal") end
+            end)
+        else
+             
+             
+            local padPos, padPart = portalPos, nil
+            pcall(function()
+                local toys = Workspace:FindFirstChild("Toys")
+                local model = toys and toys:FindFirstChild("Tunnel Portal")
+                local platform = model and (model:FindFirstChild("Platform") or model.PrimaryPart)
+                local p = platform and platform.Position
+                if p then padPos, padPart = p, platform end
+            end)
+            Nav.walk(Vector3.new(padPos.X, padPos.Y + 3, padPos.Z), {
+                arrive = 3, timeout = 40, label = "Tunnel exit pad",
+            })
+             
+             
+            local tryEnd = tick() + 8
+            while isOn() and tick() < tryEnd do
+                local hrp4 = getHRP()
+                if not hrp4 then break end
+                local near = (Vector3.new(hrp4.Position.X, padPos.Y, hrp4.Position.Z)
+                    - Vector3.new(padPos.X, padPos.Y, padPos.Z)).Magnitude <= 4
+                if near then
+                    pcall(function() Nav.firePromptNear(padPos, 24) end)
+                    pcall(function()
+                        if padPart and type(firetouchinterest) == "function" then
+                            firetouchinterest(hrp4, padPart, 0)
+                            firetouchinterest(hrp4, padPart, 1)
+                        end
+                    end)
+                    pcall(function() keypress(0x45) end)
+                    task.wait(0.12)
+                    pcall(function() keyrelease(0x45) end)
+                    task.wait(0.25)
+                    local after = getHRP()
+                    if not after or (after.Position - padPos).Magnitude > 60 then break end
+                else
+                    Nav.walk(Vector3.new(padPos.X, padPos.Y + 3, padPos.Z), {
+                        arrive = 3, timeout = 6, label = "Tunnel exit pad",
+                    })
+                end
+            end
+        end
+        task.wait(1.2)
     end
 
     local function killKingBeetle()
@@ -16115,99 +13462,323 @@ if not alive then
         if tick() < kingBeetleCooldown then return end
 
         status = "Combat: checking King Beetle"
-        local entrance = Vector3.new(-220, 4, 200)
+         
+         
+        local entrance = Vector3.new(194.3, 4.1, 172.0)
 
         local kb = Nav.findMonster("king beetle") or Nav.findMonster("king")
         if not kb then
-            local onCd, txt = checkBossOnCooldown("King")
+            local onCd, txt, secs = checkBossOnCooldown("King")
             if onCd then
-                status = "King Beetle: " .. tostring(txt)
-                kingBeetleCooldown = tick() + 60
+                 
+                 
+                status = "King Beetle respawns in " .. tostring(txt)
+                kingBeetleCooldown = tick() + Nav.bossRetry(secs)
                 return
             end
-            moveToVelocity(entrance, S.glide_speed, 4)
+            Nav.walkLegs(Nav.legRoutes["King Beetle"], "King Beetle travel", 3.5, { viaHive = true })
             task.wait(0.4)
             local tWait = tick()
-            while isOn() and tick() - tWait < 4 do
+            while isOn() and tick() - tWait < 5 do
                 kb = Nav.findMonster("king beetle") or Nav.findMonster("king")
                 if kb then break end
                 task.wait(0.2)
             end
         end
 
-        if not kb then kingBeetleCooldown = tick() + 45; return end
+        if not kb then
+            kingBeetleCooldown = tick() + 45
+            Watch.fail("king beetle")
+            return
+        end
 
         status = "Combat: fighting King Beetle"
-        local dl = tick() + 120
+         
+         
+         
+        local ring = {
+            Vector3.new(132, 5, 160),
+            Vector3.new(232, 5, 160),
+            Vector3.new(232, 5, 220),
+            Vector3.new(132, 5, 220),
+            Vector3.new(122, 5, 180),
+            Vector3.new(242, 5, 180),
+            Vector3.new(182, 5, 240),
+            Vector3.new(182, 5, 150),
+        }
+        local swing = { running = true }
+        Nav.spawnHits(swing)
+        local dl = tick() + 240
         local lastSeen = tick()
+        local ringIndex = 1
         while isOn() and tick() < dl do
             local alive = false
             pcall(function() alive = kb.Parent ~= nil end)
-if not alive then
+            if not alive then
                 kb = Nav.findMonster("king beetle") or Nav.findMonster("king")
                 if not kb then break end
             end
             local bp2 = getPartPos(kb)
-            local hrp2 = getHRP()
             if bp2 then
                 lastSeen = tick()
-                if not hrp2 or (bp2 - hrp2.Position).Magnitude > 10 then
-                    moveToVelocity(bp2 + Vector3.new(0, 6, 0), S.glide_speed, 3)
+                local hrp2 = getHRP()
+                if not hrp2 or (bp2 - hrp2.Position).Magnitude > 60 then
+                    Nav.bossTravel(ring[ringIndex], 8, "King Beetle ring")
+                    ringIndex = (ringIndex % #ring) + 1
+                else
+                    Nav.bossTravel(ring[ringIndex], 8, "King Beetle ring")
+                    ringIndex = (ringIndex % #ring) + 1
                 end
                 combatHit()
             end
             if tick() - lastSeen > 6 then break end
             task.wait(0.12)
         end
+        swing.running = false
 
         status = "Looting King Beetle"
         kingBeetleCooldown = tick() + 60
-        local lootEnd = tick() + 7
+         
+         
+        local lootEnd = tick() + 5
         while isOn() and tick() < lootEnd do
             local coll = Workspace:FindFirstChild("Collectibles")
-            if coll then
+            local hrp3 = getHRP()
+            local best, bestD = nil, 1e9
+            if coll and hrp3 then
                 for _, tok in ipairs(coll:GetChildren()) do
                     local p = getPartPos(tok)
-                    if p and math.abs(p.X - (-220)) <= 40 and math.abs(p.Z - 200) <= 40 then
-                        moveToVelocity(Vector3.new(p.X, 4, p.Z), 85, 2)
+                    if p and p.X >= 90 and p.X <= 265 and p.Z >= 100 and p.Z <= 265 then
+                        local d = (p - hrp3.Position).Magnitude
+                        if d < bestD then bestD = d; best = p end
                     end
                 end
             end
-            moveToVelocity(entrance, 75, 3)
-            task.wait(0.1)
+            if best then
+                Nav.walk(Vector3.new(best.X, best.Y + 1, best.Z), {
+                    arrive = 2.5, timeout = 6, label = "Beetle loot",
+                })
+            else
+                task.wait(0.15)
+            end
         end
+
+        Nav.walkLegs(Nav.legRoutes["King Beetle Return"], "King Beetle return", 3.5)
     end
 
+    
+    
+    
     local function killCoconutCrab()
         if not getHRP() then return end
         if tick() < crabCooldown then return end
 
-        local crab = nil
-        local monsters = Workspace:FindFirstChild("Monsters")
-        if monsters then
-            for _, m in ipairs(monsters:GetChildren()) do
-                if string.find(string.lower(m.Name), "coconut", 1, true) then crab = m; break end
+         
+         
+         
+         
+         
+        local function findCrab()
+            local mon = Workspace:FindFirstChild("Monsters")
+            if not mon then return nil end
+            local ok2, kids = pcall(function() return mon:GetChildren() end)
+            for _, m in ipairs((ok2 and kids) or {}) do
+                local n = string.lower(tostring(m.Name or ""))
+                if string.find(n, "coconut", 1, true) or string.find(n, "crab", 1, true) then
+                    if getPartPos(m) then return m end
+                end
             end
+            return nil
         end
-        if not crab then crabCooldown = tick() + 120; return end
 
-        local mp = getPartPos(crab)
-        if not mp then return end
+         
+         
+         
+         
+         
+        local crabCd, crabCdText, crabCdSecs = checkBossOnCooldown("Coconut")
+        if crabCd and not findCrab() then
+            status = "Coconut Crab respawns in " .. tostring(crabCdText)
+            crabCooldown = tick() + Nav.bossRetry(crabCdSecs)
+            return
+        end
 
+         
+         
+         
+         
+         
+         
+        local prevTravel = S.travel_mode
+        S.travel_mode = "Tween"
+
+         
+         
+         
+         
+         
+        local fieldMid = Vector3.new(-254, 98.8, 469)
+        local HOLD_Y = 115
+
+         
+         
+        status = "Coconut Crab: travelling"
+        local hrp = getHRP()
+        if hrp and (hrp.Position - fieldMid).Magnitude > 120 then
+            Nav.bossTravel(Vector3.new(fieldMid.X, HOLD_Y, fieldMid.Z), 8, "Crab field")
+        end
+        status = "Coconut Crab: at the field"
+        task.wait(2)
+
+         
+         
+        local crab = findCrab()
+        local waitEnd = tick() + 60
+        while isOn() and not crab and tick() < waitEnd do
+            status = "Coconut Crab: waiting for spawn"
+             
+            Nav.bossTravel(Vector3.new(fieldMid.X, HOLD_Y, fieldMid.Z), 3, "Crab hold")
+            task.wait(0.4)
+            crab = findCrab()
+        end
+
+        if not crab then
+            status = "Coconut Crab: not spawned"
+            S.travel_mode = prevTravel
+            crabCooldown = tick() + 90
+            return
+        end
+
+         
         status = "Combat: Coconut Crab"
-        moveToVelocity(mp + Vector3.new(0, 4, 0), S.glide_speed, 4)
+         
+         
+         
+         
+        local hoverRun = true
+        task.spawn(function()
+            while hoverRun and isOn() do
+                local h = getHRP()
+                if h then
+                    local hp0 = h.Position
+                     
+                     
+                     
+                    if math.abs(hp0.Y - HOLD_Y) > 0.12 then
+                        pcall(function()
+                            h.Position = Vector3.new(hp0.X, HOLD_Y, hp0.Z)
+                        end)
+                    end
+                    pcall(function()
+                        local v = h.AssemblyLinearVelocity
+                        if v and v.Y < -0.2 then
+                            h.AssemblyLinearVelocity = Vector3.new(v.X, 0, v.Z)
+                        end
+                    end)
+                end
+                task.wait(0.03)
+            end
+        end)
 
-        local t0 = tick()
-        while isOn() and tick() - t0 < 25 do
-            if not (crab and crab.Parent) then break end
-            local cur = getPartPos(crab)
-            local ch = getHRP()
-            if ch and cur and (cur - ch.Position).Magnitude > 14 then
-                moveToVelocity(cur + Vector3.new(0, 4, 0), S.glide_speed, 4)
+         
+         
+        local dl = tick() + 1200
+        local crabPos = getPartPos(crab)
+        local goneTicks = 0
+        while isOn() and tick() < dl do
+             
+             
+             
+             
+            local liveCrab = findCrab()
+            if liveCrab then
+                goneTicks = 0
+                crabPos = getPartPos(liveCrab) or crabPos
+            else
+                goneTicks = goneTicks + 1
+                if goneTicks >= 10 then break end
+            end
+            local me = getHRP()
+            if me then
+                 
+                 
+                 
+                local hazard = nil
+                local hcoll = Workspace:FindFirstChild("Collectibles")
+                if hcoll then
+                    local okH, hkids = pcall(function() return hcoll:GetChildren() end)
+                    for _, ho in ipairs((okH and hkids) or {}) do
+                        local hn = string.lower(tostring(ho.Name or ""))
+                        if string.find(hn, "coconut", 1, true) or string.find(hn, "rocket", 1, true) then
+                            local hpos = getPartPos(ho)
+                            if hpos and (Vector3.new(hpos.X, 0, hpos.Z)
+                                - Vector3.new(me.Position.X, 0, me.Position.Z)).Magnitude <= 45 then
+                                hazard = hpos
+                                break
+                            end
+                        end
+                    end
+                end
+                if hazard then
+                    status = "Coconut Crab: dodging"
+                    local awayH = Vector3.new(me.Position.X - hazard.X, 0, me.Position.Z - hazard.Z)
+                    if awayH.Magnitude < 1 then awayH = Vector3.new(1, 0, 0) end
+                    awayH = awayH.Unit
+                    Nav.bossTravel(Vector3.new(
+                        me.Position.X + awayH.X * 34, HOLD_Y,
+                        me.Position.Z + awayH.Z * 34), 2, "Crab dodge")
+                else
+                    status = "Combat: Coconut Crab"
+                     
+                    local want = crabPos and Vector3.new(crabPos.X, HOLD_Y, crabPos.Z)
+                        or Vector3.new(fieldMid.X, HOLD_Y, fieldMid.Z)
+                    if (Vector3.new(me.Position.X, 0, me.Position.Z)
+                        - Vector3.new(want.X, 0, want.Z)).Magnitude > 3 then
+                        Nav.bossTravel(want, 2, "Crab hover")
+                    end
+                end
             end
             combatHit()
-            task.wait(0.2)
+            task.wait(0.1)
         end
+        hoverRun = false
+         
+         
+        Nav.crabKilled = true
+
+         
+         
+        status = "Coconut Crab: collecting tokens"
+        local lootEnd = tick() + 30
+        local fieldFloor = Vector3.new(-254, 90, 469)
+        while isOn() and tick() < lootEnd do
+            local coll = Workspace:FindFirstChild("Collectibles")
+            local me2 = getHRP()
+            local best, bestD = nil, 1e9
+            if coll and me2 then
+                local okKids, kids = pcall(function() return coll:GetChildren() end)
+                for _, tok in ipairs((okKids and kids) or {}) do
+                    local p = getPartPos(tok)
+                    if p and (p - fieldFloor).Magnitude <= 90 then
+                        local d = (p - me2.Position).Magnitude
+                        if d <= 30 then pcall(function() Nav.touchToken(tok) end) end
+                        if d < bestD then bestD = d; best = p end
+                    end
+                end
+            end
+            if not best or bestD <= 7 then
+                task.wait(0.12)
+            else
+                 
+                 
+                 
+                 
+                Nav.walk(Vector3.new(best.X, best.Y + 1, best.Z), {
+                    arrive = 5, timeout = 4, label = "Crab loot",
+                })
+            end
+        end
+        S.travel_mode = prevTravel
         crabCooldown = tick() + 300
     end
 
@@ -16222,7 +13793,10 @@ if not alive then
             local vb = Nav.findMonster("vicious")
             if vb then
                 status = "Combat: Vicious Bee"
-
+                 
+                 
+                 
+                 
                 local coll = Workspace:FindFirstChild("Collectibles")
                 local beePos = getPartPos(vb)
                 local hrp = getHRP()
@@ -16243,10 +13817,30 @@ if not alive then
 
                 local dl = tick() + 90
                 local lastSeen = tick()
+                local orbitStep = 0
+                 
+                 
+                 
+                 
+                local function orbitY(x, z, beeY)
+                    local base = (beeY or 60) + 4
+                    local gy, hit = Nav.groundAt(x, z, base)
+                    if gy and hit then
+                        local inst = hit.Instance
+                        local par = inst and inst.Parent
+                         
+                         
+                        if par and (par.Name == "Monsters" or par.Name == "Bees") then
+                            gy = Nav.groundAt(x, z, base + 30)
+                        end
+                    end
+                    if gy then return gy + 2 end
+                    return beeY or 60
+                end
                 while isOn() and tick() < dl do
                     local alive = false
                     pcall(function() alive = vb.Parent ~= nil end)
-if not alive then
+                    if not alive then
                         vb = Nav.findMonster("vicious")
                         if not vb then break end
                     end
@@ -16254,8 +13848,45 @@ if not alive then
                     local hrp2 = getHRP()
                     if mp then
                         lastSeen = tick()
-                        if not hrp2 or (mp - hrp2.Position).Magnitude > 12 then
-                            moveToVelocity(mp + Vector3.new(0, 8, 0), S.glide_speed, 3)
+                         
+                         
+                         
+                         
+                         
+                         
+                         
+                        local ORBIT_R = 16
+                        local me = hrp2 and hrp2.Position or mp
+                         
+                         
+                         
+                        local underMe = Nav.groundAt(me.X, me.Z, mp.Y + 4)
+                        if underMe and me.Y < (underMe - 5) then
+                            Nav.walk(Vector3.new(me.X, underMe + 2, me.Z),
+                                { arrive = 2.5, timeout = 5, label = "Vicious recover" })
+                            hrp2 = getHRP()
+                            me = hrp2 and hrp2.Position or me
+                        end
+                        local away = Vector3.new(me.X - mp.X, 0, me.Z - mp.Z)
+                        local gap = away.Magnitude
+                        local dir = (gap > 0.1 and away.Unit) or Vector3.new(1, 0, 0)
+                        local side = Vector3.new(-dir.Z, 0, dir.X)
+                        local targetPos
+                        orbitStep = orbitStep + 1
+                        if gap > ORBIT_R + 8 then
+                            local tx, tz = mp.X + dir.X * ORBIT_R, mp.Z + dir.Z * ORBIT_R
+                            targetPos = Vector3.new(tx, orbitY(tx, tz, mp.Y), tz)
+                        elseif orbitStep % 2 == 0 then
+                            local tx, tz = mp.X + side.X * (ORBIT_R + 2), mp.Z + side.Z * (ORBIT_R + 2)
+                            targetPos = Vector3.new(tx, orbitY(tx, tz, mp.Y), tz)
+                        else
+                            local tx, tz = me.X + side.X * 8 + dir.X * 3, me.Z + side.Z * 8 + dir.Z * 3
+                            targetPos = Vector3.new(tx, orbitY(tx, tz, mp.Y), tz)
+                        end
+                        if S.travel_mode == "Tween" then
+                            Nav.tweenTravel(targetPos, S.glide_speed, 2, "Vicious orbit")
+                        else
+                            Nav.walk(targetPos, { arrive = 3, timeout = 3, label = "Vicious orbit" })
                         end
                         combatHit()
                         pcall(function()
@@ -16263,36 +13894,247 @@ if not alive then
                             local tool = ch and ch:FindFirstChildOfClass("Tool")
                             if tool then tool:Activate() end
                         end)
-end
+                    end
                     if tick() - lastSeen > 6 then break end
                     task.wait(0.12)
                 end
                 status = "Combat: Vicious down"
+                 
+                 
+                local vHold = tick() + 5
+                while isOn() and tick() < vHold do
+                    local coll5 = Workspace:FindFirstChild("Collectibles")
+                    local h5 = getHRP()
+                    if coll5 and h5 then
+                        for _, tok5 in ipairs(coll5:GetChildren()) do
+                            local tp5 = getPartPos(tok5)
+                            if tp5 and (tp5 - h5.Position).Magnitude <= 20 then
+                                pcall(function() Nav.touchToken(tok5) end)
+                            end
+                        end
+                    end
+                    task.wait(0.2)
+                end
+            else
+                 
+                 
+                 
+                 
+                local st = Nav.findStinger()
+                if st then
+                    status = "Vicious stinger: heading to it"
+                    local gy = Nav.groundAt(st.pos.X, st.pos.Z, st.pos.Y + 4)
+                    local ty = (gy and gy + 2) or st.pos.Y
+                    Nav.walk(Vector3.new(st.pos.X, ty, st.pos.Z),
+                        { arrive = 2.5, timeout = 12, label = "Vicious stinger" })
+                    pcall(function() Nav.touchToken(st.part) end)
+                    local hNow = getHRP()
+                    if hNow and (Vector3.new(hNow.Position.X, 0, hNow.Position.Z)
+                        - Vector3.new(st.pos.X, 0, st.pos.Z)).Magnitude <= 4 then
+                         
+                         
+                        task.wait(0.15)
+                        pcall(function() Nav.touchToken(st.part) end)
+                    end
+                    S.vicious_cd = tick() + 2
+                    task.wait(0.4)
+                else
+                     
+                     
+                    local vCd, vTxt, vSecs = checkBossOnCooldown("Vicious")
+                    if vCd then
+                        status = "Vicious Bee respawns in " .. tostring(vTxt)
+                        S.vicious_cd = tick() + Nav.bossRetry(vSecs)
+                    elseif tick() >= (S.vicious_cd or 0) then
+                        status = "Vicious Bee: no stinger on the field"
+                        S.vicious_cd = tick() + 30
+                    end
+                end
             end
         end
 
-        if S.kill_mondo and isOn() then
-            if getField("Mountain Top Field") then
-                local monsters = Workspace:FindFirstChild("Monsters")
-                local mondo = monsters and monsters:FindFirstChild("Mondo Chick")
-                if mondo and mondo:FindFirstChildWhichIsA("BasePart") then
+        if S.kill_mondo and isOn() and tick() >= (S.mondo_cd or 0) then
+             
+             
+             
+             
+             
+             
+            local summoner = Vector3.new(83, 181, -170)
+            local chick = Nav.findMonster("mondo")
+            local cp = chick and getPartPos(chick)
+             
+             
+             
+            if not cp then
+                local mCd, mTxt, mSecs = checkBossOnCooldown("Mondo")
+                if mCd and (mSecs or 0) > 45 then
+                    status = "Mondo Chick respawns in " .. tostring(mTxt)
+                    S.mondo_cd = tick() + Nav.bossRetry(mSecs)
+                    return
+                end
+            end
+            local hrpM = getHRP()
+            if hrpM then
+                if (hrpM.Position - (cp or summoner)).Magnitude > 60 then
+                    status = "Mondo Chick: to Mountain Top"
+                    Nav.bossTravel((cp or summoner) + Vector3.new(0, 8, 0), 12, "Mondo travel")
+                end
+
+                 
+                 
+                if not cp then
+                    local waitTop = tick() + 12
+                    while isOn() and tick() < waitTop do
+                        status = "Mondo Chick: waiting at Mountain Top"
+                        task.wait(0.4)
+                        chick = Nav.findMonster("mondo")
+                        cp = chick and getPartPos(chick)
+                        if cp then break end
+                    end
+                end
+
+                if not cp then
+                    status = "Mondo Chick: not spawned"
+                    S.mondo_cd = tick() + 60
+                else
                     status = "Combat: Mondo Chick"
-                    local mp = mondo.PrimaryPart or mondo:FindFirstChildWhichIsA("BasePart")
-                    local mpPos = getPartPos(mp)
-                    if mpPos then
-                        moveToVelocity(mpPos + Vector3.new(0, 15, 0), S.glide_speed, 4)
-                        local t0 = tick()
-                        while isOn() and tick() - t0 < 20 do
-                            if not (mondo and mondo.Parent) then break end
+                     
+                     
+                     
+                    local killEnd = tick() + 900
+                    while isOn() and tick() < killEnd do
+                        local c2 = Nav.findMonster("mondo")
+                        if not c2 then break end
+                        local me2 = getHRP()
+                        if not me2 then
+                            status = "Mondo Chick: waiting for respawn"
+                            local wEnd = tick() + 25
+                            while isOn() and tick() < wEnd and not getHRP() do
+                                task.wait(0.5)
+                            end
+                            local c3 = Nav.findMonster("mondo")
+                            local p3 = c3 and getPartPos(c3)
+                            if p3 then
+                                Nav.bossTravel(p3 + Vector3.new(0, 10, 0), 16, "Mondo return")
+                            end
+                            task.wait(0.4)
+                        else
+                            local p2 = getPartPos(c2)
+                            if p2 then
+                                local flatMe = Vector3.new(me2.Position.X, 0, me2.Position.Z)
+                                local flatC = Vector3.new(p2.X, 0, p2.Z)
+                                local away = flatMe - flatC
+                                local gap = away.Magnitude
+                                local dir = (gap > 0.1 and away.Unit) or Vector3.new(1, 0, 0)
+                                 
+                                 
+                                 
+                                 
+                                if gap < 40 then
+                                     
+                                     
+                                    local side = Vector3.new(-dir.Z, 0, dir.X)
+                                    Nav.walk(Vector3.new(
+                                        flatC.X + dir.X * 54 + side.X * 10, me2.Position.Y,
+                                        flatC.Z + dir.Z * 54 + side.Z * 10), {
+                                        arrive = 6, timeout = 5, label = "Mondo spacing",
+                                    })
+                                elseif gap > 60 then
+                                     
+                                     
+                                    Nav.walk(Vector3.new(
+                                        flatC.X + dir.X * 45, me2.Position.Y,
+                                        flatC.Z + dir.Z * 45), {
+                                        arrive = 5, timeout = 5, label = "Mondo approach",
+                                    })
+                                end
+                            end
+                             
+                             
+                            local coll2 = Workspace:FindFirstChild("Collectibles")
+                            if coll2 then
+                                local okKids2, kids2 = pcall(function() return coll2:GetChildren() end)
+                                for _, tok2 in ipairs((okKids2 and kids2) or {}) do
+                                    local tp2 = getPartPos(tok2)
+                                    if tp2 and (tp2 - me2.Position).Magnitude <= 30 then
+                                        pcall(function() Nav.touchToken(tok2) end)
+                                    end
+                                end
+                            end
                             combatHit()
-                            task.wait(0.2)
+                        end
+                        task.wait(0.12)
+                    end
+
+                     
+                     
+                     
+                     
+                     
+                     
+                    if S.mondo_loot ~= false then
+                        status = "Mondo Chick: collecting tokens"
+                        local lootEnd = tick() + 30
+                        while isOn() and tick() < lootEnd do
+                            local me3 = getHRP()
+                            if not me3 then break end
+                            local coll = Workspace:FindFirstChild("Collectibles")
+                            local best, bestD = nil, 1e9
+                            if coll then
+                                local okKids, kids = pcall(function() return coll:GetChildren() end)
+                                for _, tok in ipairs((okKids and kids) or {}) do
+                                    local p3 = getPartPos(tok)
+                                    if p3 and (p3 - summoner).Magnitude <= 160 then
+                                        local d3 = (p3 - me3.Position).Magnitude
+                                        if d3 <= 26 then pcall(function() Nav.touchToken(tok) end) end
+                                        if d3 < bestD then bestD = d3; best = p3 end
+                                    end
+                                end
+                            end
+                            if not best or bestD <= 5 then
+                                 
+                                 
+                                local hold = tick() + 5
+                                while isOn() and tick() < hold do
+                                    local h2 = getHRP()
+                                    local coll2 = Workspace:FindFirstChild("Collectibles")
+                                    if h2 and coll2 then
+                                        for _, tok in ipairs(coll2:GetChildren()) do
+                                            local tp = getPartPos(tok)
+                                            if tp and (tp - h2.Position).Magnitude <= 12 then
+                                                pcall(function() Nav.touchToken(tok) end)
+                                            end
+                                        end
+                                    end
+                                    task.wait(0.2)
+                                end
+                                break
+                            end
+                            Nav.walk(Vector3.new(best.X, best.Y + 1, best.Z), {
+                                arrive = 2.5, timeout = 6, label = "Mondo loot",
+                            })
+                            local after = getHRP()
+                            local coll3 = Workspace:FindFirstChild("Collectibles")
+                            if after and coll3 then
+                                for _, tok in ipairs(coll3:GetChildren()) do
+                                    local tp = getPartPos(tok)
+                                    if tp and (tp - after.Position).Magnitude <= 14 then
+                                        pcall(function() Nav.touchToken(tok) end)
+                                    end
+                                end
+                            end
                         end
                     end
+                    S.mondo_cd = tick() + 600
                 end
             end
         end
     end
 
+    
+    
+    
     HiveTool.prompt = function()
         local clicked = false
         pcall(function()
@@ -16303,7 +14145,7 @@ end
                     local t = string.lower(safeText(obj))
                     if string.find(t, "claim", 1, true) or t == "yes" or string.find(t, "confirm", 1, true) then
                         local ap = try(function() return obj.AbsolutePosition end)
-if ap then
+                        if ap then
                             clickAt(ap.X + 18, ap.Y + 8)
                             clicked = true
                             return
@@ -16317,13 +14159,13 @@ if ap then
             local yes = box and box:FindFirstChild("YesButton")
             if yes then
                 local ap = try(function() return yes.AbsolutePosition end)
-if ap then
+                if ap then
                     clickAt(ap.X + 18, ap.Y + 8)
                     clicked = true
                 end
             end
         end)
-return clicked
+        return clicked
     end
 
     HiveTool.claim = function()
@@ -16351,19 +14193,19 @@ return clicked
             if myHive then break end
             if S.hybrid then
                 pcall(function() fireEvent("ClaimHive", hive) end)
-end
+            end
             Nav.firePromptOn(hive)
             Nav.firePromptNear(anchor, 18)
             pcall(function()
                 local cd = hive:FindFirstChildWhichIsA("ClickDetector", true)
                 if cd then fireclickdetector(cd) end
             end)
-pcall(function()
+            pcall(function()
                 keypress(0x45)
                 task.wait(0.06)
                 keyrelease(0x45)
             end)
-task.wait(0.45)
+            task.wait(0.45)
             HiveTool.prompt()
             task.wait(0.45)
             autoDetectHiveInstant()
@@ -16379,11 +14221,19 @@ task.wait(0.45)
         return false
     end
 
+     
+     
+     
+     
+     
+     
+     
+     
     Nav.hivePromptText = function()
         local ok, pg = pcall(function() return lp:FindFirstChildOfClass("PlayerGui") end)
-if not ok or not pg then return "" end
+        if not ok or not pg then return "" end
         local ok2, list = pcall(function() return pg:GetChildren() end)
-if not ok2 or not list then return "" end
+        if not ok2 or not list then return "" end
         for _, sg in ipairs(list) do
             local ab = sg:FindFirstChild("ActivateButton")
             local tx = ab and ab:FindFirstChild("TextBox")
@@ -16400,13 +14250,14 @@ if not ok2 or not list then return "" end
             local fired = false
             if ev then
                 fired = pcall(function() ev:FireServer("ToggleHoneyMaking") end)
-end
+            end
             if not fired then
                 fired = pcall(function()
                     RS.Events.PlayerHiveCommand:FireServer("ToggleHoneyMaking")
                 end)
-end
-
+            end
+             
+             
             if not fired then
                 if type(setrobloxinput) == "function" then pcall(setrobloxinput, true) end
                 pcall(function()
@@ -16414,10 +14265,13 @@ end
                     task.wait(0.05)
                     keyrelease(0x45)
                 end)
-end
+            end
             return fired
         end
-
+         
+         
+         
+         
         if making then return true end
         if type(setrobloxinput) == "function" then pcall(setrobloxinput, true) end
         pcall(function()
@@ -16425,7 +14279,7 @@ end
             task.wait(0.05)
             keyrelease(0x45)
         end)
-return true
+        return true
     end
 
     local function convertAtHive()
@@ -16436,6 +14290,9 @@ return true
         collecting = false
         status = "Going to hive"
 
+         
+         
+         
         local target = nil
         for attempt = 1, 3 do
             if not pp then
@@ -16454,6 +14311,9 @@ return true
         end
         if not pp or not target then task.wait(1); needSprinkler = true; return end
 
+         
+         
+         
         local function ask(force)
             if S.hybrid then
                 Nav.hiveMakeHoney(force)
@@ -16468,13 +14328,16 @@ return true
                 task.wait(0.05)
                 keyrelease(0x45)
             end)
-task.wait(0.6)
+            task.wait(0.6)
             if string.find(Nav.hivePromptText(), "Stop Making Honey", 1, true) then return end
             pcall(clickActivateButton)
         end
 
         status = S.hybrid and "Converting (hive command)" or "Converting (E)"
-
+         
+         
+         
+         
         S.dig.converting = true
         local convOk, convErr = pcall(function()
             ask(false)
@@ -16492,6 +14355,9 @@ task.wait(0.6)
                     lastDrop = tick()
                 end
 
+                 
+                 
+                 
                 if asked < 8 and p and (tick() - lastDrop) >= RETRY_AFTER
                     and (tick() - lastAsk) >= RETRY_AFTER then
                     local making = string.find(Nav.hivePromptText(), "Stop Making Honey", 1, true) ~= nil
@@ -16499,62 +14365,107 @@ task.wait(0.6)
                         asked = asked + 1
                         lastAsk = tick()
                         status = S.hybrid and "Re-sending hive command" or "Re-pressing E"
-
+                         
+                         
                         local hrp = getHRP()
                         if hrp and (hrp.Position - target).Magnitude > 6 then
                             Nav.nodeTravel(target, "Back to hive pad", 3)
                         end
                         ask(true)
                     else
-
+                         
+                         
                         lastDrop = tick()
                     end
                 end
                 task.wait(0.5)
             end
         end)
-S.dig.converting = false
+        S.dig.converting = false
         if not convOk then
             status = "Convert error: " .. tostring(convErr)
         end
 
+         
+         
         local after = getPollenAndCap()
         if after and after > 0 then
             S.dig.convCooldown = tick() + 45
             status = "Convert failed - retry in 45s"
         else
             S.dig.convCooldown = 0
-
+             
+             
+             
+             
+             
+             
+             
             if S.balloon_convert ~= false then
                 pcall(function()
                     status = "Bag empty - converting balloons"
                     local bStart = tick()
                     local bCount, bPollen = Nav.hiveBalloons(target, 35)
                     if bCount > 0 then
-
-                        local sig, still, lastLeft = nil, 0, bPollen
-                        while isOn() and (tick() - bStart) < 15 do
+                        local lastLeft = bPollen
+                        local flat, asks, lastAsk = 0, 0, 0
+                        local drained = false
+                         
+                         
+                         
+                        while isOn() and (tick() - bStart) < 150 do
                             local c, left = Nav.hiveBalloons(target, 35)
-                            if c <= 0 then break end
-                            if bPollen > 0 and left <= 0 then break end
-                            lastLeft = left
-                            local key = tostring(c) .. ":" .. tostring(math.floor(left))
-                            if key == sig then
-                                still = still + 1
-                                if still >= 8 then break end
-                            else
-                                still = 0
-                                sig = key
+                            if c <= 0 then
+                                drained = true
+                                break
                             end
+
+                            if lastLeft and left < lastLeft then
+                                flat = 0
+                                status = string.format("Converting balloon - %.2fB left", left / 1e9)
+                            else
+                                flat = flat + 1
+                            end
+                            lastLeft = left
+
+                             
+                             
+                             
+                             
+                             
+                            if flat >= 20 and asks < 6 then
+                                asks = asks + 1
+                                lastAsk = tick()
+                                local hrp = getHRP()
+                                if hrp and (hrp.Position - target).Magnitude > 6 then
+                                     
+                                     
+                                    status = "Back to hive pad for balloon"
+                                    Nav.nodeTravel(target, "Back to hive pad", 3)
+                                end
+                                if not string.find(Nav.hivePromptText(), "Stop Making Honey", 1, true) then
+                                    status = "Restarting hive for balloon"
+                                    Nav.hiveMakeHoney(true)
+                                end
+                                flat = 10
+                                task.wait(0.6)
+                            end
+
+                             
+                             
+                            if flat >= 40 then break end
                             task.wait(0.5)
                         end
-                        if (lastLeft or 0) > 0 then
+
+                        if drained then
+                            status = "Balloon converted - back to field in 5s"
+                        elseif (lastLeft or 0) > 0 then
                             status = string.format("Balloon left %.2fB - back to field in 5s", lastLeft / 1e9)
                         end
                     end
                 end)
-end
-            if not string.find(tostring(status), "Balloon left", 1, true) then
+            end
+            if not string.find(tostring(status), "Balloon", 1, true) then
                 status = "Bag empty - back to field in 5s"
             end
             task.wait(5)
@@ -16570,8 +14481,7 @@ end
             keypress(0x52); task.wait(0.1); keyrelease(0x52); task.wait(0.3)
             keypress(0x0D); task.wait(0.1); keyrelease(0x0D); task.wait(2)
         end)
-
-local dl = tick() + 15
+        local dl = tick() + 15
         while isOn() and tick() < dl do
             if getHRP() then break end
             task.wait(0.3)
@@ -16583,15 +14493,45 @@ local dl = tick() + 15
         needSprinkler = true
     end
 
+     
+     
+     
+    Watch.onReset = function()
+        needSprinkler = true
+        collecting = false
+        forceReturn = false
+        currentField = nil
+    end
+
+     
+     
+     
     bg(function()
+        while true do
+            pcall(function()
+                Watch.tick(collecting == true and S.dig.converting == false and S.farm_on == true)
+            end)
+            task.wait(1)
+        end
+    end)
+
+    
+    
+    
+
+    bg(function()   
         while true do
             pcall(function()
                 if isOn() and collecting then autoDigCursorFree() end
             end)
-task.wait(0.12)
+            task.wait(0.12)
         end
     end)
-bg(function()
+
+     
+     
+     
+    bg(function()
         while true do
             pcall(function()
                 if not S.hybrid and S.dig_tool and S.farm_on and FeaturesActive
@@ -16599,10 +14539,14 @@ bg(function()
                     autoDigCursorFree()
                 end
             end)
-task.wait(0.05)
+            task.wait(0.05)
         end
     end)
-S.face.field = function()
+
+     
+     
+     
+    S.face.field = function()
         if currentField then return currentField end
         local now = tick()
         if S.face.fieldCache and (now - S.face.fieldAt) < 2 then return S.face.fieldCache end
@@ -16620,8 +14564,12 @@ S.face.field = function()
         return best
     end
 
+     
+     
+     
+     
     S.face.resolve = function()
-        if not (S.face_balloons or S.face_bubbles or S.face_center) then
+        if not (S.face_balloons or S.face_bubbles or S.face_center or S.face_flame) then
             S.face.mode = "off"
             return nil
         end
@@ -16646,6 +14594,17 @@ S.face.field = function()
                 return pp
             end
         end
+        if S.face_flame then
+             
+             
+             
+            local flame = findNearestFlame(field)
+            local fp = flame and getPartPos(flame)
+            if fp and (fp - pos).Magnitude <= 250 then
+                S.face.mode = "flame"
+                return fp
+            end
+        end
         if S.face_center and field then
             S.face.mode = "field middle"
             return field.Position
@@ -16654,11 +14613,18 @@ S.face.field = function()
         return nil
     end
 
+     
+     
+     
+     
+     
     bg(function()
         local FACEERR = 0
         local function faceFrame()
             local okF, errF = pcall(function()
-
+                 
+                 
+                 
                 if not S.farm_on or not currentField then
                     S.face.target, facingTarget = nil, nil
                     return
@@ -16670,7 +14636,9 @@ S.face.field = function()
                 end
 
                 local now = tick()
-
+                 
+                 
+                 
                 if now - S.face.resolvedAt >= 0.2 then
                     S.face.resolvedAt = now
                     S.face.target = S.face.resolve()
@@ -16684,24 +14652,28 @@ S.face.field = function()
                     restoreFacing()
                 end
             end)
-if not okF then
+            if not okF then
                 FACEERR = FACEERR + 1
                 if FACEERR <= 5 then warn("[face] " .. tostring(errF)) end
             end
         end
 
+         
+         
+         
         local rs = try(function() return game:GetService("RunService") end)
-
-local conn = nil
+        local conn = nil
         if rs and rs.Heartbeat then
             local okC, c = pcall(function() return rs.Heartbeat:Connect(function()
                 S.face.lastTick = tick()
                 faceFrame()
             end) end)
-if okC and c then conn = c end
+            if okC and c then conn = c end
         end
         S.face.driver = conn and "heartbeat" or "task"
-
+         
+         
+         
         while true do
             if not S.face.lastTick or (tick() - S.face.lastTick) > 0.4 then
                 S.face.lastTick = tick()
@@ -16711,11 +14683,12 @@ if okC and c then conn = c end
         end
     end)
 
-local initialRoutineDone = false
+    local initialRoutineDone = false
     local farmCycleStart = 0
     local nextCombatCheck = 0
     local FARMERR = 0
-
+    
+    
     local lastBeat = 0
 
     bg(function()
@@ -16724,11 +14697,12 @@ local initialRoutineDone = false
             task.wait(0.5)
         end
     end)
-bg(function()
+
+    bg(function()   
         while true do
             local okS, errS = pcall(function()
             lastBeat = tick()
-            if not S.farm_on then
+            if not Engine.anyFeatureOn() then
                 collecting = false
                 initialRoutineDone = false
                 farmCycleStart = 0
@@ -16762,6 +14736,11 @@ bg(function()
                         status = "Routine: bosses"
                         S.combat_now = false
                         doBossCombat()
+                    end
+
+                    if S.misc_any and isOn() then
+                        status = "Routine: misc"
+                        if Nav.miscStep() then needSprinkler = true end
                     end
 
                     if (S.auto_polar_quests or S.polar_only) and isOn() then
@@ -16816,6 +14795,10 @@ bg(function()
                         needSprinkler = true
                     end
 
+                    
+                    
+                    
+                    
                     local combatWanted = S.kill_beetle or S.kill_bear or S.kill_vicious or S.kill_mondo or S.kill_crab
                     if combatWanted and isOn() and (S.combat_now or tick() >= nextCombatCheck) then
                         S.combat_now = false
@@ -16825,15 +14808,27 @@ bg(function()
                         needSprinkler = true
                     end
 
-                    if S.nectar_farm and isOn() then
+                     
+                     
+                    if S.misc_any and isOn() then
+                        if Nav.miscStep() then needSprinkler = true end
+                    end
 
+                    if S.nectar_farm and isOn() then
+                         
                         nectarStep()
                     end
 
-                    local field = getField(S.field)
+                    local field = S.farm_on and getField(S.field) or nil
                     currentField = field
 
-                    if not field then
+                    if not S.farm_on then
+                         
+                         
+                         
+                        collecting = false
+                        task.wait(0.05)
+                    elseif not field then
                         status = "Zone not found"
                         task.wait(1)
                     else
@@ -16852,15 +14847,19 @@ bg(function()
                                 local farmMode = MODE_INDEX[S.farm_mode] or 2
                                 local closeR = S.close_r or 12
                                 local standY = groundY(field) + 2
-
-                                local travelPoint = Vector3.new(c.X, groundY(field) + 5, c.Z)
+                                 
+                                 
+                                 
+                                 
+                                local travelPoint = Vector3.new(c.X, groundY(field) + ((S.travel_mode == "Tween") and 18 or 5), c.Z)
 
                                 if not inField(hrp.Position, field, 28) then
                                     status = "Returning to field"
-                                    Nav.go(travelPoint, S.glide_speed, 3, "Return to field")
+                                    Nav.goField(S.field, travelPoint, S.glide_speed, "Return to field")
                                     local afterWalk = getHRP()
                                     if not afterWalk or not inField(afterWalk.Position, field, 28) then
                                         status = "Travel failed: " .. tostring(S.field)
+                                        Watch.fail("field travel")
                                         task.wait(1)
                                         return
                                     end
@@ -16876,7 +14875,8 @@ bg(function()
                                     needSprinkler = false
                                 end
                                 if maySprink then
-
+                                     
+                                     
                                     status = "Placing sprinklers"
                                     if autoSprink then
                                         local shownTier = detectSprinklerTier() or lastSprinkTier
@@ -16896,7 +14896,7 @@ bg(function()
                                                 keypress(0x20); task.wait(0.05); keyrelease(0x20); task.wait(0.2)
                                                 keypress(0x31); task.wait(0.05); keyrelease(0x31); task.wait(0.4)
                                             end)
-end
+                                        end
                                     end
 
                                     if placed then
@@ -16910,10 +14910,11 @@ end
 
                                 if not inField(hrp.Position, field, 10) then
                                     status = "Going to field"
-                                    Nav.go(travelPoint, S.glide_speed, 4, "Go to field")
+                                    Nav.goField(S.field, travelPoint, S.glide_speed, "Go to field")
                                     local nearWalk = getHRP()
                                     if not nearWalk or not inField(nearWalk.Position, field, 10) then
                                         status = "Travel failed: " .. tostring(S.field)
+                                        Watch.fail("field travel")
                                         task.wait(1)
                                         return
                                     end
@@ -16924,6 +14925,8 @@ end
                                 status = "Farming " .. S.field
                                 autoDigCursorFree()
 
+                                
+                                
                                 local extraPos = nil
                                 local extraToken = false
                                 if S.farm_under_balloons then
@@ -16950,6 +14953,8 @@ end
                                     extraToken = true
                                 end
 
+                                
+                                
                                 if S.convert_balloon then
                                     local b = findClosestBalloon(field)
                                     if b and (b.Position - hrp.Position).Magnitude <= 18 then
@@ -16958,12 +14963,26 @@ end
                                     end
                                 end
 
+                                 
+                                 
+                                 
+                                 
+                                 
                                 local mpos = nil
                                 if S.mark_target == true then
                                     mpos = Nav.preciseMarkTarget(field)
                                 end
                                 if mpos then
-
+                                     
+                                     
+                                     
+                                     
+                                     
+                                     
+                                     
+                                     
+                                     
+                                     
                                     local fc = field.Position
                                     local fhx = math.max(field.Size.X / 2 - 3, 1)
                                     local fhz = math.max(field.Size.Z / 2 - 3, 1)
@@ -16979,7 +14998,9 @@ end
                                         autoDigCursorFree()
                                         local here = getHRP()
                                         if not here then break end
-
+                                         
+                                         
+                                         
                                         if not inField(here.Position, field, 3) then break end
                                         local done = mpos
                                         Nav.markDone(done)
@@ -16988,7 +15009,32 @@ end
                                         mpos = Nav.preciseMarkTarget(field)
                                     end
                                 elseif S.collect_duped ~= false and Nav.collectDupedToken(field, standY) then
+                                     
+                                end
 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                local prio = Nav.priorityToken(field)
+                                if prio then
+                                    status = "Priority token: " .. tostring(prio.name)
+                                    Nav.walk(Vector3.new(prio.pos.X, standY, prio.pos.Z), { arrive = 2.2, timeout = 9 })
+                                    local ph = getHRP()
+                                    if ph then
+                                        local onIt = (Vector3.new(ph.Position.X, 0, ph.Position.Z)
+                                            - Vector3.new(prio.pos.X, 0, prio.pos.Z)).Magnitude <= 4
+                                        pcall(function() Nav.touchToken(prio.part) end)
+                                        if onIt then
+                                             
+                                             
+                                            task.wait(0.12)
+                                            pcall(function() Nav.touchToken(prio.part) end)
+                                        end
+                                    end
+                                    autoDigCursorFree()
                                 end
 
                                 if extraPos then
@@ -17015,7 +15061,8 @@ end
                                     farmFieldTurnStep(field, farmMode == 1 and closeR or nil)
                                 end
                             else
-
+                                
+                                
                                 status = "Waiting for character"
                                 task.wait(0.3)
                             end
@@ -17024,7 +15071,10 @@ end
                 end
             end
             end)
-if not okS then
+            
+            
+            
+            if not okS then
                 FARMERR = FARMERR + 1
                 if FARMERR <= 5 then warn("[farm] " .. tostring(errS)) end
                 status = "Error: " .. tostring(errS)
@@ -17032,7 +15082,11 @@ if not okS then
             task.wait(0.05)
         end
     end)
-Engine.S      = S
+
+    
+    
+    
+    Engine.S      = S
     Engine.fields = zoneNames
     Engine.isOn   = isOn
     Engine.nectarTypes    = NECTAR_TYPES
@@ -17049,22 +15103,16 @@ Engine.S      = S
             N.status = "Nectar needs Hybrid input"
             if _G.__lolcatNectarRow then
                 pcall(function() _G.__lolcatNectarRow:Set(false) end)
-end
+            end
             pcall(function() Lib:Notify("Nectars", "Restart in Hybrid mode from the loader", 3, "warn") end)
-return
+            return
         end
         S.nectar_farm = v and true or false
         if not S.nectar_farm then
             N.status = "Off"
         else
-
-            if not S.farm_on then
-                S.farm_on = true
-                needSprinkler = true
-                if _G.__lolcatAutoFarmRow then
-                    pcall(function() _G.__lolcatAutoFarmRow:Set(true) end)
-end
-            end
+             
+             
             N.status = "Starting"
         end
     end
@@ -17096,9 +15144,12 @@ end
     Engine.uiOpen = function() return S.dig.uiOpen end
 
     Engine.status = function()
-
+        
+        
         if lastBeat == 0 or (tick() - lastBeat) > 2 then return "Engine thread NOT running" end
-        if not S.farm_on then return "Off" end
+         
+         
+        if not Engine.anyFeatureOn() then return "Off" end
         if not FeaturesActive then return "Paused (menu open)" end
         if not isAlive() then return "Waiting for character" end
         return status
@@ -17106,8 +15157,41 @@ end
 
     Engine.hiveName = function() return myHive and myHive.Name or "None" end
 
-    Engine.movement = function()
+     
+     
+     
+    Engine.bossTimer = function(pattern) return Nav.bossStatus(pattern) end
 
+    Engine.miscList = function() return Nav.miscToys end
+    Engine.miscStatus = function() return S.misc_status or "Off" end
+
+     
+     
+    Engine.miscReady = function(key)
+        Nav._miscReady = Nav._miscReady or {}
+        local now = tick()
+        local hit = Nav._miscReady[key]
+        if hit and now - hit.at < 1 then return hit.txt end
+        local left = (tonumber(Nav.miscState[key]) or 0) - now
+        local txt = (left > 0) and Nav.hmsText(left) or "ready"
+        Nav._miscReady[key] = { at = now, txt = txt }
+        return txt
+    end
+
+    Engine.setMisc = function(key, v)
+        S.misc[key] = v and true or false
+        local any = false
+        for _, entry in ipairs(Nav.miscToys) do
+            if S.misc[entry.key] then any = true; break end
+        end
+        S.misc_any = any
+         
+         
+    end
+
+    Engine.movement = function()
+        
+        
         if tick() - lastMoveAt > 1.5 then return "Idle" end
         return lastMoveMode
     end
@@ -17142,7 +15226,7 @@ end
 
     Engine.execState = function()
         if lastBeat == 0 or (tick() - lastBeat) > 2 then return "Engine thread NOT running" end
-        return (S.farm_on and isAlive()) and "Active" or "Idle"
+        return (Engine.anyFeatureOn() and isAlive()) and "Active" or "Idle"
     end
 
     Engine.onFarmToggle = function(v)
@@ -17158,14 +15242,9 @@ end
 
     Engine.onCombatToggle = function(v)
         if not v then return end
-
-        if not S.farm_on then
-            S.farm_on = true
-            needSprinkler = true
-            if _G.__lolcatAutoFarmRow then
-                pcall(function() _G.__lolcatAutoFarmRow:Set(true) end)
-end
-        end
+         
+         
+         
         S.combat_now = true
     end
 
@@ -17183,30 +15262,59 @@ end
         bg(function()
             HiveTool.claim()
         end)
-end
+    end
 
     Engine.claimHive = function()
         bg(function() pcall(HiveTool.claim) end)
-end
+    end
 
+     
+     
+     
+     
+     
+    Engine.claimSlots = function()
+        if not S.hybrid then return false end
+        if autoDetectHiveInstant() then
+            status = "Hive: " .. myHive.Name
+            return true
+        end
+
+        restoreFacing()
+        status = "Claiming a hive slot"
+        for slot = 1, 6 do
+            pcall(function() fireEvent("ClaimHive", slot) end)
+            task.wait(0.2)
+        end
+
+         
+         
+        for _ = 1, 10 do
+            if autoDetectHiveInstant() then break end
+            task.wait(0.4)
+        end
+        if myHive then
+            status = "Hive: " .. myHive.Name
+            return true
+        end
+        status = "ClaimHive: no free hive came back"
+        return false
+    end
+
+     
+     
+     
     Engine.travelModes = function()
-        if S.hybrid then return { "Pathfinding" } end
         return { "Tween", "Pathfinding" }
     end
 
     Engine.travelMode = function()
-        if S.hybrid then return "Pathfinding" end
         if S.travel_mode == "Tween" then return "Tween" end
         return "Pathfinding"
     end
 
     Engine.setTravelMode = function(v)
         local name = type(v) == "table" and v[1] or tostring(v)
-        if S.hybrid then
-            S.travel_mode = "Pathfinding"
-            status = "Travel mode: Pathfinding (hybrid)"
-            return
-        end
         if name ~= "Tween" then name = "Pathfinding" end
         S.travel_mode = name
         status = "Travel mode: " .. name
@@ -17225,6 +15333,9 @@ end
         status = "Walk method: " .. name
     end
 
+     
+     
+     
     Engine.setWalkSpeed = function(v)
         local n = tonumber(v) or 0
         if n > 0 and n < 16 then n = 16 end
@@ -17239,17 +15350,17 @@ end
 
     Engine.hidePath = function()
         pcall(function() Nav.traceClear() end)
-end
+    end
 
     Engine.stopTravel = function()
         local nav = type(_G) == "table" and _G.__lolcatNav or nil
         if not nav then return end
         pcall(function() nav.memWalkStop() end)
-pcall(function() nav.noclipTravel(false) end)
-pcall(function() nav.stopDrive() end)
-pcall(function() nav.stopRunAnim() end)
-pcall(function() nav.traceClear() end)
-end
+        pcall(function() nav.noclipTravel(false) end)
+        pcall(function() nav.stopDrive() end)
+        pcall(function() nav.stopRunAnim() end)
+        pcall(function() nav.traceClear() end)
+    end
 
     Engine.fastSweep = function()
         bg(function()
@@ -17260,17 +15371,18 @@ end
                 local pad = HiveTool.pad(hive)
                 local pp = padPos(pad)
                 if pp then
-
+                     
+                     
                     pcall(function()
                         Nav.nodeTravel(Vector3.new(pp.X, HiveTool.top(pad), pp.Z), "Pad sweep", 5)
                     end)
-task.wait(0.2)
+                    task.wait(0.2)
                     local h = autoDetectHiveInstant()
                     if h then status = "Found: " .. h.Name; break end
                 end
             end
         end)
-end
+    end
 
     Engine.setHive = function()
         setHiveManual()
@@ -17281,6 +15393,7 @@ end
     Engine.claimQuest  = function() bg(function() pcall(claimOrAcceptPolarBearQuest, true) end) end
 
     Engine.shutdown = function()
+        S.hard_off = true
         S.farm_on = false
         collecting = false
         S.dig.converting = false
@@ -17288,6 +15401,7 @@ end
         restoreFacing()
     end
 
+     
     if type(_G) == "table" then _G.__lolcatEngine = Engine end
 
     return Engine
@@ -17299,40 +15413,47 @@ local travelModeRow
 local walkMethodRow
 local walkSpdRow
 local win = Lib:CreateWindow({
-    title    = "lol Cat",
-    subtitle = "auto",
+     
+     
+     
+    title    = "Bee Swarm",
+    subtitle = Engine.S.hybrid and "hybrid" or "standard",
     size     = Vector2.new(860, 620),
     menuKey  = "f1",
-    logoSize = 34,
-    theme    = { accent = Color3.fromRGB(148, 0, 255) },
-    accentA  = Color3.fromRGB(148, 0, 255),
-    accentB  = Color3.fromRGB(199, 121, 255),
-    font     = "Proxima",
-    logo     = LOGO,
-    opacity  = 0.98,
-    checkboxStyle = true,
-    backgroundEffect = "Snow",
-    backgroundEffectColor = Color3.fromRGB(235, 240, 255),
+     
+     
+    theme    = { accent = Color3.fromRGB(126, 138, 255) },
+    accentA  = Color3.fromRGB(126, 138, 255),
+    accentB  = Color3.fromRGB(183, 156, 255),
+    opacity  = 1,
     configName  = "lolcatbss",
     configFolder = "lolcatbss",
     autoSave = true,
     smartFps = false,
-    gameInput = false,
     startOpen = true,
 })
 
+ 
+_G.__lolcatUI = win
+
 win:AddSettingsTab("gear")
 task.delay(0.8, function()
+     
+     
+     
     pcall(function() win:LoadConfig("lolcatbss") end)
-pcall(function()
+    pcall(function()
         local saved = travelModeRow and travelModeRow:Get()
         if saved and saved[1] then Engine.setTravelMode(saved[1]) end
-
+         
+         
         Engine.setWalkMethod("Offsets")
         if walkMethodRow then
             pcall(function() walkMethodRow:Set({ "Offsets" }) end)
-end
-
+        end
+         
+         
+         
         Engine.S.speed_override = false
         Engine.setWalkSpeed(0)
         if walkSpdRow then pcall(function() walkSpdRow:Set(0) end) end
@@ -17341,7 +15462,33 @@ end)
 task.delay(1, function()
     pcall(function() win:SetMenuKey("f1") end)
 end)
-Lib:Notify("lol Cat", "Press F1 to open the menu", 4, "info")
+Lib:Notify("Bee Swarm", "Press F1 to open the menu", 4, "info")
+
+do
+     
+     
+     
+     
+    if Engine.S.hybrid then
+        task.spawn(function()
+             
+             
+             
+            for _ = 1, 24 do
+                local ch = game:GetService("Players").LocalPlayer.Character
+                if ch and ch:FindFirstChild("HumanoidRootPart") then break end
+                task.wait(0.5)
+            end
+            task.wait(0.5)
+            local ok = Engine.claimSlots()
+            if not ok and Engine.hiveName() == "None" then
+                pcall(function()
+                    Lib:Notify("Bee Swarm", "No free hive to claim - claim one manually", 4, "warn")
+                end)
+            end
+        end)
+    end
+end
 
 local PLANTER_UI = {
     "Plastic Planter", "Candy Planter", "Red Clay Planter", "Blue Clay Planter",
@@ -17392,18 +15539,189 @@ local function ripplePulse()
                     r.obj.Visible = true
                 else
                     pcall(function() r.obj.Visible = false end)
-end
+                end
             end
             if not alive and elapsed > 1 then
                 conn:Disconnect()
                 for i = 1, #rings do
                     pcall(function() rings[i].obj:Remove() end)
-end
+                end
             end
         end)
-rippleConns[#rippleConns + 1] = conn
+        rippleConns[#rippleConns + 1] = conn
     end)
 end
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+do
+
+local Honey = (function()
+    local Plrs = game:GetService("Players")
+
+    local function comma(n)
+        n = tonumber(n) or 0
+        local neg = n < 0
+        local s = tostring(math.floor(math.abs(n) + 0.5))
+        local out = ""
+        while #s > 3 do
+            out = "," .. string.sub(s, -3) .. out
+            s = string.sub(s, 1, #s - 3)
+        end
+        return (neg and "-" or "") .. s .. out
+    end
+
+    local function short(n)
+        n = tonumber(n) or 0
+        local neg = n < 0
+        n = math.abs(n)
+        local suf = ""
+        if n >= 1e12 then n, suf = n / 1e12, "T"
+        elseif n >= 1e9 then n, suf = n / 1e9, "B"
+        elseif n >= 1e6 then n, suf = n / 1e6, "M"
+        elseif n >= 1e3 then n, suf = n / 1e3, "K" end
+        local txt
+        if suf == "" then
+            txt = tostring(math.floor(n + 0.5))
+        else
+            txt = string.format("%.2f", n)
+            txt = string.gsub(txt, "0+$", "")
+            txt = string.gsub(txt, "%.$", "")
+        end
+        return (neg and "-" or "") .. txt .. suf
+    end
+
+    local function dur(sec)
+        sec = math.max(0, math.floor(tonumber(sec) or 0))
+        local h = math.floor(sec / 3600)
+        local m = math.floor((sec % 3600) / 60)
+        local s = sec % 60
+        if h > 0 then return string.format("%dh %02dm %02ds", h, m, s) end
+        if m > 0 then return string.format("%dm %02ds", m, s) end
+        return tostring(s) .. "s"
+    end
+
+    local H = {
+        start = tick(), player = nil,
+        startValue = nil, current = nil, last = nil,
+        gross = 0, net = 0, updated = 0, fallbackAt = 0,
+    }
+
+     
+     
+     
+    H.read = function()
+        if not H.player or not H.player.Parent then H.player = Plrs.LocalPlayer end
+        local v
+        pcall(function()
+            local core = H.player:FindFirstChild("CoreStats")
+            local honey = core and core:FindFirstChild("Honey")
+            if honey then v = tonumber(honey.Value) end
+        end)
+        if v then return v end
+        local now = tick()
+        if now - H.fallbackAt < 3 then return nil end
+        H.fallbackAt = now
+        pcall(function()
+            local pg = H.player:FindFirstChildOfClass("PlayerGui")
+            if not pg then return end
+            for _, o in ipairs(pg:GetDescendants()) do
+                if o.ClassName == "TextLabel" then
+                    local name = string.lower(tostring(o.Name or ""))
+                    if string.find(name, "honey", 1, true) then
+                        local t = tostring(o.Text or "")
+                        t = string.gsub(t, "[^%d,]", "")
+                        t = string.gsub(t, ",", "")
+                        local n = tonumber(t)
+                        if n and n >= 0 then v = n; return end
+                    end
+                end
+            end
+        end)
+        return v
+    end
+
+    H.update = function()
+        local now = tick()
+        if now - H.updated < 0.5 then return end
+        H.updated = now
+        local v = H.read()
+        if not v then return end
+        H.current = v
+        if H.startValue == nil then
+             
+             
+            H.startValue = v
+            H.last = v
+        end
+        if H.last then
+            local d = v - H.last
+             
+             
+            if d > 0 then H.gross = H.gross + d end
+        end
+        H.last = v
+        H.net = v - H.startValue
+    end
+
+    H.nowText   = function() return H.current and comma(H.current) or "reading..." end
+    H.baseText  = function() return H.startValue and comma(H.startValue) or "-" end
+    H.netText   = function()
+        if not H.current then return "reading..." end
+        if H.net < 0 then return comma(H.net) .. "  (loss)" end
+        return "+" .. comma(H.net)
+    end
+    H.grossText = function() return H.current and comma(H.gross) or "reading..." end
+    H.rateText  = function()
+        local elapsed = tick() - H.start
+        if not H.current or elapsed < 5 then return "measuring..." end
+        local perHour = H.net / (elapsed / 3600)
+        return short(perHour) .. " / hour"
+    end
+    H.uptimeText = function() return dur(tick() - H.start) end
+    H.reset = function()
+        H.start = tick()
+        H.startValue, H.current, H.last = nil, nil, nil
+        H.gross, H.net = 0, 0
+    end
+
+    task.spawn(function()
+        while _G.__lolcatBSS == INSTANCE do
+            H.update()
+            task.wait(0.5)
+        end
+    end)
+
+    return H
+end)()
+
+ 
+ 
+if type(_G) == "table" then _G.__lolcatHoney = Honey end
+
+Lib:Category("HOME")
+local homeTab = win:Tab("Home", "home")
+local sess = homeTab:Section("Session", "Left", "counted from the moment you executed the script")
+sess:Label(function() return "Uptime: " .. Honey.uptimeText() end)
+sess:Label(function() return "State: " .. tostring(Engine.status()) end)
+sess:Label(function() return "Honey when started: " .. Honey.baseText() end)
+sess:Button("Reset session counters", function() Honey.reset() end)
+
+local made = homeTab:Section("Honey", "Right", "estimated from the game's own honey counter")
+made:Label(function() return "Honey now: " .. Honey.nowText() end)
+made:Label(function() return "Made this session: " .. Honey.netText() end)
+made:Label(function() return "Earned (gross): " .. Honey.grossText() end)
+made:Label(function() return "Estimated: " .. Honey.rateText() end)
+made:Divider("How it is counted")
+made:Info("Honey only lands when a conversion finishes, so the hourly figure fills in as the session runs. Net includes anything you spent; gross ignores spending, so a negative net next to a positive gross means you bought something.")
+
+end  
 
 local glideSpd, forceSpd
 
@@ -17447,6 +15765,7 @@ local facing = farmTab:Section("Facing", "Left")
 facing:Toggle("Face field middle", false, function(v) Engine.S.face_center = v end)
 facing:Toggle("Face balloons (yours & others)", false, function(v) Engine.S.face_balloons = v end)
 facing:Toggle("Face bubbles (yours & others)", false, function(v) Engine.S.face_bubbles = v end)
+facing:Toggle("Face flames", false, function(v) Engine.S.face_flame = v end)
 facing:Toggle("Rotate camera to target", false, function(v) Engine.S.face_camera = v end)
 facing:Slider("Yaw writes / sec", 10, 1, 2, 30, "/s", function(v) Engine.S.face_hz = v end, "how often the yaw is rewritten while facing: higher turns faster and costs more")
 facing:Label(function()
@@ -17461,11 +15780,25 @@ gath:Toggle("Stand on precise marks", true, function(v) Engine.S.mark_target = v
 gath:Toggle("Collect digital tokens (stand under 2s)", true, function(v) Engine.S.collect_duped = v end)
 gath:Label(function() return "Dig clicks sent: " .. tostring(Engine.S.dig and Engine.S.dig.clicks or 0) end)
 
+ 
+ 
 local HYBRID_TABS = Engine.S.hybrid == true
 
 if HYBRID_TABS then
 Lib:Category("NECTARS")
-local nectarTab = win:Tab("Nectars", "leaf")
+local nectarTab = win:Tab("Nectars", "plant")
+ 
+nectarTab.Tooltip = function()
+    local on = {}
+
+    for _, name in ipairs(PLANTER_UI) do
+        if Engine.S.nectar_planters[name] == true then
+            on[#on + 1] = string.gsub(name, " Planter", "")
+        end
+    end
+
+    return "Nectars", next(on) and table.concat(on, ", ") or "no planters allowed yet"
+end
 local nm = nectarTab:Section("Nectar automation", "Left", "hybrid only: places your planters, then farms your field")
 local nectarFarmRow = nm:Toggle("Enable nectar farm", false, function(v) Engine.setNectarFarm(v) end)
 if _G then _G.__lolcatNectarRow = nectarFarmRow end
@@ -17476,8 +15809,7 @@ nm:Dropdown("Harvest when", { Engine.S.nectar_mode or "Growth %" }, { "Growth %"
     Engine.S.nectar_mode = (name == "Every X hours") and "Every X hours" or "Growth %"
 end)
 nm:Slider("Growth % threshold", 100, 5, 5, 100, "%", function(v) Engine.S.nectar_collect_pct = v end)
-nm:Slider("Hours between collects", 1, 1, 1, 4, "h", function(v) Engine.S.nectar_collect_every = v end)
-nm:Toggle("Fill extra planters (up to 3)", false, function(v) Engine.S.nectar_extra = v end)
+nm:Slider("Hours between collects", 1, 1, 1, 4, "h", function(v) Engine.S.nectar_collect_every = v end)    nm:Toggle("Fill extra planters (up to 3)", false, function(v) Engine.S.nectar_extra = v end)
 nm:Divider("Live")
 nm:Label(function() return "Status: " .. tostring(Engine.nectarStatus()) end)
 nm:Label(function() return "Active planters: " .. tostring(Engine.nectarActive()) end)
@@ -17492,7 +15824,8 @@ for i = 1, 5 do
         if name then Engine.setNectarPriority(i, name) end
     end)
 end
-
+ 
+ 
 np:Divider("Order")
 np:Label(function()
     local parts = {}
@@ -17506,13 +15839,18 @@ end)
 local pw = nectarTab:Section("Planters", "Left", "select the planters the bot may place")
 for i = 1, #PLANTER_UI do
     local name = PLANTER_UI[i]
-
+     
+     
+     
     pw:Toggle("Use " .. name, Engine.S.nectar_planters[name] == true, function(v) Engine.setPlanter(name, v) end)
 end
 
-end
+end  
 
-if HYBRID_TABS then
+ 
+ 
+ 
+do
 Lib:Category("EXTRAS")
 local combatTab = win:Tab("Combat", "swords")
 local bs = combatTab:Section("Bosses", "Left")
@@ -17536,6 +15874,20 @@ bs:Toggle("Kill Mondo Chick", Engine.S.kill_mondo, function(v)
     Engine.S.kill_mondo = v
     Engine.onCombatToggle(v)
 end)
+bs:Toggle("Collect Mondo Chick tokens", Engine.S.mondo_loot, function(v)
+    Engine.S.mondo_loot = v
+end, "after the kill, walk over the pile on the plateau (never tween) and hold 5 s")
+ 
+bs:Info("Coconut Crab tweens itself (hover fight). No need to change Travel mode.")
+ 
+ 
+ 
+bs:Divider("Respawn timers")
+bs:Label(function() return "King Beetle: " .. tostring(Engine.bossTimer("King")) end)
+bs:Label(function() return "Coconut Crab: " .. tostring(Engine.bossTimer("Coconut")) end)
+bs:Label(function() return "Tunnel Bear: " .. tostring(Engine.bossTimer("Tunnel")) end)
+bs:Label(function() return "Vicious Bee: " .. tostring(Engine.bossTimer("Vicious")) end)
+bs:Label(function() return "Mondo Chick: " .. tostring(Engine.bossTimer("Mondo")) end)
 
 local ex = combatTab:Section("Hazards & items", "Right")
 ex:Toggle("Catch falling coconuts", false, function(v) Engine.S.catch_coconuts = v end)
@@ -17543,9 +15895,28 @@ ex:Toggle("Catch star showers", false, function(v) Engine.S.catch_stars = v end)
 ex:Toggle("Farm active sprouts", false, function(v) Engine.S.farm_sprouts = v end)
 ex:Toggle("Auto-collect loot tokens", false, function(v) Engine.S.collect_tokens = v end)
 ex:Toggle("Convert when a balloon is near", false, function(v) Engine.S.convert_balloon = v end)
-end
+end  
 
-local hiveTab = win:Tab("Hive", "home")
+do  
+Lib:Category("MISC")
+local miscTab = win:Tab("Misc", "box")
+local mt = miscTab:Section("Toys & dispensers", "Left",
+    "travels there and uses it, then waits out the toy's own cooldown")
+for _, entry in ipairs(Engine.miscList()) do
+    mt:Toggle(entry.label, Engine.S.misc[entry.key] == true, function(v)
+        Engine.setMisc(entry.key, v)
+    end)
+end
+local ms = miscTab:Section("Cooldowns", "Right", "one toy per pass, in the order on the left")
+ms:Label(function() return "Last: " .. tostring(Engine.miscStatus()) end)
+ms:Divider("Ready")
+for _, entry in ipairs(Engine.miscList()) do
+    ms:Label(function() return entry.label .. ": " .. tostring(Engine.miscReady(entry.key)) end)
+end
+ms:Info("Hybrid fires each toy's own remote; Standard stands on it and presses E. The Coconut Dispenser waits until the Coconut Crab is down. Cooldowns last for the session - reloading the script clears them.")
+end  
+
+local hiveTab = win:Tab("Hive", "layers")
 local det = hiveTab:Section("Detection", "Left", "find and assign your hive pad")
 det:Button("Auto detect hive (instant)", function() Engine.detectHive() end)
 det:Button("Claim unclaimed hive", function() Engine.claimHive() end)
@@ -17565,11 +15936,20 @@ forceSpd = loco:Slider("Force tween speed", 1400, 1, 600, 3000, "", function(v) 
 loco:Button("Reset speeds", function()
     forceSpd:Set(1400)
 end)
-
 local travelSec = moveTab:Section("Travel", "Right", "how the bot crosses the map")
-travelModeRow = travelSec:Dropdown("Travel mode", { Engine.travelMode() }, Engine.travelModes(), false, function(v)
-    Engine.setTravelMode(type(v) == "table" and v[1] or v)
-end)
+do
+    local travelModeList = Engine.travelModes()
+    if #travelModeList > 1 then
+        travelModeRow = travelSec:Dropdown("Travel mode", { Engine.travelMode() }, travelModeList, false, function(v)
+            Engine.setTravelMode(type(v) == "table" and v[1] or v)
+        end)
+    else
+         
+         
+         
+        travelSec:Info("Travel: " .. tostring(travelModeList[1] or "Pathfinding") .. " - this build has one travel mode")
+    end
+end
 walkMethodRow = travelSec:Dropdown("Walk method", { Engine.walkMethod() }, { "Offsets", "Keyboard" }, false, function(v)
     Engine.setWalkMethod(type(v) == "table" and v[1] or v)
 end)
@@ -17586,9 +15966,9 @@ end)
 travelSec:Info("Offsets walk at the game's own speed is the fastest, steady setting. Only raise the slider with Force WalkSpeed on.")
 if _G then _G.__lolcatWalkMethodSync = function(name) pcall(function() walkMethodRow:Set({ name }) end) end end
 travelSec:Label(function() return "Travel: " .. tostring(Engine.travelMode()) .. " / " .. tostring(Engine.walkMethod()) end)
-
 local worldSec = moveTab:Section("World", "Right")
 worldSec:Label(function() return "Locomotion: " .. tostring(Engine.movement()) end)
+
 if HYBRID_TABS then
 local polarTab = win:Tab("Polar (Soon)", "clock")
 local pb = polarTab:Section("Polar Bear", "Left")
@@ -17598,7 +15978,7 @@ prg:Label(function() return "Quest: " .. tostring(Engine.polarName()) end)
 prg:Label(function() return "Objective: " .. tostring(Engine.polarStatus()) end)
 end
 
-local myCfg = win:SettingsSection("lol Cat", "Right")
+local myCfg = win:SettingsSection("Session", "Right")
 myCfg:Label(function() return "State: " .. tostring(Engine.status()) end)
 myCfg:Button("Unload script", function()
     Lib:Dialog({
@@ -17608,22 +15988,22 @@ myCfg:Button("Unload script", function()
         onConfirm = function()
             _G.__lolcatBSS = nil
             pcall(function() Engine.shutdown() end)
-pcall(function() win:Destroy() end)
-end,
+            pcall(function() win:Destroy() end)
+        end,
     })
 end):SetRisk()
 
 SHUTDOWN_HOOK = function()
     pcall(function() Engine.stopTravel() end)
-pcall(function() Engine.setFeaturesActive(false) end)
-pcall(function() Engine.shutdown() end)
-for i = #rippleConns, 1, -1 do
+    pcall(function() Engine.setFeaturesActive(false) end)
+    pcall(function() Engine.shutdown() end)
+    for i = #rippleConns, 1, -1 do
         pcall(function() rippleConns[i]:Disconnect() end)
-rippleConns[i] = nil
+        rippleConns[i] = nil
     end
     for i = #rippleParts, 1, -1 do
         pcall(function() rippleParts[i]:Remove() end)
-rippleParts[i] = nil
+        rippleParts[i] = nil
     end
     if win then
         pcall(function() win:SaveConfig("lolcatbss") end)
@@ -17635,8 +16015,15 @@ task.spawn(function()
     while _G.__lolcatBSS == INSTANCE do
         local open = false
         pcall(function() open = win:IsOpen() end)
+         
+         
+         
+         
         local keepRunning = (Engine.S.hybrid and Engine.S.walk_method == "Offsets")
         pcall(function() Engine.setFeaturesActive((not open) or keepRunning) end)
+         
+         
+         
         pcall(function() Engine.setUiOpen(open) end)
         task.wait(0.05)
     end
