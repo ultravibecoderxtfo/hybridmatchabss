@@ -1838,6 +1838,32 @@ function window:SaveConfig(name)
     pcall(function() writefile(configPath(name), encoded) end)
 end
 
+ 
+ 
+ 
+function window:ConfigSignature()
+    if not app then return "" end
+
+    local parts = {}
+
+    for _, tab in ipairs(app.Tabs) do
+        for _, group in ipairs(tab.Groupboxes) do
+            for _, row in ipairs(group.Elements) do
+                local kind = row.Type
+                if kind == "Toggle" then
+                    parts[#parts + 1] = tab.Name .. "/" .. row.Title .. "=" .. tostring(row.State)
+                elseif kind == "Slider" then
+                    parts[#parts + 1] = tab.Name .. "/" .. row.Title .. "=" .. tostring(row.Value)
+                elseif kind == "Dropdown" then
+                    parts[#parts + 1] = tab.Name .. "/" .. row.Title .. "=" .. tostring(row.Selected)
+                end
+            end
+        end
+    end
+
+    return table.concat(parts, ";")
+end
+
 function window:LoadConfig(name)
     if type(readfile) ~= "function" or type(isfile) ~= "function" or not HttpService then return end
 
@@ -2108,6 +2134,37 @@ local function initEngine()
 
         auto_polar_quests  = false,
         polar_only         = false,
+         
+         
+         
+         
+        quests_auto        = false,
+        quest_bypass       = true,
+        quest_bears        = true,
+        quest_others       = false,
+         
+         
+         
+         
+        quest_pick         = "All enabled",
+         
+         
+         
+         
+         
+         
+        quest_target       = "Auto",
+        quest_follow       = true,
+        qk_pollen          = true,
+        qk_mobs            = true,
+        qk_puff            = true,
+        qk_tokens          = true,
+         
+         
+        quest_hunt         = 40,
+        quest_pass         = 20,
+        quest_mode         = "Farm + quests",
+        quest_check        = 25,
         polar_kill_mobs    = false,
         polar_catch_petals = false,
         polar_farm_fields  = false,        farm_under_balloons = false,
@@ -2153,6 +2210,10 @@ local function initEngine()
          
         misc         = {},
         misc_any     = false,
+         
+         
+         
+        misc_gap     = 12,
         misc_status  = "Off",
 
         nectar_farm   = false,
@@ -2280,6 +2341,8 @@ local function initEngine()
             or S.kill_beetle == true or S.kill_bear == true
             or S.kill_vicious == true or S.kill_mondo == true or S.kill_crab == true
             or S.auto_polar_quests == true or S.polar_only == true
+            or S.quests_auto == true
+            or S.quest_mode == "Quests only"
     end
 
      
@@ -2307,25 +2370,66 @@ local function initEngine()
      
      
      
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+    Engine.walkAnim = Engine.walkAnim or { on = false, x = 0, z = 0 }
+
     Engine.walkAnimDrive = function(on, dirX, dirZ)
-        local hum = getHum()
-        local addr = hum and hum.Address
-        if not addr or type(memory_write) ~= "function" then return false end
-        local k = on and 0.12 or 0
-        local x, z = (dirX or 0) * k, (dirZ or 0) * k
-        return pcall(function()
+        if type(memory_write) ~= "function" then return false end
+        local wa = Engine.walkAnim
+        local was = wa.on
+        wa.on = on and true or false
+        wa.x, wa.z = tonumber(dirX) or 0, tonumber(dirZ) or 0
+        if was and not wa.on then
              
              
-             
-             
-            memory_write("float", addr + 0x134, x)
-            memory_write("float", addr + 0x138, 0)
-            memory_write("float", addr + 0x13C, z)
-             
-             
-            memory_write("float", addr + 0x14C, x)
-            memory_write("float", addr + 0x150, 0)
-            memory_write("float", addr + 0x154, z)
+            pcall(function()
+                local hum = getHum()
+                local addr = hum and hum.Address
+                if not addr then return end
+                memory_write("float", addr + 0x134, 0)
+                memory_write("float", addr + 0x138, 0)
+                memory_write("float", addr + 0x13C, 0)
+            end)
+        end
+        return true
+    end
+
+    do
+        pcall(function()
+            local runSvc = RunService or game:GetService("RunService")
+            runSvc.RenderStepped:Connect(function()
+                local wa = Engine.walkAnim
+                if not wa or not wa.on then return end
+                local hum = getHum()
+                local addr = hum and hum.Address
+                if not addr then return end
+                local x, z = wa.x, wa.z
+                local len = math.sqrt(x * x + z * z)
+                if len > 0.001 then x, z = x / len, z / len end
+                pcall(function()
+                    memory_write("float", addr + 0x134, x)
+                    memory_write("float", addr + 0x138, 0)
+                    memory_write("float", addr + 0x13C, z)
+                end)
+            end)
         end)
     end
 
@@ -2788,169 +2892,31 @@ local function initEngine()
      
      
      
-    local flightSaves = nil
+     
+     
     local function flightNoclip(on)
-        local character = lp and lp.Character
-        if not character then return end
-        if on then
-             
-             
-             
-            if S.travel_mode ~= "Tween" then return end
-            if flightSaves == nil then flightSaves = {} end
-            local list = try(function() return character:GetDescendants() end)
-            if list then
-                for _, part in ipairs(list) do
-                    if isPart(part) and flightSaves[part] == nil then
-                        local can = try(function() return part.CanCollide end)
-                        flightSaves[part] = (can ~= false)
-                        pcall(function() part.CanCollide = false end)
-                    end
-                end
-            end
-        elseif flightSaves then
-            for part, val in pairs(flightSaves) do
-                if part and part.Parent then
-                    pcall(function() part.CanCollide = val end)
-                end
-            end
-            flightSaves = nil
-        end
+        local shared = Engine.noclipTravel
+        if shared then shared(on) end
     end
 
     local function moveToVelocity(targetPos, speed, thr, modeLabel, noAnim)
-        thr = thr or 3.5
-        
-        
-        
-        speed = tonumber(speed) or 110
-        if speed ~= speed or speed < 1 then speed = 110 end
-        if not targetPos then return false end
-
-        local hrp = getHRP()
-        local hum = getHum()
-        if not hrp or not hum then return false end
-
-        
-        
-        glideActive = true
-        glideActiveSince = tick()
-        lastMoveMode, lastMoveAt = modeLabel or "Glide", tick()
-
-        
-        
-        
-        
-        pcall(function() keyrelease(0x57) end)
-
-        flightNoclip(true)
-
-        local start = tick()
-        local lastTick = start
-        local noclipAt = start
-        local accel = math.max(30, speed * 2.6)
-        local brake = math.max(7, speed * 0.45)
-
-        while tick() - start < 45 do
-            if not isOn() then break end
-            local curHrp = getHRP()
-            if not curHrp or not isAlive() then break end
-
-            local now = tick()
-            local dt = clamp(now - lastTick, 0.001, 0.1)
-            lastTick = now
-
-            if now - noclipAt > 0.5 then
-                 
-                 
-                noclipAt = now
-                flightNoclip(true)
-            end
-
-            local pos   = curHrp.Position
-            local delta = targetPos - pos
-            local dist  = delta.Magnitude
-
-            if dist <= thr then
-                pcall(function()
-                    curHrp.AssemblyLinearVelocity = Vector3.new(0, 0, 0)
-                    curHrp.Velocity = Vector3.new(0, 0, 0)
-                end)
-                break
-            end
-
-
-            
-            
-            
-            local want = speed
-            if dist < brake then want = math.max(speed * 0.12, dist * 2.2) end
-            want = math.min(want, dist / math.max(dt, 0.001))
-            if glideSpeed < want then
-                glideSpeed = math.min(want, glideSpeed + accel * dt)
-            else
-                glideSpeed = math.max(want, glideSpeed - accel * 1.4 * dt)
-            end
-
-            local dir  = delta.Unit
-            local step = math.min(glideSpeed * dt, dist)
-            local newPos = pos + dir * step
-
-            
-            
-            
-            local goal = facingTarget or (newPos + dir)
-            local goalYaw = flatYaw(newPos, Vector3.new(goal.X, newPos.Y, goal.Z))
-             
-             
-             
-             
-            local yaw = glideYaw or currentYaw(curHrp.CFrame)
-            if goalYaw then
-                yaw = yaw + clampYawDelta(goalYaw - yaw, math.max(0.5, dt * 22))
-            end
-            glideYaw = yaw
-
-            pcall(function()
-                
-                
-                
-                local base = CFrame.new(newPos.X, newPos.Y, newPos.Z) * CFrame.Angles(0, glideYaw or 0, 0)
-                curHrp.CFrame = base
-
-                
-                
-                
-                
-                if not noAnim then
-                    curHrp.AssemblyLinearVelocity = dir * glideSpeed
-                    curHrp.Velocity = dir * glideSpeed
-                end
-            end)
-
-            task.wait(0.010)
+         
+         
+         
+         
+        local glide = Engine.flyTo
+        if type(glide) == "function" then
+            return glide(targetPos, speed, thr, modeLabel or "Glide", false)
         end
-
-        glideActive = false
-        pcall(function() keyrelease(0x57) end)
-
-        local done = getHRP()
-        if done and done.Parent then
-            pcall(function()
-                done.AssemblyLinearVelocity = Vector3.new(0, 0, 0)
-                done.Velocity = Vector3.new(0, 0, 0)
-            end)
-        end
-        if not isOn() then glideSpeed = 0 end
-        flightNoclip(false)
-        
-        
-        glideYaw = nil
-        return true
+        return false
     end
 
     local Nav = {}
     if _G then _G.__lolcatNav = Nav end
+     
+     
+     
+    Engine.nav = Nav
 
     Nav.routes = {
         ["Hive1"] = { { -114, 2, 272 }, { -3, 2, 300 }, { -3, 2, 320 }, { -3, 2, 331 } },
@@ -6878,44 +6844,124 @@ end)()
 
      
     ;(function()  
-    local savedCollide = nil
-    local savedCharacter = nil
     local driveInst, driveAttach = nil, nil
 
+     
+     
+     
+     
+     
+     
+     
+    local savedCollide = nil     
+    local noclipList = nil       
+    local noclipChar = nil
+    local noclipScanAt = 0
+
     local function restoreCollide()
-        if not savedCollide then return end
-        for part, value in pairs(savedCollide) do
-            pcall(function() part.CanCollide = value end)
+        if savedCollide then
+            for part, value in pairs(savedCollide) do
+                if part and part.Parent then
+                    pcall(function() part.CanCollide = value end)
+                end
+            end
         end
         savedCollide = nil
+        noclipList = nil
+        noclipChar = nil
+        noclipScanAt = 0
     end
 
-     
-     
+    local function noclipCharacter()
+        local character = lp and lp.Character
+        if not character then return end
+        if noclipChar ~= character then
+             
+            restoreCollide()
+            noclipChar = character
+        end
+        if savedCollide == nil then savedCollide = {} end
+        if noclipList == nil then noclipList = {} end
+        local now = tick()
+        if now >= noclipScanAt then
+            noclipScanAt = now + 0.25
+            local list = try(function() return character:GetDescendants() end)
+            if list then
+                for _, part in ipairs(list) do
+                    if isPart(part) and savedCollide[part] == nil then
+                        savedCollide[part] = (try(function() return part.CanCollide end) ~= false)
+                        noclipList[#noclipList + 1] = part
+                    end
+                end
+            end
+        end
+         
+         
+         
+        pcall(function()
+            for i = 1, #noclipList do
+                local part = noclipList[i]
+                if part and part.Parent and part.CanCollide ~= false then
+                    part.CanCollide = false
+                end
+            end
+        end)
+    end
+
     Nav.noclipTravel = function(on)
         if not on then
             restoreCollide()
             return
         end
-        local character = lp and lp.Character
-        if not character then return end
-        if savedCollide then
-             
-            if savedCharacter == character then return end
-            restoreCollide()
-        end
-        local list = try(function() return character:GetDescendants() end)
-        if not list then return end
-        savedCharacter = character
-        savedCollide = {}
-        for _, part in ipairs(list) do
-            if isPart(part) then
-                local can = try(function() return part.CanCollide end)
-                savedCollide[part] = can ~= false
-                pcall(function() part.CanCollide = false end)
+         
+         
+        if S.travel_mode ~= "Tween" then return end
+        noclipCharacter()
+    end
+
+     
+     
+     
+    Nav.noclipProbe = function(origin, dx, dz, reach)
+        if not origin or savedCollide == nil then return false end
+        local len = math.sqrt(dx * dx + dz * dz)
+        if len < 0.001 then return false end
+        dx, dz = dx / len, dz / len
+        reach = reach or 8
+        local opened = false
+        for i = 1, 2 do
+            local lift = (i == 1) and 2 or 4.5
+            local hit = Nav.ray(
+                Vector3.new(origin.X, origin.Y + lift, origin.Z),
+                Vector3.new(dx * reach, 0, dz * reach)
+            )
+            if hit then
+                local normal = hit.Normal
+                local ny = (normal and normal.Y) or 0
+                if math.abs(ny) < 0.35 then
+                    local inst = hit.Instance
+                    if inst and savedCollide[inst] == nil then
+                        local can = try(function() return inst.CanCollide end)
+                        if can ~= nil then
+                            savedCollide[inst] = (can ~= false)
+                            pcall(function() inst.CanCollide = false end)
+                            opened = true
+                        end
+                    end
+                end
             end
         end
+        return opened
     end
+
+     
+     
+    Engine.noclipStep = function()
+        if savedCollide == nil then return end
+        noclipCharacter()
+    end
+    Engine.noclipTravel = Nav.noclipTravel
+    Engine.noclipProbe = Nav.noclipProbe
 
     local function killDrive()
         if driveInst then pcall(function() driveInst:Destroy() end) end
@@ -7049,6 +7095,8 @@ end)()
      
      
      
+     
+     
     Nav.flyTo = function(targetPos, speed, thr, label, keepGoing)
         if not targetPos then return false end
         thr = thr or 4
@@ -7058,17 +7106,60 @@ end)()
         if not hrp then return false end
 
          
+         
         pcall(killDrive)
         lastMoveMode, lastMoveAt = label or "Tween", tick()
         startRunAnim(speed)
         flightNoclip(true)
 
+         
+         
+         
+         
+        pcall(function()
+            local down = Nav.ray(
+                Vector3.new(targetPos.X, targetPos.Y + 400, targetPos.Z),
+                Vector3.new(0, -900, 0)
+            )
+            local inst = down and down.Instance
+            if not inst or not down.Position then return end
+            local ny = (down.Normal and down.Normal.Y) or 0
+            if ny <= 0.45 then return end
+            local name = string.lower(tostring(inst.Name or ""))
+            local floorish = inst.ClassName == "Terrain"
+                or string.find(name, "baseplate", 1, true) ~= nil
+                or string.find(name, "ground", 1, true) ~= nil
+                or string.find(name, "floor", 1, true) ~= nil
+                or string.find(name, "terrain", 1, true) ~= nil
+            if floorish and targetPos.Y < down.Position.Y - 6 then
+                targetPos = Vector3.new(targetPos.X, down.Position.Y + 2, targetPos.Z)
+            end
+        end)
+
         local start = tick()
         local budget = math.min(120, ((targetPos - hrp.Position).Magnitude / speed) * 3 + 6)
         local bestDistance, bestAt = math.huge, start
-        local noclipAt = start
+        local wrotePos, wroteStep = nil, 0
+        local stuckFrames = 0
         local lastStep = start
         local yaw = glideYaw or currentYaw(hrp.CFrame)
+         
+         
+         
+         
+         
+         
+         
+         
+        local useVel = true
+        local velFrom, velAt = hrp.Position, start
+        local startY = hrp.Position.Y
+         
+         
+         
+         
+         
+        local climbMax = math.min(38, math.max(16, speed * 0.5))
 
          
          
@@ -7090,67 +7181,148 @@ end)()
             local dt = clamp(now - lastStep, 0.001, 0.1)
             lastStep = now
 
-            if now - noclipAt > 0.5 then
-                 
-                 
-                noclipAt = now
-                flightNoclip(true)
+             
+             
+             
+            Engine.noclipStep()
+            if wrotePos then
+                local moved = (hrp.Position - wrotePos).Magnitude
+                if moved < math.min(wroteStep, 1.5) * 0.4 then
+                    stuckFrames = stuckFrames + 1
+                    if stuckFrames >= 2 then
+                         
+                         
+                        stuckFrames = 0
+                        local probeDir = targetPos - hrp.Position
+                        if probeDir.Magnitude > 0.1 and Engine.noclipProbe then
+                            Engine.noclipProbe(hrp.Position, probeDir.Unit.X, probeDir.Unit.Z, 10)
+                        end
+                    end
+                else
+                    stuckFrames = 0
+                end
             end
 
             local delta = targetPos - hrp.Position
             local distance = delta.Magnitude
-            if distance <= thr then break end
+            local flatDist = Vector3.new(delta.X, 0, delta.Z).Magnitude
+             
+             
+            if flatDist <= thr and math.abs(delta.Y) <= 1.5 then break end
+             
+             
+             
+             
+            if useVel and flatDist <= 7 and math.abs(delta.Y) <= 14 then
+                useVel, wrotePos = false, nil
+            end
+
+             
+             
+             
+            if useVel and hrp.Position.Y < math.min(startY, targetPos.Y) - 45 then
+                useVel, wrotePos = false, nil
+            end
 
             local want = speed
             if not keepGoing and distance < 12 then want = math.max(24, distance * 4) end
-            local step = math.min(want * dt, distance)
-            local newPos = hrp.Position + delta.Unit * step
+            local accel = math.max(30, speed * 2.6)
+            if glideSpeed < want then
+                glideSpeed = math.min(want, glideSpeed + accel * dt)
+            else
+                glideSpeed = math.max(want, glideSpeed - accel * 1.4 * dt)
+            end
 
-            driveX, driveZ = delta.Unit.X, delta.Unit.Z
+            local dir = delta.Unit
+            driveX, driveZ = dir.X, dir.Z
             Engine.walkAnimDrive(true, driveX, driveZ)
 
-            local goalYaw = flatYaw(newPos, Vector3.new(targetPos.X, newPos.Y, targetPos.Z))
-            if goalYaw then
-                yaw = yaw + clampYawDelta(goalYaw - yaw, math.max(0.5, dt * 22))
+            if useVel then
+                 
+                 
+                 
+                 
+                local vy = 0
+                if math.abs(delta.Y) > 1.0 then
+                    vy = clamp(delta.Y * 2.4, -climbMax, climbMax)
+                end
+                local vel = Vector3.new(dir.X * glideSpeed, vy, dir.Z * glideSpeed)
+                pcall(function()
+                    hrp.AssemblyLinearVelocity = vel
+                    hrp.Velocity = vel
+                end)
+                if now - velAt > 0.6 then
+                    if distance > 8 and (hrp.Position - velFrom).Magnitude
+                        < math.max(0.8, glideSpeed * (now - velAt) * 0.25) then
+                         
+                         
+                        useVel, wrotePos = false, nil
+                    end
+                    velFrom, velAt = hrp.Position, now
+                end
+            else
+                local step = math.min(want * dt, distance)
+                local newPos = hrp.Position + dir * step
+                local goalYaw = flatYaw(newPos, Vector3.new(targetPos.X, newPos.Y, targetPos.Z))
+                if goalYaw then
+                    yaw = yaw + clampYawDelta(goalYaw - yaw, math.max(0.5, dt * 22))
+                end
+                glideYaw = yaw
+                pcall(function()
+                    hrp.CFrame = CFrame.new(newPos.X, newPos.Y, newPos.Z) * CFrame.Angles(0, glideYaw or 0, 0)
+                     
+                     
+                     
+                     
+                     
+                    local vmag = math.min(want, 14)
+                    hrp.AssemblyLinearVelocity = Vector3.new(driveX * vmag, 0, driveZ * vmag)
+                    hrp.Velocity = Vector3.new(driveX * vmag, 0, driveZ * vmag)
+                end)
+                wrotePos, wroteStep = newPos, step
             end
-            glideYaw = yaw
-
-            pcall(function()
-                hrp.CFrame = CFrame.new(newPos.X, newPos.Y, newPos.Z) * CFrame.Angles(0, glideYaw or 0, 0)
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                local vmag = math.min(want, 14)
-                hrp.AssemblyLinearVelocity = Vector3.new(driveX * vmag, 0, driveZ * vmag)
-                hrp.Velocity = Vector3.new(driveX * vmag, 0, driveZ * vmag)
-            end)
 
             if distance < bestDistance - 0.4 then
-                bestDistance, bestAt = distance, tick()
-            elseif tick() - bestAt > 7 then
+                bestDistance, bestAt = distance, now
+            elseif now - bestAt > 7 then
                 status = "Tween stalled: " .. tostring(label or "")
                 break
             end
-            task.wait(0.01)
+             
+             
+             
+             
+             
+            task.wait(0.03)
         end
 
         glideYaw = nil
         local current = getHRP()
         if not keepGoing then
             if current then
-                pcall(function() current.AssemblyLinearVelocity = Vector3.new(0, 0, 0) end)
+                pcall(function()
+                    current.AssemblyLinearVelocity = Vector3.new(0, 0, 0)
+                    current.Velocity = Vector3.new(0, 0, 0)
+                end)
             end
              
             stopRunAnim()
             flightNoclip(false)
+             
+             
+             
+            pcall(function()
+                local h = getHum()
+                if h then h:ChangeState(Enum.HumanoidStateType.Landed) end
+            end)
         end
         return current ~= nil and (targetPos - current.Position).Magnitude <= thr + 2
     end
+     
+     
+     
+     
+    Engine.flyTo = Nav.flyTo
 
      
      
@@ -7456,6 +7628,20 @@ end)()
      
      
      
+    Nav.pineReturn = {
+        Vector3.new(-291.8, 68.0, -134.1),
+        Vector3.new(-238.6, 68.0, -71.2),
+        Vector3.new(-226.8, 34.3, 72.3),
+        Vector3.new(-155.3, 4.0, 172.3),
+        Vector3.new(-113.1, 4.7, 215.7),
+        Vector3.new(-113.7, 4.9, 272.7),
+    }
+
+     
+     
+     
+     
+     
      
      
      
@@ -7464,6 +7650,9 @@ end)()
         arrive = tonumber(arrive) or 3.5
         label = label or "Route"
         local first = 1
+        if opts and opts.from then
+            first = math.max(1, math.min(#list, math.floor(opts.from)))
+        end
         if opts and opts.viaHive then
             local startPoint = list[1]
             local hrp0 = getHRP()
@@ -12556,20 +12745,772 @@ end
         end
     end
 
-    local function claimOrAcceptPolarBearQuest(force)
-        status = "Polar Bear: Soon"
-        task.wait(0.2)
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+    Engine.questGivers = {
+        { name = "Black Bear",   group = "bear",  pool = "Black Bear 2",  pos = Vector3.new(-256.1, 1.8, 296.9) },
+        { name = "Mother Bear",  group = "bear",  pos = Vector3.new(-186.4, 2.0, 87.5) },
+        { name = "Brown Bear",   group = "bear",  pool = "Brown Bear 2",  pos = Vector3.new(281.6, 42.4, 236.8) },
+        { name = "Panda Bear",   group = "bear",  pos = Vector3.new(104.1, 32.2, 48.2) },
+        { name = "Science Bear", group = "bear",  pos = Vector3.new(268.9, 99.5, 19.5) },
+        { name = "Dapper Bear",  group = "bear",  pos = Vector3.new(554.0, 138.9, -362.3) },
+        { name = "Spirit Bear",  group = "bear",  pos = Vector3.new(-365.5, 94.7, 479.4) },
+        { name = "Polar Bear",   group = "bear",  pos = Vector3.new(-106.8, 115.9, -77.4) },
+        { name = "Bucko Bee",    group = "other", pos = Vector3.new(304.9, 58.2, 105.4) },
+        { name = "Riley Bee",    group = "other", pos = Vector3.new(-361.4, 70.1, 212.8) },
+        { name = "Honey Bee",    group = "other", pos = Vector3.new(-386.8, 86.5, -219.8) },
+        { name = "Onett",        group = "other", pos = Vector3.new(-9.2, 229.1, -520.8) },
+        { name = "Stick Bug",    group = "other", pos = Vector3.new(-128.8, 46.4, 147.4) },
+        { name = "Robo Bear",    group = "other", pos = Vector3.new(-444.3, 38.3, 111.7) },
+        { name = "Gummy Bear",   group = "other", pos = Vector3.new(271.7, 25289.1, -851.9) },
+        { name = "Bee Bear",     group = "other" },
+    }
+
+    Engine.questNames = function()
+        local out = { "All enabled" }
+        for _, giver in ipairs(Engine.questGivers) do out[#out + 1] = giver.name end
+        return out
     end
 
-    local function completePolarBearRoutine()
-        status = "Polar Bear: Soon"
-        task.wait(0.2)
-        return
+    Engine.questsOnly = function()
+        return S.quest_mode == "Quests only"
     end
 
-    
-    
-    
+     
+     
+     
+    Engine.questOn = function()
+        return S.quests_auto == true or S.auto_polar_quests == true
+            or S.polar_only == true or S.quest_mode == "Quests only"
+    end
+
+    Nav.questByName = function(name)
+        for _, giver in ipairs(Engine.questGivers) do
+            if giver.name == name then return giver end
+        end
+        return nil
+    end
+
+    Nav.questList = function()
+        local out = {}
+         
+         
+        local pick = S.quest_pick
+        if pick and pick ~= "All enabled" then
+            local one = Nav.questByName(pick)
+            if one then out[1] = one end
+            return out
+        end
+        if S.polar_only and not S.quests_auto then
+            local polar = Nav.questByName("Polar Bear")
+            if polar then out[1] = polar end
+            return out
+        end
+        for _, giver in ipairs(Engine.questGivers) do
+            local on = (giver.group == "bear" and S.quest_bears ~= false)
+                or (giver.group == "other" and S.quest_others == true)
+            if on then out[#out + 1] = giver end
+        end
+        return out
+    end
+
+    Nav.questPos = function(giver)
+        local npcs = Workspace:FindFirstChild("NPCs")
+        local model = npcs and npcs:FindFirstChild(giver.name)
+        if model then
+            local part = model:FindFirstChild("Circle") or model:FindFirstChild("Platform")
+                or model:FindFirstChildWhichIsA("BasePart")
+            local pos = getPartPos(part)
+            if pos then return pos end
+        end
+        return giver.pos
+    end
+
+     
+     
+     
+    Nav.questFire = function(remote, arg)
+        if not arg then return false end
+        return fireEvent(remote, arg) == true
+    end
+
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+
+    Nav.mobTypes = function()
+        if Nav.mobTypeList then return Nav.mobTypeList end
+        local out = {}
+        local folder = RS:FindFirstChild("MonsterTypes")
+        if folder then
+            for _, child in ipairs(folder:GetChildren()) do out[#out + 1] = child.Name end
+        end
+        table.sort(out, function(a, b) return #a > #b end)
+        Nav.mobTypeList = out
+        return out
+    end
+
+     
+     
+    Nav.stripMarks = function(text)
+        local i = 1
+        while i <= #text do
+            local b = string.byte(text, i)
+            if b and b >= 33 and b <= 126 then break end
+            i = i + 1
+        end
+        return (string.gsub(string.sub(text, i), "^%s*(.-)%s*$", "%1"))
+    end
+
+    Nav.questLogPanel = function()
+        local pg = lp and lp:FindFirstChildOfClass("PlayerGui")
+        local screen = pg and pg:FindFirstChild("ScreenGui")
+        local menus = screen and screen:FindFirstChild("Menus")
+        local kids = menus and menus:FindFirstChild("Children")
+        return kids and kids:FindFirstChild("Quests")
+    end
+
+     
+    Nav.questRead = function(force)
+        local now = tick()
+        if not force and Nav.qlAt and (now - Nav.qlAt) < 2 then return Nav.qlData end
+        Nav.qlAt = now
+
+        local out = {}
+        local panel = Nav.questLogPanel()
+        if panel then
+            local ok, list = pcall(function() return panel:GetDescendants() end)
+            local entry = nil
+            for _, obj in ipairs((ok and list) or {}) do
+                if obj.ClassName == "TextLabel" then
+                    local kind = obj.Name
+                    if kind == "TitleBar" or kind == "Description" then
+                        local text = Nav.stripMarks(safeText(obj))
+                        if #text > 0 then
+                            if kind == "TitleBar" then
+                                local giver, quest = Nav.questTitle(text)
+                                entry = { title = text, giver = giver, quest = quest, tasks = {} }
+                                out[#out + 1] = entry
+                            elseif entry then
+                                entry.tasks[#entry.tasks + 1] = Nav.questTask(text)
+                            end
+                        end
+                    end
+                end
+            end
+        end
+
+        for _, e in ipairs(out) do
+            local left = 0
+            for _, task in ipairs(e.tasks) do
+                if not task.done then left = left + 1 end
+            end
+            e.left = left
+        end
+
+        Nav.qlData = out
+        return out
+    end
+
+     
+     
+     
+    Nav.questTitle = function(title)
+        for _, giver in ipairs(Engine.questGivers) do
+            local prefix = giver.name .. ":"
+            if string.sub(title, 1, #prefix) == prefix then
+                return giver.name, (string.gsub(string.sub(title, #prefix + 1), "^%s*(.-)%s*$", "%1"))
+            end
+        end
+        return nil, title
+    end
+
+    Nav.questNumber = function(text)
+        if not text then return nil end
+        return tonumber((string.gsub(text, ",", "")))
+    end
+
+    Nav.fieldIn = function(text)
+        local best, bestLen = nil, 0
+        for _, name in ipairs(zoneNames) do
+            if #name > bestLen and string.find(text, name, 1, true) then
+                best, bestLen = name, #name
+            end
+        end
+        return best
+    end
+
+     
+     
+     
+     
+    Nav.questMob = function(text)
+        local lower = string.lower(text)
+        local best, bestLen = nil, 0
+        for _, name in ipairs(Nav.mobTypes()) do
+            local needle = string.lower(name)
+            local from = 1
+            while true do
+                local at = string.find(lower, needle, from, true)
+                if not at then break end
+                local before = (at == 1) and " " or string.sub(lower, at - 1, at - 1)
+                local after = string.sub(lower, at + #needle, at + #needle)
+                local okBefore = (before == " " or before == ":" or before == ",")
+                local okAfter = (after == "" or after == " " or after == "." or after == "," or after == "s")
+                if okBefore and okAfter then
+                    if #name > bestLen then best, bestLen = name, #name end
+                    break
+                end
+                from = at + 1
+            end
+        end
+        return best
+    end
+
+     
+    local QUEST_COLOR_FIELDS = {
+        ["White Pollen"] = "Dandelion Field",
+        ["Red Pollen"]   = "Rose Field",
+        ["Blue Pollen"]  = "Blue Flower Field",
+    }
+
+     
+    Nav.questTask = function(text)
+        local body = (string.gsub(text, "\n", " "))
+        local task = { text = body, kind = "manual", done = false }
+
+        local have, need = string.match(body, "(%d[%d,]*)/(%d[%d,]*)")
+        if have and need then
+            task.have = Nav.questNumber(have)
+            task.need = Nav.questNumber(need)
+        end
+        if string.find(body, "Complete!", 1, true) then task.done = true end
+        if not task.done and task.have and task.need and task.have >= task.need then task.done = true end
+        if task.done then return task end
+
+        local lower = string.lower(body)
+        local field = Nav.fieldIn(body)
+        local mob = Nav.questMob(body)
+        local push = string.find(lower, "puffshroom", 1, true) ~= nil
+
+        if push then
+            task.kind, task.field = "puff", field
+        elseif string.find(lower, "defeat", 1, true) and mob then
+            task.kind, task.mob, task.field = "mobs", mob, field
+        elseif string.find(lower, "pollen from the", 1, true) and field then
+            task.kind, task.field = "pollen", field
+        elseif string.find(lower, "token", 1, true) then
+             
+             
+            task.kind, task.field = "tokens", field
+        elseif string.find(lower, "tickets from", 1, true) then
+            if mob then
+                task.kind, task.mob, task.field = "mobs", mob, field
+            end
+        elseif string.find(lower, "planter", 1, true) then
+            task.kind = "planters"
+        elseif string.find(lower, "nectar", 1, true) then
+            task.kind = "nectar"
+        elseif string.find(lower, "pollen", 1, true) then
+            for colour, fname in pairs(QUEST_COLOR_FIELDS) do
+                if string.find(body, colour, 1, true) then
+                    task.kind, task.field = "pollen", fname
+                    break
+                end
+            end
+        end
+        return task
+    end
+
+    Nav.questEnabled = function(task)
+        if task.kind == "pollen" then return S.qk_pollen ~= false end
+        if task.kind == "mobs" then return S.qk_mobs ~= false end
+        if task.kind == "puff" then return S.qk_puff ~= false end
+        if task.kind == "tokens" then return S.qk_tokens ~= false end
+         
+         
+         
+        if task.kind == "planters" or task.kind == "nectar" then
+            return S.nectar_farm == true and S.hybrid == true
+        end
+        return false
+    end
+
+     
+     
+     
+    Nav.questStall = {}
+    Nav.questFails = {}
+
+    Nav.questStalled = function(task)
+        if not task or not task.text then return false end
+        local untilAt = Nav.questStall[task.text]
+        if not untilAt then return false end
+        if tick() < untilAt then return true end
+        Nav.questStall[task.text] = nil
+        Nav.questFails[task.text] = nil
+        return false
+    end
+
+    Nav.questFail = function(task)
+        if not task or not task.text then return end
+        local key = task.text
+        local n = (Nav.questFails[key] or 0) + 1
+        if n >= 3 then
+            Nav.questFails[key] = 0
+            Nav.questStall[key] = tick() + 180
+        else
+            Nav.questFails[key] = n
+        end
+    end
+
+     
+     
+    Nav.questTarget = function(list)
+        local pick = S.quest_target
+        if pick and pick ~= "Auto" and pick ~= "All active" then
+            for _, entry in ipairs(list) do
+                if entry.title == pick then return entry end
+            end
+        end
+        local giverPick = S.quest_pick
+        if giverPick and giverPick ~= "All enabled" then
+            for _, entry in ipairs(list) do
+                if entry.giver == giverPick then return entry end
+            end
+        end
+        for _, entry in ipairs(list) do
+            for _, task in ipairs(entry.tasks) do
+                if not task.done and Nav.questEnabled(task) and not Nav.questStalled(task) then
+                    return entry
+                end
+            end
+        end
+        return list[1]
+    end
+
+     
+     
+     
+    Nav.mobSpawner = function(mob)
+        local folder = Workspace:FindFirstChild("MonsterSpawners")
+        if not folder then return nil end
+        local needle = string.lower(mob)
+        for _, spawner in ipairs(folder:GetChildren()) do
+            local value = spawner:FindFirstChild("MonsterType")
+            local kind = nil
+            pcall(function() kind = value and value.Value end)
+            local name = string.lower(tostring(kind or spawner.Name or ""))
+            if string.find(name, needle, 1, true) then
+                local pos = getPartPos(spawner:FindFirstChildOfClass("Part")) or getPartPos(spawner)
+                if pos then return { pos = pos, name = spawner.Name } end
+            end
+        end
+        return nil
+    end
+
+     
+     
+    Nav.findQuestMob = function(mob, radius)
+        local hrp = getHRP()
+        if not hrp then return nil end
+        local needle = string.lower(mob)
+        local roots = {}
+        local mon = Workspace:FindFirstChild("Monsters")
+        if mon then
+            roots[#roots + 1] = mon
+            for _, child in ipairs(mon:GetChildren()) do
+                if child.ClassName == "Folder" or child.ClassName == "Model" then roots[#roots + 1] = child end
+            end
+        end
+        local best, bestDist = nil, radius or 400
+        for _, root in ipairs(roots) do
+            for _, model in ipairs(root:GetChildren()) do
+                local name = string.lower(tostring(model.Name or ""))
+                if string.find(name, needle, 1, true) then
+                    local pos = getPartPos(model)
+                    local humanoid = model:FindFirstChildOfClass("Humanoid")
+                    local hp = nil
+                    pcall(function() hp = humanoid and humanoid.Health end)
+                    if pos and (hp == nil or hp > 0) then
+                        local dist = (pos - hrp.Position).Magnitude
+                        if dist < bestDist then best, bestDist = model, dist end
+                    end
+                end
+            end
+        end
+        return best, bestDist
+    end
+
+     
+     
+     
+    Nav.mobHunt = function(mob, field, seconds)
+        if not mob or mob == "" then return false end
+        local stop = { running = true }
+        local deadline = tick() + (tonumber(seconds) or 30)
+        local spawn = Nav.mobSpawner(mob)
+        local fieldInfo = field and getField(field) or nil
+        local killed = false
+
+        status = "Quest: hunting " .. mob
+        Nav.spawnHits(stop)
+        while isOn() and tick() < deadline do
+            local target, dist = Nav.findQuestMob(mob, 500)
+            if target then
+                local pos = getPartPos(target)
+                if pos and dist and dist > 16 then
+                    status = "Quest: closing on " .. mob
+                    Nav.go(pos, S.glide_speed, 5, "Mob")
+                end
+                status = "Quest: fighting " .. mob
+                local alive = true
+                pcall(function() alive = target.Parent ~= nil end)
+                if not alive then killed = true end
+                task.wait(0.25)
+            else
+                local hrp = getHRP()
+                local dest = spawn and spawn.pos or (fieldInfo and fieldInfo.Position)
+                if dest and hrp then
+                    local reach = (dest - hrp.Position).Magnitude
+                    if reach > 45 then
+                        status = "Quest: to " .. tostring(spawn and spawn.name or field)
+                        Nav.go(dest, S.glide_speed, 7, "Mob spawn")
+                    else
+                         
+                         
+                        status = "Quest: waiting for " .. mob
+                        task.wait(0.5)
+                    end
+                else
+                    status = "Quest: no " .. mob .. " spawner found"
+                    task.wait(0.5)
+                end
+            end
+        end
+        stop.running = false
+        return killed
+    end
+
+     
+     
+    Nav.popPuffs = function(field, seconds)
+        local stop = { running = true }
+        local deadline = tick() + (tonumber(seconds) or 30)
+        local popped = false
+        status = "Quest: popping puffshrooms"
+        Nav.spawnHits(stop)
+        while isOn() and tick() < deadline do
+            local hrp = getHRP()
+             
+             
+             
+            local now = tick()
+            if not Nav._puffCache or (now - (Nav._puffAt or 0)) > 2 then
+                Nav._puffAt = now
+                Nav._puffCache = {}
+                local ok, list = pcall(function() return Workspace:GetChildren() end)
+                for _, model in ipairs((ok and list) or {}) do
+                    local name = string.lower(tostring(model.Name or ""))
+                    if string.find(name, "puffshroom", 1, true) then
+                        local pos = getPartPos(model)
+                        if pos then Nav._puffCache[#Nav._puffCache + 1] = pos end
+                    end
+                end
+            end
+
+            local best, bestDist = nil, 260
+            for _, pos in ipairs(Nav._puffCache) do
+                if hrp and (not field or inField(pos, field, 40)) then
+                    local dist = (pos - hrp.Position).Magnitude
+                    if dist < bestDist then best, bestDist = pos, dist end
+                end
+            end
+            if best then
+                if bestDist > 12 then
+                    Nav.go(best, S.glide_speed, 4, "Puffshroom")
+                else
+                    popped = true
+                    task.wait(0.3)
+                end
+            else
+                task.wait(0.4)
+            end
+        end
+        stop.running = false
+        return popped
+    end
+
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+    Nav.questJob = function()
+        if not isOn() or not Engine.questOn() then return nil end
+         
+         
+        local read = Nav.questRead
+        local list = type(read) == "function" and read() or {}
+        if type(list) ~= "table" or #list < 1 then return nil end
+
+        if tick() >= (Nav.turnAt or 0) then
+            for _, entry in ipairs(list) do
+                if entry.left == 0 and entry.giver then
+                    local giver = Nav.questByName(entry.giver)
+                    if giver then
+                        Nav.turnAt = tick() + 8
+                        Nav.questBusy = true
+                        local ok, err = pcall(Nav.questDo, giver)
+                        Nav.questBusy = false
+                        if type(Nav.questRead) == "function" then Nav.questRead(true) end
+                        if not ok then status = "Quest turn-in error: " .. tostring(err) end
+                        return { kind = "turnin", giver = giver.name, entry = entry }
+                    end
+                end
+            end
+        end
+
+        local entry = Nav.questTarget(list)
+        if not entry then return nil end
+        Nav.questTrack = entry.title
+
+        local worked = nil
+        for _, task in ipairs(entry.tasks) do
+            if not task.done and Nav.questEnabled(task) and not Nav.questStalled(task) then
+                worked = task
+                break
+            end
+        end
+        if not worked then
+            Nav.questTaskLine = entry.title .. ": unhandled task"
+            return { kind = "manual", entry = entry }
+        end
+        return {
+            kind = worked.kind,
+            task = worked,
+            field = worked.field,
+            mob = worked.mob,
+            entry = entry,
+            giver = entry.giver,
+        }
+    end
+
+     
+     
+     
+     
+    Nav.questWork = function(job)
+        if not job then job = Nav.questJob() end
+        if not job then return false end
+        local passKind = job.kind == "mobs" or job.kind == "puff"
+            or job.kind == "tokens" or job.kind == "planters" or job.kind == "nectar"
+        if not passKind then return false end
+
+        local now = tick()
+        local waitFor = tonumber(S.quest_pass) or 20
+        local since = now - (Nav.passAt or 0)
+        if since < waitFor then
+            Nav.questTaskLine = tostring(job.entry and job.entry.quest or "Quest") .. ": "
+                .. tostring(job.kind) .. " in " .. math.floor(waitFor - since) .. "s"
+            return false
+        end
+        Nav.passAt = now
+
+        local quest = tostring(job.entry and job.entry.quest or "Quest")
+        if job.kind == "mobs" then
+            Nav.questTaskLine = quest .. ": hunting " .. tostring(job.mob)
+            if not Nav.mobHunt(job.mob, job.field, S.quest_hunt) then
+                Nav.questFail(job.task)
+            end
+        elseif job.kind == "puff" then
+            Nav.questTaskLine = quest .. ": puffshrooms"
+            if not Nav.popPuffs(job.field, S.quest_hunt) then
+                Nav.questFail(job.task)
+            end
+        elseif job.kind == "tokens" then
+            Nav.questTaskLine = quest .. ": tokens"
+            Nav.questTokens(job.field, S.quest_hunt)
+        else
+            Nav.questTaskLine = quest .. ": planters"
+            pcall(nectarStep)
+        end
+        if type(Nav.questRead) == "function" then Nav.questRead(true) end
+        return true
+    end
+
+     
+     
+     
+    Nav.questTokens = function(name, seconds)
+        local field = name and getField(name) or nil
+        local deadline = tick() + (tonumber(seconds) or 20)
+        status = "Quest: collecting tokens"
+        while isOn() and tick() < deadline do
+            touchCollectibles(field)
+            if field then
+                farmFieldTurnStep(field, nil)
+            else
+                task.wait(0.3)
+            end
+        end
+        return true
+    end
+
+     
+     
+     
+     
+    Nav.questFarm = function(name, seconds)
+        local field = getField(name)
+        if not field or not isOn() then return false end
+        local hrp = getHRP()
+        if not hrp then return false end
+        local c = field.Position
+        local standY = groundY(field) + 2
+
+        if not inField(hrp.Position, field, 30) then
+            status = "Quest: to " .. tostring(name)
+            Nav.goField(name, Vector3.new(c.X, standY + 1, c.Z), S.glide_speed, "Quest field")
+            hrp = getHRP()
+            if not hrp or not inField(hrp.Position, field, 34) then
+                status = "Quest: could not reach " .. tostring(name)
+                return false
+            end
+        end
+
+        status = "Quest: farming " .. tostring(name)
+        collecting = true
+        local deadline = tick() + (tonumber(seconds) or 10)
+        while isOn() and tick() < deadline do
+            autoDigCursorFree()
+            farmFieldTurnStep(field, nil)
+        end
+        Nav.questTaskLine = "Farming " .. tostring(name)
+        return true
+    end
+
+    Nav.taskProgressText = function(task)
+        if task.have and task.need then
+            return " (" .. tostring(task.have) .. "/" .. tostring(task.need) .. ")"
+        end
+        return ""
+    end
+
+    Nav.questTravel = function(pos, label)
+        if not pos then return false end
+        local hrp = getHRP()
+        if hrp and (Vector3.new(pos.X, 0, pos.Z) - Vector3.new(hrp.Position.X, 0, hrp.Position.Z)).Magnitude <= 14 then
+            return true
+        end
+        if S.travel_mode == "Tween" then
+            return Nav.tweenTravel(pos, S.glide_speed, 9, label)
+        end
+        local ok = Nav.nodeTravel(pos, label, 9)
+        if not ok and isOn() then
+             
+             
+             
+            ok = Nav.tweenTravel(pos, S.glide_speed, 9, label)
+        end
+        return ok
+    end
+
+    Nav.questDo = function(giver)
+        if not giver then return false end
+        local label = "Quest: " .. giver.name
+        Nav.questLast = giver.name
+        Nav.questAt = tick() + math.max(10, tonumber(S.quest_check) or 25)
+
+         
+         
+        local bypass = (S.quest_bypass ~= false) and S.hybrid == true
+        if not bypass then
+            status = "Quest: to " .. giver.name
+            if not Nav.questTravel(Nav.questPos(giver), label) then
+                status = "Quest: could not reach " .. giver.name
+                return false
+            end
+            if not isOn() then return false end
+        end
+
+        if S.hybrid then
+            local key = giver.pool or giver.name
+            status = "Quest: " .. giver.name .. (bypass and " (bypass)" or " at the giver")
+            Nav.questFire("CompleteQuestFromPool", key)
+            if key ~= giver.name then Nav.questFire("CompleteQuestFromPool", giver.name) end
+            task.wait(0.4)
+            Nav.questFire("GiveQuestFromPool", giver.name)
+            if key ~= giver.name then Nav.questFire("GiveQuestFromPool", key) end
+            task.wait(0.3)
+        else
+             
+             
+             
+             
+            status = "Quest: talking to " .. giver.name
+            local npcPos = Nav.questPos(giver)
+            Nav.usePromptAt(npcPos, 32)
+            task.wait(0.5)
+            Nav.usePromptAt(npcPos, 32)
+        end
+
+        return true
+    end
+
+     
+     
+    Nav.questStep = function(force)
+        if not isOn() then return end
+        if not Engine.questOn() then return end
+        local now = tick()
+        if not force and now < (Nav.questAt or 0) then return end
+        local list = Nav.questList()
+        if #list < 1 then
+            status = "Quests: no giver enabled"
+            return
+        end
+        local index = (Nav.questIndex or 0) + 1
+        if index > #list then index = 1 end
+        Nav.questIndex = index
+        Nav.questDo(list[index])
+    end
+
     local tunnelBearCooldown, kingBeetleCooldown, crabCooldown = 0, 0, 0
 
      
@@ -13009,9 +13950,12 @@ end
 
      
      
+     
+     
     Nav.miscStep = function()
         if not isOn() then return end
         local now = tick()
+        if now < (Nav.miscNext or 0) then return end
         for _, entry in ipairs(Nav.miscToys) do
             if S.misc and S.misc[entry.key] and now >= (tonumber(Nav.miscState[entry.key]) or 0) then
                  
@@ -13021,6 +13965,7 @@ end
                     return
                 end
                 status = "Misc: " .. entry.label
+                Nav.miscNext = tick() + math.max(5, tonumber(S.misc_gap) or 12)
                 if Nav.miscRun(entry) then
                     Nav.miscState[entry.key] = tick() + entry.cd
                     S.misc_status = entry.label .. " done, ready again in " .. Nav.hmsText(entry.cd)
@@ -14293,6 +15238,28 @@ end
          
          
          
+         
+         
+        do
+            local here = getHRP()
+            if here and S.travel_mode ~= "Tween" then
+                local pine = Nav.keyFor(here.Position) == "Pine Tree Forest"
+                    or Nav.inFieldName("Pine Tree Forest", here.Position, 30)
+                if pine and Nav.pineReturn then
+                    local from, bestD = 1, math.huge
+                    for i = 1, #Nav.pineReturn do
+                        local d = (Nav.pineReturn[i] - here.Position).Magnitude
+                        if d < bestD then bestD, from = d, i end
+                    end
+                    status = "Pine: back to the hive"
+                    Nav.walkLegs(Nav.pineReturn, "Pine to hive", 4, { from = from })
+                end
+            end
+        end
+
+         
+         
+         
         local target = nil
         for attempt = 1, 3 do
             if not pp then
@@ -14302,7 +15269,7 @@ end
             end
             if not pp then break end
             target = Vector3.new(pp.X, HiveTool.top(pad) + 1, pp.Z)
-            Nav.nodeTravel(target, "Hive travel", 3)
+            Nav.go(target, S.glide_speed, 3, "Hive travel")
             local hrp = getHRP()
             if hrp and (hrp.Position - target).Magnitude <= 5 then break end
             autoDetectHiveInstant()
@@ -14369,7 +15336,7 @@ end
                          
                         local hrp = getHRP()
                         if hrp and (hrp.Position - target).Magnitude > 6 then
-                            Nav.nodeTravel(target, "Back to hive pad", 3)
+                            Nav.go(target, S.glide_speed, 3, "Back to hive pad")
                         end
                         ask(true)
                     else
@@ -14441,7 +15408,7 @@ end
                                      
                                      
                                     status = "Back to hive pad for balloon"
-                                    Nav.nodeTravel(target, "Back to hive pad", 3)
+                                    Nav.go(target, S.glide_speed, 3, "Back to hive pad")
                                 end
                                 if not string.find(Nav.hivePromptText(), "Stop Making Honey", 1, true) then
                                     status = "Restarting hive for balloon"
@@ -14694,6 +15661,7 @@ end
     bg(function()
         while true do
             lastBeat = tick()
+            pcall(Engine.consoleTick)
             task.wait(0.5)
         end
     end)
@@ -14743,16 +15711,22 @@ end
                         if Nav.miscStep() then needSprinkler = true end
                     end
 
-                    if (S.auto_polar_quests or S.polar_only) and isOn() then
-                        status = "Routine: Polar Bear"
-                        completePolarBearRoutine()
+                    if Engine.questOn() and isOn() then
+                        status = "Routine: quests"
+                        Nav.questStep()
                     end
 
                     farmCycleStart = tick()
                     needSprinkler = true
                 end
 
-                if S.polar_only and isOn() then
+                 
+                 
+                 
+                 
+                 
+                if (S.polar_only or Engine.questsOnly()) and isOn() then
+                    local tag = S.polar_only and "Polar" or "Quests"
                     local pollen, cap = getPollenAndCap()
                     local isFull = forceReturn or (pollen and cap and cap > 0 and pollen >= cap * (S.full_pct / 100) and tick() >= (S.dig.convCooldown or 0))
                     if isFull then
@@ -14763,16 +15737,52 @@ end
                         local hasCombat = S.kill_beetle or S.kill_bear or S.kill_vicious or S.kill_mondo or S.kill_crab
                         if hasCombat and isOn() and tick() >= nextCombatCheck then
                             nextCombatCheck = tick() + 20
-                            status = "Polar: combat"
+                            status = tag .. ": combat"
                             doBossCombat()
                         end
 
                         if S.nectar_farm and isOn() then
-                            status = "Polar: nectars"
+                            status = tag .. ": nectars"
                             nectarStep()
                         end
 
-                        completePolarBearRoutine()
+                         
+                         
+                        if S.misc_any and isOn() then
+                            if Nav.miscStep() then needSprinkler = true end
+                        end
+
+                         
+                         
+                         
+                         
+                         
+                         
+                        if Engine.questOn() and isOn() then
+                            local job = Nav.questJob()
+                            if job then
+                                if job.kind == "pollen" then
+                                    if job.field and S.quest_follow ~= false then
+                                        if S.field ~= job.field then
+                                            Engine.onFieldChange(job.field)
+                                            if _G.__lolcatFieldSync then pcall(_G.__lolcatFieldSync, job.field) end
+                                        end
+                                        Nav.questFarm(job.field, 10)
+                                    else
+                                        Nav.questTaskLine = tostring(job.entry and job.entry.quest or "Quest")
+                                            .. ": field farming off"
+                                    end
+                                elseif job.kind ~= "turnin" and job.kind ~= "manual" then
+                                    Nav.questWork(job)
+                                end
+                            else
+                                 
+                                 
+                                 
+                                status = tag .. ": getting a quest"
+                                Nav.questStep()
+                            end
+                        end
                     end
                 elseif S.auto_polar_quests and isOn() then
                     local pollen, cap = getPollenAndCap()
@@ -14782,7 +15792,7 @@ end
                         collecting = false
                         if S.reset_mode then doReset() else convertAtHive() end
                     else
-                        completePolarBearRoutine()
+                        Nav.questStep()
                     end
                 else
                     if farmCycleStart > 0 and (tick() - farmCycleStart) >= 600 then
@@ -14812,6 +15822,41 @@ end
                      
                     if S.misc_any and isOn() then
                         if Nav.miscStep() then needSprinkler = true end
+                    end
+
+                     
+                     
+                     
+                     
+                    if Engine.questOn() and isOn() then
+                        local job = Nav.questJob()
+                        if job then
+                            if job.kind == "pollen" then
+                                 
+                                 
+                                if job.field and S.farm_on and S.quest_follow ~= false and S.field ~= job.field then
+                                     
+                                     
+                                    if not Nav.questFieldBack then Nav.questFieldBack = S.field end
+                                    Nav.questSetField = job.field
+                                    Engine.onFieldChange(job.field)
+                                    if _G.__lolcatFieldSync then pcall(_G.__lolcatFieldSync, job.field) end
+                                end
+                            elseif job.kind ~= "turnin" and job.kind ~= "manual" then
+                                Nav.questWork(job)
+                            end
+                        else
+                             
+                             
+                             
+                            local back = Nav.questFieldBack
+                            if back and S.field == (Nav.questSetField or "") then
+                                Engine.onFieldChange(back)
+                                if _G.__lolcatFieldSync then pcall(_G.__lolcatFieldSync, back) end
+                            end
+                            Nav.questFieldBack, Nav.questSetField = nil, nil
+                            Nav.questStep()
+                        end
                     end
 
                     if S.nectar_farm and isOn() then
@@ -14851,7 +15896,9 @@ end
                                  
                                  
                                  
-                                local travelPoint = Vector3.new(c.X, groundY(field) + ((S.travel_mode == "Tween") and 18 or 5), c.Z)
+                                 
+                                 
+                                local travelPoint = Vector3.new(c.X, groundY(field) + ((S.travel_mode == "Tween") and 3 or 5), c.Z)
 
                                 if not inField(hrp.Position, field, 28) then
                                     status = "Returning to field"
@@ -15160,6 +16207,52 @@ end
      
      
      
+     
+     
+     
+     
+     
+    Engine.console = { lines = {} }
+
+    Engine.consolePush = function(text)
+        if not text or text == "" then return end
+        local lines = Engine.console.lines
+        local secs = math.floor(tick())
+        local line = string.format("%02d:%02d ", math.floor(secs / 60) % 60, secs % 60) .. tostring(text)
+        if lines[1] == line then return end
+        table.insert(lines, 1, line)
+        while #lines > 30 do table.remove(lines) end
+    end
+
+    Engine.consoleTick = function()
+        local now = tick()
+        if now < (Engine.consoleAt or 0) then return end
+        Engine.consoleAt = now + 0.4
+
+        local bits = { tostring(status or "-") }
+        local moving = tostring(lastMoveMode or "Idle")
+        if moving ~= "" and moving ~= "Idle" then bits[#bits + 1] = moving end
+        if S.field and S.field ~= "" then bits[#bits + 1] = S.field end
+        local questLine = Engine.nav and Engine.nav.questTaskLine or ""
+        if questLine ~= "" then bits[#bits + 1] = questLine end
+
+         
+         
+        local line = table.concat(bits, " | ")
+        if line ~= (Engine.consoleSig or "") then
+            Engine.consoleSig = line
+            Engine.consolePush(line)
+        end
+    end
+
+    Engine.consoleLine = function(index)
+        local lines = Engine.console.lines
+        return lines[index] or ""
+    end
+
+     
+     
+     
     Engine.bossTimer = function(pattern) return Nav.bossStatus(pattern) end
 
     Engine.miscList = function() return Nav.miscToys end
@@ -15204,24 +16297,41 @@ end
         return "-"
     end
 
-    Engine.polarName = function()
-        local q = getPolarBearQuest()
-        if not q or not q.hasQuest then return "None detected" end
-        return q.questName or q.title or "-"
+    Engine.questLine = function()
+        local left = math.max(0, math.floor((Nav.questAt or 0) - tick()))
+        return tostring(Nav.questLast or "-") .. " / next in " .. left .. "s"
     end
 
-    Engine.polarStatus = function()
-        local q = getPolarBearQuest()
-        if not q or not q.hasQuest then return "Visit Polar Bear" end
-        if q.allComplete then return "Ready to turn in!" end
-        for _, t in ipairs(q.tasks) do
-            if not t.complete then
-                if t.type == "mob"    then return tostring(t.mob) .. " (" .. t.needed .. " left)" end
-                if t.type == "petal"  then return tostring(t.petal or "") .. " petals (" .. t.needed .. " left)" end
-                if t.type == "pollen" then return tostring(t.field or "Field") .. " (" .. t.needed .. " left)" end
+    Engine.questGiverCount = function()
+        local pick = S.quest_pick
+        if pick and pick ~= "All enabled" then
+            return Nav.questByName(pick) and 1 or 0
+        end
+        local n = 0
+        for _, giver in ipairs(Engine.questGivers) do
+            if (giver.group == "bear" and S.quest_bears ~= false)
+                or (giver.group == "other" and S.quest_others == true) then
+                n = n + 1
             end
         end
-        return "In progress"
+        return n
+    end
+
+    Engine.questMode = function()
+        local mode = (S.quest_bypass ~= false) and S.hybrid
+            and "Bypass: remotes from here" or "Travel to the giver"
+        return mode
+            .. " / " .. tostring(S.quest_mode or "Farm + quests")
+            .. " / " .. tostring(Engine.travelMode())
+            .. " / " .. Engine.questGiverCount() .. " givers"
+    end
+
+    Engine.questNow = function()
+        bg(function() pcall(Nav.questStep, true) end)
+    end
+
+    Engine.setQuests = function(v)
+        S.quests_auto = v and true or false
     end
 
     Engine.execState = function()
@@ -15390,7 +16500,7 @@ end
     end
 
     Engine.forceReturn = function() forceReturn = true end
-    Engine.claimQuest  = function() bg(function() pcall(claimOrAcceptPolarBearQuest, true) end) end
+    Engine.claimQuest  = function() bg(function() pcall(Nav.questStep, true) end) end
 
     Engine.shutdown = function()
         S.hard_off = true
@@ -15437,7 +16547,10 @@ local win = Lib:CreateWindow({
 _G.__lolcatUI = win
 
 win:AddSettingsTab("gear")
-task.delay(0.8, function()
+task.spawn(function()
+    task.wait(0.8)
+     
+     
      
      
      
@@ -15459,7 +16572,8 @@ task.delay(0.8, function()
         if walkSpdRow then pcall(function() walkSpdRow:Set(0) end) end
     end)
 end)
-task.delay(1, function()
+task.spawn(function()
+    task.wait(1)
     pcall(function() win:SetMenuKey("f1") end)
 end)
 Lib:Notify("Bee Swarm", "Press F1 to open the menu", 4, "info")
@@ -15909,6 +17023,9 @@ for _, entry in ipairs(Engine.miscList()) do
 end
 local ms = miscTab:Section("Cooldowns", "Right", "one toy per pass, in the order on the left")
 ms:Label(function() return "Last: " .. tostring(Engine.miscStatus()) end)
+ms:Slider("Gap between toys", Engine.S.misc_gap or 12, 1, 3, 120, "s", function(v)
+    Engine.S.misc_gap = v
+end, "with every toy on, farming and bosses still get their turn between trips")
 ms:Divider("Ready")
 for _, entry in ipairs(Engine.miscList()) do
     ms:Label(function() return entry.label .. ": " .. tostring(Engine.miscReady(entry.key)) end)
@@ -15969,13 +17086,174 @@ travelSec:Label(function() return "Travel: " .. tostring(Engine.travelMode()) ..
 local worldSec = moveTab:Section("World", "Right")
 worldSec:Label(function() return "Locomotion: " .. tostring(Engine.movement()) end)
 
+ 
+ 
+local Nav = (Engine and (Engine.nav or _G.__lolcatNav)) or {}
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+function Engine.questLog()
+    local nav = (Engine.nav or _G.__lolcatNav) or Nav
+    local read = nav and nav.questRead
+    if type(read) ~= "function" then return {} end
+    local ok, list = pcall(read)
+    if ok and type(list) == "table" then return list end
+    return {}
+end
+
+local qtab = win:Tab("Quests", "clock")
+local qleft = qtab:Section("Quest automation", "Left")
+qleft:Toggle("Auto quests", Engine.S.quests_auto == true, function(v) Engine.setQuests(v) end, "turn in the finished quest and take the next one, one giver per pass")
+qleft:Dropdown("Quest mode", Engine.S.quest_mode or "Farm + quests", { "Farm + quests", "Quests only" }, false, function(v)
+    Engine.S.quest_mode = type(v) == "table" and v[1] or v
+end, "Farm + quests: farm between quest passes. Quests only: no farming, just the quest cycle")
+qleft:Dropdown("Giver", Engine.S.quest_pick or "All enabled", Engine.questNames(), false, function(v)
+    Engine.S.quest_pick = type(v) == "table" and v[1] or v
+end, "All enabled uses the two groups below; a name runs that one giver alone")
+
+do  
+ 
+ 
+ 
+local function questOptionNames()
+    local names = { "Auto" }
+    local list = Engine.questLog()
+    do
+        for _, entry in ipairs(list) do
+            local title = entry.title
+            if title and #title > 0 then
+                local seen = false
+                for _, name in ipairs(names) do
+                    if name == title then seen = true break end
+                end
+                if not seen then names[#names + 1] = title end
+            end
+        end
+    end
+    return names
+end
+
+local questPickRow = qleft:Dropdown("Quest", Engine.S.quest_target or "Auto", questOptionNames(), false, function(v)
+    Engine.S.quest_target = type(v) == "table" and v[1] or v
+end, "Auto works whatever is active; a title works that quest alone")
+ 
+ 
+task.spawn(function()
+    while _G.__lolcatBSS == INSTANCE do
+        task.wait(2)
+        pcall(function()
+            local names = questOptionNames()
+            questPickRow.Options = names
+            local picked = Engine.S.quest_target or "Auto"
+            local found = false
+            for _, name in ipairs(names) do
+                if name == picked then found = true break end
+            end
+            if not found then
+                picked = "Auto"
+                Engine.S.quest_target = "Auto"
+            end
+            if questPickRow.Selected ~= picked then questPickRow.Selected = picked end
+        end)
+    end
+end)
+end
+
+qleft:Toggle("Farm the quest's field", Engine.S.quest_follow ~= false, function(v) Engine.S.quest_follow = v and true or false end, "a pollen task farms the field it names, beside Auto farm")
+qleft:Toggle("Pollen tasks", Engine.S.qk_pollen ~= false, function(v) Engine.S.qk_pollen = v and true or false end, "work \"collect X pollen from Y\" objectives")
+qleft:Toggle("Defeat tasks", Engine.S.qk_mobs ~= false, function(v) Engine.S.qk_mobs = v and true or false end, "hunt the monsters a quest names")
+qleft:Toggle("Puffshroom tasks", Engine.S.qk_puff ~= false, function(v) Engine.S.qk_puff = v and true or false end, "pop the puffshrooms a quest needs")
+qleft:Toggle("Token tasks", Engine.S.qk_tokens ~= false, function(v) Engine.S.qk_tokens = v and true or false end, "collect the tokens a quest names")
+qleft:Toggle("Quest bears", Engine.S.quest_bears ~= false, function(v) Engine.S.quest_bears = v and true or false end, "Black, Brown, Mother, Panda, Science, Dapper, Spirit, Polar")
+qleft:Toggle("Quest bees and others", Engine.S.quest_others == true, function(v) Engine.S.quest_others = v and true or false end, "Bucko, Riley, Honey Bee, Onett, Stick Bug, Robo Bear, Gummy Bear, Bee Bear")
+qleft:Slider("Check every", Engine.S.quest_check or 25, 5, 10, 120, "s", function(v) Engine.S.quest_check = v end, "one giver per pass")
 if HYBRID_TABS then
-local polarTab = win:Tab("Polar (Soon)", "clock")
-local pb = polarTab:Section("Polar Bear", "Left")
-pb:Info("Polar Bear automation - Soon")
-local prg = polarTab:Section("Progress", "Right")
-prg:Label(function() return "Quest: " .. tostring(Engine.polarName()) end)
-prg:Label(function() return "Objective: " .. tostring(Engine.polarStatus()) end)
+    qleft:Toggle("Bypass quest (no travel)", Engine.S.quest_bypass ~= false, function(v) Engine.S.quest_bypass = v and true or false end, "fire CompleteQuestFromPool / GiveQuestFromPool from here instead of walking to the bear")
+end
+local qright = qtab:Section("Progress", "Right")
+qright:Label(function()
+     
+     
+     
+    if #Engine.questLog() == 0 then return "Quest: no quest held" end
+    return "Quest: " .. tostring(Nav.questTrack or "none")
+end)
+qright:Label(function() return tostring(Nav.questTaskLine or "-") end)
+
+do  
+ 
+ 
+ 
+local function questTaskAt(index)
+    local list = Engine.questLog()
+    if #list < 1 then return "-" end
+    local entry = nil
+    for _, e in ipairs(list) do
+        if e.title == (Nav.questTrack or "") then entry = e break end
+    end
+    if not entry then entry = list[1] end
+    if not entry then return "no active quest" end
+    local task = entry.tasks[index]
+    if not task then return "" end
+
+    local label
+    if task.done then
+        label = "done"
+    elseif task.kind == "pollen" then
+        label = "pollen " .. tostring(task.field or "?")
+    elseif task.kind == "mobs" then
+        label = "kill " .. tostring(task.mob or "?")
+    elseif task.kind == "puff" then
+        label = "puffshrooms"
+    elseif task.kind == "tokens" then
+        label = "tokens " .. tostring(task.field or "")
+    elseif task.kind == "planters" then
+        label = "planters"
+    elseif task.kind == "nectar" then
+        label = "nectar"
+    else
+        label = string.sub(tostring(task.text or ""), 1, 30)
+    end
+    if task.have and task.need then
+        label = label .. " " .. tostring(task.have) .. "/" .. tostring(task.need)
+    end
+    return tostring(entry.quest or "") .. ": " .. label
+end
+for index = 1, 3 do
+    qright:Label(function() return questTaskAt(index) end)
+end
+end
+
+qright:Label(function() return "Last: " .. tostring(Engine.questLine()) end)
+qright:Label(function() return tostring(Engine.questMode()) end)
+qright:Button("Turn in + accept now", function() Engine.questNow() end)
+qright:Info("Bypass on: the game's own quest remotes are fired from anywhere. Bypass off: the character travels to the giver first, with the Travel method selected, then fires them at the bear.")
+
+ 
+ 
+do  
+local consoleSec = win:SettingsSection("Console", "Left")
+consoleSec:Label(function() return "Now: " .. tostring(Engine.status()) end)
+consoleSec:Label(function()
+    local where = "-"
+    pcall(function()
+        local hrp = game:GetService("Players").LocalPlayer.Character
+        local root = hrp and hrp:FindFirstChild("HumanoidRootPart")
+        if root then where = string.format("%.0f, %.0f", root.Position.X, root.Position.Z) end
+    end)
+    return "Travel: " .. tostring(Engine.movement()) .. " / " .. tostring(Engine.S.field or "-") .. " @ " .. where
+end)
+for index = 1, 7 do
+    consoleSec:Label(function() return Engine.consoleLine(index) end)
+end
+consoleSec:Info("Where the bot is going and what it is doing, newest first. Visible only while this menu is open.")
 end
 
 local myCfg = win:SettingsSection("Session", "Right")
@@ -16029,9 +17307,23 @@ task.spawn(function()
     end
 end)
 
+ 
+ 
+ 
+ 
 task.spawn(function()
+    local last = nil
+    local forceAt = tick() + 60
     while _G.__lolcatBSS == INSTANCE do
-        task.wait(20)
-        pcall(function() win:SaveConfig("lolcatbss") end)
+        task.wait(1.5)
+        pcall(function()
+            local sig = win:ConfigSignature()
+            local due = tick() >= forceAt
+            if sig ~= "" and (sig ~= last or due) then
+                last = sig
+                forceAt = tick() + 60
+                win:SaveConfig("lolcatbss")
+            end
+        end)
     end
 end)
